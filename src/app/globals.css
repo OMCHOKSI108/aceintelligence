@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair-display);
+  --font-accent: var(--font-cormorant-garamond);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.site-pillar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  background:
+    linear-gradient(90deg, rgba(15, 23, 42, 0.06), rgba(15, 23, 42, 0.03)),
+    repeating-linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.1) 0,
+      rgba(15, 23, 42, 0.1) 1px,
+      rgba(255, 255, 255, 0.5) 1px,
+      rgba(255, 255, 255, 0.5) 4px
+    );
+  border-left: 1px solid rgba(15, 23, 42, 0.08);
+  border-right: 1px solid rgba(15, 23, 42, 0.08);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.site-pillar-left {
+  left: 0;
+}
+
+.site-pillar-right {
+  right: 0;
+}
+
+.headline-primary {
+  font-family: var(--font-playfair-display), serif;
+}
+
+.headline-secondary {
+  font-family: var(--font-cormorant-garamond), serif;
+  font-style: italic;
+}
