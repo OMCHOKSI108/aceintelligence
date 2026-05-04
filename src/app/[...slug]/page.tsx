@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity } from "lucide-react";
+import { RagWorkflow3D } from "@/components/home/RagWorkflow3D";
 
 type PageContent = {
   title: string;
@@ -16,7 +17,7 @@ const contentMap: Record<string, PageContent> = {
   research: {
     title: "Research",
     intro: "aceintellegence researches practical, safe, and useful AI systems.",
-    body: "Our research programs focus on reliability, model quality, and real-world impact so teams can deploy AI with confidence.",
+    body: "Our research programs focus on reliability, model quality, and real-world impact so teams can deploy AI with confidence. Below is our conceptual RAG (Retrieval-Augmented Generation) workflow for ChatPDF.",
   },
   "economic-futures": {
     title: "Economic Futures",
@@ -417,6 +418,14 @@ export default async function DynamicPage({
         <h1 className="headline-primary text-4xl sm:text-5xl text-slate-900 mb-4">{content.title}</h1>
         <p className="text-lg text-slate-700 mb-5">{content.intro}</p>
         <p className="text-slate-600 leading-relaxed mb-8">{content.body}</p>
+
+        {key === "research" && (
+          <div className="my-10">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">RAG Workflow Visualization</h2>
+            <p className="text-sm text-slate-600 mb-6">Interactive 3D visualization of our Retrieval-Augmented Generation pipeline. Hover over nodes for details. Drag to rotate, scroll to zoom.</p>
+            <RagWorkflow3D />
+          </div>
+        )}
 
         {content.sections && content.sections.length > 0 && (
           <div className="space-y-6 mt-10">
