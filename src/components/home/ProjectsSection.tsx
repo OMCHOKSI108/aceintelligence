@@ -36,6 +36,7 @@ const projects = [
       { name: "anshgajera", username: "anshgajera", href: "https://github.com/anshgajera" },
     ],
     images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
+    liveUrl: "http://chatpdf.vercel.app/",
     features: [
       { icon: FileText, text: "RAG chat with document citations and conversation history" },
       { icon: Database, text: "Async ingestion pipeline with Redis queue + PostgreSQL persistence" },
@@ -146,13 +147,22 @@ export function ProjectsSection() {
 
             <div className="pt-4 border-t border-slate-100">
               <p className="text-xs text-slate-500 mb-3">{project.status}</p>
-                <Link
-                  href="#"
-                  className="inline-flex items-center text-sm font-medium text-slate-700 hover:text-slate-900 transition-colors"
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.textDecoration = "underline";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.textDecoration = "none";
+                  }}
                 >
-                  Learn more about ChatPDF
-                  <span className="ml-1">→</span>
-                </Link>
+                  Visit live site →
+                </a>
+              )}
             </div>
           </div>
         ))}
