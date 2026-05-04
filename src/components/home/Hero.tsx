@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
-import { colors, theme } from "@/lib/theme";
+import { colors } from "@/lib/theme";
 
 interface HeroProps {
   title?: string;
@@ -12,10 +12,10 @@ interface HeroProps {
 }
 
 export function Hero({
-  title = "Building the future of document intelligence.",
-  description = "",
-  ctaText = `Build with ${theme.brand.name}`,
-  ctaHref = "/projects",
+  title = "AI agents that actually understand your company's data",
+  description = "Query complex internal databases with zero hallucinations",
+  ctaText = "Book a Demo",
+  ctaHref = "/contact",
 }: HeroProps) {
   return (
     <section className="relative pt-36 pb-20 px-6 sm:px-8 lg:px-10 max-w-6xl mx-auto">
@@ -38,10 +38,10 @@ export function Hero({
             <ArrowRight size={16} />
           </Link>
           <Link
-            href="/projects"
+            href="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-700 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
           >
-            View projects
+            Get Early Access
             <ChevronRight size={16} />
           </Link>
         </div>
