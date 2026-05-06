@@ -19,6 +19,131 @@ const contentMap: Record<string, PageContent> = {
     intro: "aceintellegence researches practical, safe, and useful AI systems.",
     body: "Our research programs focus on reliability, model quality, and real-world impact so teams can deploy AI with confidence. Below is our conceptual RAG (Retrieval-Augmented Generation) workflow for ChatPDF.",
   },
+  about: {
+    title: "About",
+    intro: "We build document intelligence products and platforms.",
+    body: "aceintellegence is a small, execution-focused team building practical RAG systems that teams can ship. We care about grounded answers, secure ingestion, and developer ergonomics.",
+    sections: [
+      {
+        title: "What we do",
+        content: "We design and ship document intelligence workflows: ingestion, retrieval, evaluation, and product integration.",
+      },
+      {
+        title: "How we work",
+        content: "We iterate quickly, measure outcomes, and prioritize production-grade reliability over demos.",
+      },
+    ],
+  },
+  insights: {
+    title: "Insights",
+    intro: "Practical notes for builders shipping RAG systems.",
+    body: "Short, implementation-first writing on evaluation, security, latency, and patterns that work in production.",
+    sections: [
+      {
+        title: "From PDFs to product features",
+        content: "A blueprint for turning document collections into reliable, citation-backed user experiences.",
+        code: "See: /insights/pdfs-to-product",
+      },
+      {
+        title: "RAG evaluation essentials",
+        content: "How to measure answer quality, citation faithfulness, and regression risk.",
+        code: "See: /insights/rag-evaluation",
+      },
+      {
+        title: "Secure ingestion patterns",
+        content: "Least-privilege pipelines and boundaries for sensitive documents.",
+        code: "See: /insights/secure-ingestion",
+      },
+    ],
+  },
+  "insights/pdfs-to-product": {
+    title: "From PDFs to product features",
+    intro: "Turn document collections into dependable product experiences.",
+    body: "Start with a clear ingestion contract, add retrieval + citations, then iterate with evaluation. The goal is not just answers—it is answers you can trust.",
+    sections: [
+      {
+        title: "Step 1: Ingestion contract",
+        content: "Define supported file types, parsing behavior, and extraction guarantees.",
+      },
+      {
+        title: "Step 2: Grounding",
+        content: "Require citations and surface the source context in the UI.",
+      },
+      {
+        title: "Step 3: Evaluation loop",
+        content: "Track quality and regressions as you change chunking, prompts, and retrieval.",
+      },
+    ],
+  },
+  "insights/rag-evaluation": {
+    title: "RAG evaluation essentials",
+    intro: "Measure what matters before you optimize.",
+    body: "Good RAG systems track groundedness, citation quality, and user-perceived usefulness. Start small with curated scenarios and expand coverage as you learn.",
+  },
+  "insights/secure-ingestion": {
+    title: "Secure ingestion patterns",
+    intro: "Keep sensitive documents safe by design.",
+    body: "Use least privilege for ingestion workers, isolate workspaces, and ensure every retrieval is scoped to the user's access. Treat indexing as a privileged operation.",
+  },
+  "insights/latency-budgets": {
+    title: "Latency budgets for document Q&A",
+    intro: "Where time goes—and where to win it back.",
+    body: "Separate retrieval latency from generation latency. Cache expensive steps, keep context short, and measure end-to-end response time for real user queries.",
+  },
+  "services/document-intelligence": {
+    title: "Document Intelligence",
+    intro: "Ingestion, parsing, and retrieval systems that are production-ready.",
+    body: "We build pipelines for upload, extraction, indexing, and retrieval with clear contracts, observability, and safety boundaries.",
+    sections: [
+      {
+        title: "Ingestion",
+        content: "Parsing, metadata extraction, and normalization across common document types.",
+      },
+      {
+        title: "Search",
+        content: "Embeddings + hybrid retrieval patterns with workspace-level isolation.",
+      },
+      {
+        title: "Citations",
+        content: "Answer grounding with source references your users can verify.",
+      },
+    ],
+  },
+  "services/rag": {
+    title: "RAG Workflows",
+    intro: "Grounded answers with evaluation and iteration loops.",
+    body: "We design RAG systems that stay reliable as your documents grow and your product evolves—with systematic evaluation and clear failure-mode handling.",
+  },
+  "services/voice": {
+    title: "Voice Interfaces",
+    intro: "Voice-enabled document intelligence with streaming pipelines.",
+    body: "Add voice interactions using STT/TTS flows and keep responses grounded with citations and retrieval context.",
+  },
+  "industries/startups": {
+    title: "Startups",
+    intro: "Ship document intelligence without slowing down your roadmap.",
+    body: "We help startups move fast while keeping answers grounded and systems maintainable: pragmatic tooling, clear contracts, and measurable outcomes.",
+  },
+  "industries/finance": {
+    title: "Finance",
+    intro: "Grounded answers for policy, compliance, and internal knowledge.",
+    body: "Build scoped retrieval over controlled datasets and emphasize auditability through citations and access controls.",
+  },
+  "industries/healthcare": {
+    title: "Healthcare",
+    intro: "Reliable retrieval patterns for complex documentation.",
+    body: "Focus on access boundaries, groundedness, and careful evaluation. Treat data handling as a first-class constraint.",
+  },
+  "industries/legal": {
+    title: "Legal",
+    intro: "Citations-first document Q&A for contracts and policies.",
+    body: "Design for verification: citations, source snippets, and workflows that reduce hallucination risk.",
+  },
+  "economic-futures": {
+    title: "Economic Futures",
+    intro: "We study how AI changes work, productivity, and opportunity.",
+    body: "aceintellegence explores economic outcomes and builds tools that support sustainable growth for developers, startups, and enterprises.",
+  },
   constitution: {
     title: "Company Constitution",
     intro: "Our constitution defines long-term product and safety principles.",

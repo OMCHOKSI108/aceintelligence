@@ -73,6 +73,35 @@ npm run build
 npm run start
 ```
 
+## CI/CD: Auto-deploy to Vercel
+
+This repo includes a GitHub Actions workflow that deploys to Vercel on every push:
+
+- Push to `master` -> deploys **Production**
+- Push to any other branch -> deploys a **Preview**
+
+### Required GitHub Secrets
+
+In your GitHub repo: **Settings -> Secrets and variables -> Actions**, add:
+
+- `VERCEL_TOKEN` -> a Vercel Personal Access Token
+- `VERCEL_ORG_ID` -> your Vercel team/org ID
+- `VERCEL_PROJECT_ID` -> the Vercel project ID for this site
+
+### How to get `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`
+
+One simple way is to link the project locally and read the generated file:
+
+```bash
+npx vercel login
+npx vercel link
+cat .vercel/project.json
+```
+
+Then copy `orgId` -> `VERCEL_ORG_ID` and `projectId` -> `VERCEL_PROJECT_ID`.
+
+Workflow file: `.github/workflows/vercel-deploy.yml`.
+
 ## License
 
 All rights reserved — aceintellegence © 2026
