@@ -37,7 +37,7 @@ export function FeatureCard({
           <p className="text-slate-300 mb-4">{description}</p>
           <Link
             href={href}
-            className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-blue-300 hover:text-blue-200 transition-colors"
           >
             Read the story
             <ArrowRight size={16} />
@@ -52,7 +52,7 @@ export function FeatureCard({
       {(date || category) && (
         <div className="flex items-center gap-3 mb-3">
           {category && (
-            <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+            <span className="text-xs font-medium text-blue-700 bg-blue-50 px-2 py-1 rounded">
               {category}
             </span>
           )}

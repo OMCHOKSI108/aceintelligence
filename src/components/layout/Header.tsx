@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navData } from "@/lib/nav-data";
 import { colors, theme } from "@/lib/theme";
 import { NavDropdown } from "./NavDropdown";
@@ -49,11 +49,11 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-4">
             <Link
-              href="/claude"
+              href="/contact"
               className="px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors"
               style={{ backgroundColor: colors.accent.primary }}
             >
-              Try {theme.brand.name}
+              Talk to us
             </Link>
           </div>
 
@@ -85,12 +85,12 @@ export function Header() {
               )
             )}
             <Link
-              href="/claude"
+              href="/contact"
               className="block px-4 py-2 text-sm font-medium text-white text-center rounded-lg"
               style={{ backgroundColor: colors.accent.primary }}
               onClick={() => setMobileOpen(false)}
             >
-              Try {theme.brand.name}
+              Talk to us
             </Link>
           </div>
         </div>

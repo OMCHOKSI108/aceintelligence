@@ -18,47 +18,76 @@ export interface NavSection {
 
 export const navData: NavSection = {
   main: [
-    { label: "Research", href: "/research" },
-    { label: "Economic Futures", href: "/economic-futures" },
     {
-      label: "Commitments",
+      label: "Services",
       children: [
         {
-          label: "Initiatives",
+          label: "Solutions",
           children: [
-            { label: "Company Constitution", href: "/constitution" },
-            { label: "Transparency", href: "/transparency" },
-            { label: "Responsible Scaling", href: "/responsible-scaling" },
+            { label: "Document Intelligence", href: "/services/document-intelligence" },
+            { label: "RAG Workflows", href: "/services/rag" },
+            { label: "Voice Interfaces", href: "/services/voice" },
+            { label: "Developer Platform", href: "/platform" },
           ],
         },
         {
-          label: "Trust Center",
+          label: "Accelerators",
           children: [
+            { label: "ChatPDF", href: "/projects" },
+            { label: "Templates", href: "/templates" },
+            { label: "API", href: "/api" },
+          ],
+        },
+      ],
+    },
+    {
+      label: "Industries",
+      children: [
+        {
+          label: "Use Cases",
+          children: [
+            { label: "Startups", href: "/industries/startups" },
+            { label: "Finance", href: "/industries/finance" },
+            { label: "Healthcare", href: "/industries/healthcare" },
+            { label: "Legal", href: "/industries/legal" },
+          ],
+        },
+      ],
+    },
+    { label: "Insights", href: "/insights" },
+    {
+      label: "Company",
+      children: [
+        {
+          label: "About",
+          children: [
+            { label: "Overview", href: "/about" },
+            { label: "Research", href: "/research" },
             { label: "Security", href: "/security" },
+            { label: "Transparency", href: "/transparency" },
+          ],
+        },
+        {
+          label: "Get in touch",
+          children: [
+            { label: "Contact", href: "/contact" },
+            { label: "Support", href: "/support" },
+            { label: "Status", href: "/status" },
           ],
         },
       ],
     },
-    {
-      label: "Learn",
-      children: [
-        { label: "Academy", href: "/academy" },
-        { label: "Tutorials", href: "/tutorials" },
-        { label: "Use Cases", href: "/use-cases" },
-        { label: "Engineering", href: "/engineering" },
-      ],
-    },
+    { label: "Contact", href: "/contact" },
   ],
   products: [
-    { label: "ChatPDF", href: "/claude" },
-    { label: "Voice Chat", href: "/code" },
-    { label: "Workspaces", href: "/cowork" },
+    { label: "ChatPDF", href: "/projects" },
     { label: "Platform", href: "/platform" },
+    { label: "Developer Docs", href: "/docs" },
     { label: "Pricing", href: "/pricing" },
   ],
   models: [
-    { label: "Opus", href: "/models/opus" },
-    { label: "Sonnet", href: "/models/sonnet" },
-    { label: "Haiku", href: "/models/haiku" },
+    { label: "RAG", href: "/services/rag" },
+    { label: "OCR", href: "/services/document-intelligence" },
+    { label: "Voice", href: "/services/voice" },
   ],
 };

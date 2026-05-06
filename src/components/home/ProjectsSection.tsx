@@ -4,21 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   Shield,
-  Search,
   MessageSquare,
   FileText,
-  Bot,
-  CheckCircle,
   Code,
   Database,
-  Cpu,
   Layers,
-  Shirt,
-  Camera,
-  Link2,
-  Sparkles,
-  TrendingUp,
-  DollarSign,
   Activity,
 } from "lucide-react";
 
@@ -55,15 +45,17 @@ export function ProjectsSection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="mb-12">
-        <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mb-3">
-          Our Product
+        <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">Featured</p>
+        <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2 mb-3">
+          Featured product: ChatPDF
         </h2>
-        <p className="text-slate-600 text-lg">
-          Document intelligence platform built for startups and teams
+        <p className="text-slate-600 text-lg max-w-3xl">
+          A document intelligence platform that helps users ask questions, extract insights, and keep answers grounded
+          with citations.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-1 gap-8 max-w-3xl">
+      <div className="grid gap-8">
         {projects.map((project) => (
           <div
             key={project.id}
@@ -77,92 +69,89 @@ export function ProjectsSection() {
               </span>
             </div>
 
-            <div className="mb-6">
-              <h3 className="headline-primary text-2xl sm:text-3xl text-slate-900 mb-1">
-                {project.title}
-              </h3>
-              <p className="text-sm font-medium text-slate-500">{project.tagline}</p>
-              <p className="text-slate-600 mt-3">{project.description}</p>
-            </div>
-
-            {project.images && project.images.length > 0 && (
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                {project.images.map((img, idx) => (
-                  <div key={idx} className="rounded-lg overflow-hidden border border-slate-200">
-                    <Image
-                      src={img}
-                      alt={`${project.title} screenshot ${idx + 1}`}
-                      width={400}
-                      height={300}
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <div className="flex items-center gap-4 mb-4 pb-4 border-b border-slate-100">
-              {project.team.map((member) => (
-                <div key={member.username} className="flex items-center gap-2">
-                  <img
-                    src={`https://avatars.githubusercontent.com/${member.username}?size=160`}
-                    alt={`${member.name} profile`}
-                    className="w-10 h-10 rounded-full border border-slate-200"
-                  />
-                  <div>
-                    <p className="text-xs text-slate-500">Developer</p>
-                    <Link
-                      href={member.href}
-                      className="text-xs font-medium text-slate-900 hover:text-slate-700"
-                    >
-                      {member.name}
-                    </Link>
-                  </div>
+            <div className="grid lg:grid-cols-12 gap-8 items-start">
+              <div className="lg:col-span-7">
+                <div className="mb-6">
+                  <h3 className="headline-primary text-2xl sm:text-3xl text-slate-900 mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm font-medium text-slate-500">{project.tagline}</p>
+                  <p className="text-slate-600 mt-3">{project.description}</p>
                 </div>
-              ))}
-            </div>
 
-            <ul className="space-y-3 mb-6">
-              {project.features.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <feature.icon
-                    size={18}
-                    className="text-slate-500 mt-0.5 flex-shrink-0"
-                  />
-                  <span className="text-sm text-slate-600">{feature.text}</span>
-                </li>
-              ))}
-            </ul>
+                <div className="flex items-center gap-4 mb-4 pb-4 border-b border-slate-100">
+                  {project.team.map((member) => (
+                    <div key={member.username} className="flex items-center gap-2">
+                      <img
+                        src={`https://avatars.githubusercontent.com/${member.username}?size=160`}
+                        alt={`${member.name} profile`}
+                        className="w-10 h-10 rounded-full border border-slate-200"
+                      />
+                      <div>
+                        <p className="text-xs text-slate-500">Developer</p>
+                        <Link
+                          href={member.href}
+                          className="text-xs font-medium text-slate-900 hover:text-slate-700"
+                        >
+                          {member.name}
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+                <ul className="space-y-3 mb-6">
+                  {project.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <feature.icon size={18} className="text-slate-500 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-slate-600">{feature.text}</span>
+                    </li>
+                  ))}
+                </ul>
 
-            <div className="pt-4 border-t border-slate-100">
-              <p className="text-xs text-slate-500 mb-3">{project.status}</p>
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.textDecoration = "underline";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.textDecoration = "none";
-                  }}
-                >
-                  Visit live site →
-                </a>
-              )}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="pt-4 border-t border-slate-100">
+                  <p className="text-xs text-slate-500 mb-3">{project.status}</p>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                    >
+                      Visit live site →
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              <div className="lg:col-span-5">
+                {project.images && project.images.length > 0 && (
+                  <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
+                    {project.images.map((img, idx) => (
+                      <div key={idx} className="rounded-xl overflow-hidden border border-slate-200 bg-white">
+                        <Image
+                          src={img}
+                          alt={`${project.title} screenshot ${idx + 1}`}
+                          width={700}
+                          height={520}
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         ))}
