@@ -43,7 +43,7 @@ const projects = [
 
 export function ProjectsSection() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="mb-12">
         <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">Featured</p>
         <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2 mb-3">
@@ -154,7 +154,20 @@ export function ProjectsSection() {
               </div>
             </div>
           </div>
-        ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {["Next.js", "FastAPI", "Qdrant", "NetworkX", "Redis", "PostgreSQL"].map(
+            (tech) => (
+              <span
+                key={tech}
+                className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600"
+              >
+                {tech}
+              </span>
+            )
+          )}
+        </div>
       </div>
     </section>
   );

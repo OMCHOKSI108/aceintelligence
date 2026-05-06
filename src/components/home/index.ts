@@ -1,5 +1,14 @@
 export { Hero } from "./Hero";
 export { FeatureCard } from "./FeatureCard";
-export { LinkCards } from "./LinkCards";
 export { ProjectsSection } from "./ProjectsSection";
 export { HomePage } from "./HomePage";
+export { ProblemSection } from "./ProblemSection";
+export { SolutionSection } from "./SolutionSection";
+export { HowItWorks } from "./HowItWorks";
+export { WhyDifferent } from "./WhyDifferent";
+export { UseCases } from "./UseCases";
+export { PricingSection } from "./PricingSection";
+export { SecuritySection } from "./SecuritySection";
+export { SocialProof } from "./SocialProof";
+export { FounderSection } from "./FounderSection";
+export { FinalCTA } from "./FinalCTA";

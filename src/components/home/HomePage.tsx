@@ -1,5 +1,7 @@
 import { Hero } from "./Hero";
-import { LinkCards } from "./LinkCards";
+import { ProblemSection } from "./ProblemSection";
+import { SolutionSection } from "./SolutionSection";
+import { HowItWorks } from "./HowItWorks";
 import { ProjectsSection } from "./ProjectsSection";
 import { FeatureCard } from "./FeatureCard";
 import { theme } from "@/lib/theme";
@@ -42,7 +44,9 @@ export function HomePage() {
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" aria-hidden="true" />
       <div className="relative z-10">
         <Hero />
-        <LinkCards />
+        <ProblemSection />
+        <SolutionSection />
+        <HowItWorks />
         <ProjectsSection />
 
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
