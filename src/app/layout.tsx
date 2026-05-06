@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono, Playfair_Display, Cormorant_Garamond } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 
@@ -41,10 +42,14 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} ${cormorantGaramond.variable}`}
       suppressHydrationWarning
     >
-      <head>
+      <body
+        className="min-h-screen flex flex-col antialiased bg-[var(--color-background)]"
+        suppressHydrationWarning
+      >
         {process.env.NODE_ENV === "development" && (
-          <script
-            suppressHydrationWarning
+          <Script
+            id="dev-hydration-sanitizer"
+            strategy="beforeInteractive"
             dangerouslySetInnerHTML={{
               __html: `(() => {
   const shouldRemove = (name) =>
@@ -55,14 +60,13 @@ export default function RootLayout({
     name.startsWith('data-bis-') ||
     name === 'data-dynamic-id';
 
-  // Extensions can inject attributes right before React hydrates.
-  // MutationObserver callbacks are async and may run too late, so we also
-  // block setting these attributes at the DOM API level (dev-only).
   try {
     if (!window.__ace_attr_patch__) {
       window.__ace_attr_patch__ = true;
+
       const origSetAttribute = Element.prototype.setAttribute;
       const origSetAttributeNS = Element.prototype.setAttributeNS;
+      const origToggleAttribute = Element.prototype.toggleAttribute;
 
       Element.prototype.setAttribute = function (name, value) {
         try {
@@ -81,6 +85,17 @@ export default function RootLayout({
         }
         return origSetAttributeNS.call(this, ns, name, value);
       };
+
+      if (typeof origToggleAttribute === 'function') {
+        Element.prototype.toggleAttribute = function (name, force) {
+          try {
+            if (typeof name === 'string' && shouldRemove(name)) return false;
+          } catch {
+            // ignore
+          }
+          return origToggleAttribute.call(this, name, force);
+        };
+      }
     }
   } catch {
     // ignore
@@ -144,11 +159,6 @@ export default function RootLayout({
             }}
           />
         )}
-      </head>
-      <body
-        className="min-h-screen flex flex-col antialiased bg-[var(--color-background)]"
-        suppressHydrationWarning
-      >
         <div className="site-pillar site-pillar-left" aria-hidden="true" />
         <div className="site-pillar site-pillar-right" aria-hidden="true" />
         <Header />

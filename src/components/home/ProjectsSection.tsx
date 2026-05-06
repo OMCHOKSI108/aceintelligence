@@ -154,20 +154,7 @@ export function ProjectsSection() {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          {["Next.js", "FastAPI", "Qdrant", "NetworkX", "Redis", "PostgreSQL"].map(
-            (tech) => (
-              <span
-                key={tech}
-                className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600"
-              >
-                {tech}
-              </span>
-            )
-          )}
-        </div>
+        ))}
       </div>
     </section>
   );
