@@ -2,6 +2,7 @@
 
 Building AI products that ship. Document intelligence for the modern startup.
 
+
 ## What It Is
 
 aceintellegence is a startup-focused website showcasing our document intelligence platform **ChatPDF** — an AI-powered tool that lets users upload documents, ask natural-language questions, and get grounded answers with source references.
