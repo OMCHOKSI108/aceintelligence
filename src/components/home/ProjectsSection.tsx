@@ -15,11 +15,11 @@ import {
 const projects = [
   {
     id: "chatpdf",
-    badge: "In Development",
-    badgeColor: "bg-green-100 text-green-800 border-green-200",
+    badge: "Private beta",
+    badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
     title: "ChatPDF",
-    tagline: "Document Intelligence with RAG",
-    description: "Lets users upload documents, ask natural-language questions, and get grounded answers with source references.",
+    tagline: "Automation for knowledge-heavy workflows",
+    description: "Automates intake, routing, approvals, and follow-ups so teams can move faster with full visibility.",
     team: [
       { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
       { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
@@ -28,16 +28,16 @@ const projects = [
     images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
     liveUrl: "http://chatpdf.vercel.app/",
     features: [
-      { icon: FileText, text: "RAG chat with document citations and conversation history" },
-      { icon: Database, text: "Async ingestion pipeline with Redis queue + PostgreSQL persistence" },
-      { icon: Layers, text: "Multi-document and workspace-aware access patterns" },
-      { icon: Code, text: "Organization and business APIs (local/hybrid flows)" },
-      { icon: MessageSquare, text: "Voice chat endpoints with STT + TTS streaming" },
-      { icon: Shield, text: "OAuth (Google, GitHub) and JWT auth" },
-      { icon: Activity, text: "Health, analytics, feedback, and operational endpoints" },
+      { icon: FileText, text: "Automated intake, triage, and routing for requests" },
+      { icon: Database, text: "Workflow state tracking with durable audit logs" },
+      { icon: Layers, text: "Reusable automation steps with approval gates" },
+      { icon: Code, text: "APIs for system-to-system workflow triggers" },
+      { icon: MessageSquare, text: "Operator inbox with human-in-the-loop reviews" },
+      { icon: Shield, text: "Role-based access and approval policies" },
+      { icon: Activity, text: "Operational dashboards for throughput and exceptions" },
     ],
     techStack: ["Next.js", "FastAPI", "Redis", "PostgreSQL", "Qdrant", "STT/TTS"],
-    status: "Monorepo: User app, Admin dashboard, Backend + Workers, Voice pipeline",
+    status: "Platform stack: user app, admin console, backend, workers, and voice pipeline",
   },
 ];
 
@@ -50,8 +50,7 @@ export function ProjectsSection() {
           Featured product: ChatPDF
         </h2>
         <p className="text-slate-600 text-lg max-w-3xl">
-          A document intelligence platform that helps users ask questions, extract insights, and keep answers grounded
-          with citations.
+          A workflow automation platform that keeps approvals, handoffs, and accountability in one place.
         </p>
       </div>
 

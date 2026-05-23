@@ -2,18 +2,18 @@ export function HowItWorks() {
   const steps = [
     {
       step: "01",
-      title: "Upload your data",
-      description: "PDFs, CSV, JSON, code, audio, and any internal document or database.",
+      title: "Map the workflow",
+      description: "Identify owners, approvals, and the systems that must stay in sync.",
     },
     {
       step: "02",
-      title: "AI maps relationships",
-      description: "Not just keywords. Our system understands hierarchy and connections in your data.",
+      title: "Automate with guardrails",
+      description: "Define safe actions, retries, and human checkpoints for exceptions.",
     },
     {
       step: "03",
-      title: "Ask anything",
-      description: "Get accurate answers with source references. No hallucinations, no guessing.",
+      title: "Monitor outcomes",
+      description: "Track results, approvals, and impact with clear reporting.",
     },
   ];
 
@@ -24,7 +24,7 @@ export function HowItWorks() {
           How it works
         </h2>
         <p className="text-slate-600 text-lg">
-          Three clear steps to accurate AI over your enterprise data.
+          Three clear steps to trustworthy automation.
         </p>
       </div>
 

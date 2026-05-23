@@ -6,21 +6,21 @@ export function FounderSection() {
       name: "Yash Khare",
       role: "CEO",
       description:
-        "Core AI architecture and hybrid retrieval pipeline design. Known each other for 3 years, met in 1st year of college.",
+        "Core AI architecture and workflow automation design. Known each other for 3 years, met in 1st year of college.",
       github: "https://github.com/firefistisdead",
     },
     {
       name: "Om Choksi",
       role: "CTO",
       description:
-        "Core AI architecture and crawler agent development. All founders are technical, and we write 100% of the code.",
+        "Core AI architecture and automation agent development. All founders are technical, and we write 100% of the code.",
       github: "https://github.com/OMCHOKSI108",
     },
     {
       name: "Ansh Gajera",
       role: "CPO / COO",
       description:
-        "Full-stack development, Next.js dashboard, multi-modal ingestion, access control systems.",
+        "Full-stack development, operator dashboards, workflow controls, and access systems.",
       github: "https://github.com/anshgajera",
     },
   ];
@@ -32,7 +32,7 @@ export function FounderSection() {
           Built by engineers who lived the problem
         </h2>
         <p className="text-slate-600 text-lg">
-          Started from ChatPDF, faced RAG limitations firsthand, built the solution.
+          Started from ChatPDF, faced operational bottlenecks firsthand, built the solution.
         </p>
       </div>
 

@@ -5,22 +5,22 @@ export function UseCases() {
     {
       icon: FileText,
       title: "Finance",
-      description: "Invoice queries, expense analysis, financial report reasoning across thousands of documents.",
+      description: "Automate invoice routing, approvals, and reconciliation with clear audit trails.",
     },
     {
       icon: Scale,
       title: "Legal",
-      description: "Document reasoning, contract analysis, compliance checks with cited sources.",
+      description: "Contract intake, clause review routing, and compliance workflows with approvals.",
     },
     {
       icon: Settings,
       title: "Operations",
-      description: "Internal knowledge base, SOP queries, and policy lookups that are instant and accurate.",
+      description: "SOP execution, incident workflows, and vendor coordination without manual handoffs.",
     },
     {
       icon: Code,
       title: "Engineering",
-      description: "Code and documentation understanding, technical spec queries, architecture reasoning.",
+      description: "Release checklists, on-call runbooks, and change management with tracked ownership.",
     },
   ];
 
@@ -31,7 +31,7 @@ export function UseCases() {
           Where it&apos;s used
         </h2>
         <p className="text-slate-600 text-lg">
-          Real use cases across every department in your enterprise.
+          Real automation workflows across every department in your enterprise.
         </p>
       </div>
 

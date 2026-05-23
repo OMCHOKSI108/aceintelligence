@@ -10,44 +10,44 @@ interface LinkCardProps {
 
 const links: LinkCardProps[] = [
   {
-    title: "Document intelligence",
+    title: "Workflow automation",
     category: "Service",
-    description: "Ingestion, parsing, embeddings, and robust retrieval patterns.",
+    description: "Design and automate business-critical workflows with clear guardrails.",
     href: "/services/document-intelligence",
     icon: FileText,
   },
   {
-    title: "RAG workflows",
+    title: "Human-in-the-loop",
     category: "Service",
-    description: "Grounded answers with citations, evaluation, and iteration loops.",
+    description: "Approvals, escalation paths, and confidence checks built in.",
     href: "/services/rag",
     icon: Search,
   },
   {
     title: "Security & governance",
     category: "Trust",
-    description: "Workspace boundaries, access controls, and safe deployment practices.",
+    description: "Role-based access, audit trails, and compliance-friendly workflows.",
     href: "/security",
     icon: Shield,
   },
   {
-    title: "Platform & APIs",
+    title: "Platform & integrations",
     category: "Platform",
-    description: "Composable APIs that slot into your existing product surface.",
+    description: "Connect existing systems and trigger workflows from your stack.",
     href: "/platform",
     icon: Layers,
   },
   {
-    title: "Performance tuning",
+    title: "Workflow performance",
     category: "Engineering",
-    description: "Latency, caching, and scaling strategies for production workloads.",
+    description: "Throughput, exception handling, and operational SLAs.",
     href: "/engineering",
     icon: Gauge,
   },
   {
-    title: "Integrations",
+    title: "Templates",
     category: "Delivery",
-    description: "Ship faster with templates, docs, and integration-ready patterns.",
+    description: "Launch trusted automation faster with prebuilt patterns.",
     href: "/templates",
     icon: Plug,
   },
@@ -59,11 +59,10 @@ export function LinkCards() {
       <div className="mb-10">
         <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">Capabilities</p>
         <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2">
-          Built like an enterprise team. Shipped like a startup.
+          Built for operators. Trusted by leadership.
         </h2>
         <p className="text-slate-600 text-lg mt-3 max-w-3xl">
-          A practical set of services and platform building blocks for document intelligence, from ingestion to
-          grounded answers.
+          A practical set of services and platform building blocks for automation, from intake to approvals.
         </p>
       </div>
 

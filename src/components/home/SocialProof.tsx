@@ -6,7 +6,7 @@ export function SocialProof() {
           Trusted by early users
         </h2>
         <p className="text-slate-600 text-lg">
-          We&apos;re in active beta with real users putting our system to the test.
+          We&apos;re partnering with early teams to harden the platform in real workflows.
         </p>
       </div>
 
@@ -20,24 +20,24 @@ export function SocialProof() {
             ))}
           </div>
           <p className="text-slate-700 italic mb-6">
-            &quot;Finally, an AI that actually understands our internal documentation. No more hallucinations, just accurate answers.&quot;
+            &quot;The experience feels deliberate. Answers are grounded, and the workflow is easy to trust.&quot;
           </p>
           <div className="flex items-center justify-center gap-3">
             <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center">
-              <span className="text-sm font-medium text-slate-600">B</span>
+              <span className="text-sm font-medium text-slate-600">P</span>
             </div>
             <div>
-              <p className="text-sm font-medium text-slate-900">Beta User</p>
-              <p className="text-xs text-slate-500">Engineering Lead</p>
+              <p className="text-sm font-medium text-slate-900">Product Team</p>
+              <p className="text-xs text-slate-500">Design partner</p>
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-3 gap-6 mt-8 text-center">
           {[
-            { number: "10-20", label: "Beta users" },
-            { number: "0", label: "Hallucinations reported" },
-            { number: "100%", label: "Data privacy maintained" },
+            { number: "Early", label: "Design partners" },
+            { number: "Scoped", label: "Secure workspaces" },
+            { number: "Live", label: "Operational feedback loops" },
           ].map((stat, idx) => (
             <div key={idx} className="p-4">
               <p className="text-2xl font-bold text-blue-600">{stat.number}</p>

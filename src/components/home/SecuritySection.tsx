@@ -4,21 +4,21 @@ export function SecuritySection() {
   const points = [
     {
       icon: Shield,
-      title: "Data never stored (Hybrid mode)",
+      title: "Data stays in your control",
       description:
-        "In hybrid mode, your data stays with you. We process queries without persisting sensitive information.",
+        "In hybrid mode, your data stays with you. We only process what is needed to run the workflow.",
     },
     {
       icon: Lock,
-      title: "Encryption & ZKRAG",
+      title: "Encryption and access controls",
       description:
-        "Our Zero-Knowledge Retrieval Augmented Generation concept ensures your data remains private and encrypted at every step.",
+        "End-to-end encryption with role-based access and approval gates for sensitive actions.",
     },
     {
       icon: Server,
       title: "Private deployments",
       description:
-        "Deploy on your own infrastructure. Full control, full compliance with your security policies.",
+        "Deploy on your infrastructure with full control, logging, and compliance alignment.",
     },
   ];
 
@@ -29,7 +29,7 @@ export function SecuritySection() {
           Enterprise-grade security
         </h2>
         <p className="text-slate-600 text-lg">
-          You&apos;re dealing with sensitive enterprise data, so trust matters. We built for that.
+          You&apos;re automating sensitive operations, so trust and control come first.
         </p>
       </div>
 

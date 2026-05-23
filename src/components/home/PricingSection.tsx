@@ -8,9 +8,9 @@ export function PricingSection() {
       description: "Deploy on your own infrastructure. Full control, zero data leaving your network.",
       features: [
         "Self-hosted deployment",
-        "Multi-modal ingestion",
+        "Workflow orchestration",
         "Role-based access control",
-        "Voice + chat interface",
+        "Approvals and audit trails",
       ],
     },
     {
@@ -20,8 +20,8 @@ export function PricingSection() {
       period: "/month",
       features: [
         "Hybrid cloud deployment",
-        "Qdrant + Knowledge Graph",
-        "Crawler agent access",
+        "Workflow templates",
+        "Automation agent access",
         "Priority support",
       ],
     },
@@ -34,7 +34,7 @@ export function PricingSection() {
         "Custom integrations",
         "Dedicated infrastructure",
         "SLA guarantees",
-        "Custom AI model tuning",
+        "Compliance alignment",
       ],
     },
   ];
@@ -102,7 +102,7 @@ export function PricingSection() {
       </div>
 
       <p className="text-center text-sm text-slate-500 mt-8">
-        $50K ACV average • 200 customers = $10M ARR potential
+        Need a custom plan? We&apos;ll tailor scope, approvals, and support for your workflow.
       </p>
     </section>
   );

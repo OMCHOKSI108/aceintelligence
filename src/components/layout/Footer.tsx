@@ -34,7 +34,7 @@ export function Footer() {
               </div>
               <p className="text-sm leading-relaxed mb-4">
                 Building AI products that ship.<br />
-                Document intelligence for the modern startup.
+                Trusted automation for modern teams.
               </p>
               <p className="text-sm">© {currentYear} {theme.brand.name}</p>
             </div>

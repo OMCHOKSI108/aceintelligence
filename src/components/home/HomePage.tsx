@@ -8,29 +8,29 @@ import { theme } from "@/lib/theme";
 
 const insightCards = {
   featured: {
-    title: "From PDFs to product features",
-    description: "A practical blueprint for turning document collections into reliable, citation-backed user experiences.",
+    title: "From manual ops to trusted automation",
+    description: "A practical blueprint for moving repetitive work into reliable, approval-friendly workflows.",
     href: "/insights/pdfs-to-product",
     image: "/landingpage.jpeg",
   },
   list: [
     {
-      title: "RAG evaluation essentials",
-      description: "How to measure answer quality, citation faithfulness, and regression risk.",
+      title: "Workflow quality essentials",
+      description: "How to measure throughput, exceptions, and business impact without losing trust.",
       category: "Guide",
       date: "May 2026",
       href: "/insights/rag-evaluation",
     },
     {
-      title: "Secure ingestion patterns",
-      description: "Designing least-privilege pipelines that handle sensitive documents safely.",
+      title: "Approval and governance patterns",
+      description: "Designing least-privilege approvals and handoffs for sensitive operations.",
       category: "Security",
       date: "May 2026",
       href: "/insights/secure-ingestion",
     },
     {
-      title: "Latency budgets for document Q&A",
-      description: "Where time goes in retrieval, reranking, and generation, and how to optimize.",
+      title: "Automation latency budgets",
+      description: "Where time goes in workflow execution and how to keep SLAs predictable.",
       category: "Engineering",
       date: "May 2026",
       href: "/insights/latency-budgets",
@@ -55,10 +55,10 @@ export function HomePage() {
           <div className="mb-10">
             <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">Insights</p>
             <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2">
-              Practical writing for builders
+              Practical writing for operators
             </h2>
             <p className="text-slate-600 text-lg mt-3 max-w-3xl">
-              Short, implementation-first notes on building dependable document intelligence.
+              Short, implementation-first notes on building automation you can defend and scale.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function HomePage() {
                 Ready to build with {theme.brand.name}?
               </h2>
               <p className="text-slate-600 text-lg mt-3 max-w-2xl">
-                Tell us what you're shipping. We'll help you choose an approach and get it into production.
+                Tell us what you want to automate. We&apos;ll help you design a workflow your team trusts.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">

@@ -1,16 +1,16 @@
 export function ProblemSection() {
   const problems = [
     {
-      title: "Enterprise data is a mess",
-      description: "Documents scattered across systems, no clear relationships, impossible to query at scale.",
+      title: "Critical work still happens by hand",
+      description: "Teams rely on manual steps, handoffs, and spreadsheets to keep operations moving.",
     },
     {
-      title: "Traditional RAG fails",
-      description: "Vector search loses context in large datasets. Hallucinations and wrong answers erode trust.",
+      title: "Automation breaks without oversight",
+      description: "One-off scripts and fragile tools fail under real-world exceptions and approvals.",
     },
     {
-      title: "Existing tools are unreliable",
-      description: "They guess based on keywords instead of understanding how your data actually connects.",
+      title: "Visibility is missing",
+      description: "Leaders can&apos;t see who approved what, when, or why a workflow changed state.",
     },
   ];
 
@@ -21,7 +21,7 @@ export function ProblemSection() {
           You&apos;re not imagining it
         </h2>
         <p className="text-slate-600 text-lg">
-          These problems are real, and they&apos;re costing enterprises millions in lost productivity.
+          These problems are real, and they slow down every team that depends on reliable operations.
         </p>
       </div>
 

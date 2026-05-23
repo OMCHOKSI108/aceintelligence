@@ -13,7 +13,7 @@ export function LoadingScreen() {
           <p className="text-[0.7rem] font-medium uppercase tracking-[0.3em] text-slate-500">Loading</p>
           <h1 className="headline-primary mt-3 text-3xl sm:text-4xl text-slate-900">{theme.brand.name}</h1>
           <p className="mt-3 text-sm sm:text-base leading-6 text-slate-600">
-            Preparing a calmer, clearer view of your document intelligence workspace.
+            Preparing a calmer, clearer view of your automation workspace.
           </p>
           <div className="mt-8 grid gap-4">
             <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
@@ -21,7 +21,7 @@ export function LoadingScreen() {
             </div>
             <div className="flex items-center justify-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-400">
               <span className="h-2 w-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-              <span>Calibrating sources</span>
+              <span>Aligning workflows</span>
               <span className="h-2 w-2 rounded-full bg-[var(--color-accent)] animate-pulse [animation-delay:200ms]" />
             </div>
           </div>

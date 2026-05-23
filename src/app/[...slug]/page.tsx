@@ -16,128 +16,128 @@ type PageContent = {
 const contentMap: Record<string, PageContent> = {
   research: {
     title: "Research",
-    intro: "aceintellegence researches practical, safe, and useful AI systems.",
-    body: "Our research programs focus on reliability, model quality, and real-world impact so teams can deploy AI with confidence. Below is our conceptual RAG (Retrieval-Augmented Generation) workflow for ChatPDF.",
+    intro: "aceintellegence researches practical, safe, and useful automation systems.",
+    body: "Our research programs focus on reliability, governance, and real world impact so teams can deploy automation with confidence. Below is our conceptual workflow orchestration model for ChatPDF.",
   },
   about: {
     title: "About",
-    intro: "We build document intelligence products and platforms.",
-    body: "aceintellegence is a small, execution-focused team building practical RAG systems that teams can ship. We care about grounded answers, secure ingestion, and developer ergonomics.",
+    intro: "We build workflow automation products and platforms.",
+    body: "aceintellegence is a small, execution focused team building automation systems that teams can trust. We care about approvals, governance, and operational clarity.",
     sections: [
       {
         title: "What we do",
-        content: "We design and ship document intelligence workflows: ingestion, retrieval, evaluation, and product integration.",
+        content: "We design and ship automation workflows: intake, approvals, execution, and reporting.",
       },
       {
         title: "How we work",
-        content: "We iterate quickly, measure outcomes, and prioritize production-grade reliability over demos.",
+        content: "We iterate quickly, measure outcomes, and prioritize production grade reliability over demos.",
       },
     ],
   },
   insights: {
     title: "Insights",
-    intro: "Practical notes for builders shipping RAG systems.",
-    body: "Short, implementation-first writing on evaluation, security, latency, and patterns that work in production.",
+    intro: "Practical notes for builders shipping automation systems.",
+    body: "Short, implementation first writing on governance, security, latency, and patterns that work in production.",
     sections: [
       {
-        title: "From PDFs to product features",
-        content: "A blueprint for turning document collections into reliable, citation-backed user experiences.",
+        title: "From manual ops to trusted automation",
+        content: "A blueprint for turning repetitive work into reliable, approval friendly workflows.",
         code: "See: /insights/pdfs-to-product",
       },
       {
-        title: "RAG evaluation essentials",
-        content: "How to measure answer quality, citation faithfulness, and regression risk.",
+        title: "Workflow quality essentials",
+        content: "How to measure throughput, exceptions, and business impact without losing trust.",
         code: "See: /insights/rag-evaluation",
       },
       {
-        title: "Secure ingestion patterns",
-        content: "Least-privilege pipelines and boundaries for sensitive documents.",
+        title: "Approval and governance patterns",
+        content: "Least privilege approvals and boundaries for sensitive operations.",
         code: "See: /insights/secure-ingestion",
       },
     ],
   },
   "insights/pdfs-to-product": {
-    title: "From PDFs to product features",
-    intro: "Turn document collections into dependable product experiences.",
-    body: "Start with a clear ingestion contract, add retrieval and citations, then iterate with evaluation. The goal is not just answers, it is answers you can trust.",
+    title: "From manual ops to trusted automation",
+    intro: "Turn repetitive work into dependable workflows.",
+    body: "Start with a clear workflow contract, add approvals and monitoring, then iterate with evaluation. The goal is not just speed, it is automation you can trust.",
     sections: [
       {
-        title: "Step 1: Ingestion contract",
-        content: "Define supported file types, parsing behavior, and extraction guarantees.",
+        title: "Step 1: Workflow contract",
+        content: "Define owners, inputs, approvals, and success criteria.",
       },
       {
-        title: "Step 2: Grounding",
-        content: "Require citations and surface the source context in the UI.",
+        title: "Step 2: Guardrails",
+        content: "Require approvals and surface context for every automated action.",
       },
       {
         title: "Step 3: Evaluation loop",
-        content: "Track quality and regressions as you change chunking, prompts, and retrieval.",
+        content: "Track outcomes and regressions as workflows evolve.",
       },
     ],
   },
   "insights/rag-evaluation": {
-    title: "RAG evaluation essentials",
+    title: "Workflow quality essentials",
     intro: "Measure what matters before you optimize.",
-    body: "Good RAG systems track groundedness, citation quality, and user-perceived usefulness. Start small with curated scenarios and expand coverage as you learn.",
+    body: "Good automation systems track throughput, exception rates, and user-perceived usefulness. Start small with curated scenarios and expand coverage as you learn.",
   },
   "insights/secure-ingestion": {
-    title: "Secure ingestion patterns",
-    intro: "Keep sensitive documents safe by design.",
-    body: "Use least privilege for ingestion workers, isolate workspaces, and ensure every retrieval is scoped to the user's access. Treat indexing as a privileged operation.",
+    title: "Approval and governance patterns",
+    intro: "Keep sensitive operations safe by design.",
+    body: "Use least privilege for automation steps, isolate workspaces, and ensure every action is scoped to the right owner. Treat approvals as privileged operations.",
   },
   "insights/latency-budgets": {
-    title: "Latency budgets for document Q&A",
+    title: "Automation latency budgets",
     intro: "Where time goes and where to win it back.",
-    body: "Separate retrieval latency from generation latency. Cache expensive steps, keep context short, and measure response time for real user queries.",
+    body: "Separate queue time from execution time. Cache expensive steps, keep handoffs clear, and measure end to end workflow latency.",
   },
   "services/document-intelligence": {
-    title: "Document Intelligence",
-    intro: "Ingestion, parsing, and retrieval systems that are production-ready.",
-    body: "We build pipelines for upload, extraction, indexing, and retrieval with clear contracts, observability, and safety boundaries.",
+    title: "Workflow Automation",
+    intro: "Automation systems that are production ready.",
+    body: "We build workflows for intake, approvals, execution, and reporting with clear contracts, observability, and safety boundaries.",
     sections: [
       {
-        title: "Ingestion",
-        content: "Parsing, metadata extraction, and normalization across common document types.",
+        title: "Intake",
+        content: "Capture requests, normalize inputs, and route work to the right owners.",
       },
       {
-        title: "Search",
-        content: "Embeddings + hybrid retrieval patterns with workspace-level isolation.",
+        title: "Approvals",
+        content: "Define decision checkpoints, permissions, and human handoffs.",
       },
       {
-        title: "Citations",
-        content: "Answer grounding with source references your users can verify.",
+        title: "Reporting",
+        content: "Track outcomes, exceptions, and SLA adherence across workflows.",
       },
     ],
   },
   "services/rag": {
-    title: "RAG Workflows",
-    intro: "Grounded answers with evaluation and iteration loops.",
-    body: "We design RAG systems that stay reliable as your documents grow and your product evolves, with systematic evaluation and clear failure handling.",
+    title: "Human in the loop",
+    intro: "Guardrails that keep automation safe.",
+    body: "We design approval flows that stay reliable as your operations scale, with systematic evaluation and clear exception handling.",
   },
   "services/voice": {
-    title: "Voice Interfaces",
-    intro: "Voice-enabled document intelligence with streaming pipelines.",
-    body: "Add voice interactions using STT/TTS flows and keep responses grounded with citations and retrieval context.",
+    title: "Operator Experience",
+    intro: "Human friendly dashboards and control planes.",
+    body: "Give operators clear queues, approvals, and escalation paths for every automated workflow.",
   },
   "industries/startups": {
     title: "Startups",
-    intro: "Ship document intelligence without slowing down your roadmap.",
-    body: "We help startups move fast while keeping answers grounded and systems maintainable: pragmatic tooling, clear contracts, and measurable outcomes.",
+    intro: "Ship automation without slowing down your roadmap.",
+    body: "We help startups move fast while keeping workflows reliable and systems maintainable: pragmatic tooling, clear contracts, and measurable outcomes.",
   },
   "industries/finance": {
     title: "Finance",
-    intro: "Grounded answers for policy, compliance, and internal knowledge.",
-    body: "Build scoped retrieval over controlled datasets and emphasize auditability through citations and access controls.",
+    intro: "Trusted automation for policy, compliance, and approvals.",
+    body: "Build scoped workflows over controlled datasets and emphasize auditability through approvals and access controls.",
   },
   "industries/healthcare": {
     title: "Healthcare",
-    intro: "Reliable retrieval patterns for complex documentation.",
-    body: "Focus on access boundaries, groundedness, and careful evaluation. Treat data handling as a first-class constraint.",
+    intro: "Reliable workflows for complex operations.",
+    body: "Focus on access boundaries, approvals, and careful evaluation. Treat data handling as a first class constraint.",
   },
   "industries/legal": {
     title: "Legal",
-    intro: "Citations-first document Q&A for contracts and policies.",
-    body: "Design for verification: citations, source snippets, and workflows that reduce hallucination risk.",
+    intro: "Approval-first workflows for contracts and policies.",
+    body: "Design for verification: approvals, source context, and workflows that reduce operational risk.",
   },
   "economic-futures": {
     title: "Economic Futures",
@@ -157,25 +157,25 @@ const contentMap: Record<string, PageContent> = {
   security: {
     title: "Security",
     intro: "Security is built into every layer of the platform.",
-    body: "From infrastructure to application flows, aceintellegence follows secure engineering practices and continuous hardening. We never store your data in hybrid mode and use Zero-Knowledge RAG (ZKRAG) concepts for privacy.",
+    body: "From infrastructure to application flows, aceintellegence follows secure engineering practices and continuous hardening. We never store your data in hybrid mode and design automation with approvals and audit trails.",
   },
   "use-cases": {
     title: "Use Cases",
     intro: "See how teams apply aceintellegence in production.",
-    body: "Explore proven patterns across finance, legal, operations, and engineering teams who use our platform for accurate document intelligence.",
+    body: "Explore proven patterns across finance, legal, operations, and engineering teams who use our platform for trusted automation.",
   },
   docs: {
     title: "Documentation",
-    intro: "Technical documentation for Ace Intelligence platform.",
-    body: "Learn how to integrate our API, set up your environment, and deploy enterprise-grade document intelligence.",
+    intro: "Technical documentation for the Ace Intelligence platform.",
+    body: "Learn how to integrate our API, set up your environment, and deploy enterprise grade workflow automation.",
     sections: [
       {
         title: "Quick Start",
-        content: "Get started with ChatPDF and our document intelligence platform. Upload your first document and start querying.",
+        content: "Get started with ChatPDF and our automation platform. Connect your first workflow and start testing.",
       },
       {
         title: "API Overview",
-        content: "Our REST API lets you upload documents, query with citations, and integrate with your existing systems.",
+        content: "Our REST API lets you trigger workflows, manage approvals, and integrate with your existing systems.",
       },
       {
         title: "Authentication",
@@ -190,7 +190,7 @@ const contentMap: Record<string, PageContent> = {
   api: {
     title: "API Reference",
     intro: "Complete API reference for developers.",
-    body: "Integrate Ace Intelligence into your applications with our RESTful API endpoints.",
+    body: "Integrate Ace Intelligence into your applications with our RESTful automation endpoints.",
     sections: [
       {
         title: "Base URL",
@@ -207,7 +207,7 @@ const contentMap: Record<string, PageContent> = {
   pricing: {
     title: "Pricing",
     intro: "Transparent pricing for every stage.",
-    body: "Choose the plan that fits your enterprise needs. All plans include our core promise: near-zero hallucinations.",
+    body: "Choose the plan that fits your enterprise needs. All plans include our core promise: trustworthy automation.",
     sections: [
       {
         title: "Business Local",
@@ -229,44 +229,44 @@ const contentMap: Record<string, PageContent> = {
   projects: {
     title: "Our Product",
     intro: "ChatPDF and the Ace Intelligence platform.",
-    body: "Production-grade AI automation agents that query and navigate massive unstructured enterprise data with near-zero hallucinations.",
+    body: "Automation tools that help teams orchestrate approvals, execute tasks, and track outcomes with confidence.",
     sections: [
       {
         title: "ChatPDF Core",
-        content: "Conversational AI platform with multi-modal ingestion (PDF, CSV, JSON, code, audio). Role-based access control included.",
-        code: "In Beta",
+        content: "Workflow automation platform with multi modal intake (PDF, CSV, JSON, code, audio). Role based access control included.",
+        code: "Private beta",
       },
       {
-        title: "Hybrid Retrieval Pipeline",
-        content: "Combines vector search (Qdrant) with knowledge graph reasoning (NetworkX) for accurate answers.",
-        code: "Production",
+        title: "Workflow Orchestration Layer",
+        content: "Coordinates tasks, approvals, retries, and escalations across systems.",
+        code: "Active development",
       },
       {
-        title: "Crawler Agent",
-        content: "Autonomous agent that maps relationships in your data like a human researcher would.",
-        code: "Production",
+        title: "Automation Agent",
+        content: "Executes trusted actions, tracks state, and escalates when humans need to intervene.",
+        code: "Active development",
       },
       {
         title: "Enterprise Dashboard",
         content: "Next.js dashboard for managing documents, users, analytics, and access control.",
-        code: "In Development",
+        code: "In progress",
       },
     ],
   },
   status: {
     title: "System Status",
-    intro: "Real-time status of Ace Intelligence services.",
-    body: "Monitor API availability, latency, and system health.",
+    intro: "Current service availability and incident updates.",
+    body: "We share maintenance windows and incident notes here as they happen.",
     sections: [
       {
         title: "API Status",
-        content: "Current operational status.",
-        code: "Operational",
+        content: "Public API endpoints for beta customers.",
+        code: "Monitoring",
       },
       {
-        title: "Uptime (30 days)",
-        content: "Service availability over the past month.",
-        code: "99.98%",
+        title: "Recent updates",
+        content: "No public incidents reported in the last 7 days.",
+        code: "Last updated weekly",
       },
     ],
   },
@@ -281,7 +281,7 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Data Security",
-        content: "All data is encrypted in transit and at rest. ZKRAG ensures zero-knowledge processing where applicable.",
+        content: "All data is encrypted in transit and at rest. Approvals and audit trails protect sensitive actions.",
       },
       {
         title: "User Rights",
@@ -307,7 +307,7 @@ const contentMap: Record<string, PageContent> = {
   support: {
     title: "Support",
     intro: "Get help with Ace Intelligence products.",
-    body: "Our team is here to assist with technical questions and enterprise onboarding.",
+    body: "Our team can help with onboarding, architecture reviews, and troubleshooting.",
     sections: [
       {
         title: "Documentation",
@@ -316,18 +316,18 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "FAQ",
-        content: "What file types are supported? PDF, CSV, JSON, code files, and audio.\nIs there a rate limit? Depends on your plan. Enterprise has unlimited access.\nHow accurate are the answers? Near-zero hallucinations by design.",
+        content: "What file types are supported? PDF, CSV, JSON, code files, and audio.\nIs there a rate limit? It depends on your plan and workload profile.\nHow do you measure answer quality? We use citations, evaluation sets, and user feedback loops.",
       },
     ],
   },
   contact: {
     title: "Contact Us",
     intro: "Get in touch with the Ace Intelligence team.",
-    body: "We'd love to hear from you. Reach out for demos, partnerships, or support.",
+    body: "Reach out for demos, partnerships, or support. We respond within 1-2 business days.",
     sections: [
       {
         title: "General Inquiries",
-        content: "For questions about our products and services.",
+        content: "For questions about our products, roadmap, and partnerships.",
         code: "Email: hello@aceintelligence.systems",
       },
       {
@@ -342,8 +342,25 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Location",
-        content: "Based in Ahmedabad/Surat, India. Expanding to Bangalore for startup ecosystem access.",
-        code: "Remote-first team",
+        content: "Based in Ahmedabad and Surat. Expanding to Bangalore for the startup ecosystem.",
+        code: "Remote first team",
+      },
+    ],
+  },
+  templates: {
+    title: "Project Templates",
+    intro: "Accelerators that help teams ship automation faster.",
+    body: "Our templates package common patterns for intake, approvals, and execution so you can move from prototype to production with fewer surprises.",
+    sections: [
+      {
+        title: "Starter kits",
+        content: "Opinionated setups for Next.js + API backends with workflow orchestration and approvals.",
+        code: "Available on request",
+      },
+      {
+        title: "Integration blueprints",
+        content: "Reference integrations for storage, auth, and operational systems used in production.",
+        code: "Contact us for access",
       },
     ],
   },
@@ -365,8 +382,8 @@ export default async function DynamicPage({
   const key = slug.join("/");
   const content = contentMap[key] ?? {
     title: formatTitleFromSlug(slug),
-    intro: "This page is now active and ready for content.",
-    body: "aceintellegence is a startup founded by OMCHOKSI108, firefistisdead, and anshgajera. This section can be extended with detailed product, research, or documentation content.",
+    intro: "We&apos;re preparing this page and will publish more detail soon.",
+    body: "If you&apos;re looking for something specific, reach out and we&apos;ll point you to the right resources.",
   };
 
   return (
@@ -379,8 +396,8 @@ export default async function DynamicPage({
 
         {key === "research" && (
           <div className="my-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">RAG Workflow Visualization</h2>
-            <p className="text-sm text-slate-600 mb-6">Interactive 3D visualization of our Retrieval-Augmented Generation pipeline. Hover over nodes for details. Drag to rotate, scroll to zoom.</p>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Workflow Automation Visualization</h2>
+            <p className="text-sm text-slate-600 mb-6">Interactive 3D visualization of our automation workflow model. Hover over nodes for details. Drag to rotate, scroll to zoom.</p>
             <RagWorkflow3D />
           </div>
         )}

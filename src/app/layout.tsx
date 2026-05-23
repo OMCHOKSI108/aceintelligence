@@ -28,7 +28,7 @@ const cormorantGaramond = Cormorant_Garamond({
 
 export const metadata: Metadata = {
   title: "aceintellegence",
-  description: "Building AI products that ship. Document intelligence and RAG-powered solutions for the modern startup.",
+  description: "Building AI products that ship. Workflow automation and trusted operations for modern teams.",
 };
 
 export default function RootLayout({

@@ -12,8 +12,8 @@ interface HeroProps {
 }
 
 export function Hero({
-  title = "Document intelligence that ships.",
-  description = "RAG first, secure by default, and built for real teams.",
+  title = "Automation that teams trust.",
+  description = "Workflow first AI with human oversight and dependable execution.",
   ctaText = "Talk to an expert",
   ctaHref = "/contact",
 }: HeroProps) {
@@ -23,7 +23,7 @@ export function Hero({
       <div className="grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-7">
           <p className="text-xs font-medium tracking-[0.22em] text-slate-500 uppercase mb-4">
-            {theme.brand.name} | Document Intelligence Studio
+            {theme.brand.name} | Workflow Automation Studio
           </p>
 
           <h1 className="headline-primary text-[2.6rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[0.98] tracking-tight">
@@ -36,8 +36,8 @@ export function Hero({
           )}
 
           <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
-            We help teams turn PDFs and internal knowledge into dependable product experiences, with retrieval,
-            evaluation, and security practices designed for production.
+            We help teams automate high-stakes workflows with clear approvals, reliable handoffs, and the visibility
+            leaders need to trust every step.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -65,15 +65,15 @@ export function Hero({
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Focus</p>
-              <p className="text-sm font-semibold text-slate-900">RAG reliability</p>
+              <p className="text-sm font-semibold text-slate-900">Workflow automation</p>
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Security</p>
-              <p className="text-sm font-semibold text-slate-900">Least privilege access</p>
+              <p className="text-sm font-semibold text-slate-900">Audit-ready controls</p>
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Delivery</p>
-              <p className="text-sm font-semibold text-slate-900">Ship fast</p>
+              <p className="text-sm font-semibold text-slate-900">Operational trust</p>
             </div>
           </div>
         </div>
@@ -84,45 +84,45 @@ export function Hero({
               What we deliver
             </p>
             <h2 className="headline-primary text-xl sm:text-2xl text-slate-900 mt-2">
-              A complete document intelligence stack
+              A complete workflow automation stack
             </h2>
             <ul className="mt-5 space-y-4">
               <li className="flex items-start gap-3">
                 <Search size={18} className="text-slate-600 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Retrieval that stays grounded</p>
-                  <p className="text-sm text-slate-600">Chunking, citations, and evaluation loops tuned for accuracy.</p>
+                  <p className="text-sm font-medium text-slate-900">Workflow intent capture</p>
+                  <p className="text-sm text-slate-600">Understand requests, scope them, and route tasks to the right systems.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Shield size={18} className="text-slate-600 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Security-first ingestion</p>
-                  <p className="text-sm text-slate-600">Clear boundaries between users, workspaces, and data.</p>
+                  <p className="text-sm font-medium text-slate-900">Policy and approval controls</p>
+                  <p className="text-sm text-slate-600">Role-based access, approvals, and audit trails by default.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Layers size={18} className="text-slate-600 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Composable platform</p>
-                  <p className="text-sm text-slate-600">APIs and templates that fit your existing product.</p>
+                  <p className="text-sm font-medium text-slate-900">Orchestration layer</p>
+                  <p className="text-sm text-slate-600">Reusable automation steps, retries, and system-safe fallbacks.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Zap size={18} className="text-slate-600 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Fast iteration cycles</p>
-                  <p className="text-sm text-slate-600">Deploy often, measure impact, and improve with confidence.</p>
+                  <p className="text-sm font-medium text-slate-900">Operational visibility</p>
+                  <p className="text-sm text-slate-600">Real-time monitoring, human handoff, and clear outcomes.</p>
                 </div>
               </li>
             </ul>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Next.js</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">FastAPI</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Vector Search</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Eval</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Citations</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Workflows</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Approvals</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Integrations</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Monitoring</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Audit trails</span>
             </div>
           </div>
         </div>

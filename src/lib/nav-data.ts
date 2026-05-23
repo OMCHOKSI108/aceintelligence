@@ -24,9 +24,9 @@ export const navData: NavSection = {
         {
           label: "Solutions",
           children: [
-            { label: "Document Intelligence", href: "/services/document-intelligence" },
-            { label: "RAG Workflows", href: "/services/rag" },
-            { label: "Voice Interfaces", href: "/services/voice" },
+            { label: "Workflow Automation", href: "/services/document-intelligence" },
+            { label: "Human-in-the-loop", href: "/services/rag" },
+            { label: "Operator Experience", href: "/services/voice" },
             { label: "Developer Platform", href: "/platform" },
           ],
         },
@@ -86,8 +86,8 @@ export const navData: NavSection = {
     { label: "Pricing", href: "/pricing" },
   ],
   models: [
-    { label: "RAG", href: "/services/rag" },
-    { label: "OCR", href: "/services/document-intelligence" },
-    { label: "Voice", href: "/services/voice" },
+    { label: "Automation", href: "/services/rag" },
+    { label: "Approvals", href: "/services/document-intelligence" },
+    { label: "Operator UI", href: "/services/voice" },
   ],
 };

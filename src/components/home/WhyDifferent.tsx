@@ -3,10 +3,10 @@ export function WhyDifferent() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="mb-12">
         <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mb-3">
-          We don&apos;t guess answers. We navigate your data.
+          We don&apos;t ship brittle bots. We ship trusted workflows.
         </h2>
         <p className="text-slate-600 text-lg">
-          This is the fundamental difference, and it&apos;s why we eliminate hallucinations.
+          This is the fundamental difference, and it&apos;s why teams trust the outcomes.
         </p>
       </div>
 
@@ -15,10 +15,10 @@ export function WhyDifferent() {
           <h3 className="text-lg font-semibold text-slate-400 mb-4">Others</h3>
           <ul className="space-y-3">
             {[
-              "Vector search only and loses structure",
-              "Guesses based on similarity",
-              "Breaks on large, complex datasets",
-              "Hallucinations are common",
+              "One-off scripts with no governance",
+              "Automation without approvals",
+              "Breaks when exceptions appear",
+              "No audit trail or ownership",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-2">
                 <span className="text-red-500 mt-0.5">✗</span>
@@ -32,10 +32,10 @@ export function WhyDifferent() {
           <h3 className="text-lg font-semibold text-blue-900 mb-4">Ace Intelligence</h3>
           <ul className="space-y-3">
             {[
-              "Graph + crawler reasoning",
-              "Navigates relationships like a human",
-              "Scales to massive enterprise datasets",
-              "Near-zero hallucinations",
+              "Human-in-the-loop guardrails",
+              "Clear ownership and approvals",
+              "Resilient automation paths",
+              "Audit-ready reporting",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-2">
                 <span className="text-green-600 mt-0.5">✓</span>
@@ -48,7 +48,7 @@ export function WhyDifferent() {
 
       <div className="mt-8 rounded-xl bg-slate-900 text-white p-6 text-center">
         <p className="text-lg font-medium">
-          Enterprise data is relational and hierarchical, not just semantic. We built for that reality.
+          Enterprise automation needs accountability, not just speed. We built for that reality.
         </p>
       </div>
     </section>

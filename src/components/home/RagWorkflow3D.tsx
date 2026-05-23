@@ -306,11 +306,11 @@ export function RagWorkflow3D() {
   }, []);
 
   const legend = [
-    { label: "Input", color: "bg-violet-500", text: "Query + document intake" },
-    { label: "Processing", color: "bg-blue-500", text: "Chunking and vectorization" },
-    { label: "Retrieval", color: "bg-emerald-500", text: "Search, context, rerank" },
-    { label: "Generation", color: "bg-amber-600", text: "LLM + citations" },
-    { label: "Output", color: "bg-red-600", text: "Grounded answer" },
+    { label: "Intake", color: "bg-violet-500", text: "Request + context capture" },
+    { label: "Policy", color: "bg-blue-500", text: "Approvals and controls" },
+    { label: "Execution", color: "bg-emerald-500", text: "Actions, retries, handoffs" },
+    { label: "Oversight", color: "bg-amber-600", text: "Human review + audit" },
+    { label: "Outcome", color: "bg-red-600", text: "Trusted completion" },
   ];
 
   return (
