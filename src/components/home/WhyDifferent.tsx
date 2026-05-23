@@ -6,7 +6,7 @@ export function WhyDifferent() {
           We don&apos;t guess answers. We navigate your data.
         </h2>
         <p className="text-slate-600 text-lg">
-          This is the fundamental difference — and it&apos;s why we eliminate hallucinations.
+          This is the fundamental difference, and it&apos;s why we eliminate hallucinations.
         </p>
       </div>
 
@@ -15,7 +15,7 @@ export function WhyDifferent() {
           <h3 className="text-lg font-semibold text-slate-400 mb-4">Others</h3>
           <ul className="space-y-3">
             {[
-              "Vector search only — loses structure",
+              "Vector search only and loses structure",
               "Guesses based on similarity",
               "Breaks on large, complex datasets",
               "Hallucinations are common",
@@ -48,7 +48,7 @@ export function WhyDifferent() {
 
       <div className="mt-8 rounded-xl bg-slate-900 text-white p-6 text-center">
         <p className="text-lg font-medium">
-          Enterprise data is relational & hierarchical — not just semantic. We built for that reality.
+          Enterprise data is relational and hierarchical, not just semantic. We built for that reality.
         </p>
       </div>
     </section>

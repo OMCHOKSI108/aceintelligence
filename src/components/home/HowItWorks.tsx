@@ -3,7 +3,7 @@ export function HowItWorks() {
     {
       step: "01",
       title: "Upload your data",
-      description: "PDFs, CSV, JSON, code, audio — any internal document or database.",
+      description: "PDFs, CSV, JSON, code, audio, and any internal document or database.",
     },
     {
       step: "02",
@@ -24,7 +24,7 @@ export function HowItWorks() {
           How it works
         </h2>
         <p className="text-slate-600 text-lg">
-          Three simple steps to accurate AI over your enterprise data.
+          Three clear steps to accurate AI over your enterprise data.
         </p>
       </div>
 

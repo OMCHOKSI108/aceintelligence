@@ -29,7 +29,7 @@ export function SecuritySection() {
           Enterprise-grade security
         </h2>
         <p className="text-slate-600 text-lg">
-          You&apos;re dealing with sensitive enterprise data — trust matters. We built for that.
+          You&apos;re dealing with sensitive enterprise data, so trust matters. We built for that.
         </p>
       </div>
 

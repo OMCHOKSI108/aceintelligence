@@ -8,14 +8,14 @@ export function SolutionSection() {
           We map your data like a human researcher
         </h2>
         <p className="text-slate-600 text-lg max-w-2xl">
-          Instead of guessing answers from isolated chunks, our AI navigates relationships and hierarchy — just like you would.
+          Instead of guessing answers from isolated chunks, our AI navigates relationships and hierarchy just like you would.
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div className="space-y-4">
           {[
-            "Upload your internal data — PDFs, code, docs, databases",
+            "Upload your internal data, including PDFs, code, docs, and databases",
             "Our crawler maps relationships, not just keywords",
             "Ask anything → get accurate answers with source tracing",
           ].map((point, idx) => (

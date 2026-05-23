@@ -10,7 +10,7 @@ export function FinalCTA() {
         </h2>
         <p className="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
           Join our beta. Book a demo. See how Ace Intelligence navigates your data
-          — instead of guessing.
+          instead of guessing.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">

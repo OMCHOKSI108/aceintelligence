@@ -6,14 +6,14 @@ export function FounderSection() {
       name: "Yash Khare",
       role: "CEO",
       description:
-        "Core AI architecture, hybrid retrieval pipeline design. Known each other for 3 years — met in 1st year of college.",
+        "Core AI architecture and hybrid retrieval pipeline design. Known each other for 3 years, met in 1st year of college.",
       github: "https://github.com/firefistisdead",
     },
     {
       name: "Om Choksi",
       role: "CTO",
       description:
-        "Core AI architecture, crawler agent development. All founders are technical — we write 100% of the code.",
+        "Core AI architecture and crawler agent development. All founders are technical, and we write 100% of the code.",
       github: "https://github.com/OMCHOKSI108",
     },
     {
@@ -68,8 +68,7 @@ export function FounderSection() {
 
       <div className="mt-8 text-center">
         <p className="text-sm text-slate-500">
-          Based in Ahmedabad / Surat • Expanding to Bangalore for startup ecosystem
-          access
+          Based in Ahmedabad and Surat, expanding to Bangalore for startup ecosystem access
         </p>
       </div>
     </section>

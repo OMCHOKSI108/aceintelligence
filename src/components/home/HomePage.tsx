@@ -30,7 +30,7 @@ const insightCards = {
     },
     {
       title: "Latency budgets for document Q&A",
-      description: "Where time goes in retrieval, reranking, and generation—and how to optimize.",
+      description: "Where time goes in retrieval, reranking, and generation, and how to optimize.",
       category: "Engineering",
       date: "May 2026",
       href: "/insights/latency-budgets",
@@ -42,6 +42,8 @@ export function HomePage() {
   return (
     <main className="relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" aria-hidden="true" />
+      <div className="absolute left-1/2 top-[-8rem] h-72 w-72 -translate-x-1/2 rounded-full bg-sky-200/35 blur-3xl pointer-events-none" aria-hidden="true" />
+      <div className="absolute right-[-3rem] top-[18rem] h-64 w-64 rounded-full bg-slate-200/50 blur-3xl pointer-events-none" aria-hidden="true" />
       <div className="relative z-10">
         <Hero />
         <ProblemSection />
@@ -93,7 +95,7 @@ export function HomePage() {
                 Ready to build with {theme.brand.name}?
               </h2>
               <p className="text-slate-600 text-lg mt-3 max-w-2xl">
-                Tell us what you're shipping. We'll help you choose an approach—and get it into production.
+                Tell us what you're shipping. We'll help you choose an approach and get it into production.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">

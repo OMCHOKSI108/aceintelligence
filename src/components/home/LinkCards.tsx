@@ -62,7 +62,7 @@ export function LinkCards() {
           Built like an enterprise team. Shipped like a startup.
         </h2>
         <p className="text-slate-600 text-lg mt-3 max-w-3xl">
-          A practical set of services and platform building blocks for document intelligence—from ingestion to
+          A practical set of services and platform building blocks for document intelligence, from ingestion to
           grounded answers.
         </p>
       </div>

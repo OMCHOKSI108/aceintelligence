@@ -13,16 +13,17 @@ interface HeroProps {
 
 export function Hero({
   title = "Document intelligence that ships.",
-  description = "RAG-first. Secure by default. Built for real teams.",
+  description = "RAG first, secure by default, and built for real teams.",
   ctaText = "Talk to an expert",
   ctaHref = "/contact",
 }: HeroProps) {
   return (
     <section className="relative pt-32 sm:pt-36 pb-16 sm:pb-20 px-6 sm:px-8 lg:px-10 max-w-7xl mx-auto">
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-[32rem] max-w-5xl bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_55%)] blur-3xl" aria-hidden="true" />
       <div className="grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-7">
           <p className="text-xs font-medium tracking-[0.22em] text-slate-500 uppercase mb-4">
-            {theme.brand.name} — Document Intelligence Studio
+            {theme.brand.name} | Document Intelligence Studio
           </p>
 
           <h1 className="headline-primary text-[2.6rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[0.98] tracking-tight">
@@ -35,7 +36,7 @@ export function Hero({
           )}
 
           <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
-            We help teams turn PDFs and internal knowledge into dependable product experiences—with retrieval,
+            We help teams turn PDFs and internal knowledge into dependable product experiences, with retrieval,
             evaluation, and security practices designed for production.
           </p>
 
@@ -60,7 +61,7 @@ export function Hero({
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Built for</p>
-              <p className="text-sm font-semibold text-slate-900">Startups & teams</p>
+              <p className="text-sm font-semibold text-slate-900">Startups and teams</p>
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Focus</p>
@@ -68,7 +69,7 @@ export function Hero({
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Security</p>
-              <p className="text-sm font-semibold text-slate-900">Least privilege</p>
+              <p className="text-sm font-semibold text-slate-900">Least privilege access</p>
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Delivery</p>
@@ -90,7 +91,7 @@ export function Hero({
                 <Search size={18} className="text-slate-600 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-slate-900">Retrieval that stays grounded</p>
-                  <p className="text-sm text-slate-600">Chunking, citations, and evaluation loops for accuracy.</p>
+                  <p className="text-sm text-slate-600">Chunking, citations, and evaluation loops tuned for accuracy.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -111,7 +112,7 @@ export function Hero({
                 <Zap size={18} className="text-slate-600 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-slate-900">Fast iteration cycles</p>
-                  <p className="text-sm text-slate-600">Deploy often, measure impact, and improve quickly.</p>
+                  <p className="text-sm text-slate-600">Deploy often, measure impact, and improve with confidence.</p>
                 </div>
               </li>
             </ul>

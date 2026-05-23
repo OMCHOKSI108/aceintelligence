@@ -59,7 +59,7 @@ const contentMap: Record<string, PageContent> = {
   "insights/pdfs-to-product": {
     title: "From PDFs to product features",
     intro: "Turn document collections into dependable product experiences.",
-    body: "Start with a clear ingestion contract, add retrieval + citations, then iterate with evaluation. The goal is not just answers—it is answers you can trust.",
+    body: "Start with a clear ingestion contract, add retrieval and citations, then iterate with evaluation. The goal is not just answers, it is answers you can trust.",
     sections: [
       {
         title: "Step 1: Ingestion contract",
@@ -87,8 +87,8 @@ const contentMap: Record<string, PageContent> = {
   },
   "insights/latency-budgets": {
     title: "Latency budgets for document Q&A",
-    intro: "Where time goes—and where to win it back.",
-    body: "Separate retrieval latency from generation latency. Cache expensive steps, keep context short, and measure end-to-end response time for real user queries.",
+    intro: "Where time goes and where to win it back.",
+    body: "Separate retrieval latency from generation latency. Cache expensive steps, keep context short, and measure response time for real user queries.",
   },
   "services/document-intelligence": {
     title: "Document Intelligence",
@@ -112,7 +112,7 @@ const contentMap: Record<string, PageContent> = {
   "services/rag": {
     title: "RAG Workflows",
     intro: "Grounded answers with evaluation and iteration loops.",
-    body: "We design RAG systems that stay reliable as your documents grow and your product evolves—with systematic evaluation and clear failure-mode handling.",
+    body: "We design RAG systems that stay reliable as your documents grow and your product evolves, with systematic evaluation and clear failure handling.",
   },
   "services/voice": {
     title: "Voice Interfaces",

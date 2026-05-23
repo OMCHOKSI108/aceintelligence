@@ -15,7 +15,7 @@ export function UseCases() {
     {
       icon: Settings,
       title: "Operations",
-      description: "Internal knowledge base, SOP queries, policy lookups — instant and accurate.",
+      description: "Internal knowledge base, SOP queries, and policy lookups that are instant and accurate.",
     },
     {
       icon: Code,

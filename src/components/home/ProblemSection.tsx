@@ -21,7 +21,7 @@ export function ProblemSection() {
           You&apos;re not imagining it
         </h2>
         <p className="text-slate-600 text-lg">
-          These problems are real — and they&apos;re costing enterprises millions in lost productivity.
+          These problems are real, and they&apos;re costing enterprises millions in lost productivity.
         </p>
       </div>
 
