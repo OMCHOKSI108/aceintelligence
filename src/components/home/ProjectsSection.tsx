@@ -58,7 +58,7 @@ const projects = [
       { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
       { name: "anshgajera", username: "anshgajera", href: "https://github.com/anshgajera" },
     ],
-    images: ["/multimodal_rag.png"],
+    images: ["/multimodal_rag.png", "/multimodal_rag_2.png"],
     liveUrl: "/projects/multi-modal-rag",
     githubUrl: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS/tree/main/MULTI_MODEL_RAG_AGENT",
     features: [
@@ -73,6 +73,32 @@ const projects = [
     ],
     techStack: ["n8n", "Milvus", "Cohere", "GPT-4o-mini", "Telegram API", "Docker", "ngrok"],
     status: "Production-ready. Deploy via Docker with webhook support.",
+  },
+  {
+    id: "food-delivery-agent",
+    badge: "Legacy demo",
+    badgeColor: "bg-orange-100 text-orange-800 border-orange-200",
+    title: "AI Food Delivery Agent",
+    tagline: "Two-way conversational ordering via Telegram/WhatsApp + Google Sheets",
+    description:
+      "A two-way conversational AI agent that handles food orders, menu inquiries, and delivery status checks via Telegram and WhatsApp — logging everything to Google Sheets.",
+    team: [
+      { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
+      { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
+      { name: "anshgajera", username: "anshgajera", href: "https://github.com/anshgajera" },
+    ],
+    images: ["/FoodDeliverySystem_1.png", "/FoodDeliverySysten_2.png"],
+    liveUrl: "/projects/food-delivery-agent",
+    features: [
+      { icon: MessageSquare, text: "Two-way conversational AI via Telegram and WhatsApp" },
+      { icon: Bot, text: "LLM-powered intent recognition: menu, order, delivery status" },
+      { icon: FileText, text: "Google Sheets integration for menu reading and order logging" },
+      { icon: Code, text: "n8n webhook orchestration for message handling" },
+      { icon: Activity, text: "Autonomous order processing with zero human intervention" },
+      { icon: Video, text: "YouTube demo — see it take orders in real-time" },
+    ],
+    techStack: ["n8n", "LLM API", "Telegram API", "WhatsApp API", "Google Sheets"],
+    status: "Legacy demo — Tier 2 conversational automation. Ready for production deployment.",
   },
   {
     id: "chatpdf",
@@ -139,19 +165,19 @@ export function ProjectsSection() {
                   <p className="text-slate-600 mt-3">{project.description}</p>
                 </div>
 
-                <div className="flex items-center gap-4 mb-4 pb-4 border-b border-slate-100">
+                <div className="flex flex-wrap gap-x-4 gap-y-2 mb-4 pb-4 border-b border-slate-100">
                   {project.team.map((member) => (
-                    <div key={member.username} className="flex items-center gap-2">
+                    <div key={member.username} className="flex items-center gap-1.5">
                       <img
-                        src={`https://avatars.githubusercontent.com/${member.username}?size=160`}
+                        src={`https://avatars.githubusercontent.com/${member.username}?size=80`}
                         alt={`${member.name} profile`}
-                        className="w-10 h-10 rounded-full border border-slate-200"
+                        className="w-7 h-7 sm:w-10 sm:h-10 rounded-full border border-slate-200"
                       />
                       <div>
-                        <p className="text-xs text-slate-500">Developer</p>
+                        <p className="text-[10px] sm:text-xs text-slate-500 leading-tight">Developer</p>
                         <Link
                           href={member.href}
-                          className="text-xs font-medium text-slate-900 hover:text-slate-700"
+                          className="text-[10px] sm:text-xs font-medium text-slate-900 hover:text-slate-700 leading-tight"
                         >
                           {member.name}
                         </Link>

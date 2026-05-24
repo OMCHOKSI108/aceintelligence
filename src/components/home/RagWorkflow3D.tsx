@@ -1,9 +1,9 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Text, Html, QuadraticBezierLine } from "@react-three/drei";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Group } from "three";
+import { OrbitControls, Text, Html, Line } from "@react-three/drei";
+import { useEffect, useMemo, useRef, useState, Suspense } from "react";
+import { Group, Vector3 } from "three";
 
 function Node({
   id,
@@ -88,22 +88,33 @@ function Edge({
   start,
   end,
   label,
-  lift = 0.8,
 }: {
   start: [number, number, number];
   end: [number, number, number];
   label: string;
-  lift?: number;
 }) {
+  const points = useMemo(() => {
+    const mid: [number, number, number] = [
+      (start[0] + end[0]) / 2,
+      (start[1] + end[1]) / 2 + 0.8,
+      (start[2] + end[2]) / 2,
+    ];
+    return [
+      new Vector3(...start),
+      new Vector3(...mid),
+      new Vector3(...end),
+    ];
+  }, [start, end]);
+
   const mid: [number, number, number] = [
     (start[0] + end[0]) / 2,
-    (start[1] + end[1]) / 2 + lift,
+    (start[1] + end[1]) / 2 + 0.8,
     (start[2] + end[2]) / 2,
   ];
 
   return (
     <group>
-      <QuadraticBezierLine start={start} end={end} mid={mid} color="#475569" lineWidth={2.1} />
+      <Line points={points} color="#475569" lineWidth={2} />
       <Text
         position={[mid[0], mid[1] + 0.25, mid[2]]}
         fontSize={0.22}
@@ -130,111 +141,33 @@ type WorkflowEdge = {
   from: string;
   to: string;
   label: string;
-  lift?: number;
 };
 
 const NODES: WorkflowNode[] = [
-  {
-    id: "query",
-    label: "User Query",
-    description: "Question intent",
-    color: "#7c3aed",
-    size: 0.78,
-    position: [-8.2, 2.3, -0.8],
-  },
-  {
-    id: "doc",
-    label: "Document Upload",
-    description: "Raw source files",
-    color: "#6d28d9",
-    size: 0.9,
-    position: [-8.2, -1.1, 0.9],
-  },
-  {
-    id: "chunking",
-    label: "Text Chunking",
-    description: "Segment content",
-    color: "#1d4ed8",
-    size: 0.8,
-    position: [-4.2, 2.5, 0.8],
-  },
-  {
-    id: "embedding",
-    label: "Embedding Model",
-    description: "Vector encoding",
-    color: "#2563eb",
-    size: 0.9,
-    position: [-4.2, 0, -1.1],
-  },
-  {
-    id: "store",
-    label: "Vector Store",
-    description: "Qdrant index",
-    color: "#0f172a",
-    size: 1.03,
-    position: [-4.2, -2.5, 0.5],
-  },
-  {
-    id: "search",
-    label: "Similarity Search",
-    description: "Top semantic hits",
-    color: "#047857",
-    size: 0.9,
-    position: [0, 2.5, -0.6],
-  },
-  {
-    id: "context",
-    label: "Context Assembly",
-    description: "Build prompt context",
-    color: "#059669",
-    size: 0.92,
-    position: [0, 0, 1.15],
-  },
-  {
-    id: "rerank",
-    label: "Reranking",
-    description: "Relevance filtering",
-    color: "#065f46",
-    size: 0.85,
-    position: [0, -2.5, -1],
-  },
-  {
-    id: "llm",
-    label: "LLM (Gemma)",
-    description: "Reason + compose",
-    color: "#b45309",
-    size: 1.2,
-    position: [4.2, 1.2, 0.65],
-  },
-  {
-    id: "citations",
-    label: "Citation Engine",
-    description: "Attach evidence",
-    color: "#92400e",
-    size: 0.95,
-    position: [4.2, -1.8, -0.85],
-  },
-  {
-    id: "answer",
-    label: "Grounded Answer",
-    description: "Final response",
-    color: "#b91c1c",
-    size: 1.1,
-    position: [8.3, -0.2, 0],
-  },
+  { id: "query", label: "User Query", description: "Question intent", color: "#7c3aed", size: 0.78, position: [-8.2, 2.3, -0.8] },
+  { id: "doc", label: "Document Upload", description: "Raw source files", color: "#6d28d9", size: 0.9, position: [-8.2, -1.1, 0.9] },
+  { id: "chunking", label: "Text Chunking", description: "Segment content", color: "#1d4ed8", size: 0.8, position: [-4.2, 2.5, 0.8] },
+  { id: "embedding", label: "Embedding Model", description: "Vector encoding", color: "#2563eb", size: 0.9, position: [-4.2, 0, -1.1] },
+  { id: "store", label: "Vector Store", description: "Qdrant index", color: "#0f172a", size: 1.03, position: [-4.2, -2.5, 0.5] },
+  { id: "search", label: "Similarity Search", description: "Top semantic hits", color: "#047857", size: 0.9, position: [0, 2.5, -0.6] },
+  { id: "context", label: "Context Assembly", description: "Build prompt context", color: "#059669", size: 0.92, position: [0, 0, 1.15] },
+  { id: "rerank", label: "Reranking", description: "Relevance filtering", color: "#065f46", size: 0.85, position: [0, -2.5, -1] },
+  { id: "llm", label: "LLM (Gemma)", description: "Reason + compose", color: "#b45309", size: 1.2, position: [4.2, 1.2, 0.65] },
+  { id: "citations", label: "Citation Engine", description: "Attach evidence", color: "#92400e", size: 0.95, position: [4.2, -1.8, -0.85] },
+  { id: "answer", label: "Grounded Answer", description: "Final response", color: "#b91c1c", size: 1.1, position: [8.3, -0.2, 0] },
 ];
 
 const EDGES: WorkflowEdge[] = [
-  { from: "query", to: "chunking", label: "Query", lift: 0.62 },
-  { from: "doc", to: "store", label: "Docs", lift: -0.1 },
-  { from: "chunking", to: "search", label: "Chunks", lift: 0.72 },
-  { from: "embedding", to: "context", label: "Vectors", lift: 0.56 },
-  { from: "store", to: "rerank", label: "Index", lift: 0.3 },
-  { from: "search", to: "llm", label: "Top-K", lift: 0.95 },
-  { from: "context", to: "llm", label: "Context", lift: 0.8 },
-  { from: "rerank", to: "citations", label: "Relevance", lift: 0.58 },
-  { from: "llm", to: "answer", label: "Answer", lift: 0.8 },
-  { from: "citations", to: "answer", label: "Sources", lift: 0.55 },
+  { from: "query", to: "chunking", label: "Query" },
+  { from: "doc", to: "store", label: "Docs" },
+  { from: "chunking", to: "search", label: "Chunks" },
+  { from: "embedding", to: "context", label: "Vectors" },
+  { from: "store", to: "rerank", label: "Index" },
+  { from: "search", to: "llm", label: "Top-K" },
+  { from: "context", to: "llm", label: "Context" },
+  { from: "rerank", to: "citations", label: "Relevance" },
+  { from: "llm", to: "answer", label: "Answer" },
+  { from: "citations", to: "answer", label: "Sources" },
 ];
 
 function WorkflowScene({ isMobile }: { isMobile: boolean }) {
@@ -249,35 +182,16 @@ function WorkflowScene({ isMobile }: { isMobile: boolean }) {
       <ambientLight intensity={0.55} />
       <pointLight position={[12, 9, 9]} intensity={1.05} />
       <pointLight position={[-8, -7, -6]} intensity={0.42} />
-      <spotLight position={[0, 14, 5]} angle={0.33} intensity={0.45} penumbra={0.7} color="#93c5fd" />
 
       {NODES.map((node) => (
-        <Node
-          key={node.id}
-          id={node.id}
-          position={node.position}
-          label={node.label}
-          description={node.description}
-          color={node.color}
-          size={node.size}
-        />
+        <Node key={node.id} {...node} />
       ))}
 
       {EDGES.map((edge) => {
         const from = nodeMap.get(edge.from);
         const to = nodeMap.get(edge.to);
-        if (!from || !to) {
-          return null;
-        }
-        return (
-          <Edge
-            key={`${edge.from}-${edge.to}`}
-            start={from.position}
-            end={to.position}
-            label={edge.label}
-            lift={edge.lift}
-          />
-        );
+        if (!from || !to) return null;
+        return <Edge key={`${edge.from}-${edge.to}`} start={from.position} end={to.position} label={edge.label} />;
       })}
 
       <OrbitControls
@@ -294,15 +208,49 @@ function WorkflowScene({ isMobile }: { isMobile: boolean }) {
   );
 }
 
+function FallbackVisual() {
+  const stages = [
+    { label: "Intake", color: "bg-violet-500", items: ["Query", "Document Upload"] },
+    { label: "Processing", color: "bg-blue-500", items: ["Chunking", "Embeddings"] },
+    { label: "Storage", color: "bg-slate-500", items: ["Vector Store"] },
+    { label: "Retrieval", color: "bg-emerald-500", items: ["Search", "Context", "Rerank"] },
+    { label: "Generation", color: "bg-amber-600", items: ["LLM", "Citations"] },
+    { label: "Output", color: "bg-red-600", items: ["Answer"] },
+  ];
+
+  return (
+    <div className="h-full flex items-center justify-center p-6">
+      <div className="w-full max-w-3xl">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+          {stages.map((stage, i) => (
+            <div key={i} className="flex flex-col items-center">
+              <div className={`w-full rounded-lg ${stage.color} p-2 text-center`}>
+                <span className="text-xs font-semibold text-white">{stage.label}</span>
+              </div>
+              <div className="mt-1 space-y-1 w-full">
+                {stage.items.map((item, j) => (
+                  <div key={j} className="rounded bg-slate-800 px-2 py-1 text-center">
+                    <span className="text-[10px] text-slate-300">{item}</span>
+                  </div>
+                ))}
+              </div>
+              {i < stages.length - 1 && (
+                <div className="hidden md:block text-slate-600 mt-1 text-xs">→</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function RagWorkflow3D() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    const update = () => setIsMobile(mediaQuery.matches);
-    update();
-    mediaQuery.addEventListener("change", update);
-    return () => mediaQuery.removeEventListener("change", update);
+    setMounted(true);
   }, []);
 
   const legend = [
@@ -316,9 +264,21 @@ export function RagWorkflow3D() {
   return (
     <div className="w-full rounded-2xl border border-slate-700 bg-[#071126] p-3 md:p-4">
       <div className="h-[420px] w-full overflow-hidden rounded-xl border border-slate-800 bg-[#081531] md:h-[560px]">
-        <Canvas camera={{ position: isMobile ? [0, 3.8, 16] : [0, 4.6, 13.8], fov: isMobile ? 50 : 46 }}>
-          <WorkflowScene isMobile={isMobile} />
-        </Canvas>
+        {!mounted ? (
+          <FallbackVisual />
+        ) : hasError ? (
+          <FallbackVisual />
+        ) : (
+          <Suspense fallback={<FallbackVisual />}>
+            <Canvas
+              camera={{ position: [0, 4.6, 13.8], fov: 46 }}
+              onCreated={() => {}}
+              onError={() => setHasError(true)}
+            >
+              <WorkflowScene isMobile={false} />
+            </Canvas>
+          </Suspense>
+        )}
       </div>
 
       <div className="mt-3 grid grid-cols-1 gap-2 text-slate-200 sm:grid-cols-2 lg:grid-cols-5">

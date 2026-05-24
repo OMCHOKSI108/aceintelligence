@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity, CircleHelp, ListChecks, ArrowRightCircle, Target, BarChart3, Clock, Inbox } from "lucide-react";
 import { RagWorkflow3D } from "@/components/home/RagWorkflow3D";
+import { ResearchSandbox } from "@/components/home/ResearchSandbox";
 
 type Section = {
   title: string;
@@ -20,9 +21,28 @@ type PageContent = {
 
 const contentMap: Record<string, PageContent> = {
   research: {
-    title: "Research",
-    intro: "aceintellegence researches practical, safe, and useful automation systems.",
-    body: "Our research programs focus on reliability, governance, and real world impact so teams can deploy automation with confidence. Below is our conceptual workflow orchestration model for ChatPDF.",
+    title: "Research & Engineering",
+    intro: "Proving enterprise-grade AI through transparent architecture, rigorous verification, and measurable outcomes.",
+    body: "We don't just build AI — we build systems you can trust. Every architecture we design is deterministic, verifiable, and purpose-built for enterprise scale. Explore our engineering ethos through live sandboxes, architectural deep-dives, and safety research.",
+    sections: [
+      {
+        title: "Agent in Action — Live Sandbox",
+        content: "See our 8-agent research pipeline execute in real-time. Enter any topic and watch specialized agents collaborate — from keyword discovery through literature review, strategy formulation, methodology design, and final paper compilation. Every step is logged, deterministic, and verifiable.",
+      },
+      {
+        title: "Architecture Deep-Dive",
+        content: "Our multi-agent systems are built on LangGraph orchestration with strict verification layers. Data flows from ingestion (n8n webhooks, API integrations) through a multi-agent routing layer to specialized processors, with every output validated against source material before proceeding. ChromaDB vector memory grounds all LLM responses in proprietary data — eliminating hallucination at the architectural level.",
+      },
+      {
+        title: "Hallucination Defense Lab",
+        content: "Enterprise clients fear hallucination and data leakage. Our defense-in-depth approach: (1) Vector-anchored RAG — every LLM call is grounded in retrieved documents from ChromaDB, never relying on parametric knowledge alone. (2) Multi-step verification — each agent's output is validated by the next agent in the pipeline, creating a chain of accountability. (3) Confidence thresholds — outputs below 70% confidence trigger human review fallback. (4) Audit trails — every inference is logged with source citations for full traceability.",
+      },
+      {
+        title: "ROI of Intelligence — Whitepapers",
+        content: "We publish technical research connecting advanced AI architectures to tangible business outcomes.",
+        code: "Multi-Agent Research Automation: 8-agent pipeline generating IEEE-format papers in under 90 seconds — replaces 40+ hours of manual literature review.\nAutomated Multi-Temporal Data Mapping: RAG pipelines for financial time-series analysis with anomaly detection.\nZero-Latency Routing Architecture: Sub-second intent classification for high-frequency trading infrastructure.\nEnterprise RAG at Scale: Vector database sharding strategies for 10M+ document knowledge bases.",
+      },
+    ],
   },
   about: {
     title: "About",
@@ -434,7 +454,7 @@ const contentMap: Record<string, PageContent> = {
     title: "Multi-Modal RAG Agent",
     intro: "An intelligent chatbot system built using n8n workflow automation that handles multi-modal inputs from Telegram — text, audio, images, and documents.",
     body: "This project leverages Retrieval-Augmented Generation (RAG) techniques to enhance AI responses with relevant information retrieved from a knowledge base. It processes multi-modal inputs by converting them into embeddings, storing them in a vector database (Milvus), and providing context-aware responses using advanced language models. The system maintains conversation memory for coherent interactions and supports various document formats for knowledge ingestion.",
-    images: ["/multimodal_rag.png"],
+    images: ["/multimodal_rag.png", "/multimodal_rag_2.png"],
     sections: [
       {
         title: "Live Demo",
@@ -503,6 +523,36 @@ const contentMap: Record<string, PageContent> = {
       },
     ],
   },
+  "projects/food-delivery-agent": {
+    title: "AI-Powered Food Delivery Agent",
+    intro: "A two-way conversational AI agent that handles customer inquiries, processes food orders, and logs data to Google Sheets — autonomously via Telegram and WhatsApp.",
+    body: "This legacy demo showcases a complete two-way conversational automation designed for local businesses, cloud kitchens, and mid-sized restaurant chains. Customers text their orders naturally via WhatsApp or Telegram. An n8n workflow engine catches the messages via webhook, an LLM processes the natural language to determine intent (menu inquiry, order placement, delivery status), and Google Sheets acts as a lightweight backend — reading menu/pricing data and writing confirmed orders.",
+    images: ["/FoodDeliverySystem_1.png", "/FoodDeliverySysten_2.png"],
+    sections: [
+      {
+        title: "Live Demo",
+        content: "Watch the AI Food Delivery Agent in action — taking orders via Telegram and logging data to Google Sheets in real-time.",
+        code: "YouTube: 5FqX0imKBbs",
+      },
+      {
+        title: "How It Works",
+        content: "1. Customer Interface: WhatsApp and Telegram channels where customers text their orders naturally. 2. Orchestrator (Middleware): n8n workflow engine catches incoming messages via webhooks. 3. The Brain (AI Agent): LLM API processes natural language to determine user intent — menu inquiry, order placement, or delivery status check. 4. Database (Backend): Google Sheets acts as a lightweight, visible internal database. The AI reads menu/pricing data and writes confirmed orders with customer details.",
+      },
+      {
+        title: "Service Category",
+        content: "Custom Generative AI & Conversational Agents — specifically Tier-1 Support Bots. Difficulty: Tier 2 (Core Automations). This is more advanced than a one-way data push because it manages two-way conversational state.",
+      },
+      {
+        title: "The Pitch Strategy",
+        content: "The Hook: Approach a business owner spending hours manually answering WhatsApp messages or phone calls for orders. The Pitch: Show them the demo demonstrating an AI instantly taking orders via Telegram and dropping formatted data into a Google Sheet for the kitchen staff. The Trust & Upsell: Once they see the immediate ROI, upsell into a Tier 3 Voice AI Receptionist for phone calls, or upgrade the Google Sheets backend into a Tier 4 Custom ERP/Internal Tooling dashboard.",
+      },
+      {
+        title: "Tech Stack",
+        content: "n8n for workflow orchestration and webhook management. LLM API for natural language intent processing. Telegram Bot API and WhatsApp Business API for messaging. Google Sheets API for reading menu data and logging orders.",
+        code: "n8n | LLM API | Telegram API | WhatsApp API | Google Sheets",
+      },
+    ],
+  },
   templates: {
     title: "Project Templates",
     intro: "Accelerators that help teams ship automation faster.",
@@ -551,10 +601,18 @@ export default async function DynamicPage({
         <p className="text-slate-600 leading-relaxed mb-8">{content.body}</p>
 
         {key === "research" && (
-          <div className="my-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Workflow Automation Visualization</h2>
-            <p className="text-sm text-slate-600 mb-6">Interactive 3D visualization of our automation workflow model. Hover over nodes for details. Drag to rotate, scroll to zoom.</p>
-            <RagWorkflow3D />
+          <div className="my-10 space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Agent in Action — Live Sandbox</h2>
+              <p className="text-slate-600 mb-6">Enter any topic and watch our 8-agent autonomous research pipeline execute in real-time. Every step is logged, deterministic, and verifiable — proving our systems are far superior to off-the-shelf wrappers.</p>
+              <ResearchSandbox />
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Conceptual Workflow Orchestration</h2>
+              <p className="text-sm text-slate-600 mb-6">Interactive 3D visualization of our automation workflow model. Hover over nodes for details. Drag to rotate, scroll to zoom.</p>
+              <RagWorkflow3D />
+            </div>
           </div>
         )}
 
