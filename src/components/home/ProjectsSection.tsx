@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { ImageLightbox } from "./ImageLightbox";
 import {
   Shield,
   MessageSquare,
@@ -236,19 +236,10 @@ export function ProjectsSection() {
 
               <div className="lg:col-span-5">
                 {project.images && project.images.length > 0 && (
-                  <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
-                    {project.images.map((img, idx) => (
-                      <div key={idx} className="rounded-xl overflow-hidden border border-slate-200 bg-white">
-                        <Image
-                          src={img}
-                          alt={`${project.title} screenshot ${idx + 1}`}
-                          width={700}
-                          height={520}
-                          className="w-full h-auto object-cover"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  <ImageLightbox
+                    images={project.images.map((src) => ({ src, alt: `${project.title} screenshot` }))}
+                    className="grid-cols-2 lg:grid-cols-1"
+                  />
                 )}
               </div>
             </div>

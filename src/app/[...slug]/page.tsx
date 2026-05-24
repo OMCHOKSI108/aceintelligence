@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity, CircleHelp, ListChecks, ArrowRightCircle, Target, BarChart3, Clock, Inbox } from "lucide-react";
 import { ResearchSandbox } from "@/components/home/ResearchSandbox";
 import { ArchitectureDiagram } from "@/components/home/ArchitectureDiagram";
+import { ImageLightbox } from "@/components/home/ImageLightbox";
 
 type Section = {
   title: string;
@@ -616,18 +617,10 @@ export default async function DynamicPage({
         )}
 
         {content.images && content.images.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
-            {content.images.map((img, idx) => (
-              <div key={idx} className="rounded-xl overflow-hidden border border-slate-200 bg-white">
-                <Image
-                  src={img}
-                  alt={`${content.title} screenshot ${idx + 1}`}
-                  width={700}
-                  height={420}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            ))}
+          <div className="mt-8">
+            <ImageLightbox
+              images={content.images.map((src) => ({ src, alt: `${content.title} screenshot` }))}
+            />
           </div>
         )}
 
