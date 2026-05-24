@@ -86,17 +86,18 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} ${cormorantGaramond.variable}`}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
     >
-      <Script
-        id="organization-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        strategy="beforeInteractive"
-      />
       <body
         className="min-h-screen flex flex-col antialiased bg-[var(--color-background)]"
         suppressHydrationWarning
       >
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          strategy="afterInteractive"
+        />
         {process.env.NODE_ENV === "development" && (
           <Script
             id="dev-hydration-sanitizer"
