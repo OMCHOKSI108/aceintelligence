@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Shield, Layers, Search, Zap } from "lucide-react";
+import { ArrowRight, ChevronRight, Zap, Building2, Cpu, Shield } from "lucide-react";
 import { colors, theme } from "@/lib/theme";
 
 interface HeroProps {
@@ -12,8 +12,8 @@ interface HeroProps {
 }
 
 export function Hero({
-  title = "Automation that teams trust.",
-  description = "Workflow first AI with human oversight and dependable execution.",
+  title = "AI, automation, and intelligent software for modern enterprises.",
+  description = "We eliminate manual operational bottlenecks by building bespoke AI architectures and scalable cloud infrastructure.",
   ctaText = "Talk to an expert",
   ctaHref = "/contact",
 }: HeroProps) {
@@ -23,7 +23,7 @@ export function Hero({
       <div className="grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-7">
           <p className="text-xs font-medium tracking-[0.22em] text-slate-500 uppercase mb-4">
-            {theme.brand.name} | Workflow Automation Studio
+            {theme.brand.name} | AI Services Agency
           </p>
 
           <h1 className="headline-primary text-[2.6rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[0.98] tracking-tight">
@@ -36,8 +36,9 @@ export function Hero({
           )}
 
           <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
-            We help teams automate high-stakes workflows with clear approvals, reliable handoffs, and the visibility
-            leaders need to trust every step.
+            We help modern startups and enterprise organizations scale efficiently with custom software solutions —
+            not off-the-shelf SaaS. From intelligent workflow automations to enterprise RAG architectures,
+            we build what your business actually needs.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -50,30 +51,30 @@ export function Hero({
               <ArrowRight size={16} />
             </Link>
             <Link
-              href="/platform"
+              href="/services"
               className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-slate-700 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
             >
-              Explore the platform
+              Explore our services
               <ChevronRight size={16} />
             </Link>
           </div>
 
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
-              <p className="text-xs text-slate-500">Built for</p>
-              <p className="text-sm font-semibold text-slate-900">Startups and teams</p>
+              <p className="text-xs text-slate-500">We are</p>
+              <p className="text-sm font-semibold text-slate-900">AI, automation &amp; software agency</p>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
+              <p className="text-xs text-slate-500">For</p>
+              <p className="text-sm font-semibold text-slate-900">Startups &amp; enterprises</p>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
+              <p className="text-xs text-slate-500">Model</p>
+              <p className="text-sm font-semibold text-slate-900">Custom software solutions</p>
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">Focus</p>
-              <p className="text-sm font-semibold text-slate-900">Workflow automation</p>
-            </div>
-            <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
-              <p className="text-xs text-slate-500">Security</p>
-              <p className="text-sm font-semibold text-slate-900">Audit-ready controls</p>
-            </div>
-            <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
-              <p className="text-xs text-slate-500">Delivery</p>
-              <p className="text-sm font-semibold text-slate-900">Operational trust</p>
+              <p className="text-sm font-semibold text-slate-900">Eliminating manual bottlenecks</p>
             </div>
           </div>
         </div>
@@ -81,48 +82,48 @@ export function Hero({
         <div className="lg:col-span-5">
           <div className="rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-sm p-6 sm:p-7">
             <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">
-              What we deliver
+              What we build
             </p>
             <h2 className="headline-primary text-xl sm:text-2xl text-slate-900 mt-2">
-              A complete workflow automation stack
+              Deep-engineering architectures
             </h2>
             <ul className="mt-5 space-y-4">
               <li className="flex items-start gap-3">
-                <Search size={18} className="text-slate-600 mt-0.5" />
+                <Zap size={18} className="text-slate-600 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Workflow intent capture</p>
-                  <p className="text-sm text-slate-600">Understand requests, scope them, and route tasks to the right systems.</p>
+                  <p className="text-sm font-medium text-slate-900">Intelligent Workflow Automations</p>
+                  <p className="text-sm text-slate-600">Smart email triage, document parsing, zero-touch lead routing.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Cpu size={18} className="text-slate-600 mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium text-slate-900">Generative AI &amp; Conversational Agents</p>
+                  <p className="text-sm text-slate-600">Enterprise RAG, multi-agent workflows, tier-1 support bots.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Building2 size={18} className="text-slate-600 mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium text-slate-900">Cloud Infrastructure &amp; Analytics</p>
+                  <p className="text-sm text-slate-600">Custom dashboards, predictive AI, scalable backend APIs.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Shield size={18} className="text-slate-600 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-slate-900">Policy and approval controls</p>
-                  <p className="text-sm text-slate-600">Role-based access, approvals, and audit trails by default.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Layers size={18} className="text-slate-600 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-slate-900">Orchestration layer</p>
-                  <p className="text-sm text-slate-600">Reusable automation steps, retries, and system-safe fallbacks.</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Zap size={18} className="text-slate-600 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-slate-900">Operational visibility</p>
-                  <p className="text-sm text-slate-600">Real-time monitoring, human handoff, and clear outcomes.</p>
+                  <p className="text-sm font-medium text-slate-900">Rapid Deployment</p>
+                  <p className="text-sm text-slate-600">48-hour quick wins that scale into full enterprise retainers.</p>
                 </div>
               </li>
             </ul>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Workflows</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Approvals</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Integrations</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Monitoring</span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Audit trails</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">n8n</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">LangGraph</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">RAG</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">AWS/Azure</span>
+              <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600">Groq</span>
             </div>
           </div>
         </div>

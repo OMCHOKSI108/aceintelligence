@@ -10,9 +10,70 @@ import {
   Database,
   Layers,
   Activity,
+  Bot,
+  AudioWaveform,
+  Video,
 } from "lucide-react";
 
 const projects = [
+  {
+    id: "multi-agent-research",
+    badge: "Production v8.0",
+    badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
+    title: "Multi-Agent Research System",
+    tagline: "8 autonomous AI agents collaborating on academic research",
+    description:
+      "An advanced multi-agent research platform where 8 specialized agents collaborate to transform a research topic into a comprehensive IEEE-format academic paper — fully autonomous.",
+    team: [
+      { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
+      { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
+      { name: "anshgajera", username: "anshgajera", href: "https://github.com/anshgajera" },
+    ],
+    images: ["/multiagent_research_demo.png", "/multiagent_research_n8n_flow.png"],
+    liveUrl: "/projects/multi-agent-research",
+    githubUrl: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS",
+    features: [
+      { icon: Bot, text: "8 specialized AI agents collaborating in a unified pipeline" },
+      { icon: Layers, text: "LangGraph orchestration with strict verification layers" },
+      { icon: FileText, text: "Generates complete IEEE-format research papers" },
+      { icon: Database, text: "ChromaDB vector memory for RAG-based retrieval" },
+      { icon: Code, text: "Modular pipeline integrating arXiv & Semantic Scholar APIs" },
+      { icon: Activity, text: "Real-time agent progress visualization in glassmorphism UI" },
+      { icon: Shield, text: "Hallucination-reducing novelty and ethics validation" },
+      { icon: Video, text: "Proof of capability for enterprise multi-agent upsell" },
+    ],
+    techStack: ["n8n", "LangGraph", "LLaMA 3.3-70B", "ChromaDB", "arXiv API", "Semantic Scholar", "DuckDuckGo"],
+    status: "Production-ready v8.0 — single unified n8n workflow.",
+  },
+  {
+    id: "multi-modal-rag",
+    badge: "Live demo",
+    badgeColor: "bg-green-100 text-green-800 border-green-200",
+    title: "Multi-Modal RAG Agent",
+    tagline: "Telegram chatbot with n8n, Milvus & GPT-4o-mini",
+    description:
+      "An intelligent chatbot that handles text, audio, images, and documents via Telegram — converting them into vector embeddings for RAG-powered responses.",
+    team: [
+      { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
+      { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
+      { name: "anshgajera", username: "anshgajera", href: "https://github.com/anshgajera" },
+    ],
+    images: ["/multimodal_rag.png"],
+    liveUrl: "/projects/multi-modal-rag",
+    githubUrl: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS/tree/main/MULTI_MODEL_RAG_AGENT",
+    features: [
+      { icon: Bot, text: "Multi-modal input: text, audio, images, and documents from Telegram" },
+      { icon: Database, text: "Milvus vector database for efficient similarity search" },
+      { icon: Layers, text: "Cohere multilingual embeddings for accurate semantic understanding" },
+      { icon: Code, text: "n8n workflow orchestration with visual monitoring" },
+      { icon: MessageSquare, text: "Conversational memory for coherent multi-turn interactions" },
+      { icon: FileText, text: "Automatic document parsing and chunking from PDFs" },
+      { icon: AudioWaveform, text: "Audio transcription and image OCR processing pipeline" },
+      { icon: Video, text: "Live demo on YouTube — watch it in action" },
+    ],
+    techStack: ["n8n", "Milvus", "Cohere", "GPT-4o-mini", "Telegram API", "Docker", "ngrok"],
+    status: "Production-ready. Deploy via Docker with webhook support.",
+  },
   {
     id: "chatpdf",
     badge: "Private beta",
@@ -47,10 +108,10 @@ export function ProjectsSection() {
       <div className="mb-12">
         <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">Featured</p>
         <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2 mb-3">
-          Featured product: ChatPDF
+          Our products
         </h2>
         <p className="text-slate-600 text-lg max-w-3xl">
-          A workflow automation platform that keeps approvals, handoffs, and accountability in one place.
+          Production-grade AI systems and automation platforms built by our team.
         </p>
       </div>
 
@@ -121,16 +182,29 @@ export function ProjectsSection() {
 
                 <div className="pt-4 border-t border-slate-100">
                   <p className="text-xs text-slate-500 mb-3">{project.status}</p>
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline transition-colors"
-                    >
-                      Visit live site →
-                    </a>
-                  )}
+                  <div className="flex flex-wrap gap-4">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                      >
+                        {project.id === "multi-modal-rag" ? "View project →" : "Visit live site →"}
+                      </a>
+                    )}
+                    {"githubUrl" in project && project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-sm font-medium text-slate-600 hover:text-slate-900 hover:underline transition-colors"
+                      >
+                        <svg className="w-4 h-4 mr-1.5" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        GitHub →
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
 

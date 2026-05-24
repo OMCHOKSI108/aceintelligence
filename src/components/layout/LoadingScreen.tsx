@@ -8,7 +8,7 @@ export function LoadingScreen() {
         <div className="absolute -top-16 left-1/2 h-36 w-36 -translate-x-1/2 rounded-full bg-sky-200/40 blur-3xl" aria-hidden="true" />
         <div className="relative">
           <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-            <img src="/BEAST.svg" alt="aceintellegence logo" className="h-10 w-10" />
+            <img src="/logo.png" alt="aceintellegence logo" className="h-10 w-10" />
           </div>
           <p className="text-[0.7rem] font-medium uppercase tracking-[0.3em] text-slate-500">Loading</p>
           <h1 className="headline-primary mt-3 text-3xl sm:text-4xl text-slate-900">{theme.brand.name}</h1>

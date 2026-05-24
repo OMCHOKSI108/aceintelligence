@@ -1,8 +1,8 @@
 import { Hero } from "./Hero";
-import { ProblemSection } from "./ProblemSection";
-import { SolutionSection } from "./SolutionSection";
-import { HowItWorks } from "./HowItWorks";
+import { ServicesSection } from "./ServicesSection";
+import { QuickWinsSection } from "./QuickWinsSection";
 import { ProjectsSection } from "./ProjectsSection";
+import { FounderSection } from "./FounderSection";
 import { FeatureCard } from "./FeatureCard";
 import { theme } from "@/lib/theme";
 
@@ -46,10 +46,10 @@ export function HomePage() {
       <div className="absolute right-[-3rem] top-[18rem] h-64 w-64 rounded-full bg-slate-200/50 blur-3xl pointer-events-none" aria-hidden="true" />
       <div className="relative z-10">
         <Hero />
-        <ProblemSection />
-        <SolutionSection />
-        <HowItWorks />
+        <ServicesSection />
+        <QuickWinsSection />
         <ProjectsSection />
+        <FounderSection />
 
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <div className="mb-10">

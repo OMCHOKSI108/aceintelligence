@@ -1,16 +1,21 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity, CircleHelp, ListChecks, ArrowRightCircle, Target, BarChart3, Clock, Inbox } from "lucide-react";
 import { RagWorkflow3D } from "@/components/home/RagWorkflow3D";
+
+type Section = {
+  title: string;
+  content: string;
+  code?: string;
+  variant?: "star";
+};
 
 type PageContent = {
   title: string;
   intro: string;
   body: string;
-  sections?: {
-    title: string;
-    content: string;
-    code?: string;
-  }[];
+  images?: string[];
+  sections?: Section[];
 };
 
 const contentMap: Record<string, PageContent> = {
@@ -21,16 +26,24 @@ const contentMap: Record<string, PageContent> = {
   },
   about: {
     title: "About",
-    intro: "We build workflow automation products and platforms.",
-    body: "aceintellegence is a small, execution focused team building automation systems that teams can trust. We care about approvals, governance, and operational clarity.",
+    intro: "We are an AI, automation, and intelligent software services agency.",
+    body: "aceintellegence helps modern startups and enterprise organizations scale efficiently by eliminating manual operational bottlenecks. We build bespoke AI architectures and scalable cloud infrastructure — custom software solutions, not off-the-shelf SaaS.",
     sections: [
       {
-        title: "What we do",
-        content: "We design and ship automation workflows: intake, approvals, execution, and reporting.",
+        title: "Our Mission",
+        content: "Eliminate manual operational bottlenecks by building bespoke AI architectures and scalable cloud infrastructure for modern startups and enterprises.",
       },
       {
-        title: "How we work",
-        content: "We iterate quickly, measure outcomes, and prioritize production grade reliability over demos.",
+        title: "What We Build",
+        content: "Intelligent workflow automations (smart email triage, document parsing, lead routing), custom generative AI and conversational agents (enterprise RAG, multi-agent workflows, support bots), and enterprise cloud infrastructure and analytics (custom dashboards, predictive AI, scalable backend APIs).",
+      },
+      {
+        title: "Our Business Model",
+        content: "We offer custom software solutions — not off-the-shelf SaaS products. Every deployment is purpose-built for your operations.",
+      },
+      {
+        title: "Our Team",
+        content: "The founding team consists of three Artificial Intelligence & Machine Learning (AIML) students from CHARUSAT University, graduating in 2027. Ansh Gajera (CEO) drives strategic vision and business transformation. Om Choksi (CTO & Chief Architect) leads technical architecture and multi-agent LLM workflows. Yash Khare (Founder) leads market positioning and RAG architecture development.",
       },
     ],
   },
@@ -227,10 +240,15 @@ const contentMap: Record<string, PageContent> = {
     ],
   },
   projects: {
-    title: "Our Product",
-    intro: "ChatPDF and the Ace Intelligence platform.",
-    body: "Automation tools that help teams orchestrate approvals, execute tasks, and track outcomes with confidence.",
+    title: "Our Products",
+    intro: "AI-powered tools and platforms built by Ace Intelligence.",
+    body: "From workflow automation to multi-modal AI agents, we build production-grade systems that solve real business problems.",
     sections: [
+      {
+        title: "Multi-Modal RAG Agent",
+        content: "An intelligent chatbot system built with n8n that handles text, audio, images, and documents via Telegram. Uses Milvus vector database, Cohere embeddings, and GPT-4o-mini for context-aware RAG responses.",
+        code: "Live demo → /projects/multi-modal-rag",
+      },
       {
         title: "ChatPDF Core",
         content: "Workflow automation platform with multi modal intake (PDF, CSV, JSON, code, audio). Role based access control included.",
@@ -320,6 +338,25 @@ const contentMap: Record<string, PageContent> = {
       },
     ],
   },
+  services: {
+    title: "Our Services",
+    intro: "Deep-engineering architectures and rapid-deployment capabilities for B2B scale.",
+    body: "We build custom AI, automation, and infrastructure solutions — not off-the-shelf SaaS. Every engagement is purpose-built for your operations.",
+    sections: [
+      {
+        title: "Intelligent Workflow Automations",
+        content: "Smart Email Triage & Routing: Systems built with n8n and LLM APIs to monitor inboxes, classify intent, and route data. Automated Document Parsing: Extracting structured data from PDFs, invoices, or resumes using vision models. Zero-Touch Lead Routing: Connecting web forms to CRMs to instantly draft replies and drastically reduce response times.",
+      },
+      {
+        title: "Custom Generative AI & Conversational Agents",
+        content: "Enterprise RAG Architectures: Secure pipelines allowing companies to chat with proprietary databases and SOPs without hallucination. Multi-Agent Workflows: Orchestrated agents that autonomously research, reason, and execute complex tasks. Tier-1 Support Bots: Advanced chatbots that resolve user queries and escalate smoothly to human agents.",
+      },
+      {
+        title: "Enterprise Cloud Infrastructure & Analytics",
+        content: "Custom Admin Panels & Dashboards: Centralized internal tools designed to replace fragmented SaaS subscriptions. Predictive AI: Anomaly detection models for real-time flagging in finance, cybersecurity, or server logs. Scalable Backend APIs: High-performance backends for processing massive data streams, such as algorithmic trading operations.",
+      },
+    ],
+  },
   contact: {
     title: "Contact Us",
     intro: "Get in touch with the Ace Intelligence team.",
@@ -339,6 +376,130 @@ const contentMap: Record<string, PageContent> = {
         title: "Support",
         content: "For general inquiries, enterprise sales, and technical support.",
         code: "Email: omchoksi.pro@gmail.com",
+      },
+    ],
+  },
+  "quick-wins/smart-inbox": {
+    title: "Smart Inbox Router",
+    intro: "An n8n + LLM pipeline that monitors incoming emails, classifies intent, and routes data to the right system.",
+    body: "Deployed in 48 hours, this micro-automation saves operational teams 10-20 hours per week by eliminating manual email triage.",
+    images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
+    sections: [
+      {
+        title: "About the Project",
+        content: "The Smart Inbox Router is a lightweight n8n workflow integrated with LLM APIs that watches a team inbox, classifies each incoming message by intent (support request, sales inquiry, billing question), and routes it to the appropriate system or person. Built and deployed in under 48 hours using Groq for low-latency inference.",
+        variant: "star",
+      },
+      { title: "Situation", content: "Support and sales teams were spending 15-20 hours per week manually reading, classifying, and forwarding emails from a shared inbox. High-priority messages were occasionally missed, and response times were inconsistent — sometimes exceeding 24 hours for time-sensitive leads.", variant: "star" },
+      { title: "Task", content: "Build an automated email triage system that could: (1) monitor the inbox continuously, (2) classify intent with high accuracy, (3) route messages to the right team or CRM, and (4) be deployable within 48 hours with zero downtime.", variant: "star" },
+      { title: "Action", content: "We built a pipeline using n8n as the orchestration layer, connected to the team IMAP inbox. Each email is fetched, parsed, and sent to an LLM (via Groq) for intent classification. Based on the classification, the email is either: forwarded to the appropriate Slack channel, created as a ticket in the CRM, or flagged for manual review. Confidence scores below 70% trigger a human review fallback.", variant: "star" },
+      { title: "Result", content: "Email handling time dropped from 15-20 hours per week to under 2 hours. Lead response time improved from 24+ hours to under 5 minutes. The system achieved 94% classification accuracy on the first pass. The entire pipeline cost less than $50/month in API usage. The team reclaimed 80% of their previous triage time.", variant: "star" },
+    ],
+  },
+  "quick-wins/invoice-parser": {
+    title: "Vendor Invoice Parser",
+    intro: "Vision models that extract structured data from PDF invoices and vendor documents, automatically populating your ERP.",
+    body: "Eliminates manual data entry for finance teams by turning incoming PDF invoices into structured database records automatically.",
+    images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
+    sections: [
+      {
+        title: "About the Project",
+        content: "The Vendor Invoice Parser uses vision-language models to extract structured data from PDF invoices, receipts, and vendor documents. Fields like invoice number, date, line items, totals, and vendor details are parsed and fed directly into the ERP or accounting system — no manual typing required.",
+        variant: "star",
+      },
+      { title: "Situation", content: "The finance team at a mid-market company was manually entering data from 200-300 PDF invoices per week into their ERP system. Data entry errors occurred in approximately 8% of invoices, leading to reconciliation issues and delayed payments. The process consumed roughly 25 hours of staff time weekly.", variant: "star" },
+      { title: "Task", content: "Develop an automated invoice parsing solution that: (1) extracts 15+ fields from diverse invoice formats, (2) achieves 95%+ extraction accuracy, (3) integrates with the existing ERP API, and (4) handles edge cases like handwritten notes and rotated PDFs.", variant: "star" },
+      { title: "Action", content: "We deployed a pipeline combining OCR preprocessing (for scanned PDFs) with a vision-language model for field extraction. Invoices arriving in the inbox are automatically fetched, processed, and validated. Extracted data is reviewed against confidence thresholds — high-confidence entries are posted directly to the ERP, while low-confidence ones are flagged for quick human review via a simple dashboard.", variant: "star" },
+      { title: "Result", content: "Invoice processing time dropped from 25 hours per week to under 3 hours. Extraction accuracy reached 96.5%, reducing error-related reconciliation by 90%. The system processes invoices 24/7, and the finance team now focuses on exceptions rather than data entry. Payables cycle time improved by 60%.", variant: "star" },
+    ],
+  },
+  "quick-wins/lead-router": {
+    title: "Lead Router & Responder",
+    intro: "Web forms connected directly to your CRM with AI-generated draft replies, reducing response time from hours to seconds.",
+    body: "An instant lead response system that captures web form submissions and triggers intelligent, context-aware replies.",
+    images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
+    sections: [
+      {
+        title: "About the Project",
+        content: "The Lead Router & Responder connects web forms to your CRM and uses LLMs to generate personalized draft replies based on the prospect's message, source, and company context. The sales team reviews and sends with one click — no more copy-pasting or starting from scratch.",
+        variant: "star",
+      },
+      { title: "Situation", content: "The sales team was receiving 50+ leads per day through website forms, live chat, and landing pages. Each lead required a manual read, research (company website, LinkedIn), and personalized reply. Average first response time was 8 hours, and 35% of leads never received a follow-up.", variant: "star" },
+      { title: "Task", content: "Create a zero-touch lead routing and response system that: (1) captures leads from multiple web forms, (2) enriches lead data with company context, (3) generates personalized draft replies, (4) routes high-value leads to specific reps, and (5) reduces first response time to under 5 minutes.", variant: "star" },
+      { title: "Action", content: "We built an n8n workflow connected to webhook endpoints from multiple form providers (HubSpot, Typeform, custom forms). Each submission triggers: company enrichment via public APIs, intent scoring via an LLM, personalized draft generation based on the prospect's message and company context, and CRM creation with the draft pre-populated. High-scoring leads are also pushed to a dedicated Slack channel for immediate attention.", variant: "star" },
+      { title: "Result", content: "First response time dropped from 8 hours to under 2 minutes. Lead-to-meeting conversion improved by 40%. 100% of leads now receive a reply within 24 hours. The sales team saves approximately 15 hours per week on email drafting. Enterprise-tier leads are flagged and routed within 30 seconds.", variant: "star" },
+    ],
+  },
+  "projects/multi-modal-rag": {
+    title: "Multi-Modal RAG Agent",
+    intro: "An intelligent chatbot system built using n8n workflow automation that handles multi-modal inputs from Telegram — text, audio, images, and documents.",
+    body: "This project leverages Retrieval-Augmented Generation (RAG) techniques to enhance AI responses with relevant information retrieved from a knowledge base. It processes multi-modal inputs by converting them into embeddings, storing them in a vector database (Milvus), and providing context-aware responses using advanced language models. The system maintains conversation memory for coherent interactions and supports various document formats for knowledge ingestion.",
+    images: ["/multimodal_rag.png"],
+    sections: [
+      {
+        title: "Live Demo",
+        content: "Watch the full demo on YouTube to see the Multi-Modal RAG Agent in action — processing text, images, audio, and documents via Telegram.",
+        code: "YouTube: 9IqJ4VvRxxE",
+      },
+      {
+        title: "Key Features",
+        content: "Multi-Modal Input Handling: Supports text, audio, images, and documents from Telegram messages. Vector Database Integration: Uses Milvus for efficient similarity search and retrieval. Advanced Embeddings: Employs Cohere's multilingual embeddings for accurate semantic understanding. Conversational Memory: Maintains context across interactions for natural conversations. Document Processing: Automatically extracts and chunks content from PDFs and other files. Real-time Responses: Provides instant replies via Telegram bot interface. Scalable Architecture: Built on n8n's workflow engine for easy customization. Webhook Support: Integrated with ngrok for external API access.",
+      },
+      {
+        title: "Architecture",
+        content: "Telegram Integration: Receives messages and media from users via Telegram Bot API. Data Processing Pipeline: Extracts text from various formats (PDF, audio transcription, image OCR). Embedding Generation: Converts processed content into vector embeddings using Cohere. Vector Storage: Stores embeddings in Milvus vector database for fast retrieval. Retrieval System: Performs similarity search to find relevant context for user queries. Language Model: Uses GPT-4o-mini to generate responses based on retrieved information. Response Delivery: Sends formatted replies back through Telegram. The workflow is orchestrated through n8n, providing a visual interface for monitoring and modifying the agent's behavior.",
+      },
+      {
+        title: "Use Cases",
+        content: "Customer Support: Provide instant, knowledgeable responses based on company documentation. Educational Assistant: Answer questions using uploaded textbooks, research papers, or course materials. Research Helper: Retrieve and summarize information from scientific documents. Personal Knowledge Base: Build a searchable database of personal notes, articles, and media. Content Creation: Generate responses informed by reference materials and style guides. Multilingual Support: Handle queries in multiple languages with multilingual embeddings.",
+      },
+      {
+        title: "Tech Stack",
+        content: "n8n for workflow orchestration. Milvus for vector database. Cohere for multilingual embeddings. GPT-4o-mini for language model. Telegram Bot API for messaging. Docker for deployment. ngrok for webhook tunneling.",
+        code: "n8n | Milvus | Cohere | GPT-4o-mini | Telegram | Docker | ngrok",
+      },
+      {
+        title: "GitHub Repository",
+        content: "Explore the full source code, docker-compose setup, and n8n workflow JSON on GitHub.",
+        code: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS/tree/main/MULTI_MODEL_RAG_AGENT",
+      },
+    ],
+  },
+  "projects/multi-agent-research": {
+    title: "Multi-Agent Research System",
+    intro: "An advanced autonomous multi-agent research platform powered by n8n orchestration. 8 specialized AI agents collaborate to transform a research topic into a comprehensive academic paper.",
+    body: "Version 8.0 — Production-Ready, Single Unified Workflow. This system represents a sophisticated deep-engineering build that automates the lifecycle of complex research. It relies on LangGraph principles to orchestrate multi-agent workflows, featuring specialized discovery agents, systematic literature review capabilities, and strict hallucination-reducing verification layers. The modular pipeline integrates external APIs like arXiv and Semantic Scholar alongside ChromaDB for robust vector memory and RAG.",
+    images: ["/multiagent_research_demo.png", "/multiagent_research_n8n_flow.png"],
+    sections: [
+      {
+        title: "Live Demo",
+        content: "The system runs as a unified n8n workflow. Submit a research topic via the frontend, and 8 agents autonomously execute the full research lifecycle.",
+      },
+      {
+        title: "8 Specialized Agents",
+        content: "Orchestrator: State initialization and management via Code Node. Keyword Generator: Academic search keyword generation using LLaMA 3.3-70B. Researcher: Literature search and discovery via HTTP/API. Strategist: Gap identification and research strategy using LLaMA 3.3-70B. Architect: Methodology design using LLaMA 3.3-70B. Implementer: Data and implementation planning using LLaMA 3.3-70B. Analyst: Experiment design using LLaMA 3.3-70B. Editor: Final paper compilation using LLaMA 3.3-70B.",
+      },
+      {
+        title: "Agent Pipeline",
+        content: "Phase 1 — Initialization: Webhook trigger receives topic from frontend, initializes research state. Phase 2 — Research Intelligence (Agents 1-3): Keyword generation, web search via DuckDuckGo, literature review with theme identification. Phase 3 — Strategy & Methodology (Agents 4-5): Gap statement formulation, research questions, methodology design. Phase 4 — Implementation & Experiments (Agents 6-7): Data requirements planning, experimental framework design. Phase 5 — Quality & Compilation (Agents 7-8): Novelty and ethics validation, IEEE-format paper generation. Phase 6 — Response: JSON-formatted output with complete paper and execution metadata.",
+      },
+      {
+        title: "Premium Frontend",
+        content: "Modern glassmorphism design with real-time agent progress visualization. Markdown rendering with syntax highlighting, copy and download functionality, and fully responsive design.",
+      },
+      {
+        title: "API Reference",
+        content: "Endpoint: POST http://localhost:5678/webhook/start-research. Request body: { 'topic': 'Your Research Topic' }. Response includes the full generated paper content, execution time, agents executed, and phase completion status.",
+        code: "POST /webhook/start-research\nRequest: { \"topic\": \"Your Topic\" }\nResponse: { \"success\": true, \"content\": \"# Paper...\", \"metadata\": { \"executionTimeSeconds\": 90, \"agentsExecuted\": 8 } }",
+      },
+      {
+        title: "Business Value",
+        content: "This project serves as our ultimate proof of technical capability. While rapid-deployment automations act as the 'Trojan Horse' for initial trust, this system is the high-ticket upsell. It proves to enterprise organizations that we can move beyond simple chatbots to deploy autonomous agents that research, reason, verify facts, and execute multi-step tasks securely at scale. Falls under our Custom Generative AI & Conversational Agents category — a flagship example for Multi-Agent Workflows and Enterprise RAG Architectures.",
+      },
+      {
+        title: "GitHub Repository",
+        content: "Explore the full n8n workflow JSON, frontend code, and deployment configuration.",
+        code: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS",
       },
     ],
   },
@@ -397,34 +558,158 @@ export default async function DynamicPage({
           </div>
         )}
 
-        {content.sections && content.sections.length > 0 && (
-          <div className="space-y-6 mt-10">
-            {content.sections.map((section, idx) => (
-              <div key={idx} className="border border-slate-200 rounded-xl overflow-hidden">
-                <div className="bg-slate-50 px-5 py-3 border-b border-slate-200">
-                  <h3 className="font-medium text-slate-900">{section.title}</h3>
-                  {section.content && (
-                    <p className="text-sm text-slate-600 mt-1">{section.content}</p>
-                  )}
-                </div>
-                {section.code && (
-                  <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                    <code>
-                      {section.code.startsWith("Email:") ? (
-                        <a
-                          href={`mailto:${section.code.replace("Email: ", "")}`}
-                          className="hover:text-blue-300 transition-colors"
-                        >
-                          {section.code}
-                        </a>
-                      ) : (
-                        section.code
-                      )}
-                    </code>
-                  </pre>
-                )}
+        {content.images && content.images.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+            {content.images.map((img, idx) => (
+              <div key={idx} className="rounded-xl overflow-hidden border border-slate-200 bg-white">
+                <Image
+                  src={img}
+                  alt={`${content.title} screenshot ${idx + 1}`}
+                  width={700}
+                  height={420}
+                  className="w-full h-auto object-cover"
+                />
               </div>
             ))}
+          </div>
+        )}
+
+        {content.sections && content.sections.length > 0 && (
+          <div className="space-y-6 mt-10">
+            {content.sections.map((section, idx) => {
+              if (section.variant === "star" && section.title === "About the Project") {
+                return (
+                  <div key={idx} className="border border-blue-200 bg-blue-50/30 rounded-xl overflow-hidden">
+                    <div className="bg-blue-50 px-5 py-4 border-b border-blue-200">
+                      <h3 className="font-semibold text-blue-900 flex items-center gap-2">
+                        <FileText size={18} className="text-blue-600" />
+                        {section.title}
+                      </h3>
+                    </div>
+                    <div className="px-5 py-4">
+                      <p className="text-sm text-slate-700 leading-relaxed">{section.content}</p>
+                    </div>
+                    {section.code && (
+                      section.code.startsWith("YouTube:") ? (
+                        <div className="aspect-video w-full">
+                          <iframe
+                            src={`https://www.youtube.com/embed/${section.code.replace("YouTube: ", "")}`}
+                            title="YouTube video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full"
+                          />
+                        </div>
+                      ) : section.code.startsWith("https://github.com") ? (
+                        <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                          <code>
+                            <a
+                              href={section.code}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-blue-300 transition-colors"
+                            >
+                              {section.code}
+                            </a>
+                          </code>
+                        </pre>
+                      ) : (
+                        <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                          <code>{section.code}</code>
+                        </pre>
+                      )
+                    )}
+                  </div>
+                );
+              }
+              if (section.variant === "star") {
+                const starIcons: Record<string, React.ReactNode> = {
+                  "Situation": <CircleHelp size={18} className="text-amber-600" />,
+                  "Task": <ListChecks size={18} className="text-blue-600" />,
+                  "Action": <ArrowRightCircle size={18} className="text-violet-600" />,
+                  "Result": <Target size={18} className="text-green-600" />,
+                };
+                const starColors: Record<string, string> = {
+                  "Situation": "bg-amber-50 border-amber-200",
+                  "Task": "bg-blue-50 border-blue-200",
+                  "Action": "bg-violet-50 border-violet-200",
+                  "Result": "bg-green-50 border-green-200",
+                };
+                const starHeading: Record<string, string> = {
+                  "Situation": "text-amber-900",
+                  "Task": "text-blue-900",
+                  "Action": "text-violet-900",
+                  "Result": "text-green-900",
+                };
+                return (
+                  <div key={idx} className={`border ${starColors[section.title] || "border-slate-200"} rounded-xl overflow-hidden`}>
+                    <div className="px-5 py-4">
+                      <h3 className={`font-semibold ${starHeading[section.title] || "text-slate-900"} flex items-center gap-2 mb-3`}>
+                        {starIcons[section.title] || null}
+                        {section.title}
+                      </h3>
+                      <p className="text-sm text-slate-700 leading-relaxed">{section.content}</p>
+                    </div>
+                    {section.code && (
+                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                        <code>{section.code}</code>
+                      </pre>
+                    )}
+                  </div>
+                );
+              }
+              return (
+                <div key={idx} className="border border-slate-200 rounded-xl overflow-hidden">
+                  <div className="bg-slate-50 px-5 py-3 border-b border-slate-200">
+                    <h3 className="font-medium text-slate-900">{section.title}</h3>
+                    {section.content && (
+                      <p className="text-sm text-slate-600 mt-1">{section.content}</p>
+                    )}
+                  </div>
+                  {section.code && (
+                    section.code.startsWith("YouTube:") ? (
+                      <div className="aspect-video w-full">
+                        <iframe
+                          src={`https://www.youtube.com/embed/${section.code.replace("YouTube: ", "")}`}
+                          title="YouTube video"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="w-full h-full"
+                        />
+                      </div>
+                    ) : section.code.startsWith("Email:") ? (
+                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                        <code>
+                          <a
+                            href={`mailto:${section.code.replace("Email: ", "")}`}
+                            className="hover:text-blue-300 transition-colors"
+                          >
+                            {section.code}
+                          </a>
+                        </code>
+                      </pre>
+                    ) : section.code.startsWith("https://github.com") ? (
+                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                        <code>
+                          <a
+                            href={section.code}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-blue-300 transition-colors"
+                          >
+                            {section.code}
+                          </a>
+                        </code>
+                      </pre>
+                    ) : (
+                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                        <code>{section.code}</code>
+                      </pre>
+                    )
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
 
