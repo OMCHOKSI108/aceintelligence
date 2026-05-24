@@ -81,14 +81,9 @@ export function ResearchSandbox() {
       <div className="bg-slate-900 text-slate-100 px-5 py-3 flex items-center gap-2 border-b border-slate-700">
         <Terminal size={16} />
         <span className="text-sm font-medium">Agent Execution Sandbox</span>
-        <span className="text-xs text-slate-500 ml-auto">Simulated environment</span>
       </div>
 
       <div className="p-5">
-        <p className="text-sm text-slate-600 mb-4">
-          Enter a research topic below to see how our 8-agent pipeline executes autonomously.
-        </p>
-
         <div className="flex gap-2 mb-4">
           <input
             type="text"
@@ -121,9 +116,7 @@ export function ResearchSandbox() {
           ref={logRef}
           className="bg-slate-950 text-slate-100 rounded-lg p-4 h-64 overflow-y-auto font-mono text-xs space-y-1.5"
         >
-          {logs.length === 0 ? (
-            <p className="text-slate-600 italic">Awaiting input — the pipeline starts when you click Run.</p>
-          ) : (
+          {logs.length === 0 ? null : (
             logs.map((log, i) => (
               <div key={i} className="flex items-start gap-2 leading-relaxed">
                 {statusIcon(log.status)}

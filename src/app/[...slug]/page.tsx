@@ -604,13 +604,12 @@ export default async function DynamicPage({
           <div className="my-10 space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Agent in Action — Live Sandbox</h2>
-              <p className="text-slate-600 mb-6">Enter any topic and watch our 8-agent autonomous research pipeline execute in real-time. Every step is logged, deterministic, and verifiable — proving our systems are far superior to off-the-shelf wrappers.</p>
               <ResearchSandbox />
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Architecture &amp; Security Deep-Dive</h2>
-              <p className="text-sm text-slate-600 mb-6">System architecture showing the full multi-agent pipeline — from Telegram/webhook input through 8 specialized agents to final IEEE-format output — alongside the hallucination defense layers that make enterprise clients trust our systems.</p>
+              <p className="text-sm text-slate-600 mb-6">Full multi-agent pipeline from Telegram/webhook input through 8 specialized agents to final IEEE-format output, with hallucination defense layers for enterprise-grade trust.</p>
               <ArchitectureDiagram />
             </div>
           </div>
