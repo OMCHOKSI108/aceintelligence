@@ -59,10 +59,10 @@ graph TB
         WB["Webhook Trigger"]:::inputText
     end
 
-    subgraph Orchestration["⚙️ Agent Pipeline — 8 Specialized Agents"]
+    subgraph Orchestration["⚙️ Agent Pipeline, 8 Specialized Agents"]
         direction TB
         INIT["🚀 Initialize State"]:::agent
-        KG["🔑 Agent 1: Keyword Generator<br/><span style='font-size:11px;color:#7C3AED'>LLaMA 3.3-70B</span>"]:::agent
+        KG["🔑 Agent 1: Keyword Generator<br/><span style='font-size:11px;color:#7C3AED'>LLaMA 3.3 70B</span>"]:::agent
         RS["📚 Agent 2: Researcher<br/><span style='font-size:11px;color:#7C3AED'>arXiv + Semantic Scholar</span>"]:::agent
         LR["📋 Agent 3: Literature Reviewer"]:::agent
         ST["🧠 Agent 4: Research Strategist"]:::agent
@@ -79,7 +79,7 @@ graph TB
         DDG["DuckDuckGo"]:::externalAPI
     end
 
-    subgraph Memory["🧠 Vector Memory & RAG"]
+    subgraph Memory["🧠 Vector Memory and RAG"]
         direction TB
         CDB[("ChromaDB")]:::memNode
         EMB["Cohere Embeddings"]:::memNode
@@ -119,10 +119,10 @@ graph LR
     classDef halluTitle fill:#FEF2F2,stroke:#EF4444,stroke-width:2px,color:#991B1B,font-weight:700
     classDef halluStep fill:#FEF2F2,stroke:#FCA5A5,stroke-width:1.5px,color:#991B1B
 
-    subgraph Hallucination["🛡️ Hallucination Defense-in-Depth"]
+    subgraph Hallucination["🛡️ Hallucination Defense in Depth"]
         direction TB
-        V1["🔒 1. Vector-Anchored RAG<br/><span style='font-size:11px;color:#DC2626'>LLM grounded strictly in ChromaDB</span>"]:::halluStep
-        V2["✓ 2. Multi-Step Verification<br/><span style='font-size:11px;color:#DC2626'>Chain of accountability across 8 agents</span>"]:::halluStep
+      V1["🔒 1. Vector Anchored RAG<br/><span style='font-size:11px;color:#DC2626'>LLM grounded strictly in ChromaDB</span>"]:::halluStep
+      V2["✓ 2. Multi Step Verification<br/><span style='font-size:11px;color:#DC2626'>Chain of accountability across 8 agents</span>"]:::halluStep
         V3["⚡ 3. Confidence Thresholds<br/><span style='font-size:11px;color:#DC2626'>Below 70% → auto human review</span>"]:::halluStep
         V4["📋 4. Audit Trails<br/><span style='font-size:11px;color:#DC2626'>Every inference logged with source citations</span>"]:::halluStep
     end
@@ -173,7 +173,7 @@ export function ArchitectureDiagram() {
   return (
     <div className="space-y-10">
       <div>
-        <h3 className="text-lg font-semibold text-slate-800 mb-4">Multi-Agent Architecture</h3>
+        <h3 className="text-lg font-semibold text-slate-800 mb-4">Multi Agent Architecture</h3>
         <div
           ref={archRef}
           className="p-4 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm"

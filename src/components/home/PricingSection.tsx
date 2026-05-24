@@ -7,9 +7,9 @@ export function PricingSection() {
       price: "Custom",
       description: "Deploy on your own infrastructure. Full control, zero data leaving your network.",
       features: [
-        "Self-hosted deployment",
+        "Self hosted deployment",
         "Workflow orchestration",
-        "Role-based access control",
+        "Role based access control",
         "Approvals and audit trails",
       ],
     },
@@ -27,7 +27,7 @@ export function PricingSection() {
     },
     {
       name: "Enterprise",
-      description: "Full-scale deployment for large organizations with custom needs.",
+      description: "Full scale deployment for large organizations with custom needs.",
       price: "$5,000",
       period: "/month",
       features: [

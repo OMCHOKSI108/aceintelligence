@@ -13,7 +13,7 @@ const founders = [
     name: "Om Choksi",
     role: "CTO & Chief Architect",
     description:
-      "Expert in technical architecture, custom multi-agent LLM workflows (LangGraph), and cloud backend infrastructure (AWS/Azure).",
+      "Expert in technical architecture, custom multi agent LLM workflows (LangGraph), and cloud backend infrastructure (AWS/Azure).",
     portfolio: "https://www.omchoksi.code",
     github: "https://github.com/OMCHOKSI108",
   },

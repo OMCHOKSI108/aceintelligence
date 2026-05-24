@@ -20,10 +20,10 @@ const projects = [
     id: "multi-agent-research",
     badge: "Production v8.0",
     badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
-    title: "Multi-Agent Research System",
+    title: "Multi Agent Research System",
     tagline: "8 autonomous AI agents collaborating on academic research",
     description:
-      "An advanced multi-agent research platform where 8 specialized agents collaborate to transform a research topic into a comprehensive IEEE-format academic paper — fully autonomous.",
+      "An advanced multi agent research platform where 8 specialized agents collaborate to transform a research topic into a comprehensive IEEE format academic paper, fully autonomous.",
     team: [
       { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
       { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
@@ -35,24 +35,24 @@ const projects = [
     features: [
       { icon: Bot, text: "8 specialized AI agents collaborating in a unified pipeline" },
       { icon: Layers, text: "LangGraph orchestration with strict verification layers" },
-      { icon: FileText, text: "Generates complete IEEE-format research papers" },
-      { icon: Database, text: "ChromaDB vector memory for RAG-based retrieval" },
+      { icon: FileText, text: "Generates complete IEEE format research papers" },
+      { icon: Database, text: "ChromaDB vector memory for RAG based retrieval" },
       { icon: Code, text: "Modular pipeline integrating arXiv & Semantic Scholar APIs" },
-      { icon: Activity, text: "Real-time agent progress visualization in glassmorphism UI" },
-      { icon: Shield, text: "Hallucination-reducing novelty and ethics validation" },
-      { icon: Video, text: "Proof of capability for enterprise multi-agent upsell" },
+      { icon: Activity, text: "Real time agent progress visualization in glassmorphism UI" },
+      { icon: Shield, text: "Hallucination reducing novelty and ethics validation" },
+      { icon: Video, text: "Proof of capability for enterprise multi agent upsell" },
     ],
-    techStack: ["n8n", "LangGraph", "LLaMA 3.3-70B", "ChromaDB", "arXiv API", "Semantic Scholar", "DuckDuckGo"],
-    status: "Production-ready v8.0 — single unified n8n workflow.",
+    techStack: ["n8n", "LangGraph", "LLaMA 3.3 70B", "ChromaDB", "arXiv API", "Semantic Scholar", "DuckDuckGo"],
+    status: "Production ready v8.0, single unified n8n workflow.",
   },
   {
     id: "multi-modal-rag",
     badge: "Live demo",
     badgeColor: "bg-green-100 text-green-800 border-green-200",
-    title: "Multi-Modal RAG Agent",
-    tagline: "Telegram chatbot with n8n, Milvus & GPT-4o-mini",
+    title: "Multi Modal RAG Agent",
+    tagline: "Telegram chatbot with n8n, Milvus & GPT 4o mini",
     description:
-      "An intelligent chatbot that handles text, audio, images, and documents via Telegram — converting them into vector embeddings for RAG-powered responses.",
+      "An intelligent chatbot that handles text, audio, images, and documents via Telegram, converting them into vector embeddings for RAG powered responses.",
     team: [
       { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
       { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
@@ -62,26 +62,26 @@ const projects = [
     liveUrl: "/projects/multi-modal-rag",
     githubUrl: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS/tree/main/MULTI_MODEL_RAG_AGENT",
     features: [
-      { icon: Bot, text: "Multi-modal input: text, audio, images, and documents from Telegram" },
+      { icon: Bot, text: "Multi modal input: text, audio, images, and documents from Telegram" },
       { icon: Database, text: "Milvus vector database for efficient similarity search" },
       { icon: Layers, text: "Cohere multilingual embeddings for accurate semantic understanding" },
       { icon: Code, text: "n8n workflow orchestration with visual monitoring" },
-      { icon: MessageSquare, text: "Conversational memory for coherent multi-turn interactions" },
+      { icon: MessageSquare, text: "Conversational memory for coherent multi turn interactions" },
       { icon: FileText, text: "Automatic document parsing and chunking from PDFs" },
       { icon: AudioWaveform, text: "Audio transcription and image OCR processing pipeline" },
-      { icon: Video, text: "Live demo on YouTube — watch it in action" },
+      { icon: Video, text: "Live demo on YouTube, watch it in action" },
     ],
-    techStack: ["n8n", "Milvus", "Cohere", "GPT-4o-mini", "Telegram API", "Docker", "ngrok"],
-    status: "Production-ready. Deploy via Docker with webhook support.",
+    techStack: ["n8n", "Milvus", "Cohere", "GPT 4o mini", "Telegram API", "Docker", "ngrok"],
+    status: "Production ready. Deploy via Docker with webhook support.",
   },
   {
     id: "food-delivery-agent",
     badge: "Legacy demo",
     badgeColor: "bg-orange-100 text-orange-800 border-orange-200",
     title: "AI Food Delivery Agent",
-    tagline: "Two-way conversational ordering via Telegram/WhatsApp + Google Sheets",
+    tagline: "Two way conversational ordering via Telegram and WhatsApp + Google Sheets",
     description:
-      "A two-way conversational AI agent that handles food orders, menu inquiries, and delivery status checks via Telegram and WhatsApp — logging everything to Google Sheets.",
+      "A two way conversational AI agent that handles food orders, menu inquiries, and delivery status checks via Telegram and WhatsApp, logging everything to Google Sheets.",
     team: [
       { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
       { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
@@ -90,23 +90,23 @@ const projects = [
     images: ["/FoodDeliverySystem_1.png", "/FoodDeliverySysten_2.png"],
     liveUrl: "/projects/food-delivery-agent",
     features: [
-      { icon: MessageSquare, text: "Two-way conversational AI via Telegram and WhatsApp" },
-      { icon: Bot, text: "LLM-powered intent recognition: menu, order, delivery status" },
+      { icon: MessageSquare, text: "Two way conversational AI via Telegram and WhatsApp" },
+      { icon: Bot, text: "LLM powered intent recognition: menu, order, delivery status" },
       { icon: FileText, text: "Google Sheets integration for menu reading and order logging" },
       { icon: Code, text: "n8n webhook orchestration for message handling" },
       { icon: Activity, text: "Autonomous order processing with zero human intervention" },
-      { icon: Video, text: "YouTube demo — see it take orders in real-time" },
+      { icon: Video, text: "YouTube demo, see it take orders in real time" },
     ],
     techStack: ["n8n", "LLM API", "Telegram API", "WhatsApp API", "Google Sheets"],
-    status: "Legacy demo — Tier 2 conversational automation. Ready for production deployment.",
+    status: "Legacy demo, Tier 2 conversational automation. Ready for production deployment.",
   },
   {
     id: "chatpdf",
     badge: "Private beta",
     badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
     title: "ChatPDF",
-    tagline: "Automation for knowledge-heavy workflows",
-    description: "Automates intake, routing, approvals, and follow-ups so teams can move faster with full visibility.",
+    tagline: "Automation for knowledge heavy workflows",
+    description: "Automates intake, routing, approvals, and follow ups so teams can move faster with full visibility.",
     team: [
       { name: "OMCHOKSI108", username: "OMCHOKSI108", href: "https://github.com/OMCHOKSI108" },
       { name: "firefistisdead", username: "firefistisdead", href: "https://github.com/firefistisdead" },
@@ -118,9 +118,9 @@ const projects = [
       { icon: FileText, text: "Automated intake, triage, and routing for requests" },
       { icon: Database, text: "Workflow state tracking with durable audit logs" },
       { icon: Layers, text: "Reusable automation steps with approval gates" },
-      { icon: Code, text: "APIs for system-to-system workflow triggers" },
-      { icon: MessageSquare, text: "Operator inbox with human-in-the-loop reviews" },
-      { icon: Shield, text: "Role-based access and approval policies" },
+      { icon: Code, text: "APIs for system to system workflow triggers" },
+      { icon: MessageSquare, text: "Operator inbox with human in the loop reviews" },
+      { icon: Shield, text: "Role based access and approval policies" },
       { icon: Activity, text: "Operational dashboards for throughput and exceptions" },
     ],
     techStack: ["Next.js", "FastAPI", "Redis", "PostgreSQL", "Qdrant", "STT/TTS"],
@@ -137,7 +137,7 @@ export function ProjectsSection() {
           Our products
         </h2>
         <p className="text-slate-600 text-lg max-w-3xl">
-          Production-grade AI systems and automation platforms built by our team.
+          Production grade AI systems and automation platforms built by our team.
         </p>
       </div>
 

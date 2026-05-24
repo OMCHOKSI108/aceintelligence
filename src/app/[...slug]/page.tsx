@@ -23,32 +23,32 @@ type PageContent = {
 const contentMap: Record<string, PageContent> = {
   research: {
     title: "Research & Engineering",
-    intro: "Proving enterprise-grade AI through transparent architecture, rigorous verification, and measurable outcomes.",
-    body: "We don't just build AI — we build systems you can trust. Every architecture we design is deterministic, verifiable, and purpose-built for enterprise scale. Explore our engineering ethos through live sandboxes, architectural deep-dives, and safety research.",
+    intro: "Proving enterprise grade AI through transparent architecture, rigorous verification, and measurable outcomes.",
+    body: "We don't just build AI, we build systems you can trust. Every architecture we design is deterministic, verifiable, and purpose built for enterprise scale. Explore our engineering ethos through live sandboxes, architectural deep dives, and safety research.",
     sections: [
       {
-        title: "Agent in Action — Live Sandbox",
-        content: "See our 8-agent research pipeline execute in real-time. Enter any topic and watch specialized agents collaborate — from keyword discovery through literature review, strategy formulation, methodology design, and final paper compilation. Every step is logged, deterministic, and verifiable.",
+        title: "Agent in Action Live Sandbox",
+        content: "See our 8 agent research pipeline execute in real time. Enter any topic and watch specialized agents collaborate from keyword discovery through literature review, strategy formulation, methodology design, and final paper compilation. Every step is logged, deterministic, and verifiable.",
       },
       {
-        title: "Architecture Deep-Dive",
-        content: "Our multi-agent systems are built on LangGraph orchestration with strict verification layers. Data flows from ingestion (n8n webhooks, API integrations) through a multi-agent routing layer to specialized processors, with every output validated against source material before proceeding. ChromaDB vector memory grounds all LLM responses in proprietary data — eliminating hallucination at the architectural level.",
+        title: "Architecture Deep Dive",
+        content: "Our multi agent systems are built on LangGraph orchestration with strict verification layers. Data flows from ingestion (n8n webhooks, API integrations) through a multi agent routing layer to specialized processors, with every output validated against source material before proceeding. ChromaDB vector memory grounds all LLM responses in proprietary data, eliminating hallucination at the architectural level.",
       },
       {
         title: "Hallucination Defense Lab",
-        content: "Enterprise clients fear hallucination and data leakage. Our defense-in-depth approach: (1) Vector-anchored RAG — every LLM call is grounded in retrieved documents from ChromaDB, never relying on parametric knowledge alone. (2) Multi-step verification — each agent's output is validated by the next agent in the pipeline, creating a chain of accountability. (3) Confidence thresholds — outputs below 70% confidence trigger human review fallback. (4) Audit trails — every inference is logged with source citations for full traceability.",
+        content: "Enterprise clients fear hallucination and data leakage. Our defense in depth approach: (1) Vector anchored RAG, every LLM call is grounded in retrieved documents from ChromaDB, never relying on parametric knowledge alone. (2) Multi step verification, each agent's output is validated by the next agent in the pipeline, creating a chain of accountability. (3) Confidence thresholds, outputs below 70% confidence trigger human review fallback. (4) Audit trails, every inference is logged with source citations for full traceability.",
       },
       {
-        title: "ROI of Intelligence — Whitepapers",
+        title: "ROI of Intelligence Whitepapers",
         content: "We publish technical research connecting advanced AI architectures to tangible business outcomes.",
-        code: "Multi-Agent Research Automation: 8-agent pipeline generating IEEE-format papers in under 90 seconds — replaces 40+ hours of manual literature review.\nAutomated Multi-Temporal Data Mapping: RAG pipelines for financial time-series analysis with anomaly detection.\nZero-Latency Routing Architecture: Sub-second intent classification for high-frequency trading infrastructure.\nEnterprise RAG at Scale: Vector database sharding strategies for 10M+ document knowledge bases.",
+        code: "Multi Agent Research Automation: 8 agent pipeline generating IEEE format papers in under 90 seconds, replaces 40+ hours of manual literature review.\nAutomated Multi Temporal Data Mapping: RAG pipelines for financial time series analysis with anomaly detection.\nZero Latency Routing Architecture: Sub second intent classification for high frequency trading infrastructure.\nEnterprise RAG at Scale: Vector database sharding strategies for 10M+ document knowledge bases.",
       },
     ],
   },
   about: {
     title: "About",
     intro: "We are an AI, automation, and intelligent software services agency.",
-    body: "Ace Intelligence Systems helps modern startups and enterprise organizations scale efficiently by eliminating manual operational bottlenecks. We build bespoke AI architectures and scalable cloud infrastructure — custom software solutions, not off-the-shelf SaaS.",
+    body: "Ace Intelligence Systems helps modern startups and enterprise organizations scale efficiently by eliminating manual operational bottlenecks. We build bespoke AI architectures and scalable cloud infrastructure, custom software solutions, not off the shelf SaaS.",
     sections: [
       {
         title: "Our Mission",
@@ -56,15 +56,15 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "What We Build",
-        content: "Intelligent workflow automations (smart email triage, document parsing, lead routing), custom generative AI and conversational agents (enterprise RAG, multi-agent workflows, support bots), and enterprise cloud infrastructure and analytics (custom dashboards, predictive AI, scalable backend APIs).",
+        content: "Intelligent workflow automations (smart email triage, document parsing, lead routing), custom generative AI and conversational agents (enterprise RAG, multi agent workflows, support bots), and enterprise cloud infrastructure and analytics (custom dashboards, predictive AI, scalable backend APIs).",
       },
       {
         title: "Our Business Model",
-        content: "We offer custom software solutions — not off-the-shelf SaaS products. Every deployment is purpose-built for your operations.",
+        content: "We offer custom software solutions, not off the shelf SaaS products. Every deployment is purpose built for your operations.",
       },
       {
         title: "Our Team",
-        content: "The founding team consists of three Artificial Intelligence & Machine Learning (AIML) students from CHARUSAT University, graduating in 2027. Ansh Gajera (CEO) drives strategic vision and business transformation. Om Choksi (CTO & Chief Architect) leads technical architecture and multi-agent LLM workflows. Yash Khare (Founder) leads market positioning and RAG architecture development.",
+        content: "The founding team consists of three Artificial Intelligence & Machine Learning (AIML) students from CHARUSAT University, graduating in 2027. Ansh Gajera (CEO) drives strategic vision and business transformation. Om Choksi (CTO & Chief Architect) leads technical architecture and multi agent LLM workflows. Yash Khare (Founder) leads market positioning and RAG architecture development.",
       },
     ],
   },
@@ -114,7 +114,7 @@ const contentMap: Record<string, PageContent> = {
   },
   "industries/legal": {
     title: "Legal",
-    intro: "Approval-first workflows for contracts and policies.",
+    intro: "Approval first workflows for contracts and policies.",
     body: "Design for verification: approvals, source context, and workflows that reduce operational risk.",
   },
   "economic-futures": {
@@ -124,7 +124,7 @@ const contentMap: Record<string, PageContent> = {
   },
   constitution: {
     title: "Company Constitution",
-    intro: "Our constitution defines long-term product and safety principles.",
+    intro: "Our constitution defines long term product and safety principles.",
     body: "It guides how we prioritize user value, technical excellence, and responsible scaling in every release.",
   },
   transparency: {
@@ -134,20 +134,20 @@ const contentMap: Record<string, PageContent> = {
   },
   security: {
     title: "Security & AI Safety",
-    intro: "Enterprise-grade security meets rigorous AI safety. We prevent hallucination, secure data, and build systems you can trust.",
-    body: "From infrastructure hardening to LLM hallucination defense, our security posture covers every layer. We design systems that are deterministic, verifiable, and auditable — because enterprise AI demands more than just good results.",
+    intro: "Enterprise grade security meets rigorous AI safety. We prevent hallucination, secure data, and build systems you can trust.",
+    body: "From infrastructure hardening to LLM hallucination defense, our security posture covers every layer. We design systems that are deterministic, verifiable, and auditable, because enterprise AI demands more than just good results.",
     sections: [
       {
-        title: "AI Safety — Hallucination Prevention",
-        content: "Our defense-in-depth approach eliminates fabricated outputs at the architectural level. (1) Vector-Anchored RAG: Every LLM call is grounded in retrieved documents from ChromaDB, never relying on parametric knowledge alone. (2) Multi-Step Verification: Each agent's output is validated by the next agent in the pipeline, creating a chain of accountability. (3) Confidence Thresholds: Outputs below 70% confidence trigger human review fallback. (4) Full Audit Trails: Every inference is logged with source citations for complete traceability.",
+        title: "AI Safety Hallucination Prevention",
+        content: "Our defense in depth approach eliminates fabricated outputs at the architectural level. (1) Vector Anchored RAG: Every LLM call is grounded in retrieved documents from ChromaDB, never relying on parametric knowledge alone. (2) Multi Step Verification: Each agent's output is validated by the next agent in the pipeline, creating a chain of accountability. (3) Confidence Thresholds: Outputs below 70% confidence trigger human review fallback. (4) Full Audit Trails: Every inference is logged with source citations for complete traceability.",
       },
       {
         title: "Infrastructure Security",
-        content: "All systems deployed on AWS/Azure with encryption at rest (AES-256) and in transit (TLS 1.3). Network isolation, WAF protection, and DDoS mitigation are standard. In hybrid mode, your data never leaves your network — we process only what is necessary.",
+        content: "All systems deployed on AWS/Azure with encryption at rest (AES 256) and in transit (TLS 1.3). Network isolation, WAF protection, and DDoS mitigation are standard. In hybrid mode, your data never leaves your network, we process only what is necessary.",
       },
       {
         title: "Access Control & Governance",
-        content: "Role-based access control (RBAC) with least-privilege principles. Multi-factor authentication required for all administrative access. Every action is logged with immutable audit trails for compliance and governance.",
+        content: "Role based access control (RBAC) with least privilege principles. Multi factor authentication required for all administrative access. Every action is logged with immutable audit trails for compliance and governance.",
       },
       {
         title: "Data Privacy & Isolation",
@@ -180,7 +180,7 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Authentication",
-        content: "Secure your API requests with JWT tokens or OAuth (Google, GitHub). Role-based access control included.",
+        content: "Secure your API requests with JWT tokens or OAuth (Google, GitHub). Role based access control included.",
       },
       {
         title: "Hybrid Deployment",
@@ -212,7 +212,7 @@ const contentMap: Record<string, PageContent> = {
     sections: [
       {
         title: "Business Local",
-        content: "Self-hosted deployment with full control. Your data never leaves your infrastructure.",
+        content: "Self hosted deployment with full control. Your data never leaves your infrastructure.",
         code: "Custom pricing",
       },
       {
@@ -222,20 +222,20 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Enterprise",
-        content: "Full-scale deployment with custom integrations, SLA guarantees, and dedicated support.",
+        content: "Full scale deployment with custom integrations, SLA guarantees, and dedicated support.",
         code: "Starting at $5,000/month",
       },
     ],
   },
   projects: {
     title: "Our Products",
-    intro: "AI-powered tools and platforms built by Ace Intelligence.",
-    body: "From workflow automation to multi-modal AI agents, we build production-grade systems that solve real business problems.",
+    intro: "AI powered tools and platforms built by Ace Intelligence.",
+    body: "From workflow automation to multi modal AI agents, we build production grade systems that solve real business problems.",
     sections: [
       {
-        title: "Multi-Modal RAG Agent",
-        content: "An intelligent chatbot system built with n8n that handles text, audio, images, and documents via Telegram. Uses Milvus vector database, Cohere embeddings, and GPT-4o-mini for context-aware RAG responses.",
-        code: "Live demo → /projects/multi-modal-rag",
+        title: "Multi Modal RAG Agent",
+        content: "An intelligent chatbot system built with n8n that handles text, audio, images, and documents via Telegram. Uses Milvus vector database, Cohere embeddings, and GPT 4o mini for context aware RAG responses.",
+        code: "Live demo available in the projects section",
       },
       {
         title: "ChatPDF Core",
@@ -278,12 +278,12 @@ const contentMap: Record<string, PageContent> = {
   },
   privacy: {
     title: "Privacy Policy",
-    intro: "We protect your proprietary client data with enterprise-grade privacy practices.",
+    intro: "We protect your proprietary client data with enterprise grade privacy practices.",
     body: "Your data privacy is our foundation. As an AI services agency handling sensitive enterprise information, we maintain strict data governance across every engagement.",
     sections: [
       {
         title: "Data Handling & Confidentiality",
-        content: "All client data processed during engagements is treated as strictly confidential. We implement data isolation per client, ensuring proprietary information never cross-contaminates across projects. In hybrid deployment mode, your data remains on your infrastructure — we only process what is necessary to execute the workflow.",
+        content: "All client data processed during engagements is treated as strictly confidential. We implement data isolation per client, ensuring proprietary information never cross contaminates across projects. In hybrid deployment mode, your data remains on your infrastructure, we only process what is necessary to execute the workflow.",
       },
       {
         title: "Data Collection & Usage",
@@ -291,11 +291,11 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Data Security & Encryption",
-        content: "All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We enforce role-based access control, audit logging, and approval gates for every data operation. Our infrastructure follows SOC 2 aligned practices with continuous monitoring.",
+        content: "All data is encrypted at rest (AES 256) and in transit (TLS 1.3). We enforce role based access control, audit logging, and approval gates for every data operation. Our infrastructure follows SOC 2 aligned practices with continuous monitoring.",
       },
       {
         title: "Data Retention & Deletion",
-        content: "Client data is retained only for the duration of the engagement plus a 30-day wind-down period. Upon project completion, all client data is securely purged from our systems. You may request immediate deletion at any time.",
+        content: "Client data is retained only for the duration of the engagement plus a 30 day wind down period. Upon project completion, all client data is securely purged from our systems. You may request immediate deletion at any time.",
       },
       {
         title: "User Rights & Contact",
@@ -306,19 +306,19 @@ const contentMap: Record<string, PageContent> = {
   },
   terms: {
     title: "Terms of Engagement",
-    intro: "Our terms define the framework for our agency-client partnerships.",
+    intro: "Our terms define the framework for our agency client partnerships.",
     body: "Clear, transparent terms that protect both parties and set expectations for enterprise AI engagements.",
     sections: [
       {
         title: "Engagement Scope",
-        content: "Each engagement is governed by a Statement of Work (SOW) that defines deliverables, timelines, milestones, and acceptance criteria. Custom software solutions are built to the specifications agreed in the SOW — not off-the-shelf products.",
+        content: "Each engagement is governed by a Statement of Work (SOW) that defines deliverables, timelines, milestones, and acceptance criteria. Custom software solutions are built to the specifications agreed in the SOW, not off the shelf products.",
       },
       {
         title: "Intellectual Property",
         content: "Upon full payment, all custom code, architectures, workflows, and deliverables developed specifically for your engagement are your intellectual property. We retain the right to use generalized methodologies and frameworks that do not contain your proprietary data.",
       },
       {
-        title: "Confidentiality & Non-Disclosure",
+        title: "Confidentiality & Non Disclosure",
         content: "We sign NDAs for all engagements. Client business logic, proprietary data, system architecture, and trade secrets are strictly confidential and will not be disclosed to third parties.",
       },
       {
@@ -327,7 +327,7 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Account Responsibilities",
-        content: "Clients are responsible for providing timely access to necessary systems and stakeholders. We are responsible for delivering agreed-upon milestones within the stated timeline, with transparent communication on any changes.",
+        content: "Clients are responsible for providing timely access to necessary systems and stakeholders. We are responsible for delivering agreed upon milestones within the stated timeline, with transparent communication on any changes.",
       },
     ],
   },
@@ -349,27 +349,27 @@ const contentMap: Record<string, PageContent> = {
   },
   services: {
     title: "Our Services",
-    intro: "Deep-engineering architectures and rapid-deployment capabilities for B2B scale.",
-    body: "We build custom AI, automation, and infrastructure solutions — not off-the-shelf SaaS. Every engagement is purpose-built for your operations.",
+    intro: "Deep engineering architectures and rapid deployment capabilities for B2B scale.",
+    body: "We build custom AI, automation, and infrastructure solutions, not off the shelf SaaS. Every engagement is purpose built for your operations.",
     sections: [
       {
         title: "Intelligent Workflow Automations",
-        content: "Smart Email Triage & Routing: Systems built with n8n and LLM APIs to monitor inboxes, classify intent, and route data. Automated Document Parsing: Extracting structured data from PDFs, invoices, or resumes using vision models. Zero-Touch Lead Routing: Connecting web forms to CRMs to instantly draft replies and drastically reduce response times.",
+        content: "Smart Email Triage & Routing: Systems built with n8n and LLM APIs to monitor inboxes, classify intent, and route data. Automated Document Parsing: Extracting structured data from PDFs, invoices, or resumes using vision models. Zero Touch Lead Routing: Connecting web forms to CRMs to instantly draft replies and drastically reduce response times.",
       },
       {
         title: "Custom Generative AI & Conversational Agents",
-        content: "Enterprise RAG Architectures: Secure pipelines allowing companies to chat with proprietary databases and SOPs without hallucination. Multi-Agent Workflows: Orchestrated agents that autonomously research, reason, and execute complex tasks. Tier-1 Support Bots: Advanced chatbots that resolve user queries and escalate smoothly to human agents.",
+        content: "Enterprise RAG Architectures: Secure pipelines allowing companies to chat with proprietary databases and SOPs without hallucination. Multi Agent Workflows: Orchestrated agents that autonomously research, reason, and execute complex tasks. Tier 1 Support Bots: Advanced chatbots that resolve user queries and escalate smoothly to human agents.",
       },
       {
         title: "Enterprise Cloud Infrastructure & Analytics",
-        content: "Custom Admin Panels & Dashboards: Centralized internal tools designed to replace fragmented SaaS subscriptions. Predictive AI: Anomaly detection models for real-time flagging in finance, cybersecurity, or server logs. Scalable Backend APIs: High-performance backends for processing massive data streams, such as algorithmic trading operations.",
+        content: "Custom Admin Panels & Dashboards: Centralized internal tools designed to replace fragmented SaaS subscriptions. Predictive AI: Anomaly detection models for real time flagging in finance, cybersecurity, or server logs. Scalable Backend APIs: High performance backends for processing massive data streams, such as algorithmic trading operations.",
       },
     ],
   },
   contact: {
     title: "Contact Us",
     intro: "Get in touch with the Ace Intelligence team.",
-    body: "Reach out for demos, partnerships, or support. We respond within 1-2 business days.",
+    body: "Reach out for demos, partnerships, or support. We respond within 1 to 2 business days.",
     sections: [
       {
         title: "Support",
@@ -391,18 +391,18 @@ const contentMap: Record<string, PageContent> = {
   "quick-wins/smart-inbox": {
     title: "Smart Inbox Router",
     intro: "An n8n + LLM pipeline that monitors incoming emails, classifies intent, and routes data to the right system.",
-    body: "Deployed in 48 hours, this micro-automation saves operational teams 10-20 hours per week by eliminating manual email triage.",
+    body: "Deployed in 48 hours, this micro automation saves operational teams 10 to 20 hours per week by eliminating manual email triage.",
     images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
     sections: [
       {
         title: "About the Project",
-        content: "The Smart Inbox Router is a lightweight n8n workflow integrated with LLM APIs that watches a team inbox, classifies each incoming message by intent (support request, sales inquiry, billing question), and routes it to the appropriate system or person. Built and deployed in under 48 hours using Groq for low-latency inference.",
+        content: "The Smart Inbox Router is a lightweight n8n workflow integrated with LLM APIs that watches a team inbox, classifies each incoming message by intent (support request, sales inquiry, billing question), and routes it to the appropriate system or person. Built and deployed in under 48 hours using Groq for low latency inference.",
         variant: "star",
       },
-      { title: "Situation", content: "Support and sales teams were spending 15-20 hours per week manually reading, classifying, and forwarding emails from a shared inbox. High-priority messages were occasionally missed, and response times were inconsistent — sometimes exceeding 24 hours for time-sensitive leads.", variant: "star" },
+      { title: "Situation", content: "Support and sales teams were spending 15 to 20 hours per week manually reading, classifying, and forwarding emails from a shared inbox. High priority messages were occasionally missed, and response times were inconsistent, sometimes exceeding 24 hours for time sensitive leads.", variant: "star" },
       { title: "Task", content: "Build an automated email triage system that could: (1) monitor the inbox continuously, (2) classify intent with high accuracy, (3) route messages to the right team or CRM, and (4) be deployable within 48 hours with zero downtime.", variant: "star" },
       { title: "Action", content: "We built a pipeline using n8n as the orchestration layer, connected to the team IMAP inbox. Each email is fetched, parsed, and sent to an LLM (via Groq) for intent classification. Based on the classification, the email is either: forwarded to the appropriate Slack channel, created as a ticket in the CRM, or flagged for manual review. Confidence scores below 70% trigger a human review fallback.", variant: "star" },
-      { title: "Result", content: "Email handling time dropped from 15-20 hours per week to under 2 hours. Lead response time improved from 24+ hours to under 5 minutes. The system achieved 94% classification accuracy on the first pass. The entire pipeline cost less than $50/month in API usage. The team reclaimed 80% of their previous triage time.", variant: "star" },
+      { title: "Result", content: "Email handling time dropped from 15 to 20 hours per week to under 2 hours. Lead response time improved from 24+ hours to under 5 minutes. The system achieved 94% classification accuracy on the first pass. The entire pipeline cost less than $50 per month in API usage. The team reclaimed 80% of their previous triage time.", variant: "star" },
     ],
   },
   "quick-wins/invoice-parser": {
@@ -413,50 +413,50 @@ const contentMap: Record<string, PageContent> = {
     sections: [
       {
         title: "About the Project",
-        content: "The Vendor Invoice Parser uses vision-language models to extract structured data from PDF invoices, receipts, and vendor documents. Fields like invoice number, date, line items, totals, and vendor details are parsed and fed directly into the ERP or accounting system — no manual typing required.",
+        content: "The Vendor Invoice Parser uses vision language models to extract structured data from PDF invoices, receipts, and vendor documents. Fields like invoice number, date, line items, totals, and vendor details are parsed and fed directly into the ERP or accounting system, no manual typing required.",
         variant: "star",
       },
-      { title: "Situation", content: "The finance team at a mid-market company was manually entering data from 200-300 PDF invoices per week into their ERP system. Data entry errors occurred in approximately 8% of invoices, leading to reconciliation issues and delayed payments. The process consumed roughly 25 hours of staff time weekly.", variant: "star" },
+      { title: "Situation", content: "The finance team at a mid market company was manually entering data from 200 to 300 PDF invoices per week into their ERP system. Data entry errors occurred in approximately 8% of invoices, leading to reconciliation issues and delayed payments. The process consumed roughly 25 hours of staff time weekly.", variant: "star" },
       { title: "Task", content: "Develop an automated invoice parsing solution that: (1) extracts 15+ fields from diverse invoice formats, (2) achieves 95%+ extraction accuracy, (3) integrates with the existing ERP API, and (4) handles edge cases like handwritten notes and rotated PDFs.", variant: "star" },
-      { title: "Action", content: "We deployed a pipeline combining OCR preprocessing (for scanned PDFs) with a vision-language model for field extraction. Invoices arriving in the inbox are automatically fetched, processed, and validated. Extracted data is reviewed against confidence thresholds — high-confidence entries are posted directly to the ERP, while low-confidence ones are flagged for quick human review via a simple dashboard.", variant: "star" },
-      { title: "Result", content: "Invoice processing time dropped from 25 hours per week to under 3 hours. Extraction accuracy reached 96.5%, reducing error-related reconciliation by 90%. The system processes invoices 24/7, and the finance team now focuses on exceptions rather than data entry. Payables cycle time improved by 60%.", variant: "star" },
+      { title: "Action", content: "We deployed a pipeline combining OCR preprocessing (for scanned PDFs) with a vision language model for field extraction. Invoices arriving in the inbox are automatically fetched, processed, and validated. Extracted data is reviewed against confidence thresholds, high confidence entries are posted directly to the ERP, while low confidence ones are flagged for quick human review via a simple dashboard.", variant: "star" },
+      { title: "Result", content: "Invoice processing time dropped from 25 hours per week to under 3 hours. Extraction accuracy reached 96.5%, reducing error related reconciliation by 90%. The system processes invoices 24/7, and the finance team now focuses on exceptions rather than data entry. Payables cycle time improved by 60%.", variant: "star" },
     ],
   },
   "quick-wins/lead-router": {
     title: "Lead Router & Responder",
-    intro: "Web forms connected directly to your CRM with AI-generated draft replies, reducing response time from hours to seconds.",
-    body: "An instant lead response system that captures web form submissions and triggers intelligent, context-aware replies.",
+    intro: "Web forms connected directly to your CRM with AI generated draft replies, reducing response time from hours to seconds.",
+    body: "An instant lead response system that captures web form submissions and triggers intelligent, context aware replies.",
     images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
     sections: [
       {
         title: "About the Project",
-        content: "The Lead Router & Responder connects web forms to your CRM and uses LLMs to generate personalized draft replies based on the prospect's message, source, and company context. The sales team reviews and sends with one click — no more copy-pasting or starting from scratch.",
+        content: "The Lead Router & Responder connects web forms to your CRM and uses LLMs to generate personalized draft replies based on the prospect's message, source, and company context. The sales team reviews and sends with one click, no more copy pasting or starting from scratch.",
         variant: "star",
       },
-      { title: "Situation", content: "The sales team was receiving 50+ leads per day through website forms, live chat, and landing pages. Each lead required a manual read, research (company website, LinkedIn), and personalized reply. Average first response time was 8 hours, and 35% of leads never received a follow-up.", variant: "star" },
-      { title: "Task", content: "Create a zero-touch lead routing and response system that: (1) captures leads from multiple web forms, (2) enriches lead data with company context, (3) generates personalized draft replies, (4) routes high-value leads to specific reps, and (5) reduces first response time to under 5 minutes.", variant: "star" },
-      { title: "Action", content: "We built an n8n workflow connected to webhook endpoints from multiple form providers (HubSpot, Typeform, custom forms). Each submission triggers: company enrichment via public APIs, intent scoring via an LLM, personalized draft generation based on the prospect's message and company context, and CRM creation with the draft pre-populated. High-scoring leads are also pushed to a dedicated Slack channel for immediate attention.", variant: "star" },
-      { title: "Result", content: "First response time dropped from 8 hours to under 2 minutes. Lead-to-meeting conversion improved by 40%. 100% of leads now receive a reply within 24 hours. The sales team saves approximately 15 hours per week on email drafting. Enterprise-tier leads are flagged and routed within 30 seconds.", variant: "star" },
+      { title: "Situation", content: "The sales team was receiving 50+ leads per day through website forms, live chat, and landing pages. Each lead required a manual read, research (company website, LinkedIn), and personalized reply. Average first response time was 8 hours, and 35% of leads never received a follow up.", variant: "star" },
+      { title: "Task", content: "Create a zero touch lead routing and response system that: (1) captures leads from multiple web forms, (2) enriches lead data with company context, (3) generates personalized draft replies, (4) routes high value leads to specific reps, and (5) reduces first response time to under 5 minutes.", variant: "star" },
+      { title: "Action", content: "We built an n8n workflow connected to webhook endpoints from multiple form providers (HubSpot, Typeform, custom forms). Each submission triggers: company enrichment via public APIs, intent scoring via an LLM, personalized draft generation based on the prospect's message and company context, and CRM creation with the draft pre populated. High scoring leads are also pushed to a dedicated Slack channel for immediate attention.", variant: "star" },
+      { title: "Result", content: "First response time dropped from 8 hours to under 2 minutes. Lead to meeting conversion improved by 40%. 100% of leads now receive a reply within 24 hours. The sales team saves approximately 15 hours per week on email drafting. Enterprise tier leads are flagged and routed within 30 seconds.", variant: "star" },
     ],
   },
   "projects/multi-modal-rag": {
-    title: "Multi-Modal RAG Agent",
-    intro: "An intelligent chatbot system built using n8n workflow automation that handles multi-modal inputs from Telegram — text, audio, images, and documents.",
-    body: "This project leverages Retrieval-Augmented Generation (RAG) techniques to enhance AI responses with relevant information retrieved from a knowledge base. It processes multi-modal inputs by converting them into embeddings, storing them in a vector database (Milvus), and providing context-aware responses using advanced language models. The system maintains conversation memory for coherent interactions and supports various document formats for knowledge ingestion.",
+    title: "Multi Modal RAG Agent",
+    intro: "An intelligent chatbot system built using n8n workflow automation that handles multi modal inputs from Telegram, text, audio, images, and documents.",
+    body: "This project leverages Retrieval Augmented Generation (RAG) techniques to enhance AI responses with relevant information retrieved from a knowledge base. It processes multi modal inputs by converting them into embeddings, storing them in a vector database (Milvus), and providing context aware responses using advanced language models. The system maintains conversation memory for coherent interactions and supports various document formats for knowledge ingestion.",
     images: ["/multimodal_rag.png", "/multimodal_rag_2.png"],
     sections: [
       {
         title: "Live Demo",
-        content: "Watch the full demo on YouTube to see the Multi-Modal RAG Agent in action — processing text, images, audio, and documents via Telegram.",
+        content: "Watch the full demo on YouTube to see the Multi Modal RAG Agent in action, processing text, images, audio, and documents via Telegram.",
         code: "YouTube: 9IqJ4VvRxxE",
       },
       {
         title: "Key Features",
-        content: "Multi-Modal Input Handling: Supports text, audio, images, and documents from Telegram messages. Vector Database Integration: Uses Milvus for efficient similarity search and retrieval. Advanced Embeddings: Employs Cohere's multilingual embeddings for accurate semantic understanding. Conversational Memory: Maintains context across interactions for natural conversations. Document Processing: Automatically extracts and chunks content from PDFs and other files. Real-time Responses: Provides instant replies via Telegram bot interface. Scalable Architecture: Built on n8n's workflow engine for easy customization. Webhook Support: Integrated with ngrok for external API access.",
+        content: "Multi Modal Input Handling: Supports text, audio, images, and documents from Telegram messages. Vector Database Integration: Uses Milvus for efficient similarity search and retrieval. Advanced Embeddings: Employs Cohere's multilingual embeddings for accurate semantic understanding. Conversational Memory: Maintains context across interactions for natural conversations. Document Processing: Automatically extracts and chunks content from PDFs and other files. Real time Responses: Provides instant replies via Telegram bot interface. Scalable Architecture: Built on n8n's workflow engine for easy customization. Webhook Support: Integrated with ngrok for external API access.",
       },
       {
         title: "Architecture",
-        content: "Telegram Integration: Receives messages and media from users via Telegram Bot API. Data Processing Pipeline: Extracts text from various formats (PDF, audio transcription, image OCR). Embedding Generation: Converts processed content into vector embeddings using Cohere. Vector Storage: Stores embeddings in Milvus vector database for fast retrieval. Retrieval System: Performs similarity search to find relevant context for user queries. Language Model: Uses GPT-4o-mini to generate responses based on retrieved information. Response Delivery: Sends formatted replies back through Telegram. The workflow is orchestrated through n8n, providing a visual interface for monitoring and modifying the agent's behavior.",
+        content: "Telegram Integration: Receives messages and media from users via Telegram Bot API. Data Processing Pipeline: Extracts text from various formats (PDF, audio transcription, image OCR). Embedding Generation: Converts processed content into vector embeddings using Cohere. Vector Storage: Stores embeddings in Milvus vector database for fast retrieval. Retrieval System: Performs similarity search to find relevant context for user queries. Language Model: Uses GPT 4o mini to generate responses based on retrieved information. Response Delivery: Sends formatted replies back through Telegram. The workflow is orchestrated through n8n, providing a visual interface for monitoring and modifying the agent's behavior.",
       },
       {
         title: "Use Cases",
@@ -464,20 +464,20 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Tech Stack",
-        content: "n8n for workflow orchestration. Milvus for vector database. Cohere for multilingual embeddings. GPT-4o-mini for language model. Telegram Bot API for messaging. Docker for deployment. ngrok for webhook tunneling.",
-        code: "n8n | Milvus | Cohere | GPT-4o-mini | Telegram | Docker | ngrok",
+        content: "n8n for workflow orchestration. Milvus for vector database. Cohere for multilingual embeddings. GPT 4o mini for language model. Telegram Bot API for messaging. Docker for deployment. ngrok for webhook tunneling.",
+        code: "n8n | Milvus | Cohere | GPT 4o mini | Telegram | Docker | ngrok",
       },
       {
         title: "GitHub Repository",
-        content: "Explore the full source code, docker-compose setup, and n8n workflow JSON on GitHub.",
+        content: "Explore the full source code, docker compose setup, and n8n workflow JSON on GitHub.",
         code: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS/tree/main/MULTI_MODEL_RAG_AGENT",
       },
     ],
   },
   "projects/multi-agent-research": {
-    title: "Multi-Agent Research System",
-    intro: "An advanced autonomous multi-agent research platform powered by n8n orchestration. 8 specialized AI agents collaborate to transform a research topic into a comprehensive academic paper.",
-    body: "Version 8.0 — Production-Ready, Single Unified Workflow. This system represents a sophisticated deep-engineering build that automates the lifecycle of complex research. It relies on LangGraph principles to orchestrate multi-agent workflows, featuring specialized discovery agents, systematic literature review capabilities, and strict hallucination-reducing verification layers. The modular pipeline integrates external APIs like arXiv and Semantic Scholar alongside ChromaDB for robust vector memory and RAG.",
+    title: "Multi Agent Research System",
+    intro: "An advanced autonomous multi agent research platform powered by n8n orchestration. 8 specialized AI agents collaborate to transform a research topic into a comprehensive academic paper.",
+    body: "Version 8.0, Production Ready, Single Unified Workflow. This system represents a sophisticated deep engineering build that automates the lifecycle of complex research. It relies on LangGraph principles to orchestrate multi agent workflows, featuring specialized discovery agents, systematic literature review capabilities, and strict hallucination reducing verification layers. The modular pipeline integrates external APIs like arXiv and Semantic Scholar alongside ChromaDB for robust vector memory and RAG.",
     images: ["/multiagent_research_demo.png", "/multiagent_research_n8n_flow.png"],
     sections: [
       {
@@ -486,15 +486,15 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "8 Specialized Agents",
-        content: "Orchestrator: State initialization and management via Code Node. Keyword Generator: Academic search keyword generation using LLaMA 3.3-70B. Researcher: Literature search and discovery via HTTP/API. Strategist: Gap identification and research strategy using LLaMA 3.3-70B. Architect: Methodology design using LLaMA 3.3-70B. Implementer: Data and implementation planning using LLaMA 3.3-70B. Analyst: Experiment design using LLaMA 3.3-70B. Editor: Final paper compilation using LLaMA 3.3-70B.",
+        content: "Orchestrator: State initialization and management via Code Node. Keyword Generator: Academic search keyword generation using LLaMA 3.3 70B. Researcher: Literature search and discovery via HTTP/API. Strategist: Gap identification and research strategy using LLaMA 3.3 70B. Architect: Methodology design using LLaMA 3.3 70B. Implementer: Data and implementation planning using LLaMA 3.3 70B. Analyst: Experiment design using LLaMA 3.3 70B. Editor: Final paper compilation using LLaMA 3.3 70B.",
       },
       {
         title: "Agent Pipeline",
-        content: "Phase 1 — Initialization: Webhook trigger receives topic from frontend, initializes research state. Phase 2 — Research Intelligence (Agents 1-3): Keyword generation, web search via DuckDuckGo, literature review with theme identification. Phase 3 — Strategy & Methodology (Agents 4-5): Gap statement formulation, research questions, methodology design. Phase 4 — Implementation & Experiments (Agents 6-7): Data requirements planning, experimental framework design. Phase 5 — Quality & Compilation (Agents 7-8): Novelty and ethics validation, IEEE-format paper generation. Phase 6 — Response: JSON-formatted output with complete paper and execution metadata.",
+        content: "Phase 1, Initialization: Webhook trigger receives topic from frontend, initializes research state. Phase 2, Research Intelligence (Agents 1 to 3): Keyword generation, web search via DuckDuckGo, literature review with theme identification. Phase 3, Strategy and Methodology (Agents 4 to 5): Gap statement formulation, research questions, methodology design. Phase 4, Implementation and Experiments (Agents 6 to 7): Data requirements planning, experimental framework design. Phase 5, Quality and Compilation (Agents 7 to 8): Novelty and ethics validation, IEEE format paper generation. Phase 6, Response: JSON formatted output with complete paper and execution metadata.",
       },
       {
         title: "Premium Frontend",
-        content: "Modern glassmorphism design with real-time agent progress visualization. Markdown rendering with syntax highlighting, copy and download functionality, and fully responsive design.",
+        content: "Modern glassmorphism design with real time agent progress visualization. Markdown rendering with syntax highlighting, copy and download functionality, and fully responsive design.",
       },
       {
         title: "API Reference",
@@ -503,7 +503,7 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "Business Value",
-        content: "This project serves as our ultimate proof of technical capability. While rapid-deployment automations act as the 'Trojan Horse' for initial trust, this system is the high-ticket upsell. It proves to enterprise organizations that we can move beyond simple chatbots to deploy autonomous agents that research, reason, verify facts, and execute multi-step tasks securely at scale. Falls under our Custom Generative AI & Conversational Agents category — a flagship example for Multi-Agent Workflows and Enterprise RAG Architectures.",
+        content: "This project serves as our ultimate proof of technical capability. While rapid deployment automations act as the 'Trojan Horse' for initial trust, this system is the high ticket upsell. It proves to enterprise organizations that we can move beyond simple chatbots to deploy autonomous agents that research, reason, verify facts, and execute multi step tasks securely at scale. Falls under our Custom Generative AI & Conversational Agents category, a flagship example for Multi Agent Workflows and Enterprise RAG Architectures.",
       },
       {
         title: "GitHub Repository",
@@ -515,53 +515,53 @@ const contentMap: Record<string, PageContent> = {
   whitepapers: {
     title: "ROI Whitepapers",
     intro: "Technical research connecting advanced AI architectures to tangible business outcomes.",
-    body: "Our whitepapers bridge deep technical capability and strategic vision. They demonstrate that we understand the underlying math, data pipelines, and infrastructure — and how those systems save operational teams 20 hours a week or eliminate manual bottlenecks.",
+    body: "Our whitepapers bridge deep technical capability and strategic vision. They demonstrate that we understand the underlying math, data pipelines, and infrastructure, and how those systems save operational teams 20 hours a week or eliminate manual bottlenecks.",
     sections: [
       {
-        title: "Multi-Agent Research Automation",
-        content: "8-agent pipeline generating IEEE-format academic papers in under 90 seconds — replacing 40+ hours of manual literature review. Autonomous discovery, verification, and compilation with zero hallucination.",
-        code: "View live demo → /projects/multi-agent-research",
+        title: "Multi Agent Research Automation",
+        content: "8 agent pipeline generating IEEE format academic papers in under 90 seconds, replacing 40+ hours of manual literature review. Autonomous discovery, verification, and compilation with zero hallucination.",
+        code: "View the live demo in the projects section",
       },
       {
-        title: "Automated Multi-Temporal Data Mapping",
-        content: "RAG pipelines for financial time-series analysis with real-time anomaly detection. Processes streaming data through vectorized memory for instant pattern recognition in trading infrastructure.",
+        title: "Automated Multi Temporal Data Mapping",
+        content: "RAG pipelines for financial time series analysis with real time anomaly detection. Processes streaming data through vectorized memory for instant pattern recognition in trading infrastructure.",
       },
       {
-        title: "Zero-Latency Routing in Trading Infrastructure",
-        content: "Sub-second intent classification architecture for high-frequency trading systems. Built on n8n orchestration with LLM-based routing, achieving 94% classification accuracy with under 50ms overhead.",
+        title: "Zero Latency Routing in Trading Infrastructure",
+        content: "Sub second intent classification architecture for high frequency trading systems. Built on n8n orchestration with LLM based routing, achieving 94% classification accuracy with under 50ms overhead.",
       },
       {
         title: "Enterprise RAG at Scale",
-        content: "Vector database sharding strategies for 10M+ document knowledge bases. Comparative analysis of ChromaDB, Qdrant, and Milvus for enterprise retrieval-augmented generation workloads.",
+        content: "Vector database sharding strategies for 10M+ document knowledge bases. Comparative analysis of ChromaDB, Qdrant, and Milvus for enterprise retrieval augmented generation workloads.",
       },
       {
         title: "Hallucination Defense: A Practical Framework",
-        content: "Production-tested methodology for eliminating LLM hallucination in enterprise deployments. Covers vector anchoring, multi-step verification chains, confidence thresholding, and audit trail implementation.",
+        content: "Production tested methodology for eliminating LLM hallucination in enterprise deployments. Covers vector anchoring, multi step verification chains, confidence thresholding, and audit trail implementation.",
       },
     ],
   },
   "projects/food-delivery-agent": {
-    title: "AI-Powered Food Delivery Agent",
-    intro: "A two-way conversational AI agent that handles customer inquiries, processes food orders, and logs data to Google Sheets — autonomously via Telegram and WhatsApp.",
-    body: "This legacy demo showcases a complete two-way conversational automation designed for local businesses, cloud kitchens, and mid-sized restaurant chains. Customers text their orders naturally via WhatsApp or Telegram. An n8n workflow engine catches the messages via webhook, an LLM processes the natural language to determine intent (menu inquiry, order placement, delivery status), and Google Sheets acts as a lightweight backend — reading menu/pricing data and writing confirmed orders.",
+    title: "AI Powered Food Delivery Agent",
+    intro: "A two way conversational AI agent that handles customer inquiries, processes food orders, and logs data to Google Sheets, autonomously via Telegram and WhatsApp.",
+    body: "This legacy demo showcases a complete two way conversational automation designed for local businesses, cloud kitchens, and mid sized restaurant chains. Customers text their orders naturally via WhatsApp or Telegram. An n8n workflow engine catches the messages via webhook, an LLM processes the natural language to determine intent (menu inquiry, order placement, delivery status), and Google Sheets acts as a lightweight backend, reading menu and pricing data and writing confirmed orders.",
     images: ["/FoodDeliverySystem_1.png", "/FoodDeliverySysten_2.png"],
     sections: [
       {
         title: "Live Demo",
-        content: "Watch the AI Food Delivery Agent in action — taking orders via Telegram and logging data to Google Sheets in real-time.",
+        content: "Watch the AI Food Delivery Agent in action, taking orders via Telegram and logging data to Google Sheets in real time.",
         code: "YouTube: 5FqX0imKBbs",
       },
       {
         title: "How It Works",
-        content: "1. Customer Interface: WhatsApp and Telegram channels where customers text their orders naturally. 2. Orchestrator (Middleware): n8n workflow engine catches incoming messages via webhooks. 3. The Brain (AI Agent): LLM API processes natural language to determine user intent — menu inquiry, order placement, or delivery status check. 4. Database (Backend): Google Sheets acts as a lightweight, visible internal database. The AI reads menu/pricing data and writes confirmed orders with customer details.",
+        content: "1. Customer Interface: WhatsApp and Telegram channels where customers text their orders naturally. 2. Orchestrator (Middleware): n8n workflow engine catches incoming messages via webhooks. 3. The Brain (AI Agent): LLM API processes natural language to determine user intent, menu inquiry, order placement, or delivery status check. 4. Database (Backend): Google Sheets acts as a lightweight, visible internal database. The AI reads menu and pricing data and writes confirmed orders with customer details.",
       },
       {
         title: "Service Category",
-        content: "Custom Generative AI & Conversational Agents — specifically Tier-1 Support Bots. Difficulty: Tier 2 (Core Automations). This is more advanced than a one-way data push because it manages two-way conversational state.",
+        content: "Custom Generative AI & Conversational Agents, specifically Tier 1 Support Bots. Difficulty: Tier 2 (Core Automations). This is more advanced than a one way data push because it manages two way conversational state.",
       },
       {
         title: "The Pitch Strategy",
-        content: "The Hook: Approach a business owner spending hours manually answering WhatsApp messages or phone calls for orders. The Pitch: Show them the demo demonstrating an AI instantly taking orders via Telegram and dropping formatted data into a Google Sheet for the kitchen staff. The Trust & Upsell: Once they see the immediate ROI, upsell into a Tier 3 Voice AI Receptionist for phone calls, or upgrade the Google Sheets backend into a Tier 4 Custom ERP/Internal Tooling dashboard.",
+        content: "The Hook: Approach a business owner spending hours manually answering WhatsApp messages or phone calls for orders. The Pitch: Show them the demo demonstrating an AI instantly taking orders via Telegram and dropping formatted data into a Google Sheet for the kitchen staff. The Trust & Upsell: Once they see the immediate ROI, upsell into a Tier 3 Voice AI Receptionist for phone calls, or upgrade the Google Sheets backend into a Tier 4 Custom ERP Internal Tooling dashboard.",
       },
       {
         title: "Tech Stack",
@@ -620,13 +620,13 @@ export default async function DynamicPage({
         {key === "research" && (
           <div className="my-10 space-y-8">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Agent in Action — Live Sandbox</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Agent in Action Live Sandbox</h2>
               <ResearchSandbox />
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Architecture &amp; Security Deep-Dive</h2>
-              <p className="text-sm text-slate-600 mb-6">Full multi-agent pipeline from Telegram/webhook input through 8 specialized agents to final IEEE-format output, with hallucination defense layers for enterprise-grade trust.</p>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Architecture &amp; Security Deep Dive</h2>
+              <p className="text-sm text-slate-600 mb-6">Full multi agent pipeline from Telegram/webhook input through 8 specialized agents to final IEEE format output, with hallucination defense layers for enterprise grade trust.</p>
               <ArchitectureDiagram />
             </div>
           </div>

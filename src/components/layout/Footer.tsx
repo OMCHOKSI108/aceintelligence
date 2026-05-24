@@ -3,8 +3,8 @@ import { MessageSquare } from "lucide-react";
 import { theme } from "@/lib/theme";
 
 const platformLinks = [
-  { label: "Multi-Agent Research", href: "/projects/multi-agent-research" },
-  { label: "Multi-Modal RAG Agent", href: "/projects/multi-modal-rag" },
+  { label: "Multi Agent Research", href: "/projects/multi-agent-research" },
+  { label: "Multi Modal RAG Agent", href: "/projects/multi-modal-rag" },
   { label: "Food Delivery Agent", href: "/projects/food-delivery-agent" },
   { label: "ChatPDF", href: "/projects" },
 ];
@@ -124,7 +124,7 @@ export function Footer() {
                     >
                       <span className="text-sm font-medium">{founder.name}</span>
                       <span className="text-xs text-slate-500 group-hover:text-slate-300 transition-colors">
-                        {founder.role} — portfolio ↗
+                        {founder.role} portfolio link ↗
                       </span>
                     </a>
                   </li>

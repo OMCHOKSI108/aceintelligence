@@ -22,7 +22,7 @@ const organizationSchema = {
     "Artificial Intelligence",
     "Workflow Automation",
     "Enterprise RAG",
-    "Multi-Agent Systems",
+    "Multi Agent Systems",
     "Cloud Infrastructure",
   ],
   offers: [
@@ -30,13 +30,13 @@ const organizationSchema = {
       "@type": "Service",
       name: "Intelligent Workflow Automation",
       description:
-        "Smart email triage, document parsing, and zero-touch lead routing using n8n, Groq, and custom APIs.",
+        "Smart email triage, document parsing, and zero touch lead routing using n8n, Groq, and custom APIs.",
     },
     {
       "@type": "Service",
       name: "Custom Generative AI & Conversational Agents",
       description:
-        "Enterprise RAG architectures, multi-agent workflows via LangGraph, and tier-1 support bots.",
+        "Enterprise RAG architectures, multi agent workflows via LangGraph, and tier 1 support bots.",
     },
     {
       "@type": "Service",

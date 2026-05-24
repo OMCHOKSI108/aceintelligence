@@ -32,10 +32,10 @@ export function WhyDifferent() {
           <h3 className="text-lg font-semibold text-blue-900 mb-4">Ace Intelligence</h3>
           <ul className="space-y-3">
             {[
-              "Human-in-the-loop guardrails",
+              "Human in the loop guardrails",
               "Clear ownership and approvals",
               "Resilient automation paths",
-              "Audit-ready reporting",
+              "Audit ready reporting",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-2">
                 <span className="text-green-600 mt-0.5">✓</span>

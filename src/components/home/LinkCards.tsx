@@ -17,7 +17,7 @@ const links: LinkCardProps[] = [
     icon: FileText,
   },
   {
-    title: "Human-in-the-loop",
+    title: "Human in the loop",
     category: "Service",
     description: "Approvals, escalation paths, and confidence checks built in.",
     href: "/services/rag",
@@ -26,7 +26,7 @@ const links: LinkCardProps[] = [
   {
     title: "Security & governance",
     category: "Trust",
-    description: "Role-based access, audit trails, and compliance-friendly workflows.",
+    description: "Role based access, audit trails, and compliance friendly workflows.",
     href: "/security",
     icon: Shield,
   },

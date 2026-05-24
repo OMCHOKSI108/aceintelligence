@@ -12,7 +12,7 @@ export function SecuritySection() {
       icon: Lock,
       title: "Encryption and access controls",
       description:
-        "End-to-end encryption with role-based access and approval gates for sensitive actions.",
+        "End to end encryption with role based access and approval gates for sensitive actions.",
     },
     {
       icon: Server,
@@ -26,7 +26,7 @@ export function SecuritySection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="mb-12">
         <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mb-3">
-          Enterprise-grade security
+          Enterprise grade security
         </h2>
         <p className="text-slate-600 text-lg">
           You&apos;re automating sensitive operations, so trust and control come first.

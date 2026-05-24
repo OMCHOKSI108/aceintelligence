@@ -17,7 +17,7 @@ export function SolutionSection() {
           {[
             "Map the workflow, owners, and approval checkpoints",
             "Connect systems and define trusted automation steps",
-            "Monitor execution with human-in-the-loop escalation",
+            "Monitor execution with human in the loop escalation",
           ].map((point, idx) => (
             <div key={idx} className="flex items-start gap-3">
               <CheckCircle size={20} className="text-green-600 mt-0.5 flex-shrink-0" />
@@ -33,7 +33,7 @@ export function SolutionSection() {
           <ul className="space-y-3">
             {[
               "Fewer manual steps and errors",
-              "Clear approvals and audit-ready trails",
+              "Clear approvals and audit ready trails",
               "Predictable SLAs and escalation paths",
               "Operational confidence across teams",
             ].map((item, idx) => (

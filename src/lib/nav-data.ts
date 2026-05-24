@@ -57,9 +57,9 @@ export const navData: NavSection = {
     { label: "Contact", href: "/contact" },
   ],
   products: [
-    { label: "Multi-Agent Research", href: "/projects/multi-agent-research" },
+    { label: "Multi Agent Research", href: "/projects/multi-agent-research" },
     { label: "Food Delivery Agent", href: "/projects/food-delivery-agent" },
-    { label: "Multi-Modal RAG Agent", href: "/projects/multi-modal-rag" },
+    { label: "Multi Modal RAG Agent", href: "/projects/multi-modal-rag" },
     { label: "ChatPDF", href: "/projects" },
     { label: "Platform", href: "/platform" },
     { label: "Developer Docs", href: "/docs" },

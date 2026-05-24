@@ -12,8 +12,8 @@ interface HeroProps {
 }
 
 export function Hero({
-  title = "Ace Intelligence Systems — Custom AI & automation for modern enterprises.",
-  description = "We eliminate manual bottlenecks by building bespoke AI architectures, multi-agent workflows, and scalable cloud infrastructure — purpose-built for your operations, not off-the-shelf SaaS.",
+  title = "Ace Intelligence Systems, custom AI and automation for modern enterprises.",
+  description = "We eliminate manual bottlenecks by building bespoke AI architectures, multi agent workflows, and scalable cloud infrastructure built for your operations, not off the shelf SaaS.",
   ctaText = "Talk to an expert",
   ctaHref = "/contact",
 }: HeroProps) {
@@ -37,9 +37,9 @@ export function Hero({
           )}
 
           <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
-            We help modern startups and enterprise organizations scale efficiently with custom software solutions —
-            not off-the-shelf SaaS. From intelligent workflow automations and n8n-based triage systems to
-            enterprise RAG architectures and LangGraph multi-agent pipelines, we build what your business actually needs.
+            We help modern startups and enterprise organizations scale efficiently with custom software solutions,
+            not off the shelf SaaS. From intelligent workflow automations and n8n based triage systems to
+            enterprise RAG architectures and LangGraph multi agent pipelines, we build what your business actually needs.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -93,14 +93,14 @@ export function Hero({
                 <Zap size={18} className="text-slate-600 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-slate-900">Intelligent Workflow Automations</p>
-                  <p className="text-sm text-slate-600">Smart email triage, document parsing, zero-touch lead routing.</p>
+                  <p className="text-sm text-slate-600">Smart email triage, document parsing, zero touch lead routing.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Cpu size={18} className="text-slate-600 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-slate-900">Generative AI &amp; Conversational Agents</p>
-                  <p className="text-sm text-slate-600">Enterprise RAG, multi-agent workflows, tier-1 support bots.</p>
+                  <p className="text-sm text-slate-600">Enterprise RAG, multi agent workflows, tier 1 support bots.</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -114,7 +114,7 @@ export function Hero({
                 <Shield size={18} className="text-slate-600 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-slate-900">Rapid Deployment</p>
-                  <p className="text-sm text-slate-600">48-hour quick wins that scale into full enterprise retainers.</p>
+                  <p className="text-sm text-slate-600">48 hour quick wins that scale into full enterprise retainers.</p>
                 </div>
               </li>
             </ul>

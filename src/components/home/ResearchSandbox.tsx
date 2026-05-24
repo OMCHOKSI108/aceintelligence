@@ -12,14 +12,14 @@ type LogEntry = {
 
 const agentSteps: LogEntry[] = [
   { agent: "Orchestrator", action: "Initializing research state", status: "success", detail: "State object created with artifacts container" },
-  { agent: "Keyword Generator", action: "Generating search keywords", status: "success", detail: "LLaMA 3.3-70B: primary + secondary keywords generated" },
+  { agent: "Keyword Generator", action: "Generating search keywords", status: "success", detail: "LLaMA 3.3 70B: primary + secondary keywords generated" },
   { agent: "Researcher", action: "Searching external APIs", status: "success", detail: "arXiv: 12 papers found | Semantic Scholar: 8 papers found" },
   { agent: "Literature Reviewer", action: "Analyzing search results", status: "success", detail: "3 key themes identified across 20 papers" },
   { agent: "Strategist", action: "Formulating research strategy", status: "success", detail: "Gap statement + 3 research questions defined" },
-  { agent: "Architect", action: "Designing methodology", status: "success", detail: "Mixed-methods approach with validation framework" },
+  { agent: "Architect", action: "Designing methodology", status: "success", detail: "Mixed methods approach with validation framework" },
   { agent: "Implementer", action: "Planning implementation", status: "success", detail: "Data pipeline spec + preprocessing steps defined" },
   { agent: "Analyst", action: "Designing experiments", status: "success", detail: "3 experiments with success metrics" },
-  { agent: "Editor", action: "Compiling final paper", status: "success", detail: "IEEE-format paper generated with citations" },
+  { agent: "Editor", action: "Compiling final paper", status: "success", detail: "IEEE format paper generated with citations" },
 ];
 
 export function ResearchSandbox() {
@@ -123,7 +123,7 @@ export function ResearchSandbox() {
                 <span>
                   <span className="text-blue-300">[{log.agent}]</span>{" "}
                   <span>{log.action}</span>
-                  {log.detail && <span className="text-slate-500"> — {log.detail}</span>}
+                  {log.detail && <span className="text-slate-500"> • {log.detail}</span>}
                 </span>
               </div>
             ))

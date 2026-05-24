@@ -3,7 +3,7 @@ export function ServicesSection() {
     {
       step: "01",
       title: "Share your vision",
-      desc: "You tell us what you need to automate, build, or optimize — no technical jargon required.",
+      desc: "You tell us what you need to automate, build, or optimize, no technical jargon required.",
     },
     {
       step: "02",
@@ -21,12 +21,12 @@ export function ServicesSection() {
     {
       step: "01",
       title: "Build & iterate",
-      desc: "Two-week sprints with continuous demos so you see progress, not just promises.",
+      desc: "Two week sprints with continuous demos so you see progress, not just promises.",
     },
     {
       step: "02",
       title: "Test & validate",
-      desc: "Production-grade QA including edge-case evaluation, load testing, and security review.",
+      desc: "Production grade QA including edge case evaluation, load testing, and security review.",
     },
     {
       step: "03",
@@ -41,7 +41,7 @@ export function ServicesSection() {
     {
       step: "05",
       title: "Support & scale",
-      desc: "Post-launch retainer for maintenance, iterations, and scaling as your needs grow.",
+      desc: "Post launch retainer for maintenance, iterations, and scaling as your needs grow.",
     },
   ];
 
@@ -53,7 +53,7 @@ export function ServicesSection() {
           How Ace Intelligence builds
         </h2>
         <p className="text-slate-600 text-lg max-w-3xl mx-auto">
-          From your first conversation to a running system — a transparent, repeatable pipeline.
+          From your first conversation to a running system, a transparent, repeatable pipeline.
         </p>
       </div>
 

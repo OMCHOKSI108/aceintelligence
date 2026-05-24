@@ -3,16 +3,16 @@ import { Clock, FileText, Inbox, TrendingUp, ArrowRight } from "lucide-react";
 const quickWins = [
   {
     title: "Smart Inbox Router",
-    tagline: "48-hour deployment",
+    tagline: "48 hour deployment",
     description:
-      "An n8n + LLM pipeline that monitors incoming emails, classifies intent (support, sales, billing), and routes data to the right system — all within 48 hours.",
-    impact: "Saves operational teams 10-20 hours per week",
+      "An n8n + LLM pipeline that monitors incoming emails, classifies intent (support, sales, billing), and routes data to the right system, all within 48 hours.",
+    impact: "Saves operational teams 10 to 20 hours per week",
     icon: Inbox,
     technologies: ["n8n", "Groq", "LLM APIs"],
   },
   {
     title: "Vendor Invoice Parser",
-    tagline: "Zero-touch data extraction",
+    tagline: "Zero touch data extraction",
     description:
       "Vision models that extract structured data from PDF invoices and vendor documents, automatically populating your ERP or accounting system.",
     impact: "Eliminates manual data entry for finance teams",
@@ -23,7 +23,7 @@ const quickWins = [
     title: "Lead Router & Responder",
     tagline: "Instant CRM integration",
     description:
-      "Web forms connected directly to your CRM with AI-generated draft replies, reducing initial response time from hours to seconds.",
+      "Web forms connected directly to your CRM with AI generated draft replies, reducing initial response time from hours to seconds.",
     impact: "80% faster lead response times",
     icon: TrendingUp,
     technologies: ["LLM APIs", "CRM API", "n8n"],
@@ -40,7 +40,7 @@ export function QuickWinsSection() {
             Immediate ROI, visible impact
           </h2>
           <p className="text-slate-600 text-lg max-w-3xl">
-            High-impact micro-automations deployed in days — not months. A Trojan Horse approach:
+            High impact micro automations deployed in days, not months. A Trojan Horse approach:
             start small, prove value, then scale into full enterprise retainers.
           </p>
         </div>
@@ -89,10 +89,10 @@ export function QuickWinsSection() {
 
         <div className="mt-10 rounded-xl bg-slate-900 text-white p-6 sm:p-8 text-center">
           <p className="text-lg sm:text-xl font-medium mb-2">
-            Start with a quick win. Scale to enterprise-grade automation.
+            Start with a quick win. Scale to enterprise grade automation.
           </p>
           <p className="text-slate-300 text-sm">
-            Every micro-automation is a stepping stone to full RAG builds, ERP systems, or multi-agent networks.
+            Every micro automation is a stepping stone to full RAG builds, ERP systems, or multi agent networks.
           </p>
         </div>
       </div>
