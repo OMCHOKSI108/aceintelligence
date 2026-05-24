@@ -130,13 +130,6 @@ export function ResearchSandbox() {
           )}
         </div>
 
-        <div className="flex items-center gap-4 mt-3 text-xs text-slate-500">
-          <span>8 specialized agents</span>
-          <span>•</span>
-          <span>LLaMA 3.3-70B</span>
-          <span>•</span>
-          <span>arXiv + Semantic Scholar</span>
-        </div>
       </div>
     </div>
   );

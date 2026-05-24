@@ -68,62 +68,6 @@ const contentMap: Record<string, PageContent> = {
       },
     ],
   },
-  insights: {
-    title: "Insights",
-    intro: "Practical notes for builders shipping automation systems.",
-    body: "Short, implementation first writing on governance, security, latency, and patterns that work in production.",
-    sections: [
-      {
-        title: "From manual ops to trusted automation",
-        content: "A blueprint for turning repetitive work into reliable, approval friendly workflows.",
-        code: "See: /insights/pdfs-to-product",
-      },
-      {
-        title: "Workflow quality essentials",
-        content: "How to measure throughput, exceptions, and business impact without losing trust.",
-        code: "See: /insights/rag-evaluation",
-      },
-      {
-        title: "Approval and governance patterns",
-        content: "Least privilege approvals and boundaries for sensitive operations.",
-        code: "See: /insights/secure-ingestion",
-      },
-    ],
-  },
-  "insights/pdfs-to-product": {
-    title: "From manual ops to trusted automation",
-    intro: "Turn repetitive work into dependable workflows.",
-    body: "Start with a clear workflow contract, add approvals and monitoring, then iterate with evaluation. The goal is not just speed, it is automation you can trust.",
-    sections: [
-      {
-        title: "Step 1: Workflow contract",
-        content: "Define owners, inputs, approvals, and success criteria.",
-      },
-      {
-        title: "Step 2: Guardrails",
-        content: "Require approvals and surface context for every automated action.",
-      },
-      {
-        title: "Step 3: Evaluation loop",
-        content: "Track outcomes and regressions as workflows evolve.",
-      },
-    ],
-  },
-  "insights/rag-evaluation": {
-    title: "Workflow quality essentials",
-    intro: "Measure what matters before you optimize.",
-    body: "Good automation systems track throughput, exception rates, and user-perceived usefulness. Start small with curated scenarios and expand coverage as you learn.",
-  },
-  "insights/secure-ingestion": {
-    title: "Approval and governance patterns",
-    intro: "Keep sensitive operations safe by design.",
-    body: "Use least privilege for automation steps, isolate workspaces, and ensure every action is scoped to the right owner. Treat approvals as privileged operations.",
-  },
-  "insights/latency-budgets": {
-    title: "Automation latency budgets",
-    intro: "Where time goes and where to win it back.",
-    body: "Separate queue time from execution time. Cache expensive steps, keep handoffs clear, and measure end to end workflow latency.",
-  },
   "services/document-intelligence": {
     title: "Workflow Automation",
     intro: "Automation systems that are production ready.",
@@ -189,9 +133,32 @@ const contentMap: Record<string, PageContent> = {
     body: "aceintellegence publishes clear updates so users understand capabilities, limitations, and expected improvements.",
   },
   security: {
-    title: "Security",
-    intro: "Security is built into every layer of the platform.",
-    body: "From infrastructure to application flows, aceintellegence follows secure engineering practices and continuous hardening. We never store your data in hybrid mode and design automation with approvals and audit trails.",
+    title: "Security & AI Safety",
+    intro: "Enterprise-grade security meets rigorous AI safety. We prevent hallucination, secure data, and build systems you can trust.",
+    body: "From infrastructure hardening to LLM hallucination defense, our security posture covers every layer. We design systems that are deterministic, verifiable, and auditable — because enterprise AI demands more than just good results.",
+    sections: [
+      {
+        title: "AI Safety — Hallucination Prevention",
+        content: "Our defense-in-depth approach eliminates fabricated outputs at the architectural level. (1) Vector-Anchored RAG: Every LLM call is grounded in retrieved documents from ChromaDB, never relying on parametric knowledge alone. (2) Multi-Step Verification: Each agent's output is validated by the next agent in the pipeline, creating a chain of accountability. (3) Confidence Thresholds: Outputs below 70% confidence trigger human review fallback. (4) Full Audit Trails: Every inference is logged with source citations for complete traceability.",
+      },
+      {
+        title: "Infrastructure Security",
+        content: "All systems deployed on AWS/Azure with encryption at rest (AES-256) and in transit (TLS 1.3). Network isolation, WAF protection, and DDoS mitigation are standard. In hybrid mode, your data never leaves your network — we process only what is necessary.",
+      },
+      {
+        title: "Access Control & Governance",
+        content: "Role-based access control (RBAC) with least-privilege principles. Multi-factor authentication required for all administrative access. Every action is logged with immutable audit trails for compliance and governance.",
+      },
+      {
+        title: "Data Privacy & Isolation",
+        content: "Client data is strictly isolated per engagement. We never train on client data, never share across projects, and never use proprietary information for model improvement. Data retention policies ensure complete purging after engagement completion.",
+      },
+      {
+        title: "Vulnerability Management",
+        content: "Continuous dependency scanning, penetration testing, and security reviews. We follow responsible disclosure practices and maintain a security contact for researchers.",
+        code: "Security contact: yashco.ltd@gmail.com",
+      },
+    ],
   },
   "use-cases": {
     title: "Use Cases",
@@ -311,35 +278,56 @@ const contentMap: Record<string, PageContent> = {
   },
   privacy: {
     title: "Privacy Policy",
-    intro: "We protect your data with clear privacy practices.",
-    body: "Your data privacy is our priority, especially in hybrid deployment mode.",
+    intro: "We protect your proprietary client data with enterprise-grade privacy practices.",
+    body: "Your data privacy is our foundation. As an AI services agency handling sensitive enterprise information, we maintain strict data governance across every engagement.",
     sections: [
       {
-        title: "Data Collection",
-        content: "We collect only essential data to provide our services. In hybrid mode, your data is never stored on our servers.",
+        title: "Data Handling & Confidentiality",
+        content: "All client data processed during engagements is treated as strictly confidential. We implement data isolation per client, ensuring proprietary information never cross-contaminates across projects. In hybrid deployment mode, your data remains on your infrastructure — we only process what is necessary to execute the workflow.",
       },
       {
-        title: "Data Security",
-        content: "All data is encrypted in transit and at rest. Approvals and audit trails protect sensitive actions.",
+        title: "Data Collection & Usage",
+        content: "We collect only the minimum data required to deliver our services: project specifications, workflow configurations, and operational metadata. We never train on client data, never share proprietary information, and never use your data for model improvement unless explicitly contracted.",
       },
       {
-        title: "User Rights",
-        content: "You control your data. Request export or deletion at any time. Contact yashco.ltd@gmail.com.",
+        title: "Data Security & Encryption",
+        content: "All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We enforce role-based access control, audit logging, and approval gates for every data operation. Our infrastructure follows SOC 2 aligned practices with continuous monitoring.",
+      },
+      {
+        title: "Data Retention & Deletion",
+        content: "Client data is retained only for the duration of the engagement plus a 30-day wind-down period. Upon project completion, all client data is securely purged from our systems. You may request immediate deletion at any time.",
+      },
+      {
+        title: "User Rights & Contact",
+        content: "You have full control over your data. Request export, deletion, or policy inquiries at any time.",
+        code: "Email: yashco.ltd@gmail.com",
       },
     ],
   },
   terms: {
-    title: "Terms of Service",
-    intro: "Terms define usage rules and responsibilities.",
-    body: "Transparent agreement between Ace Intelligence and our users.",
+    title: "Terms of Engagement",
+    intro: "Our terms define the framework for our agency-client partnerships.",
+    body: "Clear, transparent terms that protect both parties and set expectations for enterprise AI engagements.",
     sections: [
       {
+        title: "Engagement Scope",
+        content: "Each engagement is governed by a Statement of Work (SOW) that defines deliverables, timelines, milestones, and acceptance criteria. Custom software solutions are built to the specifications agreed in the SOW — not off-the-shelf products.",
+      },
+      {
+        title: "Intellectual Property",
+        content: "Upon full payment, all custom code, architectures, workflows, and deliverables developed specifically for your engagement are your intellectual property. We retain the right to use generalized methodologies and frameworks that do not contain your proprietary data.",
+      },
+      {
+        title: "Confidentiality & Non-Disclosure",
+        content: "We sign NDAs for all engagements. Client business logic, proprietary data, system architecture, and trade secrets are strictly confidential and will not be disclosed to third parties.",
+      },
+      {
         title: "Acceptable Use",
-        content: "No illegal activities, no bypassing security measures, no mass scraping of our services.",
+        content: "Our services must not be used for illegal activities, bypassing security measures, or mass scraping. Clients maintain responsibility for how deployed systems are used in their operations.",
       },
       {
         title: "Account Responsibilities",
-        content: "Keep your API keys secure. You are responsible for all activity under your account.",
+        content: "Clients are responsible for providing timely access to necessary systems and stakeholders. We are responsible for delivering agreed-upon milestones within the stated timeline, with transparent communication on any changes.",
       },
     ],
   },
@@ -521,6 +509,34 @@ const contentMap: Record<string, PageContent> = {
         title: "GitHub Repository",
         content: "Explore the full n8n workflow JSON, frontend code, and deployment configuration.",
         code: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS",
+      },
+    ],
+  },
+  whitepapers: {
+    title: "ROI Whitepapers",
+    intro: "Technical research connecting advanced AI architectures to tangible business outcomes.",
+    body: "Our whitepapers bridge deep technical capability and strategic vision. They demonstrate that we understand the underlying math, data pipelines, and infrastructure — and how those systems save operational teams 20 hours a week or eliminate manual bottlenecks.",
+    sections: [
+      {
+        title: "Multi-Agent Research Automation",
+        content: "8-agent pipeline generating IEEE-format academic papers in under 90 seconds — replacing 40+ hours of manual literature review. Autonomous discovery, verification, and compilation with zero hallucination.",
+        code: "View live demo → /projects/multi-agent-research",
+      },
+      {
+        title: "Automated Multi-Temporal Data Mapping",
+        content: "RAG pipelines for financial time-series analysis with real-time anomaly detection. Processes streaming data through vectorized memory for instant pattern recognition in trading infrastructure.",
+      },
+      {
+        title: "Zero-Latency Routing in Trading Infrastructure",
+        content: "Sub-second intent classification architecture for high-frequency trading systems. Built on n8n orchestration with LLM-based routing, achieving 94% classification accuracy with under 50ms overhead.",
+      },
+      {
+        title: "Enterprise RAG at Scale",
+        content: "Vector database sharding strategies for 10M+ document knowledge bases. Comparative analysis of ChromaDB, Qdrant, and Milvus for enterprise retrieval-augmented generation workloads.",
+      },
+      {
+        title: "Hallucination Defense: A Practical Framework",
+        content: "Production-tested methodology for eliminating LLM hallucination in enterprise deployments. Covers vector anchoring, multi-step verification chains, confidence thresholding, and audit trail implementation.",
       },
     ],
   },

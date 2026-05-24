@@ -32,7 +32,7 @@ export const navData: NavSection = {
         },
       ],
     },
-    { label: "Insights", href: "/insights" },
+    { label: "Whitepapers", href: "/whitepapers" },
     {
       label: "Company",
       children: [
