@@ -285,7 +285,7 @@ const contentMap: Record<string, PageContent> = {
       },
       {
         title: "User Rights",
-        content: "You control your data. Request export or deletion at any time. Contact privacy@aceintelligence.systems.",
+        content: "You control your data. Request export or deletion at any time. Contact yashco.ltd@gmail.com.",
       },
     ],
   },
@@ -326,24 +326,19 @@ const contentMap: Record<string, PageContent> = {
     body: "Reach out for demos, partnerships, or support. We respond within 1-2 business days.",
     sections: [
       {
-        title: "General Inquiries",
-        content: "For questions about our products, roadmap, and partnerships.",
-        code: "Email: hello@aceintelligence.systems",
+        title: "Support",
+        content: "For general inquiries, enterprise sales, and technical support.",
+        code: "Email: yashco.ltd@gmail.com",
       },
       {
-        title: "Enterprise Sales",
-        content: "For enterprise plans, custom pricing, and partnerships.",
-        code: "Email: business@aceintelligence.systems",
+        title: "Support",
+        content: "For general inquiries, enterprise sales, and technical support.",
+        code: "Email: 401anshgajera@gmail.com",
       },
       {
-        title: "Technical Support",
-        content: "For technical issues and API support.",
-        code: "Email: support@aceintelligence.systems",
-      },
-      {
-        title: "Location",
-        content: "Based in Ahmedabad and Surat. Expanding to Bangalore for the startup ecosystem.",
-        code: "Remote first team",
+        title: "Support",
+        content: "For general inquiries, enterprise sales, and technical support.",
+        code: "Email: omchoksi.pro@gmail.com",
       },
     ],
   },
@@ -414,7 +409,18 @@ export default async function DynamicPage({
                 </div>
                 {section.code && (
                   <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                    <code>{section.code}</code>
+                    <code>
+                      {section.code.startsWith("Email:") ? (
+                        <a
+                          href={`mailto:${section.code.replace("Email: ", "")}`}
+                          className="hover:text-blue-300 transition-colors"
+                        >
+                          {section.code}
+                        </a>
+                      ) : (
+                        section.code
+                      )}
+                    </code>
                   </pre>
                 )}
               </div>
