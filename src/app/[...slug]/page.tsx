@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity, CircleHelp, ListChecks, ArrowRightCircle, Target, BarChart3, Clock, Inbox } from "lucide-react";
-import { RagWorkflow3D } from "@/components/home/RagWorkflow3D";
 import { ResearchSandbox } from "@/components/home/ResearchSandbox";
+import { ArchitectureDiagram } from "@/components/home/ArchitectureDiagram";
 
 type Section = {
   title: string;
@@ -609,9 +609,9 @@ export default async function DynamicPage({
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Conceptual Workflow Orchestration</h2>
-              <p className="text-sm text-slate-600 mb-6">Interactive 3D visualization of our automation workflow model. Hover over nodes for details. Drag to rotate, scroll to zoom.</p>
-              <RagWorkflow3D />
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Architecture &amp; Security Deep-Dive</h2>
+              <p className="text-sm text-slate-600 mb-6">System architecture showing the full multi-agent pipeline — from Telegram/webhook input through 8 specialized agents to final IEEE-format output — alongside the hallucination defense layers that make enterprise clients trust our systems.</p>
+              <ArchitectureDiagram />
             </div>
           </div>
         )}
