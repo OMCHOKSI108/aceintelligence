@@ -8,6 +8,7 @@ const founders = [
       "Drives strategic vision, business transformation, and turns AI into tangible ROI. Background in algorithmic trading.",
     portfolio: "https://anshgajera.dev",
     github: "https://github.com/anshgajera",
+    githubUsername: "anshgajera",
   },
   {
     name: "Om Choksi",
@@ -16,6 +17,7 @@ const founders = [
       "Expert in technical architecture, custom multi agent LLM workflows (LangGraph), and cloud backend infrastructure (AWS/Azure).",
     portfolio: "https://www.omchoksi.code",
     github: "https://github.com/OMCHOKSI108",
+    githubUsername: "OMCHOKSI108",
   },
   {
     name: "Yash Khare",
@@ -24,6 +26,7 @@ const founders = [
       "Leads market positioning and develops dedicated RAG architectures and enterprise automation systems.",
     portfolio: "https://yashkhare-portfolio.netlify.app",
     github: "https://github.com/firefistisdead",
+    githubUsername: "firefistisdead",
   },
 ];
 
@@ -47,10 +50,13 @@ export function FounderSection() {
             key={idx}
             className="rounded-xl border border-slate-200 bg-white p-6 text-center"
           >
-            <div className="w-20 h-20 rounded-full bg-slate-200 flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl font-bold text-slate-600">
-                {founder.name.charAt(0)}
-              </span>
+            <div className="w-20 h-20 rounded-full bg-slate-200 flex items-center justify-center mx-auto mb-4 overflow-hidden">
+              <img
+                src={`https://avatars.githubusercontent.com/${founder.githubUsername}?size=160`}
+                alt={`${founder.name} GitHub avatar`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
             <h3 className="text-xl font-semibold text-slate-900 mb-1">
               {founder.name}
