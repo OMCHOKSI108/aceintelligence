@@ -59,8 +59,9 @@ export function Header() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-slate-600"
+            className="lg:hidden p-3 -mr-2 text-slate-600 active:text-slate-900 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
             aria-label="Toggle menu"
+            type="button"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -68,32 +69,41 @@ export function Header() {
       </nav>
 
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 bg-white z-40 overflow-y-auto">
-          <div className="p-4 space-y-4">
-            {navData.main.map((item) =>
-              item.children ? (
-                <MobileNavGroup key={item.label} item={item} onItemClick={() => setMobileOpen(false)} />
-              ) : (
+        <>
+          <div
+            className="lg:hidden fixed inset-0 bg-black/20 z-[60]"
+            onClick={() => setMobileOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="lg:hidden fixed right-0 top-16 w-full max-w-sm bg-white z-[70] h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain shadow-xl">
+            <div className="p-4 space-y-4 min-h-full">
+              {navData.main.map((item) =>
+                item.children ? (
+                  <MobileNavGroup key={item.label} item={item} onItemClick={() => setMobileOpen(false)} />
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href || "#"}
+                    className="block text-sm text-slate-600 min-h-[44px] flex items-center"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
+              <div className="pt-4">
                 <Link
-                  key={item.label}
-                  href={item.href || "#"}
-                  className="block text-sm text-slate-600"
+                  href="/contact"
+                  className="block w-full px-4 py-3 text-sm font-medium text-white text-center rounded-lg"
+                  style={{ backgroundColor: colors.accent.primary }}
                   onClick={() => setMobileOpen(false)}
                 >
-                  {item.label}
+                  Talk to us
                 </Link>
-              )
-            )}
-            <Link
-              href="/contact"
-              className="block px-4 py-2 text-sm font-medium text-white text-center rounded-lg"
-              style={{ backgroundColor: colors.accent.primary }}
-              onClick={() => setMobileOpen(false)}
-            >
-              Talk to us
-            </Link>
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );
