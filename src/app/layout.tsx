@@ -4,6 +4,50 @@ import Script from "next/script";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://aceintelligence.com/#organization",
+  name: "Ace Intelligence Systems",
+  url: "https://aceintelligence.com",
+  description:
+    "Custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for startups and enterprises.",
+  foundingDate: "2025",
+  founders: [
+    { "@type": "Person", name: "Ansh Gajera", jobTitle: "CEO" },
+    { "@type": "Person", name: "Om Choksi", jobTitle: "CTO & Chief Architect" },
+    { "@type": "Person", name: "Yash Khare", jobTitle: "Founder" },
+  ],
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Workflow Automation",
+    "Enterprise RAG",
+    "Multi-Agent Systems",
+    "Cloud Infrastructure",
+  ],
+  offers: [
+    {
+      "@type": "Service",
+      name: "Intelligent Workflow Automation",
+      description:
+        "Smart email triage, document parsing, and zero-touch lead routing using n8n, Groq, and custom APIs.",
+    },
+    {
+      "@type": "Service",
+      name: "Custom Generative AI & Conversational Agents",
+      description:
+        "Enterprise RAG architectures, multi-agent workflows via LangGraph, and tier-1 support bots.",
+    },
+    {
+      "@type": "Service",
+      name: "Enterprise Cloud Infrastructure & Analytics",
+      description: "Custom admin dashboards, predictive AI models, and scalable backend APIs.",
+    },
+  ],
+  funder: { "@type": "Person", name: "Ansh Gajera" },
+  sameAs: [],
+};
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -27,8 +71,9 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "aceintellegence",
-  description: "Building AI products that ship. Workflow automation and trusted operations for modern teams.",
+  title: "Ace Intelligence Systems | Custom AI & Automation Agency",
+  description:
+    "Ace Intelligence Systems builds custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for startups and enterprises ready to eliminate manual operations.",
 };
 
 export default function RootLayout({
@@ -42,6 +87,12 @@ export default function RootLayout({
       className={`${inter.variable} ${geistMono.variable} ${playfairDisplay.variable} ${cormorantGaramond.variable}`}
       suppressHydrationWarning
     >
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        strategy="beforeInteractive"
+      />
       <body
         className="min-h-screen flex flex-col antialiased bg-[var(--color-background)]"
         suppressHydrationWarning

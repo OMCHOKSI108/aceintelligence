@@ -12,8 +12,8 @@ interface HeroProps {
 }
 
 export function Hero({
-  title = "AI, automation, and intelligent software for modern enterprises.",
-  description = "We eliminate manual operational bottlenecks by building bespoke AI architectures and scalable cloud infrastructure.",
+  title = "Ace Intelligence Systems — Custom AI & automation for modern enterprises.",
+  description = "We eliminate manual bottlenecks by building bespoke AI architectures, multi-agent workflows, and scalable cloud infrastructure — purpose-built for your operations, not off-the-shelf SaaS.",
   ctaText = "Talk to an expert",
   ctaHref = "/contact",
 }: HeroProps) {
@@ -23,7 +23,7 @@ export function Hero({
       <div className="grid lg:grid-cols-12 gap-10 items-start">
         <div className="lg:col-span-7">
           <p className="text-xs font-medium tracking-[0.22em] text-slate-500 uppercase mb-4">
-            {theme.brand.name} | AI Services Agency
+            {theme.brand.name} | AI &amp; Automation Agency
           </p>
 
           <h1 className="headline-primary text-[2.6rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[0.98] tracking-tight">
@@ -37,8 +37,8 @@ export function Hero({
 
           <p className="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed">
             We help modern startups and enterprise organizations scale efficiently with custom software solutions —
-            not off-the-shelf SaaS. From intelligent workflow automations to enterprise RAG architectures,
-            we build what your business actually needs.
+            not off-the-shelf SaaS. From intelligent workflow automations and n8n-based triage systems to
+            enterprise RAG architectures and LangGraph multi-agent pipelines, we build what your business actually needs.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -62,7 +62,7 @@ export function Hero({
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">We are</p>
-              <p className="text-sm font-semibold text-slate-900">AI, automation &amp; software agency</p>
+              <p className="text-sm font-semibold text-slate-900">Custom AI &amp; automation agency</p>
             </div>
             <div className="rounded-xl border border-slate-200 bg-white/70 backdrop-blur-sm px-4 py-3">
               <p className="text-xs text-slate-500">For</p>
@@ -82,10 +82,10 @@ export function Hero({
         <div className="lg:col-span-5">
           <div className="rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm shadow-sm p-6 sm:p-7">
             <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">
-              What we build
+              Ace Intelligence Systems builds
             </p>
             <h2 className="headline-primary text-xl sm:text-2xl text-slate-900 mt-2">
-              Deep-engineering architectures
+              Custom AI &amp; automation services
             </h2>
             <ul className="mt-5 space-y-4">
               <li className="flex items-start gap-3">

@@ -11,7 +11,7 @@ export interface ThemeConfig {
 
 export const theme: ThemeConfig = {
   brand: {
-    name: "aceintellegence",
+    name: "Ace Intelligence Systems",
     primaryColor: "#3b82f6",
   },
   fonts: {
