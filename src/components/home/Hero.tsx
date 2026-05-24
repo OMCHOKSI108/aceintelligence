@@ -29,6 +29,7 @@ export function Hero({
           <h1 className="headline-primary text-[2.6rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[0.98] tracking-tight">
             {title}
           </h1>
+          <span className="sr-only">aceintelligence</span>
           {description && (
             <p className="headline-secondary text-[1.7rem] sm:text-[2.4rem] lg:text-[2.75rem] text-slate-700 leading-[1.05] tracking-tight mt-3">
               {description}
@@ -85,7 +86,7 @@ export function Hero({
               Ace Intelligence Systems builds
             </p>
             <h2 className="headline-primary text-xl sm:text-2xl text-slate-900 mt-2">
-              Custom AI &amp; automation services
+              Ace Intelligence custom AI &amp; automation services
             </h2>
             <ul className="mt-5 space-y-4">
               <li className="flex items-start gap-3">

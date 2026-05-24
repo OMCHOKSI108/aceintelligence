@@ -7,9 +7,9 @@ import { Header, Footer } from "@/components/layout";
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://aceintelligence.com/#organization",
+  "@id": "https://aceintelligence.systems/#organization",
   name: "Ace Intelligence Systems",
-  url: "https://aceintelligence.com",
+  url: "https://aceintelligence.systems",
   description:
     "Custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for startups and enterprises.",
   foundingDate: "2025",
@@ -71,9 +71,9 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Ace Intelligence Systems | Custom AI & Automation Agency",
+  title: "Ace Intelligence Systems | AI & Automation Agency",
   description:
-    "Ace Intelligence Systems builds custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for startups and enterprises ready to eliminate manual operations.",
+    "aceintelligence (Ace Intelligence Systems) delivers custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for modern startups.",
 };
 
 export default function RootLayout({

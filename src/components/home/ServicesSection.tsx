@@ -50,7 +50,7 @@ export function ServicesSection() {
       <div className="mb-14 text-center">
         <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">Our Process</p>
         <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2 mb-3">
-          How we build
+          How Ace Intelligence builds
         </h2>
         <p className="text-slate-600 text-lg max-w-3xl mx-auto">
           From your first conversation to a running system — a transparent, repeatable pipeline.

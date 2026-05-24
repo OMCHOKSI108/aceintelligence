@@ -48,7 +48,7 @@ const contentMap: Record<string, PageContent> = {
   about: {
     title: "About",
     intro: "We are an AI, automation, and intelligent software services agency.",
-    body: "aceintellegence helps modern startups and enterprise organizations scale efficiently by eliminating manual operational bottlenecks. We build bespoke AI architectures and scalable cloud infrastructure — custom software solutions, not off-the-shelf SaaS.",
+    body: "Ace Intelligence Systems helps modern startups and enterprise organizations scale efficiently by eliminating manual operational bottlenecks. We build bespoke AI architectures and scalable cloud infrastructure — custom software solutions, not off-the-shelf SaaS.",
     sections: [
       {
         title: "Our Mission",
@@ -120,7 +120,7 @@ const contentMap: Record<string, PageContent> = {
   "economic-futures": {
     title: "Economic Futures",
     intro: "We study how AI changes work, productivity, and opportunity.",
-    body: "aceintellegence explores economic outcomes and builds tools that support sustainable growth for developers, startups, and enterprises.",
+    body: "Ace Intelligence Systems explores economic outcomes and builds tools that support sustainable growth for developers, startups, and enterprises.",
   },
   constitution: {
     title: "Company Constitution",
@@ -130,7 +130,7 @@ const contentMap: Record<string, PageContent> = {
   transparency: {
     title: "Transparency",
     intro: "We communicate openly about product direction and system behavior.",
-    body: "aceintellegence publishes clear updates so users understand capabilities, limitations, and expected improvements.",
+    body: "Ace Intelligence Systems publishes clear updates so users understand capabilities, limitations, and expected improvements.",
   },
   security: {
     title: "Security & AI Safety",
@@ -162,7 +162,7 @@ const contentMap: Record<string, PageContent> = {
   },
   "use-cases": {
     title: "Use Cases",
-    intro: "See how teams apply aceintellegence in production.",
+    intro: "See how teams apply Ace Intelligence in production.",
     body: "Explore proven patterns across finance, legal, operations, and engineering teams who use our platform for trusted automation.",
   },
   docs: {
@@ -612,7 +612,7 @@ export default async function DynamicPage({
   return (
     <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
       <div className="rounded-2xl border border-slate-200 bg-white/90 backdrop-blur-sm p-8 sm:p-10 shadow-sm">
-        <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase mb-3">aceintellegence</p>
+        <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase mb-3">Ace Intelligence</p>
         <h1 className="headline-primary text-4xl sm:text-5xl text-slate-900 mb-4">{content.title}</h1>
         <p className="text-lg text-slate-700 mb-5">{content.intro}</p>
         <p className="text-slate-600 leading-relaxed mb-8">{content.body}</p>
