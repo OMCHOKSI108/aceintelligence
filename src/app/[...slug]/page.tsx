@@ -68,70 +68,6 @@ const contentMap: Record<string, PageContent> = {
       },
     ],
   },
-  "services/document-intelligence": {
-    title: "Workflow Automation",
-    intro: "Automation systems that are production ready.",
-    body: "We build workflows for intake, approvals, execution, and reporting with clear contracts, observability, and safety boundaries.",
-    sections: [
-      {
-        title: "Intake",
-        content: "Capture requests, normalize inputs, and route work to the right owners.",
-      },
-      {
-        title: "Approvals",
-        content: "Define decision checkpoints, permissions, and human handoffs.",
-      },
-      {
-        title: "Reporting",
-        content: "Track outcomes, exceptions, and SLA adherence across workflows.",
-      },
-    ],
-  },
-  "services/rag": {
-    title: "Human in the loop",
-    intro: "Guardrails that keep automation safe.",
-    body: "We design approval flows that stay reliable as your operations scale, with systematic evaluation and clear exception handling.",
-  },
-  "services/voice": {
-    title: "Operator Experience",
-    intro: "Human friendly dashboards and control planes.",
-    body: "Give operators clear queues, approvals, and escalation paths for every automated workflow.",
-  },
-  "industries/startups": {
-    title: "Startups",
-    intro: "Ship automation without slowing down your roadmap.",
-    body: "We help startups move fast while keeping workflows reliable and systems maintainable: pragmatic tooling, clear contracts, and measurable outcomes.",
-  },
-  "industries/finance": {
-    title: "Finance",
-    intro: "Trusted automation for policy, compliance, and approvals.",
-    body: "Build scoped workflows over controlled datasets and emphasize auditability through approvals and access controls.",
-  },
-  "industries/healthcare": {
-    title: "Healthcare",
-    intro: "Reliable workflows for complex operations.",
-    body: "Focus on access boundaries, approvals, and careful evaluation. Treat data handling as a first class constraint.",
-  },
-  "industries/legal": {
-    title: "Legal",
-    intro: "Approval first workflows for contracts and policies.",
-    body: "Design for verification: approvals, source context, and workflows that reduce operational risk.",
-  },
-  "economic-futures": {
-    title: "Economic Futures",
-    intro: "We study how AI changes work, productivity, and opportunity.",
-    body: "Ace Intelligence Systems explores economic outcomes and builds tools that support sustainable growth for developers, startups, and enterprises.",
-  },
-  constitution: {
-    title: "Company Constitution",
-    intro: "Our constitution defines long term product and safety principles.",
-    body: "It guides how we prioritize user value, technical excellence, and responsible scaling in every release.",
-  },
-  transparency: {
-    title: "Transparency",
-    intro: "We communicate openly about product direction and system behavior.",
-    body: "Ace Intelligence Systems publishes clear updates so users understand capabilities, limitations, and expected improvements.",
-  },
   security: {
     title: "Security & AI Safety",
     intro: "Enterprise grade security meets rigorous AI safety. We prevent hallucination, secure data, and build systems you can trust.",
@@ -589,6 +525,35 @@ const contentMap: Record<string, PageContent> = {
   },
 };
 
+const metricPattern = /\$?\d[\d,.]*\+?%?(?:\s?(?:to|-)\s?\$?\d[\d,.]*\+?%?)?(?:\s?(?:hours?|minutes?|seconds?|days?|weeks?|months?|req\/min))?/;
+
+function highlightMetric(text: string): React.ReactNode {
+  const match = text.match(metricPattern);
+  if (!match || match.index === undefined) return text;
+  const start = match.index;
+  const end = start + match[0].length;
+  return (
+    <>
+      {text.slice(0, start)}
+      <strong className="font-semibold text-slate-900">{text.slice(start, end)}</strong>
+      {text.slice(end)}
+    </>
+  );
+}
+
+function splitIntoPoints(text: string): string[] {
+  const numbered = text
+    .split(/\(\d+\)\s*/)
+    .map((part) => part.trim().replace(/[,.]$/, ""))
+    .filter(Boolean);
+  if (numbered.length > 1) return numbered;
+
+  return text
+    .split(/(?<=[.!?])\s+(?=[A-Z])/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+}
+
 function formatTitleFromSlug(slug: string[]): string {
   return slug
     .map((part) => part.replace(/-/g, " "))
@@ -714,7 +679,14 @@ export default async function DynamicPage({
                         {starIcons[section.title] || null}
                         {section.title}
                       </h3>
-                      <p className="text-sm text-slate-700 leading-relaxed">{section.content}</p>
+                      <ul className="space-y-2">
+                        {splitIntoPoints(section.content).map((point, pointIdx) => (
+                          <li key={pointIdx} className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
+                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-current opacity-50 flex-shrink-0" />
+                            <span>{highlightMetric(point)}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                     {section.code && (
                       <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
