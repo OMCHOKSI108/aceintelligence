@@ -5,14 +5,13 @@ import { theme } from "@/lib/theme";
 const platformLinks = [
   { label: "Multi Agent Research", href: "/projects/multi-agent-research" },
   { label: "Multi Modal RAG Agent", href: "/projects/multi-modal-rag" },
-  { label: "Food Delivery Agent", href: "/projects/food-delivery-agent" },
   { label: "ChatPDF", href: "/projects" },
 ];
 
 const researchLinks = [
-  { label: "Research Lab", href: "/research" },
+  { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/quick-wins/smart-inbox" },
-  { label: "ROI Whitepapers", href: "/whitepapers" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 const legalLinks = [

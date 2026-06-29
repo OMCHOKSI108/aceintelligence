@@ -39,8 +39,8 @@ export function FounderSection() {
           Meet the founding team
         </h2>
         <p className="text-slate-600 text-lg">
-          Three Artificial Intelligence &amp; Machine Learning (AIML) students from CHARUSAT University,
-          graduating 2027, building the future of enterprise AI.
+          A founding team of AIML engineers out of CHARUSAT University, specializing in enterprise RAG
+          architectures, multi agent workflows, and production grade automation systems.
         </p>
       </div>
 

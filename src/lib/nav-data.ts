@@ -20,19 +20,24 @@ export const navData: NavSection = {
   main: [
     { label: "Services", href: "/services" },
     {
-      label: "Quick Wins",
+      label: "Projects",
       children: [
         {
-          label: "Use Cases",
+          label: "Implemented Projects",
           children: [
-            { label: "Smart Inbox Router", href: "/quick-wins/smart-inbox" },
-            { label: "Vendor Invoice Parser", href: "/quick-wins/invoice-parser" },
-            { label: "Lead Router & Responder", href: "/quick-wins/lead-router" },
+            { label: "Multi-Agent Research Automation", href: "/projects/multi-agent-research" },
+            { label: "Enterprise Document Intelligence", href: "/projects/multi-modal-rag" },
+            { label: "Automated Compliance Workflow", href: "/projects/compliance-automation" },
+          ],
+        },
+        {
+          label: "Quick Wins",
+          children: [
+            
           ],
         },
       ],
     },
-    { label: "Whitepapers", href: "/whitepapers" },
     {
       label: "Company",
       children: [
@@ -40,16 +45,12 @@ export const navData: NavSection = {
           label: "About",
           children: [
             { label: "Overview", href: "/about" },
-            { label: "Team", href: "/about#team" },
-            { label: "Research", href: "/research" },
-            { label: "Security", href: "/security" },
           ],
         },
         {
           label: "Get in touch",
           children: [
             { label: "Contact", href: "/contact" },
-            { label: "Support", href: "/support" },
           ],
         },
       ],
@@ -58,12 +59,8 @@ export const navData: NavSection = {
   ],
   products: [
     { label: "Multi Agent Research", href: "/projects/multi-agent-research" },
-    { label: "Food Delivery Agent", href: "/projects/food-delivery-agent" },
     { label: "Multi Modal RAG Agent", href: "/projects/multi-modal-rag" },
     { label: "ChatPDF", href: "/projects" },
-    { label: "Platform", href: "/platform" },
-    { label: "Developer Docs", href: "/docs" },
-    { label: "Pricing", href: "/pricing" },
   ],
   models: [
     { label: "Workflow Automations", href: "/services" },
