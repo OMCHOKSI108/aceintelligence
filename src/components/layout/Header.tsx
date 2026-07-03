@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { navData } from "@/lib/nav-data";
 import { colors, theme } from "@/lib/theme";
 import { NavDropdown } from "./NavDropdown";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import type { NavItem } from "@/lib/nav-data";
 
 export function Header() {
@@ -47,13 +48,14 @@ export function Header() {
             )}
           </div>
 
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-2">
+            <LanguageSwitcher />
             <Link
               href="/contact"
               className="px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors"
               style={{ backgroundColor: colors.accent.primary }}
             >
-              Talk to us
+              Start a Project
             </Link>
           </div>
 
@@ -91,14 +93,17 @@ export function Header() {
                   </Link>
                 )
               )}
-              <div className="pt-4">
+              <div className="pt-4 border-t border-slate-100">
+                <div className="mb-3">
+                  <LanguageSwitcher />
+                </div>
                 <Link
                   href="/contact"
                   className="block w-full px-4 py-3 text-sm font-medium text-white text-center rounded-lg"
                   style={{ backgroundColor: colors.accent.primary }}
                   onClick={() => setMobileOpen(false)}
                 >
-                  Talk to us
+                  Start a Project
                 </Link>
               </div>
             </div>

@@ -1,4 +1,5 @@
-import { CheckCircle2, ClipboardList, ShieldCheck, Rocket, FileText, Users } from "lucide-react";
+import { CheckCircle2, ClipboardList, ShieldCheck, Rocket, FileText, Users, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function ServicesSection() {
   const enterpriseProcess = [
@@ -19,7 +20,7 @@ export function ServicesSection() {
     {
       step: "03",
       title: "Enterprise Agreement",
-      desc: "Comprehensive SOW with SLAs, security protocols, compliance checklists, and clear exit criteria. No surprises, just results.",
+      desc: "Transparent legal frameworks ensuring project accountability and alignment from day one.",
       icon: CheckCircle2,
       color: "purple",
     },
@@ -149,6 +150,17 @@ export function ServicesSection() {
             </div>
           );
         })}
+      </div>
+
+      <div className="mt-14 text-center relative z-10">
+        <Link
+          href="/contact"
+          className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white rounded-lg transition-all duration-300 hover:opacity-90"
+          style={{ backgroundColor: "var(--color-accent)" }}
+        >
+          Ready to start your project?
+          <ArrowRight size={16} />
+        </Link>
       </div>
     </section>
   );
