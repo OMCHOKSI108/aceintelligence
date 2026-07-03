@@ -19,25 +19,7 @@ export interface NavSection {
 export const navData: NavSection = {
   main: [
     { label: "Services", href: "/services" },
-    {
-      label: "Projects",
-      children: [
-        {
-          label: "Implemented Projects",
-          children: [
-            { label: "Multi-Agent Research Automation", href: "/projects/multi-agent-research" },
-            { label: "Enterprise Document Intelligence", href: "/projects/multi-modal-rag" },
-            { label: "Automated Compliance Workflow", href: "/projects/compliance-automation" },
-          ],
-        },
-        {
-          label: "Quick Wins",
-          children: [
-            
-          ],
-        },
-      ],
-    },
+    { label: "Portfolio", href: "/portfolio" },
     {
       label: "Company",
       children: [

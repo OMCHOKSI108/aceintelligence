@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity, CircleHelp, ListChecks, ArrowRightCircle, Target, BarChart3, Clock, Inbox } from "lucide-react";
+import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity, CircleHelp, ListChecks, ArrowRightCircle, Target, BarChart3, Clock, Inbox, Star, Cloud, Gem, Rocket, Server, Lock, Lightbulb, Gauge } from "lucide-react";
 import { ResearchSandbox } from "@/components/home/ResearchSandbox";
 import { ArchitectureDiagram } from "@/components/home/ArchitectureDiagram";
 import { ImageLightbox } from "@/components/home/ImageLightbox";
@@ -10,6 +10,7 @@ type Section = {
   content: string;
   code?: string;
   variant?: "star";
+  group?: string;
 };
 
 type PageContent = {
@@ -102,25 +103,74 @@ const contentMap: Record<string, PageContent> = {
     body: "Explore proven patterns across finance, legal, operations, and engineering teams who use our platform for trusted automation.",
   },
   docs: {
-    title: "Documentation",
-    intro: "Technical documentation for the Ace Intelligence platform.",
-    body: "Learn how to integrate our API, set up your environment, and deploy enterprise grade workflow automation.",
+    title: "Ace Intelligence Platform: Building for Enterprise Autonomy",
+    intro: "",
+    body: "",
     sections: [
       {
+        title: "Introduction & Vision",
+        content: "",
+        group: "Platform Overview",
+      },
+      {
+        title: "The Ace Intelligence Platform",
+        content: "We engineer enterprise autonomy through bespoke AI architectures and scalable cloud infrastructure. Every solution is purpose-built for your operations, not adapted from a generic product.",
+        group: "Platform Overview",
+      },
+      {
+        title: "Our Mission",
+        content: "We eliminate manual operational bottlenecks by building tailored, purpose-built software solutions rather than off-the-shelf SaaS products. We deliver production-grade AI that transforms how your team works.",
+        group: "Platform Overview",
+      },
+      {
+        title: "Commitment to Ownership",
+        content: "Every deployment is custom-built for your specific operations. We provide the architecture, the documentation, and the training to ensure you own and operate your solution effectively. You get full IP rights and complete visibility into every layer of the system.",
+        group: "Platform Overview",
+      },
+      {
+        title: "Core Pillars",
+        content: "",
+        group: "Core Pillars",
+      },
+      {
+        title: "Why Choose Ace?",
+        content: "",
+        group: "Why Choose Ace",
+      },
+      {
+        title: "Beyond SaaS",
+        content: "Unlike generic, off-the-shelf products, our solutions are architected as an extension of your team. We don't force your workflows into a predefined template. Every integration, every agent, and every dashboard is built around your unique operational DNA.",
+        group: "Why Choose Ace",
+      },
+      {
+        title: "Production-Grade Delivery",
+        content: "We follow a proven methodology from Strategic Discovery and Architecture Design to secure, zero-downtime Production Deployment. We deliver real business value rather than just technical demos, with SLAs, security protocols, and knowledge transfer built into every engagement.",
+        group: "Why Choose Ace",
+      },
+      {
+        title: "Technical Reference",
+        content: "",
+        group: "Developer Guides",
+      },
+      {
         title: "Quick Start",
-        content: "Get started with ChatPDF and our automation platform. Connect your first workflow and start testing.",
+        content: "Connect your first workflow and begin testing with ChatPDF and our automation engine. Integrate your data sources, configure your first agent, and see results in minutes.",
+        group: "Developer Guides",
       },
       {
         title: "API Overview",
-        content: "Our REST API lets you trigger workflows, manage approvals, and integrate with your existing systems.",
+        content: "Leverage our REST API to trigger workflows, manage approvals, and integrate directly with your legacy systems. Full CRUD support with webhook callbacks for event-driven architectures.",
+        group: "Developer Guides",
       },
       {
         title: "Authentication",
-        content: "Secure your API requests with JWT tokens or OAuth (Google, GitHub). Role based access control included.",
+        content: "Secure your environment using JWT tokens or OAuth (Google/GitHub), including full Role-Based Access Control (RBAC). Granular permissions let you control access at the user, team, and resource level.",
+        group: "Developer Guides",
       },
       {
-        title: "Hybrid Deployment",
-        content: "Deploy on your own infrastructure for maximum privacy. Data never leaves your network in hybrid mode.",
+        title: "Deployment",
+        content: "Utilize our Hybrid Deployment model to keep data within your own network for maximum privacy and compliance. Deploy on-premises or in your VPC with full data isolation.",
+        group: "Developer Guides",
       },
     ],
   },
@@ -408,6 +458,11 @@ const contentMap: Record<string, PageContent> = {
         content: "Explore the full source code, docker compose setup, and n8n workflow JSON on GitHub.",
         code: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS/tree/main/MULTI_MODEL_RAG_AGENT",
       },
+      {
+        title: "Team",
+        content: "Built by the Ace Intelligence founding team.",
+        code: "Om Choksi (CTO) — https://github.com/OMCHOKSI108\nYash Khare (Founder) — https://github.com/firefistisdead\nAnsh Gajera (CEO) — https://github.com/anshgajera",
+      },
     ],
   },
   "projects/multi-agent-research": {
@@ -445,6 +500,150 @@ const contentMap: Record<string, PageContent> = {
         title: "GitHub Repository",
         content: "Explore the full n8n workflow JSON, frontend code, and deployment configuration.",
         code: "https://github.com/OMCHOKSI108/AI-AUTOMATION-WORKFLOWS",
+      },
+      {
+        title: "Team",
+        content: "Built by the Ace Intelligence founding team.",
+        code: "Om Choksi (CTO) — https://github.com/OMCHOKSI108\nYash Khare (Founder) — https://github.com/firefistisdead\nAnsh Gajera (CEO) — https://github.com/anshgajera",
+      },
+    ],
+  },
+  "projects/chatpdf": {
+    title: "ChatPDF",
+    intro: "A full-stack document intelligence platform with RAG chat, async ingestion, multi-document support, and organization APIs.",
+    body: "ChatPDF is a document intelligence platform that automates intake, routing, approvals, and follow-ups so teams can move faster with full visibility. Built with Next.js, FastAPI, Redis, PostgreSQL, Qdrant, and a voice pipeline (STT/TTS).",
+    images: ["/landingpage.jpeg", "/chatscreen.jpeg"],
+    sections: [
+      {
+        title: "Live Site",
+        content: "ChatPDF is currently in private beta.",
+        code: "https://chatpdf.vercel.app",
+      },
+      {
+        title: "Key Features",
+        content: "Automated intake, triage, and routing for requests. Workflow state tracking with durable audit logs. Reusable automation steps with approval gates. APIs for system-to-system workflow triggers. Operator inbox with human-in-the-loop reviews. Role-based access and approval policies. Operational dashboards for throughput and exceptions.",
+      },
+      {
+        title: "Tech Stack",
+        content: "Next.js for the frontend and admin console. FastAPI for the backend API. Redis for the job queue. PostgreSQL for persistence. Qdrant for vector search. STT/TTS pipeline for voice chat support.",
+        code: "Next.js | FastAPI | Redis | PostgreSQL | Qdrant | STT/TTS",
+      },
+      {
+        title: "Team",
+        content: "Built by the Ace Intelligence founding team.",
+        code: "Om Choksi (CTO) — https://github.com/OMCHOKSI108\nYash Khare (Founder) — https://github.com/firefistisdead\nAnsh Gajera (CEO) — https://github.com/anshgajera",
+      },
+    ],
+  },
+  "projects/pralay-ai": {
+    title: "PralayAI — Defensive Cybersecurity AI Assistant",
+    intro: "A full-stack defensive cybersecurity chatbot built with a fine-tuned open-source LLM (Qwen2.5 1.5B, QLoRA), FastAPI backend, PostgreSQL chat persistence, and a React Gemini-clone frontend.",
+    body: "PralayAI is a cybersecurity-focused AI assistant designed to help students, developers, and security learners understand defensive cybersecurity workflows. The system uses a fine-tuned Qwen2.5 1.5B Instruct model trained with QLoRA on a curated cybersecurity instruction dataset. The model is deployed via dual inference paths — a local CUDA API for fast development and a public Hugging Face Space for demos — and served through a FastAPI backend with PostgreSQL persistence and a React frontend.",
+    images: ["/pralay.png"],
+    sections: [
+      {
+        title: "Quick Start",
+        content: "Clone the repo, install dependencies, configure your environment, and launch all 3 services with a single startup script.",
+        code: "git clone https://github.com/OMCHOKSI108/pralayAI\ncd pralayAI\npython -m venv .venv && source .venv/bin/activate\npip install -r requirements.txt\n./start.sh\n# Starts: Inference API (:5000) | Backend (:8000) | Frontend (:5173)",
+      },
+      {
+        title: "Model Architecture",
+        content: "PralayAI is built on Qwen2.5 1.5B Instruct, fine-tuned with QLoRA using the Unsloth framework on a cybersecurity conversational instruction dataset. The LoRA adapter is merged with the base model for deployment. The model repository and adapter are published on Hugging Face for reproducibility.",
+        code: "Base Model: Qwen/Qwen2.5-1.5B-Instruct\nFine-tuning: Unsloth + QLoRA\nAdapter: OMCHOKSI108/Paralay1.1\nMerged Model: OMCHOKSI108/Paralay1.1-Merged\nDataset: OMCHOKSI108/cybersecdata\nInference API: omchoksi108-pralayai-inference-api.hf.space/generate",
+      },
+      {
+        title: "System Architecture",
+        content: "The system follows a four-component architecture: React Gemini-clone frontend sends user messages to the FastAPI backend, which persists conversations in PostgreSQL and routes inference requests to either the local CUDA inference API (port 5000, ~4.5s latency) or the Hugging Face Space CPU API (~54s latency). The model generates a defensive cybersecurity response, which is saved and returned through the backend to the frontend.",
+        code: "React Frontend (:5173)\n       │\n       ▼\nFastAPI Backend (:8000) ──► PostgreSQL\n       │\n       ├── Local CUDA API (:5000) ──► Merged Model\n       │         (~4.5s on GPU)\n       └── HF Space API (cloud) ──► Merged Model\n                 (~54s on CPU)",
+      },
+      {
+        title: "Safety & Evaluation",
+        content: "PralayAI includes a strict defensive-only safety policy. The model is trained to refuse requests involving phishing, credential theft, malware creation, ransomware, reverse shells, and evasion techniques. An automated evaluation notebook runs 8 defensive queries and 5 adversarial safety prompts, scoring responses on keyword coverage, structure, depth, and refusal quality.",
+        code: "Defensive Use Cases:\n  Incident Response | Log Analysis | Threat Detection\n  MITRE ATT&CK Mapping | Cloud Security | Malware Defense\n  Security Awareness | Hardening Guidance\n\nBlocked Topics:\n  Phishing | Credential Theft | Malware | Ransomware\n  Reverse Shells | Evasion | Exploitation",
+      },
+      {
+        title: "API & Inference",
+        content: "The backend exposes a single POST /api/chat endpoint that accepts a message, optional conversation_id, and generation parameters. It applies safety filtering, routes to the inference engine, and returns a structured response with the assistant message, latency, and source. The inference API is also directly callable for testing.",
+        code: "POST /api/chat\n{\n  \"message\": \"Explain incident response in 5 steps.\",\n  \"conversation_id\": null,\n  \"max_new_tokens\": 300,\n  \"temperature\": 0.7\n}\n\nResponse: {\n  \"assistant_message\": \"...\",\n  \"conversation_id\": \"uuid\",\n  \"latency_seconds\": 4.5,\n  \"source\": \"local-cuda\"\n}",
+      },
+      {
+        title: "Dataset & Training",
+        content: "The model was fine-tuned on a curated cybersecurity conversational dataset covering incident response, log analysis, malware defense, cloud security, and MITRE ATT&CK explanations. Training used QLoRA for memory efficiency, with loss convergence tracked across fine-tuning steps. The model training summary and safety evaluation scores are documented in the repo.",
+      },
+      {
+        title: "Tech Stack",
+        content: "Python powers the fine-tuning pipeline with Unsloth and QLoRA. FastAPI serves the backend with SQLAlchemy + PostgreSQL for persistence. React with Vite provides the Gemini-clone frontend. Hugging Face handles model hosting and public inference. Local CUDA inference runs via a Flask wrapper.",
+        code: "Python | FastAPI | React | Vite | PostgreSQL | Qwen2.5 | QLoRA | Unsloth | Hugging Face | Docker",
+      },
+      {
+        title: "GitHub Repository",
+        content: "Full source code including the fine-tuning notebook, model merge script, HF Space deployment configuration, FastAPI backend, React frontend, and comprehensive evaluation notebook.",
+        code: "https://github.com/OMCHOKSI108/pralayAI",
+      },
+      {
+        title: "Team",
+        content: "Built by the Ace Intelligence founding team.",
+        code: "Om Choksi (CTO) — https://github.com/OMCHOKSI108",
+      },
+    ],
+  },
+  "projects/trade-like-whale": {
+    title: "Autonomous Algo Trading Bot",
+    intro: "Production-ready automated trading platform combining ensemble strategies, LSTM prediction, and reinforcement learning — validated on 10,000 candles with $77K+ portfolio profit.",
+    body: "TradeLikeWhale is an enterprise-grade trading system that orchestrates multiple signal sources — technical indicators, neural networks, and a reinforcement learning agent — into a unified trading engine. The platform features a React dashboard for real-time monitoring, a FastAPI backend for strategy management, PostgreSQL for trade persistence, and direct MetaTrader 5 integration for live execution.",
+    images: ["/Tradinview_strategy.png"],
+    sections: [
+      {
+        title: "Quick Start",
+        content: "Clone the repo, install dependencies, configure your MT5 credentials, and launch the full stack with Docker Compose.",
+        code: "git clone https://github.com/OMCHOKSI108/TradeLikeWhale\ncd TradeLikeWhale\npip install -r requirements.txt\ncp .env.example .env\n# Configure MT5_LOGIN, MT5_PASSWORD, MT5_SERVER in .env\npython run.py",
+      },
+      {
+        title: "Architecture Flow",
+        content: "The system is built as a four-layer pipeline: Data Ingestion (MT5 live feed, historical CSV, database cache) → Signal Generation (technical indicators, LSTM prediction, RL agent optimization, ensemble voting) → Risk Management (ATR sizing, drawdown limits, position validation) → Execution & Monitoring (MT5 order execution, trade logging, React dashboard, alert system). Each layer is decoupled and independently testable.",
+        code: "DATA LAYER\n  MT5 Live Feed ─┐\n  Historical CSV ─┼──> Data Processor\n  Database Cache ─┘        │\n                           v\nSIGNAL LAYER\n  Technical Indicators (ADX, RSI, MACD, BB) ─┐\n  LSTM Neural Network (price prediction)  ───┼──> Ensemble Voting → Signal\n  RL Agent (adaptive optimization)        ───┘\n                           │\n                           v\nRISK LAYER\n  ATR Position Sizing ─┐\n  Daily Loss Limits  ──┼──> Risk Check → Approved/Rejected\n  Drawdown Monitor   ──┘\n                           │\n                           v\nEXECUTION LAYER\n  MT5 Order Execution → Trade Logger → PostgreSQL\n                           │\n                           v\n  React Dashboard ← FastAPI ← Trade History\n  Alert System    ← WebSocket ← Real-time P&L",
+      },
+      {
+        title: "Multi-Strategy Engine",
+        content: "Ensemble voting combines four technical indicators (ADX for trend strength, Stochastic for momentum, RSI for overbought/oversold, MACD for trend direction, Bollinger Bands for volatility) with ML predictions. Each signal is weighted and voted into a final trade decision. The RL agent continuously adapts weights based on market regime changes.",
+      },
+      {
+        title: "ML & Reinforcement Learning",
+        content: "LSTM neural networks are trained per symbol and timeframe to predict short-term price movements. A reinforcement learning agent (PPO-based) optimizes strategy parameters in real time, adjusting position sizing and signal thresholds as market conditions evolve. Models are retrained periodically using the latest market data to prevent drift.",
+      },
+      {
+        title: "Risk & Position Management",
+        content: "ATR-based dynamic stop-loss and take-profit levels adjust automatically to market volatility. Daily loss limits halt trading after a configurable threshold. Drawdown protection monitors equity curves in real time and triggers an emergency stop if drawdown exceeds the configured limit. Position sizing supports fixed %, volatility-adjusted, and fixed USD methods.",
+        code: "Risk Parameters:\n  Daily loss limit: $500\n  Max drawdown: 10%\n  Position sizing: volatility_adjusted\n  Risk/reward ratio: 2.0\n  Max open positions: 5",
+      },
+      {
+        title: "Validated Performance",
+        content: "Walk-forward validation using 70% train / 30% test split on 10,000 historical candles per symbol. Best performers are USDJPY and BTCUSD on the 15-minute timeframe, showing consistent out-of-sample performance and positive Sharpe ratios across all tested instruments.",
+        code: "Symbol    | Timeframe | Profit  | Win Rate | Sharpe\nUSDJPY    | 15min     | $6,118  | 55.4%    | 1.87\nBTCUSD    | 15min     | $3,261  | 61.2%    | 2.14\nEURUSD    | 4hr       | $769    | 56.9%    | 1.52\nGBPUSD    | 4hr       | $231    | 53.8%    | 1.28\n─────────────────────────────────────────────\nTotal: $77,256.74 across all strategies",
+      },
+      {
+        title: "Frontend Dashboard",
+        content: "Built with React and Next.js, the dashboard provides real-time monitoring of balance, equity, P&L, and margin levels. Users can configure and activate strategies, view trade history with performance analytics, modify TP/SL on open positions, and receive alerts for trades, risks, and system events. Plotly charts display equity curves and symbol breakdowns.",
+      },
+      {
+        title: "API Layer",
+        content: "FastAPI backend with JWT authentication exposes RESTful endpoints for strategy management, trade history, performance metrics, and system control. Full OpenAPI documentation is available at /docs. The API supports multi-user access with role-based permissions.",
+        code: "POST /token          — Login\nGET  /api/status      — Bot status & stats\nPOST /api/control     — Start/stop bot\nGET  /api/positions   — Active positions\nGET  /api/strategies  — List strategies\nPOST /api/strategies  — Create strategy\nGET  /api/history/trades — Trade history",
+      },
+      {
+        title: "Tech Stack",
+        content: "Python powers the core trading engine with TensorFlow for LSTM models. FastAPI serves the REST API. React/Next.js renders the dashboard. MetaTrader 5 handles live execution. PostgreSQL persists all trade and strategy data. Docker Compose orchestrates the full stack deployment.",
+        code: "Python | FastAPI | React | Next.js | MetaTrader 5 | TensorFlow | PostgreSQL | Docker | Redis | Streamlit",
+      },
+      {
+        title: "GitHub Repository",
+        content: "The full source code is available on GitHub. Note: The repository is currently private to protect proprietary trading strategies and client data. Contact us for access or a demo.",
+        code: "https://github.com/OMCHOKSI108/TradeLikeWhale — Private (contact for access)",
+      },
+      {
+        title: "Team",
+        content: "Built by the Ace Intelligence founding team.",
+        code: "Om Choksi (CTO) — https://github.com/OMCHOKSI108\nYash Khare (Founder) — https://github.com/firefistisdead\nAnsh Gajera (CEO) — https://github.com/anshgajera",
       },
     ],
   },
@@ -503,6 +702,11 @@ const contentMap: Record<string, PageContent> = {
         title: "Tech Stack",
         content: "n8n for workflow orchestration and webhook management. LLM API for natural language intent processing. Telegram Bot API and WhatsApp Business API for messaging. Google Sheets API for reading menu data and logging orders.",
         code: "n8n | LLM API | Telegram API | WhatsApp API | Google Sheets",
+      },
+      {
+        title: "Team",
+        content: "Built by the Ace Intelligence founding team.",
+        code: "Om Choksi (CTO) — https://github.com/OMCHOKSI108\nYash Khare (Founder) — https://github.com/firefistisdead\nAnsh Gajera (CEO) — https://github.com/anshgajera",
       },
     ],
   },
@@ -574,197 +778,411 @@ export default async function DynamicPage({
     body: "If you&apos;re looking for something specific, reach out and we&apos;ll point you to the right resources.",
   };
 
+  const sidebarNav = key === "docs" ? [
+    { label: "Platform Overview", groups: ["Platform Overview"], items: [
+      { label: "Introduction & Vision", href: "#introduction-vision" },
+    ]},
+    { label: "Core Pillars", groups: ["Core Pillars"], items: [
+      { label: "Core Pillars", href: "#core-pillars" },
+    ]},
+    { label: "Why Choose Ace", groups: ["Why Choose Ace"], items: [
+      { label: "Why Choose Ace?", href: "#why-choose-ace" },
+    ]},
+    { label: "Developer Guides", groups: ["Developer Guides"], items: [
+      { label: "Technical Reference", href: "#technical-reference" },
+      { label: "Quick Start", href: "#quick-start" },
+      { label: "API Overview", href: "#api-overview" },
+      { label: "Authentication", href: "#authentication" },
+      { label: "Deployment", href: "#deployment" },
+    ]},
+  ] : null;
+
+  function renderSection(section: Section, idx: number, key: string, content: PageContent) {
+    if (section.variant === "star" && section.title === "About the Project") {
+      return (
+        <div key={idx} className="border border-blue-200 bg-blue-50/30 rounded-xl overflow-hidden">
+          <div className="bg-blue-50 px-5 py-4 border-b border-blue-200">
+            <h3 className="font-semibold text-blue-900 flex items-center gap-2">
+              <FileText size={18} className="text-blue-600" />
+              {section.title}
+            </h3>
+          </div>
+          <div className="px-5 py-4">
+            <p className="text-sm text-slate-700 leading-relaxed">{section.content}</p>
+          </div>
+          {section.code && (
+            section.code.startsWith("YouTube:") ? (
+              <div className="aspect-video w-full">
+                <iframe
+                  src={`https://www.youtube.com/embed/${section.code.replace("YouTube: ", "")}`}
+                  title="YouTube video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+            ) : section.code.startsWith("https://github.com") ? (
+              <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                <code>
+                  <a href={section.code} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">
+                    {section.code}
+                  </a>
+                </code>
+              </pre>
+            ) : (
+              <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+                <code>{section.code}</code>
+              </pre>
+            )
+          )}
+        </div>
+      );
+    }
+    if (section.variant === "star") {
+      const starIcons: Record<string, React.ReactNode> = {
+        "Situation": <CircleHelp size={18} className="text-amber-600" />,
+        "Task": <ListChecks size={18} className="text-blue-600" />,
+        "Action": <ArrowRightCircle size={18} className="text-violet-600" />,
+        "Result": <Target size={18} className="text-green-600" />,
+      };
+      const starColors: Record<string, string> = {
+        "Situation": "bg-amber-50 border-amber-200",
+        "Task": "bg-blue-50 border-blue-200",
+        "Action": "bg-violet-50 border-violet-200",
+        "Result": "bg-green-50 border-green-200",
+      };
+      const starHeading: Record<string, string> = {
+        "Situation": "text-amber-900",
+        "Task": "text-blue-900",
+        "Action": "text-violet-900",
+        "Result": "text-green-900",
+      };
+      return (
+        <div key={idx} className={`border ${starColors[section.title] || "border-slate-200"} rounded-xl overflow-hidden`}>
+          <div className="px-5 py-4">
+            <h3 className={`font-semibold ${starHeading[section.title] || "text-slate-900"} flex items-center gap-2 mb-3`}>
+              {starIcons[section.title] || null}
+              {section.title}
+            </h3>
+            <ul className="space-y-2">
+              {splitIntoPoints(section.content).map((point, pointIdx) => (
+                <li key={pointIdx} className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-current opacity-50 flex-shrink-0" />
+                  <span>{highlightMetric(point)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {section.code && (
+            <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+              <code>{section.code}</code>
+            </pre>
+          )}
+        </div>
+      );
+    }
+
+    if (key === "docs" && section.title === "Introduction & Vision") {
+      return (
+        <div key={idx} id="introduction-vision" className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-white shadow-sm overflow-hidden">
+          <div className="px-6 py-5 border-b border-blue-200">
+            <h3 className="font-semibold text-blue-900 flex items-center gap-2 text-lg">
+              <BookOpen size={20} className="text-blue-600" />
+              Introduction &amp; Vision
+            </h3>
+          </div>
+          <div className="p-6 space-y-5">
+            {[
+              { title: "The Ace Intelligence Platform", icon: Gem, desc: "We engineer enterprise autonomy through bespoke AI architectures and scalable cloud infrastructure. Every solution is purpose-built for your operations, not adapted from a generic product." },
+              { title: "Our Mission", icon: Target, desc: "We eliminate manual operational bottlenecks by building tailored, purpose-built software solutions rather than off-the-shelf SaaS products. We deliver production-grade AI that transforms how your team works." },
+              { title: "Commitment to Ownership", icon: Shield, desc: "Every deployment is custom-built for your specific operations. We provide the architecture, the documentation, and the training to ensure you own and operate your solution effectively. You get full IP rights and complete visibility into every layer of the system." },
+            ].map((item, ii) => (
+              <div key={ii} className="flex gap-4">
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                  <item.icon size={18} className="text-blue-600" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-900 text-sm">{item.title}</h4>
+                  <p className="text-sm text-slate-600 mt-0.5 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (key === "docs" && section.title === "Core Pillars") {
+      return (
+        <div key={idx} id="core-pillars" className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50/60 to-white shadow-sm overflow-hidden">
+          <div className="px-6 py-5 border-b border-blue-200">
+            <h3 className="font-semibold text-blue-900 flex items-center gap-2 text-lg">
+              <Target size={20} className="text-blue-600" />
+              Core Pillars
+            </h3>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4 p-5">
+            {[
+              { title: "Operational Efficiency", desc: "We reduce manual labor through intelligent automation workflows, including email triage, automated document parsing, and lead routing.", icon: Zap, color: "text-amber-600", bg: "bg-amber-50" },
+              { title: "Bespoke Intelligence", desc: "We architect custom generative AI and conversational agents, specializing in enterprise RAG and complex multi-agent workflows designed around your unique business logic.", icon: Lightbulb, color: "text-violet-600", bg: "bg-violet-50" },
+              { title: "Scalability & Control", desc: "Our infrastructure supports your growth with custom dashboards, predictive AI models, and scalable backend APIs that integrate seamlessly with your existing systems.", icon: Gauge, color: "text-emerald-600", bg: "bg-emerald-50" },
+            ].map((goal, gi) => (
+              <div key={gi} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className={`w-10 h-10 rounded-lg ${goal.bg} flex items-center justify-center mb-3`}>
+                  <goal.icon size={20} className={goal.color} />
+                </div>
+                <h4 className="font-semibold text-slate-900 text-sm mb-2">{goal.title}</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">{goal.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (key === "docs" && section.title === "Why Choose Ace?") {
+      return (
+        <div key={idx} id="why-choose-ace" className="rounded-xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-white shadow-sm overflow-hidden">
+          <div className="px-6 py-5 border-b border-indigo-200">
+            <h3 className="font-semibold text-indigo-900 flex items-center gap-2 text-lg">
+              <Gem size={20} className="text-indigo-600" />
+              Why Choose Ace?
+            </h3>
+          </div>
+          <div className="p-6 grid sm:grid-cols-2 gap-5">
+            {[
+              { title: "Beyond SaaS", icon: Zap, desc: "Unlike generic, off-the-shelf products, our solutions are architected as an extension of your team. We don't force your workflows into a predefined template. Every integration, every agent, and every dashboard is built around your unique operational DNA." },
+              { title: "Production-Grade Delivery", icon: Shield, desc: "We follow a proven methodology from Strategic Discovery and Architecture Design to secure, zero-downtime Production Deployment. We deliver real business value rather than just technical demos, with SLAs, security protocols, and knowledge transfer built into every engagement." },
+            ].map((item, ii) => (
+              <div key={ii} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center mb-3">
+                  <item.icon size={18} className="text-indigo-600" />
+                </div>
+                <h4 className="font-semibold text-slate-900 text-sm mb-2">{item.title}</h4>
+                <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (key === "docs" && section.title === "Technical Reference") {
+      return (
+        <div key={idx} id="technical-reference" className="rounded-xl border border-slate-200 bg-white shadow-sm overflow-hidden">
+          <div className="px-6 py-5 border-b border-slate-200">
+            <h3 className="font-semibold text-slate-900 flex items-center gap-2 text-lg">
+              <Code size={20} className="text-slate-600" />
+              Technical Reference
+            </h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-slate-100 bg-slate-50/50">
+                  <th className="text-left px-6 py-3 font-medium text-slate-700 w-48">Section</th>
+                  <th className="text-left px-6 py-3 font-medium text-slate-700">Focus</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { section: "Quick Start", focus: "Connect your first workflow and begin testing with ChatPDF and our automation engine.", icon: Rocket, color: "text-sky-600" },
+                  { section: "API Overview", focus: "Leverage our REST API to trigger workflows, manage approvals, and integrate directly with your legacy systems.", icon: Code, color: "text-emerald-600" },
+                  { section: "Authentication", focus: "Secure your environment using JWT tokens or OAuth (Google/GitHub), including full Role-Based Access Control (RBAC).", icon: Lock, color: "text-amber-600" },
+                  { section: "Deployment", focus: "Utilize our Hybrid Deployment model to keep data within your own network for maximum privacy and compliance.", icon: Server, color: "text-violet-600" },
+                ].map((row, ri) => (
+                  <tr key={ri} className="hover:bg-slate-50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <row.icon size={16} className={row.color} />
+                        <span className="font-medium text-slate-900">{row.section}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-slate-600">{row.focus}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    }
+
+    const sectionIcons: Record<string, React.ReactNode> = {
+      "The Ace Intelligence Platform": <Gem size={20} className="text-blue-600" />,
+      "Our Mission": <Target size={20} className="text-emerald-600" />,
+      "Commitment to Ownership": <Shield size={20} className="text-violet-600" />,
+      "Beyond SaaS": <Zap size={20} className="text-indigo-600" />,
+      "Production-Grade Delivery": <Shield size={20} className="text-indigo-600" />,
+      "Quick Start": <Rocket size={20} className="text-sky-600" />,
+      "API Overview": <Code size={20} className="text-emerald-600" />,
+      "Authentication": <Lock size={20} className="text-amber-600" />,
+      "Deployment": <Server size={20} className="text-violet-600" />,
+    };
+    const sectionColors: Record<string, string> = {
+      "The Ace Intelligence Platform": "border-blue-200 bg-white",
+      "Our Mission": "border-emerald-200 bg-white",
+      "Commitment to Ownership": "border-violet-200 bg-white",
+      "Beyond SaaS": "border-indigo-200 bg-white",
+      "Production-Grade Delivery": "border-indigo-200 bg-white",
+      "Quick Start": "border-sky-200 bg-white",
+      "API Overview": "border-emerald-200 bg-white",
+      "Authentication": "border-amber-200 bg-white",
+      "Deployment": "border-violet-200 bg-white",
+    };
+    const sectionBodyColors: Record<string, string> = {
+      "The Ace Intelligence Platform": "text-slate-600",
+      "Our Mission": "text-slate-600",
+      "Commitment to Ownership": "text-slate-600",
+      "Beyond SaaS": "text-slate-600",
+      "Production-Grade Delivery": "text-slate-600",
+      "Quick Start": "text-slate-600",
+      "API Overview": "text-slate-600",
+      "Authentication": "text-slate-600",
+      "Deployment": "text-slate-600",
+    };
+    const cardColor = sectionColors[section.title] || "border-slate-200 bg-white";
+    const icon = sectionIcons[section.title] || null;
+    const bodyColor = sectionBodyColors[section.title] || "text-slate-600";
+    const sectionId = section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    return (
+      <div key={idx} id={sectionId} className={`rounded-xl border ${cardColor} shadow-sm hover:shadow-md transition-all duration-200`}>
+        <div className="flex items-start gap-4 p-5">
+          {icon && (
+            <div className="flex-shrink-0 mt-0.5">{icon}</div>
+          )}
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-slate-900">{section.title}</h3>
+            {section.content && (
+              <p className={`text-sm ${bodyColor} mt-1 leading-relaxed`}>{section.content}</p>
+            )}
+          </div>
+        </div>
+        {section.code && (
+          section.code.startsWith("YouTube:") ? (
+            <div className="aspect-video w-full border-t border-inherit">
+              <iframe
+                src={`https://www.youtube.com/embed/${section.code.replace("YouTube: ", "")}`}
+                title="YouTube video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          ) : section.code.startsWith("Email:") ? (
+            <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+              <code>
+                <a href={`mailto:${section.code.replace("Email: ", "")}`} className="hover:text-blue-300 transition-colors">
+                  {section.code}
+                </a>
+              </code>
+            </pre>
+          ) : section.code.startsWith("https://github.com") ? (
+            <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+              <code>
+                <a href={section.code} target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition-colors">
+                  {section.code}
+                </a>
+              </code>
+            </pre>
+          ) : (
+            <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
+              <code>{section.code}</code>
+            </pre>
+          )
+        )}
+      </div>
+    );
+  }
+
   return (
-    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="rounded-2xl border border-slate-200 bg-white/90 backdrop-blur-sm p-8 sm:p-10 shadow-sm">
         <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase mb-3">Ace Intelligence</p>
         <h1 className="headline-primary text-4xl sm:text-5xl text-slate-900 mb-4">{content.title}</h1>
-        <p className="text-lg text-slate-700 mb-5">{content.intro}</p>
-        <p className="text-slate-600 leading-relaxed mb-8">{content.body}</p>
 
-        {key === "research" && (
-          <div className="my-10 space-y-8">
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Agent in Action Live Sandbox</h2>
-              <ResearchSandbox />
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Architecture &amp; Security Deep Dive</h2>
-              <p className="text-sm text-slate-600 mb-6">Full multi agent pipeline from Telegram/webhook input through 8 specialized agents to final IEEE format output, with hallucination defense layers for enterprise grade trust.</p>
-              <ArchitectureDiagram />
-            </div>
-          </div>
-        )}
-
-        {content.images && content.images.length > 0 && (
-          <div className="mt-8">
-            <ImageLightbox
-              images={content.images.map((src) => ({ src, alt: `${content.title} screenshot` }))}
-            />
-          </div>
-        )}
-
-        {content.sections && content.sections.length > 0 && (
-          <div className="space-y-6 mt-10">
-            {content.sections.map((section, idx) => {
-              if (section.variant === "star" && section.title === "About the Project") {
-                return (
-                  <div key={idx} className="border border-blue-200 bg-blue-50/30 rounded-xl overflow-hidden">
-                    <div className="bg-blue-50 px-5 py-4 border-b border-blue-200">
-                      <h3 className="font-semibold text-blue-900 flex items-center gap-2">
-                        <FileText size={18} className="text-blue-600" />
-                        {section.title}
-                      </h3>
-                    </div>
-                    <div className="px-5 py-4">
-                      <p className="text-sm text-slate-700 leading-relaxed">{section.content}</p>
-                    </div>
-                    {section.code && (
-                      section.code.startsWith("YouTube:") ? (
-                        <div className="aspect-video w-full">
-                          <iframe
-                            src={`https://www.youtube.com/embed/${section.code.replace("YouTube: ", "")}`}
-                            title="YouTube video"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full h-full"
-                          />
-                        </div>
-                      ) : section.code.startsWith("https://github.com") ? (
-                        <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                          <code>
+        {key === "docs" ? (
+          <>
+            <div className="flex gap-8 mt-8">
+              <aside className="hidden lg:block w-64 flex-shrink-0">
+                <nav className="sticky top-32 space-y-6">
+                  {sidebarNav!.map((group, gi) => (
+                    <div key={gi}>
+                      <p className="text-xs font-semibold tracking-wider text-slate-400 uppercase mb-2">{group.label}</p>
+                      <ul className="space-y-1">
+                        {group.items.map((item, ii) => (
+                          <li key={ii}>
                             <a
-                              href={section.code}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:text-blue-300 transition-colors"
+                              href={item.href}
+                              className="block text-sm text-slate-600 hover:text-slate-900 hover:font-medium transition-all py-1 px-2 rounded-md hover:bg-slate-50"
                             >
-                              {section.code}
+                              {item.label}
                             </a>
-                          </code>
-                        </pre>
-                      ) : (
-                        <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                          <code>{section.code}</code>
-                        </pre>
-                      )
-                    )}
-                  </div>
-                );
-              }
-              if (section.variant === "star") {
-                const starIcons: Record<string, React.ReactNode> = {
-                  "Situation": <CircleHelp size={18} className="text-amber-600" />,
-                  "Task": <ListChecks size={18} className="text-blue-600" />,
-                  "Action": <ArrowRightCircle size={18} className="text-violet-600" />,
-                  "Result": <Target size={18} className="text-green-600" />,
-                };
-                const starColors: Record<string, string> = {
-                  "Situation": "bg-amber-50 border-amber-200",
-                  "Task": "bg-blue-50 border-blue-200",
-                  "Action": "bg-violet-50 border-violet-200",
-                  "Result": "bg-green-50 border-green-200",
-                };
-                const starHeading: Record<string, string> = {
-                  "Situation": "text-amber-900",
-                  "Task": "text-blue-900",
-                  "Action": "text-violet-900",
-                  "Result": "text-green-900",
-                };
-                return (
-                  <div key={idx} className={`border ${starColors[section.title] || "border-slate-200"} rounded-xl overflow-hidden`}>
-                    <div className="px-5 py-4">
-                      <h3 className={`font-semibold ${starHeading[section.title] || "text-slate-900"} flex items-center gap-2 mb-3`}>
-                        {starIcons[section.title] || null}
-                        {section.title}
-                      </h3>
-                      <ul className="space-y-2">
-                        {splitIntoPoints(section.content).map((point, pointIdx) => (
-                          <li key={pointIdx} className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
-                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-current opacity-50 flex-shrink-0" />
-                            <span>{highlightMetric(point)}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    {section.code && (
-                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                        <code>{section.code}</code>
-                      </pre>
-                    )}
-                  </div>
-                );
-              }
-              return (
-                <div key={idx} className="border border-slate-200 rounded-xl overflow-hidden">
-                  <div className="bg-slate-50 px-5 py-3 border-b border-slate-200">
-                    <h3 className="font-medium text-slate-900">{section.title}</h3>
-                    {section.content && (
-                      <p className="text-sm text-slate-600 mt-1">{section.content}</p>
-                    )}
-                  </div>
-                  {section.code && (
-                    section.code.startsWith("YouTube:") ? (
-                      <div className="aspect-video w-full">
-                        <iframe
-                          src={`https://www.youtube.com/embed/${section.code.replace("YouTube: ", "")}`}
-                          title="YouTube video"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-full"
-                        />
-                      </div>
-                    ) : section.code.startsWith("Email:") ? (
-                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                        <code>
-                          <a
-                            href={`mailto:${section.code.replace("Email: ", "")}`}
-                            className="hover:text-blue-300 transition-colors"
-                          >
-                            {section.code}
-                          </a>
-                        </code>
-                      </pre>
-                    ) : section.code.startsWith("https://github.com") ? (
-                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                        <code>
-                          <a
-                            href={section.code}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-blue-300 transition-colors"
-                          >
-                            {section.code}
-                          </a>
-                        </code>
-                      </pre>
-                    ) : (
-                      <pre className="bg-slate-900 text-slate-100 p-4 overflow-x-auto text-sm font-mono">
-                        <code>{section.code}</code>
-                      </pre>
-                    )
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
+                  ))}
+                </nav>
+              </aside>
+              <div className="flex-1 min-w-0 space-y-6">
+                {content.sections && content.sections.length > 0 && (
+                  content.sections.map((section, idx) => renderSection(section, idx, key, content))
+                )}
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-3 mt-10">
+              <Link
+                href="/"
+                className="inline-flex items-center rounded-lg bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-800 transition-colors"
+              >
+                Back to home
+              </Link>
+            </div>
+          </>
+        ) : (
+          <>
+            {content.intro && <p className="text-lg text-slate-700 mb-5">{content.intro}</p>}
+            {content.body && <p className="text-slate-600 leading-relaxed mb-8">{content.body}</p>}
 
-        <div className="flex flex-wrap gap-3 mt-10">
-          <Link
-            href="/"
-            className="inline-flex items-center rounded-lg bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-800 transition-colors"
-          >
-            Back to home
-          </Link>
-          <Link
-            href="/docs"
-            className="inline-flex items-center rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
-          >
-            Open docs
-          </Link>
-        </div>
+            {key === "research" && (
+              <div className="my-10 space-y-8">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Agent in Action Live Sandbox</h2>
+                  <ResearchSandbox />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Architecture &amp; Security Deep Dive</h2>
+                  <p className="text-sm text-slate-600 mb-6">Full multi agent pipeline from Telegram/webhook input through 8 specialized agents to final IEEE format output, with hallucination defense layers for enterprise grade trust.</p>
+                  <ArchitectureDiagram />
+                </div>
+              </div>
+            )}
+
+            {content.images && content.images.length > 0 && (
+              <div className="mt-8">
+                <ImageLightbox
+                  images={content.images.map((src) => ({ src, alt: `${content.title} screenshot` }))}
+                />
+              </div>
+            )}
+
+            {content.sections && content.sections.length > 0 && (
+              <div className="space-y-6 mt-10">
+                {content.sections.map((section, idx) => renderSection(section, idx, key, content))}
+              </div>
+            )}
+
+            <div className="flex flex-wrap gap-3 mt-10">
+              <Link
+                href="/"
+                className="inline-flex items-center rounded-lg bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-800 transition-colors"
+              >
+                Back to home
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
