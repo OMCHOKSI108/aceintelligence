@@ -82,7 +82,9 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto relative">
+    <div className="relative" style={{ backgroundImage: "url('/back/AW-Aurora-Ice-Grandient-Anchor-Bottom-02.png')", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <div className="absolute inset-0 bg-white/30" />
+    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto relative z-10">
       <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" aria-hidden="true" />
       <div className="absolute left-1/2 top-[-6rem] h-72 w-72 -translate-x-1/2 rounded-full bg-sky-200/30 blur-3xl pointer-events-none" aria-hidden="true" />
 
@@ -319,5 +321,6 @@ export default function ContactPage() {
         </div>
       </div>
     </section>
+    </div>
   );
 }
