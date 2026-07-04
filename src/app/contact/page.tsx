@@ -22,10 +22,30 @@ const serviceOptions = [
   "Multiple / Not sure",
 ];
 
+const countryCodes = [
+  { code: "+1", label: "US +1" },
+  { code: "+44", label: "UK +44" },
+  { code: "+91", label: "IN +91" },
+  { code: "+61", label: "AU +61" },
+  { code: "+81", label: "JP +81" },
+  { code: "+86", label: "CN +86" },
+  { code: "+49", label: "DE +49" },
+  { code: "+33", label: "FR +33" },
+  { code: "+971", label: "AE +971" },
+  { code: "+65", label: "SG +65" },
+  { code: "+82", label: "KR +82" },
+  { code: "+55", label: "BR +55" },
+  { code: "+7", label: "RU +7" },
+  { code: "+39", label: "IT +39" },
+  { code: "+34", label: "ES +34" },
+];
+
 export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
+    countryCode: "+91",
     company: "",
     budget: "",
     service: "",
@@ -143,6 +163,39 @@ export default function ContactPage() {
 
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1.5">
+                  Phone Number
+                </label>
+                <div className="flex gap-2">
+                  <select
+                    id="countryCode"
+                    name="countryCode"
+                    value={form.countryCode}
+                    onChange={handleChange}
+                    className="w-28 px-3 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm appearance-none flex-shrink-0"
+                    style={{
+                      backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
+                      backgroundPosition: "right 0.5rem center",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "1.25rem",
+                    }}
+                  >
+                    {countryCodes.map((cc) => (
+                      <option key={cc.code} value={cc.code}>{cc.label}</option>
+                    ))}
+                  </select>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={form.phone}
+                    onChange={handleChange}
+                    placeholder="Phone number"
+                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-sm"
+                  />
+                </div>
+              </div>
+              <div>
                 <label htmlFor="budget" className="block text-sm font-medium text-slate-700 mb-1.5">
                   Budget Range
                 </label>
@@ -229,41 +282,39 @@ export default function ContactPage() {
         )}
 
         <div className="mt-16 pt-10 border-t border-slate-200">
-          <div className="grid sm:grid-cols-2 gap-8">
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Mail size={18} className="text-slate-600" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-slate-900 mb-0.5">Email</p>
-                <div className="space-y-0.5">
-                  <a href="mailto:omchoksi.pro@gmail.com" className="text-sm text-slate-500 hover:text-blue-600 transition-colors">
-                    omchoksi.pro@gmail.com
-                  </a>
-                  <br />
-                  <a href="mailto:401anshgajera@gmail.com" className="text-sm text-slate-500 hover:text-blue-600 transition-colors">
-                    401anshgajera@gmail.com
-                  </a>
-                  <br />
-                  <a href="mailto:yashco.ltd@gmail.com" className="text-sm text-slate-500 hover:text-blue-600 transition-colors">
-                    yashco.ltd@gmail.com
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Phone size={18} className="text-slate-600" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-slate-900 mb-0.5">Phone</p>
-                <div className="space-y-0.5">
-                  <p className="text-sm text-slate-500">+91 93166 75927</p>
-                  <p className="text-sm text-slate-500">+91 97278 35549</p>
-                  <p className="text-sm text-slate-500">+91 90338 50401</p>
-                </div>
-              </div>
-            </div>
+          <div className="text-center mb-8">
+            <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">Contact Matrix</p>
+            <h3 className="headline-primary text-2xl text-slate-900 mt-2">Our team</h3>
+          </div>
+          <div className="overflow-x-auto rounded-xl border border-slate-200">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200">
+                  <th className="text-left px-5 py-3.5 font-semibold text-slate-700 text-xs uppercase tracking-wider">Name</th>
+                  <th className="text-left px-5 py-3.5 font-semibold text-slate-700 text-xs uppercase tracking-wider">Role</th>
+                  <th className="text-left px-5 py-3.5 font-semibold text-slate-700 text-xs uppercase tracking-wider">Email</th>
+                  <th className="text-left px-5 py-3.5 font-semibold text-slate-700 text-xs uppercase tracking-wider">Phone</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { name: "Om Choksi", role: "CTO & Chief Architect", email: "omchoksi.pro@gmail.com", phone: "+91 93166 75927" },
+                  { name: "Ansh Gajera", role: "CEO", email: "401anshgajera@gmail.com", phone: "+91 97278 35549" },
+                  { name: "Yash Khare", role: "Founder", email: "yashco.ltd@gmail.com", phone: "+91 90338 50401" },
+                ].map((person, i) => (
+                  <tr key={person.name} className={`${i % 2 === 0 ? "bg-white" : "bg-slate-50/70"} hover:bg-blue-50/50 transition-colors`}>
+                    <td className="px-5 py-3.5 font-medium text-slate-900">{person.name}</td>
+                    <td className="px-5 py-3.5 text-slate-600">{person.role}</td>
+                    <td className="px-5 py-3.5">
+                      <a href={`mailto:${person.email}`} className="text-blue-600 hover:text-blue-700 transition-colors">
+                        {person.email}
+                      </a>
+                    </td>
+                    <td className="px-5 py-3.5 text-slate-600">{person.phone}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
