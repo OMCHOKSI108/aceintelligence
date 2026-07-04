@@ -14,7 +14,7 @@ const platformLinks = [
   { label: "Multi-Agent Research", href: "/projects/multi-agent-research" },
   { label: "Multi-Modal RAG Agent", href: "/projects/multi-modal-rag" },
   { label: "ChatPDF", href: "/portfolio" },
-  { label: "Case Studies", href: "/quick-wins/smart-inbox" },
+  { label: "Case Studies", href: "/case-studies" },
   { label: "Pricing", href: "/pricing" },
 ];
 
