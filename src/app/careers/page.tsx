@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -256,18 +255,8 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <div
-        className="relative"
-        style={{
-          backgroundImage: "url('/background.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="absolute inset-0 bg-white/30" />
-
       {/* ==================== CURRENT OPENINGS ==================== */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
         <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
         <div className="absolute left-1/3 top-[-4rem] h-56 w-56 -translate-x-1/2 rounded-full bg-sky-200/20 blur-3xl pointer-events-none" aria-hidden="true" />
 
@@ -532,7 +521,6 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
-      </div>
     </div>
   );
 }
