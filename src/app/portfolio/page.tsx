@@ -171,7 +171,6 @@ function ProjectCard({ project }: { project: Project }) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent" />
         <span
           className={`absolute top-3 right-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-medium border z-10 ${project.badgeColor}`}
         >
