@@ -71,7 +71,7 @@ export default function ServicesPage() {
         className="object-cover pointer-events-none"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-white/70" />
+      <div className="absolute inset-0 bg-white/30" />
 
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
       <div className="absolute left-1/3 top-[-6rem] h-72 w-72 -translate-x-1/2 rounded-full bg-sky-200/30 blur-3xl pointer-events-none" aria-hidden="true" />

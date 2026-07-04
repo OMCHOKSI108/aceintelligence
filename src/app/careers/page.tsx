@@ -216,7 +216,7 @@ export default function CareersPage() {
         className="object-cover pointer-events-none"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-white/70" />
+      <div className="absolute inset-0 bg-white/30" />
       {/* ==================== HERO ==================== */}
       <section className="relative z-20 overflow-hidden bg-slate-900">
         <video
