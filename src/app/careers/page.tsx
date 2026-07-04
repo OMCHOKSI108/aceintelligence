@@ -215,11 +215,11 @@ export default function CareersPage() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none"
         >
           <source src="/aceinte.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-slate-900/70" />
+        <div className="absolute inset-0 bg-slate-900/50" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] pointer-events-none" aria-hidden="true" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 lg:pb-32">
