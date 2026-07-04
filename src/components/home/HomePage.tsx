@@ -3,6 +3,7 @@ import { ServicesSection } from "./ServicesSection";
 import { ProjectsSection } from "./ProjectsSection";
 import { FounderSection } from "./FounderSection";
 import { FAQAccordion } from "@/components/layout/FAQAccordion";
+import { NextjsIcon, TailwindIcon, TypeScriptIcon, NodejsIcon, PostgresIcon, PrismaIcon, AwsIcon, VercelIcon, GoogleCloudIcon, GdprIcon, IsoIcon, SocIcon } from "./TechIcons";
 import { theme } from "@/lib/theme";
 
 export function HomePage() {
@@ -48,9 +49,9 @@ export function HomePage() {
                 </ul>
                 <div className="pt-4 border-t border-slate-100">
                   <div className="flex items-center justify-center gap-6">
-                    <span className="text-slate-400 font-bold text-sm tracking-tight">NEXT</span>
-                    <span className="text-sky-600 font-semibold text-sm">Tailwind</span>
-                    <span className="text-blue-600 font-semibold text-sm">TS</span>
+                    <NextjsIcon className="w-8 h-8 text-slate-800" />
+                    <TailwindIcon className="w-7 h-7 text-sky-500" />
+                    <TypeScriptIcon className="w-7 h-7 text-blue-600" />
                   </div>
                 </div>
               </div>
@@ -70,9 +71,9 @@ export function HomePage() {
                 </ul>
                 <div className="pt-4 border-t border-slate-100">
                   <div className="flex items-center justify-center gap-6">
-                    <span className="text-green-600 font-semibold text-sm">Node.js</span>
-                    <span className="text-blue-700 font-semibold text-sm">PostgreSQL</span>
-                    <span className="text-slate-700 font-semibold text-sm">Prisma</span>
+                    <NodejsIcon className="w-9 h-9 text-green-600" />
+                    <PostgresIcon className="w-8 h-8 text-blue-700" />
+                    <PrismaIcon className="w-7 h-7 text-slate-700" />
                   </div>
                 </div>
               </div>
@@ -92,9 +93,9 @@ export function HomePage() {
                 </ul>
                 <div className="pt-4 border-t border-slate-100">
                   <div className="flex items-center justify-center gap-6">
-                    <span className="text-orange-500 font-bold text-sm">AWS</span>
-                    <span className="text-slate-800 font-semibold text-sm">Vercel</span>
-                    <span className="text-blue-500 font-semibold text-sm">GCP</span>
+                    <AwsIcon className="w-9 h-9 text-orange-500" />
+                    <VercelIcon className="w-7 h-7 text-slate-800" />
+                    <GoogleCloudIcon className="w-8 h-8 text-blue-500" />
                   </div>
                 </div>
               </div>
@@ -114,9 +115,9 @@ export function HomePage() {
                 </ul>
                 <div className="pt-4 border-t border-slate-100">
                   <div className="flex items-center justify-center gap-6">
-                    <span className="text-indigo-600 font-bold text-sm">GDPR</span>
-                    <span className="text-slate-700 font-bold text-sm">ISO</span>
-                    <span className="text-rose-600 font-bold text-sm">SOC</span>
+                    <GdprIcon className="w-7 h-7 text-indigo-600" />
+                    <IsoIcon className="w-7 h-7 text-slate-700" />
+                    <SocIcon className="w-7 h-7 text-rose-600" />
                   </div>
                 </div>
               </div>
