@@ -209,7 +209,7 @@ export default function CareersPage() {
   return (
     <div className="relative">
       {/* ==================== HERO ==================== */}
-      <section className="relative overflow-hidden bg-slate-900">
+      <section className="relative z-20 overflow-hidden bg-slate-900">
         <video
           autoPlay
           muted
