@@ -63,14 +63,15 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="relative min-h-screen">
-      <Image
-        src="/background.png"
-        alt=""
-        fill
-        className="object-cover pointer-events-none"
-        aria-hidden="true"
-      />
+    <div
+      className="relative"
+      style={{
+        backgroundImage: "url('/background.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <div className="absolute inset-0 bg-white/30" />
 
     <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">

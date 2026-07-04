@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -208,14 +207,15 @@ const hiringSteps = [
 
 export default function CareersPage() {
   return (
-    <div className="relative min-h-screen">
-      <Image
-        src="/carrires.png"
-        alt=""
-        fill
-        className="object-cover pointer-events-none"
-        aria-hidden="true"
-      />
+    <div
+      className="relative"
+      style={{
+        backgroundImage: "url('/carrires.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <div className="absolute inset-0 bg-white/30" />
       {/* ==================== HERO ==================== */}
       <section className="relative z-20 overflow-hidden bg-slate-900">
