@@ -9,6 +9,12 @@ export default function BotpressChatbot() {
   useEffect(() => {
     if (!injectUrl || !configUrl) return;
 
+    const style = document.createElement("style");
+    style.textContent = `
+      .bpw-widget-btn { transform: scale(0.75); }
+    `;
+    document.head.appendChild(style);
+
     const inject = document.createElement("script");
     inject.src = injectUrl;
     inject.async = true;
@@ -24,6 +30,7 @@ export default function BotpressChatbot() {
     document.body.appendChild(inject);
 
     return () => {
+      if (style.parentNode) style.parentNode.removeChild(style);
       if (inject.parentNode) inject.parentNode.removeChild(inject);
       if (config.parentNode) config.parentNode.removeChild(config);
     };
