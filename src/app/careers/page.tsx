@@ -207,16 +207,7 @@ const hiringSteps = [
 
 export default function CareersPage() {
   return (
-    <div
-      className="relative"
-      style={{
-        backgroundImage: "url('/carrires.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
-      <div className="absolute inset-0 bg-white/30" />
+    <div className="relative">
       {/* ==================== HERO ==================== */}
       <section className="relative z-20 overflow-hidden bg-slate-900">
         <video
