@@ -7,7 +7,7 @@ import {
   BarChart3,
   ArrowRight,
 } from "lucide-react";
-import { NextjsIcon, TailwindIcon, TypeScriptIcon, NodejsIcon, PostgresIcon, PrismaIcon, AwsIcon, VercelIcon, GoogleCloudIcon, GdprIcon, IsoIcon, SocIcon } from "@/components/home/TechIcons";
+import Image from "next/image";
 import Link from "next/link";
 
 const services = [
@@ -149,90 +149,14 @@ export default function ServicesPage() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-5">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">Frontend Technologies</h3>
-            <ul className="space-y-2 mb-6 flex-1">
-              {["Next.js 15 with React 19", "Tailwind CSS for styling", "TypeScript for type safety", "Responsive design patterns"].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                  <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="pt-4 border-t border-slate-100">
-              <div className="flex items-center justify-center gap-6">
-                <NextjsIcon className="w-8 h-8 text-slate-800" />
-                <TailwindIcon className="w-7 h-7 text-sky-500" />
-                <TypeScriptIcon className="w-7 h-7 text-blue-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">Backend &amp; Database</h3>
-            <ul className="space-y-2 mb-6 flex-1">
-              {["Node.js with Express/Fastify", "PostgreSQL or MongoDB", "Prisma ORM", "RESTful APIs with OpenAPI docs"].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                  <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="pt-4 border-t border-slate-100">
-              <div className="flex items-center justify-center gap-6">
-                <NodejsIcon className="w-9 h-9 text-green-600" />
-                <PostgresIcon className="w-8 h-8 text-blue-700" />
-                <PrismaIcon className="w-7 h-7 text-slate-700" />
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">Infrastructure &amp; DevOps</h3>
-            <ul className="space-y-2 mb-6 flex-1">
-              {["Vercel/AWS/Google Cloud deployment", "CI/CD pipelines", "Environment management", "Monitoring and analytics"].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                  <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="pt-4 border-t border-slate-100">
-              <div className="flex items-center justify-center gap-6">
-                <AwsIcon className="w-9 h-9 text-orange-500" />
-                <VercelIcon className="w-7 h-7 text-slate-800" />
-                <GoogleCloudIcon className="w-8 h-8 text-blue-500" />
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">Security &amp; Standards</h3>
-            <ul className="space-y-2 mb-6 flex-1">
-              {["Authentication (Auth0/Clerk)", "Data encryption", "GDPR compliance", "Security best practices"].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                  <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div className="pt-4 border-t border-slate-100">
-              <div className="flex items-center justify-center gap-6">
-                <GdprIcon className="w-7 h-7 text-indigo-600" />
-                <IsoIcon className="w-7 h-7 text-slate-700" />
-                <SocIcon className="w-7 h-7 text-rose-600" />
-              </div>
-            </div>
-          </div>
+        <div className="flex justify-center">
+          <Image
+            src="/Techstack.png"
+            alt="Technology Stack & Architecture"
+            width={896}
+            height={504}
+            className="w-full max-w-4xl h-auto rounded-xl border border-slate-200 shadow-sm"
+          />
         </div>
       </div>
     </section>
