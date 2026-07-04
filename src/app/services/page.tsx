@@ -226,7 +226,7 @@ export default function ServicesPage() {
               ))}
             </ul>
             <div className="flex items-center justify-center gap-4 border-t border-slate-100 pt-5 mt-auto">
-              {["auth0", "shield", "docker", "vercel"].map((icon) => (
+              {["auth0", "shieldsdotio", "docker", "vercel"].map((icon) => (
                 <div key={icon} className="flex h-14 w-14 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:scale-105 hover:shadow-md">
                   <Image src={`/icons/${icon}.svg`} alt={icon} width={32} height={32} />
                 </div>
