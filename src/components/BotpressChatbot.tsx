@@ -11,7 +11,7 @@ export default function BotpressChatbot() {
 
     const style = document.createElement("style");
     style.textContent = `
-      .bpw-widget-btn { transform: scale(0.75); }
+      .bpw-widget-btn { transform: scale(0.6); }
     `;
     document.head.appendChild(style);
 
