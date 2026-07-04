@@ -210,9 +210,17 @@ export default function CareersPage() {
     <div className="relative">
       {/* ==================== HERO ==================== */}
       <section className="relative overflow-hidden bg-slate-900">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-40 pointer-events-none"
+        >
+          <source src="/aceinte.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-slate-900/70" />
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] pointer-events-none" aria-hidden="true" />
-        <div className="absolute left-1/4 top-[-8rem] h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[120px] pointer-events-none" aria-hidden="true" />
-        <div className="absolute right-[-4rem] bottom-[-4rem] h-64 w-64 rounded-full bg-indigo-500/8 blur-[100px] pointer-events-none" aria-hidden="true" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 lg:pb-32">
           <div className="max-w-3xl">
