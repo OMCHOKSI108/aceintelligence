@@ -63,7 +63,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
+    <div className="relative min-h-screen">
       <Image
         src="/background.png"
         alt=""
@@ -72,6 +72,8 @@ export default function ServicesPage() {
         aria-hidden="true"
       />
       <div className="absolute inset-0 bg-white/70" />
+
+    <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
       <div className="absolute left-1/3 top-[-6rem] h-72 w-72 -translate-x-1/2 rounded-full bg-sky-200/30 blur-3xl pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 mb-16 text-center">
@@ -246,5 +248,6 @@ export default function ServicesPage() {
         </div>
       </div>
     </section>
+    </div>
   );
 }
