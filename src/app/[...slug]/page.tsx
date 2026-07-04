@@ -4,12 +4,13 @@ import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers,
 import { ResearchSandbox } from "@/components/home/ResearchSandbox";
 import { ArchitectureDiagram } from "@/components/home/ArchitectureDiagram";
 import { ImageLightbox } from "@/components/home/ImageLightbox";
+import { FAQAccordion } from "@/components/layout/FAQAccordion";
 
 type Section = {
   title: string;
   content: string;
   code?: string;
-  variant?: "star";
+  variant?: "star" | "faq";
   group?: string;
 };
 
@@ -263,30 +264,38 @@ const contentMap: Record<string, PageContent> = {
     ],
   },
   privacy: {
-    title: "Privacy Policy",
-    intro: "We protect your proprietary client data with enterprise grade privacy practices.",
-    body: "Your data privacy is our foundation. As an AI services agency handling sensitive enterprise information, we maintain strict data governance across every engagement.",
+    title: "Privacy Policy and Data Governance Charter",
+    intro: "Document Code: AIS-PRIVACY-EX-2026-V1 — This Privacy Policy and Data Governance Charter outlines how Ace Intelligence Systems collects, processes, protects, and manages user data across its global systems, including its web interfaces, AI orchestration platforms, and custom client deployments.",
+    body: "Effective Date: July 4, 2026. Your data privacy is our foundation. As an AI services agency handling sensitive enterprise information, we maintain strict data governance across every engagement.",
     sections: [
       {
-        title: "Data Handling & Confidentiality",
-        content: "All client data processed during engagements is treated as strictly confidential. We implement data isolation per client, ensuring proprietary information never cross contaminates across projects. In hybrid deployment mode, your data remains on your infrastructure, we only process what is necessary to execute the workflow.",
+        title: "1. Data Collection Taxonomy",
+        content: "Ace Intelligence Systems categorizes the information it collects into three primary ingestion channels:\n• Voluntarily Provisioned Information: Data submitted directly by users when contacting the agency, requesting proposals, or inquiring about bespoke AI architectures. This includes full names, email addresses, phone numbers, and project descriptions.\n• Automated Telemetry and Hardware Tracking: Information captured automatically by servers to maintain network performance, including IP addresses, browser specifications, display/viewport configurations, and diagnostic logs.\n• Transactional & Agency Engineering Payloads: Specific assets shared during active projects, such as design files, LLM workflow schematics, RAG pipeline parameters, and deployment environment configurations.",
       },
       {
-        title: "Data Collection & Usage",
-        content: "We collect only the minimum data required to deliver our services: project specifications, workflow configurations, and operational metadata. We never train on client data, never share proprietary information, and never use your data for model improvement unless explicitly contracted.",
+        title: "2. Processing and Rationalization Operations",
+        content: "Collected data is used strictly for technical and operational execution, including:\n• Optimizing system layouts and user experiences across different hardware platforms.\n• Managing client deliverables, project milestones, and updates for active AI and software development projects.\n• Protecting system integrity against malicious scraping, unauthorized access, or digital security threats.",
       },
       {
-        title: "Data Security & Encryption",
-        content: "All data is encrypted at rest (AES 256) and in transit (TLS 1.3). We enforce role based access control, audit logging, and approval gates for every data operation. Our infrastructure follows SOC 2 aligned practices with continuous monitoring.",
+        title: "3. Data Protection and AI Treatment",
+        content: "Encryption & Preservation: Ace Intelligence Systems utilizes modern encryption standards for data in transit and at rest. Records are retained only for as long as necessary to fulfill project tasks or maintain support communication.\nAI System Boundaries: AI workflows, enterprise RAG configurations, and proprietary schematics processed by Ace Intelligence Systems are handled within secure runtime containers. The agency explicitly states it does not sell user data to external brokers.\nModel Fine-Tuning: Any training configurations used to enhance platform efficiency rely exclusively on anonymized, grouped telemetry logs where individual profiles cannot be identified or reversed.",
       },
       {
-        title: "Data Retention & Deletion",
-        content: "Client data is retained only for the duration of the engagement plus a 30 day wind down period. Upon project completion, all client data is securely purged from our systems. You may request immediate deletion at any time.",
+        title: "4. Third-Party Routing and Cross-Border Transfers",
+        content: "Ace Intelligence Systems routes platform telemetry through external microservices to maintain global performance, including cloud storage clusters, Content Delivery Networks (CDNs), and secure communication channels. Because the agency operates with global capabilities, user data may be routed or stored across international data center nodes, utilizing security structures to maintain compliance with global benchmarks.",
       },
       {
-        title: "User Rights & Contact",
-        content: "You have full control over your data. Request export, deletion, or policy inquiries at any time.",
-        code: "Email: yashco.ltd@gmail.com",
+        title: "5. User Compliance Mandates and Rights",
+        content: "Users retain full governance rights over their data profiles, including the ability to:\n• Request detailed summaries of personal records stored in active databases.\n• Update inaccurate details or rectify missing information.\n• Initiate complete data removal paths (subject to active contract obligations).\n• Limit tracking by managing cookie preferences and local browser storage rules.",
+      },
+      {
+        title: "6. Official Contact Matrix",
+        content: "For data inquiries, access requests, or compliance questions, users can contact the administrative offices via the following channels:",
+        code: "Division                          | Contact Information\nData Protection Officer (Email)   | yashco.ltd@gmail.com\nTechnical Infrastructure Desk     | +91 93166 75927\nSystem Deployments Line           | +91 97278 35549\nOperational Partnerships Division | +91 90338 50401",
+      },
+      {
+        title: "Updates & Acknowledgment",
+        content: "Continuous use of Ace Intelligence Systems web endpoints after updates to this policy indicates full agreement to the updated framework. The agency recommends tracking structural adjustments to this document regularly.",
       },
     ],
   },
@@ -318,18 +327,71 @@ const contentMap: Record<string, PageContent> = {
     ],
   },
   support: {
-    title: "Support",
-    intro: "Get help with Ace Intelligence products.",
-    body: "Our team can help with onboarding, architecture reviews, and troubleshooting.",
+    title: "Frequently Asked Questions",
+    intro: "Everything you need to know about Ace Intelligence Systems.",
+    body: "Find answers to common questions about our services, process, and security practices.",
     sections: [
       {
-        title: "Documentation",
-        content: "Browse our docs for guides, API references, and integration tutorials.",
-        code: "Visit /docs",
-      },
-      {
         title: "FAQ",
-        content: "What file types are supported? PDF, CSV, JSON, code files, and audio.\nIs there a rate limit? It depends on your plan and workload profile.\nHow do you measure answer quality? We use citations, evaluation sets, and user feedback loops.",
+        variant: "faq",
+        content: JSON.stringify([
+          {
+            category: "Company & Philosophy",
+            questions: [
+              {
+                q: "What distinguishes Ace Intelligence Systems from standard SaaS providers?",
+                a: "Unlike off-the-shelf SaaS products, Ace Intelligence Systems builds bespoke AI architectures. We don't just sell software; we engineer custom solutions tailored to your unique operational logic, ensuring you have full ownership, flexibility, and control over your deployment."
+              },
+              {
+                q: "What is the core mission of Ace Intelligence Systems?",
+                a: "Our mission is to eliminate manual operational bottlenecks by engineering high-performance, purpose-built AI and cloud infrastructure that helps modern startups and enterprises scale efficiently."
+              }
+            ]
+          },
+          {
+            category: "Services & Expertise",
+            questions: [
+              {
+                q: "What specific types of AI and automation solutions do you offer?",
+                a: "We specialize in:\n• Intelligent Workflow Automation: Automated email triage, document parsing, and zero-touch lead routing.\n• Generative AI & Agents: Enterprise-grade RAG (Retrieval-Augmented Generation), multi-agent orchestration, and custom support bots.\n• Cloud Infrastructure: Scalable backend APIs, predictive AI modeling, and custom enterprise dashboards."
+              },
+              {
+                q: "Can you integrate your solutions with our existing legacy systems?",
+                a: "Yes. Our REST API-first approach is designed for seamless integration. We specialize in connecting our AI workflows to your existing tech stack, databases, and CRM platforms to enhance, rather than replace, your current infrastructure."
+              }
+            ]
+          },
+          {
+            category: "Security & Data Governance",
+            questions: [
+              {
+                q: "How do you handle sensitive enterprise data?",
+                a: "Data privacy is foundational to our architecture. We utilize modern encryption standards for data in transit and at rest. AI workflows are deployed within secure, isolated runtime containers. We do not sell user data to external brokers, and our models are trained exclusively on anonymized telemetry logs."
+              },
+              {
+                q: "Do you offer on-premise or hybrid deployment options?",
+                a: "Yes. We offer hybrid deployment models where your data remains within your private network or infrastructure, ensuring maximum privacy and compliance with your internal security policies."
+              }
+            ]
+          },
+          {
+            category: "Engagement & Process",
+            questions: [
+              {
+                q: "What is your project development methodology?",
+                a: "We follow a rigorous, six-stage Enterprise AI Delivery framework:\n1. Strategic Discovery: Aligning AI goals with business objectives.\n2. Architecture Design: Creating scalable, failure-resistant systems.\n3. Enterprise Agreement: Establishing clear SLAs and compliance protocols.\n4. Agile Development: Bi-weekly sprints with continuous integration and stakeholder demos.\n5. Production Deployment: Zero-downtime rollouts with comprehensive monitoring.\n6. Knowledge Transfer: Full documentation, runbooks, and team training."
+              },
+              {
+                q: "Do we own the intellectual property of the systems you build?",
+                a: "Yes. Every solution we deploy is built for your operations. We provide the architecture, documentation, and training so that you maintain full ownership and operational control."
+              },
+              {
+                q: "How do we get started with Ace Intelligence Systems?",
+                a: "You can initiate a project by clicking the Start a Project button in our navigation bar to schedule a consultation with our technical team, or contact us directly via our Contact page."
+              }
+            ]
+          }
+        ]),
       },
     ],
   },
@@ -591,7 +653,7 @@ const contentMap: Record<string, PageContent> = {
     title: "Autonomous Algo Trading Bot",
     intro: "Production-ready automated trading platform combining ensemble strategies, LSTM prediction, and reinforcement learning — validated on 10,000 candles with $77K+ portfolio profit.",
     body: "TradeLikeWhale is an enterprise-grade trading system that orchestrates multiple signal sources — technical indicators, neural networks, and a reinforcement learning agent — into a unified trading engine. The platform features a React dashboard for real-time monitoring, a FastAPI backend for strategy management, PostgreSQL for trade persistence, and direct MetaTrader 5 integration for live execution.",
-    images: ["/Tradinview_strategy.png"],
+    images: ["/Tradinview_strategy.png", "/trading.jpeg"],
     sections: [
       {
         title: "Quick Start",
@@ -1006,6 +1068,20 @@ export default async function DynamicPage({
           </div>
         </div>
       );
+    }
+
+    if (section.variant === "faq") {
+      try {
+        const categories = JSON.parse(section.content) as { category: string; questions: { q: string; a: string }[] }[];
+        return (
+          <div key={idx} className="rounded-xl border border-slate-200 bg-white shadow-sm p-6">
+            <h3 className="text-lg font-semibold text-slate-900 mb-6">{section.title}</h3>
+            <FAQAccordion categories={categories} />
+          </div>
+        );
+      } catch {
+        return null;
+      }
     }
 
     const sectionIcons: Record<string, React.ReactNode> = {

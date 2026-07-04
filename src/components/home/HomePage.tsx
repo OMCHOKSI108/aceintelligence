@@ -2,6 +2,7 @@ import { Hero } from "./Hero";
 import { ServicesSection } from "./ServicesSection";
 import { ProjectsSection } from "./ProjectsSection";
 import { FounderSection } from "./FounderSection";
+import { FAQAccordion } from "@/components/layout/FAQAccordion";
 import { theme } from "@/lib/theme";
 
 export function HomePage() {
@@ -15,6 +16,78 @@ export function HomePage() {
         <ServicesSection />
         <ProjectsSection />
         <FounderSection />
+
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto relative">
+          <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
+          <div className="relative z-10">
+            <div className="text-center mb-10">
+              <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">FAQ</p>
+              <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2">
+                Frequently Asked Questions
+              </h2>
+            </div>
+            <FAQAccordion
+              categories={[
+                {
+                  category: "Company & Philosophy",
+                  questions: [
+                    {
+                      q: "What distinguishes Ace Intelligence Systems from standard SaaS providers?",
+                      a: "Unlike off-the-shelf SaaS products, Ace Intelligence Systems builds bespoke AI architectures. We engineer custom solutions tailored to your unique operational logic, ensuring you have full ownership, flexibility, and control over your deployment."
+                    },
+                    {
+                      q: "What is the core mission of Ace Intelligence Systems?",
+                      a: "Our mission is to eliminate manual operational bottlenecks by engineering high-performance, purpose-built AI and cloud infrastructure that helps modern startups and enterprises scale efficiently."
+                    }
+                  ]
+                },
+                {
+                  category: "Services & Expertise",
+                  questions: [
+                    {
+                      q: "What specific types of AI and automation solutions do you offer?",
+                      a: "We specialize in Intelligent Workflow Automation (email triage, document parsing, lead routing), Generative AI & Agents (enterprise RAG, multi-agent orchestration, custom support bots), and Cloud Infrastructure (scalable APIs, predictive AI, custom dashboards)."
+                    },
+                    {
+                      q: "Can you integrate your solutions with our existing legacy systems?",
+                      a: "Yes. Our REST API-first approach is designed for seamless integration with your existing tech stack, databases, and CRM platforms to enhance, rather than replace, your current infrastructure."
+                    }
+                  ]
+                },
+                {
+                  category: "Security & Data Governance",
+                  questions: [
+                    {
+                      q: "How do you handle sensitive enterprise data?",
+                      a: "Data privacy is foundational to our architecture. We utilize modern encryption standards for data in transit and at rest. AI workflows are deployed within secure, isolated runtime containers. We do not sell user data to external brokers."
+                    },
+                    {
+                      q: "Do you offer on-premise or hybrid deployment options?",
+                      a: "Yes. We offer hybrid deployment models where your data remains within your private network or infrastructure, ensuring maximum privacy and compliance with your internal security policies."
+                    }
+                  ]
+                },
+                {
+                  category: "Engagement & Process",
+                  questions: [
+                    {
+                      q: "What is your project development methodology?",
+                      a: "We follow a rigorous six-stage Enterprise AI Delivery framework: Strategic Discovery, Architecture Design, Enterprise Agreement, Agile Development, Production Deployment, and Knowledge Transfer."
+                    },
+                    {
+                      q: "Do we own the intellectual property of the systems you build?",
+                      a: "Yes. Every solution we deploy is built for your operations. We provide the architecture, documentation, and training so that you maintain full ownership and operational control."
+                    },
+                    {
+                      q: "How do we get started with Ace Intelligence Systems?",
+                      a: "Click the Start a Project button in our navigation bar to schedule a consultation, or contact us directly via our Contact page."
+                    }
+                  ]
+                }
+              ]}
+            />
+          </div>
+        </section>
 
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative">
           <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />

@@ -236,7 +236,19 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-sm font-medium text-slate-900 mb-0.5">Email</p>
-                <p className="text-sm text-slate-500">omchoksi.pro@gmail.com</p>
+                <div className="space-y-0.5">
+                  <a href="mailto:omchoksi.pro@gmail.com" className="text-sm text-slate-500 hover:text-blue-600 transition-colors">
+                    omchoksi.pro@gmail.com
+                  </a>
+                  <br />
+                  <a href="mailto:401anshgajera@gmail.com" className="text-sm text-slate-500 hover:text-blue-600 transition-colors">
+                    401anshgajera@gmail.com
+                  </a>
+                  <br />
+                  <a href="mailto:yashco.ltd@gmail.com" className="text-sm text-slate-500 hover:text-blue-600 transition-colors">
+                    yashco.ltd@gmail.com
+                  </a>
+                </div>
               </div>
             </div>
             <div className="flex items-start gap-4">
