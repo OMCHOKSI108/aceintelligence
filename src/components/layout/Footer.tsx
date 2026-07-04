@@ -2,20 +2,23 @@ import Link from "next/link";
 import { MessageSquare, Mail } from "lucide-react";
 import { theme } from "@/lib/theme";
 
+const companyLinks = [
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/portfolio" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
+];
+
 const platformLinks = [
   { label: "Multi-Agent Research", href: "/projects/multi-agent-research" },
   { label: "Multi-Modal RAG Agent", href: "/projects/multi-modal-rag" },
   { label: "ChatPDF", href: "/portfolio" },
-];
-
-const resourceLinks = [
-  { label: "Services", href: "/services" },
   { label: "Case Studies", href: "/quick-wins/smart-inbox" },
   { label: "Pricing", href: "/pricing" },
 ];
 
 const legalLinks = [
-  { label: "Careers", href: "/careers" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Engagement", href: "/terms" },
   { label: "Security & AI Safety", href: "/security" },
@@ -74,9 +77,26 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Column 2: Platform */}
+            {/* Column 2: Company */}
             <div>
-              <h4 className="text-white text-sm font-semibold tracking-wide mb-4">Platform</h4>
+              <h4 className="text-white text-sm font-semibold tracking-wide mb-4">Company</h4>
+              <ul className="space-y-3">
+                {companyLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm hover:text-white transition-colors duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 3: Platform & Resources */}
+            <div>
+              <h4 className="text-white text-sm font-semibold tracking-wide mb-4">Platform &amp; Resources</h4>
               <ul className="space-y-3">
                 {platformLinks.map((link) => (
                   <li key={link.label}>
@@ -91,26 +111,9 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Column 3: Resources */}
+            {/* Column 4: Legal */}
             <div>
-              <h4 className="text-white text-sm font-semibold tracking-wide mb-4">Resources</h4>
-              <ul className="space-y-3">
-                {resourceLinks.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm hover:text-white transition-colors duration-200"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 4: Company & Legal */}
-            <div>
-              <h4 className="text-white text-sm font-semibold tracking-wide mb-4">Company &amp; Legal</h4>
+              <h4 className="text-white text-sm font-semibold tracking-wide mb-4">Legal</h4>
               <ul className="space-y-3">
                 {legalLinks.map((link) => (
                   <li key={link.label}>
