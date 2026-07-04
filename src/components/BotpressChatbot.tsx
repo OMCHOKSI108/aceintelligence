@@ -1,17 +1,33 @@
 "use client";
 
-import Script from "next/script";
+import { useEffect } from "react";
 
 export default function BotpressChatbot() {
   const injectUrl = process.env.NEXT_PUBLIC_BOTPRESS_INJECT_URL;
   const configUrl = process.env.NEXT_PUBLIC_BOTPRESS_CONFIG_URL;
 
-  if (!injectUrl || !configUrl) return null;
+  useEffect(() => {
+    if (!injectUrl || !configUrl) return;
 
-  return (
-    <>
-      <Script src={injectUrl} strategy="afterInteractive" />
-      <Script src={configUrl} strategy="afterInteractive" />
-    </>
-  );
+    const inject = document.createElement("script");
+    inject.src = injectUrl;
+    inject.async = true;
+
+    const config = document.createElement("script");
+    config.src = configUrl;
+    config.async = true;
+
+    inject.onload = () => {
+      document.body.appendChild(config);
+    };
+
+    document.body.appendChild(inject);
+
+    return () => {
+      if (inject.parentNode) inject.parentNode.removeChild(inject);
+      if (config.parentNode) config.parentNode.removeChild(config);
+    };
+  }, [injectUrl, configUrl]);
+
+  return null;
 }

@@ -82,3 +82,10 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Botpress ADK project (bot logic deployed via Botpress Cloud)
+aceintelligence/
+aceintelligence/.agent0/
+aceintelligence/.agents/
+aceintelligence/.claude/
+aceintelligence/.opencode/

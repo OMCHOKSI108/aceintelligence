@@ -299,8 +299,8 @@ export default function ContactPage() {
               <tbody className="divide-y divide-slate-100">
                 {[
                   { name: "Om Choksi", role: "CTO & Chief Architect", email: "omchoksi.pro@gmail.com", phone: "+91 93166 75927" },
-                  { name: "Ansh Gajera", role: "CEO", email: "401anshgajera@gmail.com", phone: "+91 97278 35549" },
-                  { name: "Yash Khare", role: "Founder", email: "yashco.ltd@gmail.com", phone: "+91 90338 50401" },
+                  { name: "Ansh Gajera", role: "CEO", email: "401anshgajera@gmail.com", phone: "+91 90338 50401" },
+                  { name: "Yash Khare", role: "Founder", email: "yashco.ltd@gmail.com", phone: "+91 97278 35549" },
                 ].map((person, i) => (
                   <tr key={person.name} className={`${i % 2 === 0 ? "bg-white" : "bg-slate-50/70"} hover:bg-blue-50/50 transition-colors`}>
                     <td className="px-5 py-3.5 font-medium text-slate-900">{person.name}</td>
