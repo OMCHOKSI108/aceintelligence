@@ -15,6 +15,7 @@ const resourceLinks = [
 ];
 
 const legalLinks = [
+  { label: "Careers", href: "/careers" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Engagement", href: "/terms" },
   { label: "Security & AI Safety", href: "/security" },
