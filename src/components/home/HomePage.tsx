@@ -15,6 +15,115 @@ export function HomePage() {
         <Hero />
         <ServicesSection />
         <ProjectsSection />
+
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto relative">
+          <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
+          <div className="absolute right-[-2rem] top-[8rem] h-56 w-56 rounded-full bg-sky-100/40 blur-3xl pointer-events-none" aria-hidden="true" />
+          <div className="relative z-10">
+            <div className="text-center mb-12">
+              <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">
+                &lt; /&gt; Stack &amp; Structure
+              </p>
+              <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-3 mb-3">
+                Technology Stack &amp; Architecture
+              </h2>
+              <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+                A detailed snapshot of how your system is built, structured, and scaled.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* Frontend */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">Frontend Technologies</h3>
+                <ul className="space-y-2 mb-6 flex-1">
+                  {["Next.js 15 with React 19", "Tailwind CSS for styling", "TypeScript for type safety", "Responsive design patterns"].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                      <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-center gap-6">
+                    <span className="text-slate-400 font-bold text-sm tracking-tight">NEXT</span>
+                    <span className="text-sky-600 font-semibold text-sm">Tailwind</span>
+                    <span className="text-blue-600 font-semibold text-sm">TS</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Backend */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">Backend &amp; Database</h3>
+                <ul className="space-y-2 mb-6 flex-1">
+                  {["Node.js with Express/Fastify", "PostgreSQL or MongoDB", "Prisma ORM", "RESTful APIs with OpenAPI docs"].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                      <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-center gap-6">
+                    <span className="text-green-600 font-semibold text-sm">Node.js</span>
+                    <span className="text-blue-700 font-semibold text-sm">PostgreSQL</span>
+                    <span className="text-slate-700 font-semibold text-sm">Prisma</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Infrastructure */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">Infrastructure &amp; DevOps</h3>
+                <ul className="space-y-2 mb-6 flex-1">
+                  {["Vercel/AWS/Google Cloud deployment", "CI/CD pipelines", "Environment management", "Monitoring and analytics"].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                      <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-center gap-6">
+                    <span className="text-orange-500 font-bold text-sm">AWS</span>
+                    <span className="text-slate-800 font-semibold text-sm">Vercel</span>
+                    <span className="text-blue-500 font-semibold text-sm">GCP</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Security */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">Security &amp; Standards</h3>
+                <ul className="space-y-2 mb-6 flex-1">
+                  {["Authentication (Auth0/Clerk)", "Data encryption", "GDPR compliance", "Security best practices"].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
+                      <svg className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-4 border-t border-slate-100">
+                  <div className="flex items-center justify-center gap-6">
+                    <span className="text-indigo-600 font-bold text-sm">GDPR</span>
+                    <span className="text-slate-700 font-bold text-sm">ISO</span>
+                    <span className="text-rose-600 font-bold text-sm">SOC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <FounderSection />
 
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto relative">
