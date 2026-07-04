@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Cpu, BrainCircuit, Cloud, Zap, Shield, Layers, FileText, Building2, BarChart3, MessageSquare, Database } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Ace Intelligence Systems is an AI, automation, and intelligent software services agency. We build bespoke AI architectures and scalable cloud infrastructure.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Ace Intelligence Systems | AI & Automation Agency",
+    description:
+      "We build bespoke AI architectures and scalable cloud infrastructure — custom software solutions, not off-the-shelf SaaS.",
+  },
+};
 
 const capabilities = [
   {
@@ -90,7 +104,7 @@ export default function AboutPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-sky-50 to-transparent rounded-3xl rotate-6" />
               <div className="absolute inset-4 bg-gradient-to-tr from-slate-900 to-slate-700 rounded-2xl flex items-center justify-center">
                 <div className="text-center p-8">
-                  <img src="/logo.png" alt="Ace Intelligence" className="w-16 h-16 mx-auto mb-4 brightness-0 invert" />
+                  <Image src="/logo.png" alt="Ace Intelligence" width={64} height={64} className="mx-auto mb-4 brightness-0 invert" />
                   <p className="text-white text-sm font-mono opacity-80">Ace Intelligence</p>
                   <p className="text-white text-sm font-mono opacity-60">Systems</p>
                   <div className="mt-4 flex gap-2 justify-center">
@@ -183,9 +197,11 @@ export default function AboutPage() {
                 className="group rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-8 shadow-sm hover:shadow-lg transition-all duration-300 text-center"
               >
                 <div className="w-24 h-24 rounded-full mx-auto mb-5 overflow-hidden border-2 border-slate-200 group-hover:border-blue-200 transition-colors">
-                  <img
+                  <Image
                     src={`https://avatars.githubusercontent.com/${founder.username}?size=160`}
                     alt={founder.name}
+                    width={96}
+                    height={96}
                     className="w-full h-full object-cover"
                   />
                 </div>

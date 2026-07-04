@@ -1,5 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Careers at Ace Intelligence",
+  description:
+    "Join Ace Intelligence Systems. We're building enterprise-grade AI and automation solutions. Open positions in engineering, AI, and more.",
+  alternates: { canonical: "/careers" },
+  openGraph: {
+    title: "Careers at Ace Intelligence | Join Our Team",
+    description:
+      "Build the future of enterprise AI at Ace Intelligence Systems.",
+  },
+};
 import {
   ArrowRight,
   Cpu,
@@ -26,12 +38,6 @@ import {
   Bot,
   Sparkles,
 } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Careers at Ace Intelligence",
-  description:
-    "Explore future career opportunities, internships, and talent network at Ace Intelligence.",
-};
 
 const CAREERS_FORM_URL = process.env.NEXT_PUBLIC_CAREERS_FORM_URL || "";
 

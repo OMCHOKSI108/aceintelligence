@@ -1,5 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Portfolio",
+  description:
+    "Production-grade AI systems and automation platforms built by Ace Intelligence. Explore our projects: Algo Trading Bot, PralayAI, Multi Agent Research System, and more.",
+  alternates: { canonical: "/portfolio" },
+  openGraph: {
+    title: "Portfolio | Ace Intelligence Systems",
+    description:
+      "Production-grade AI systems and automation platforms built by our team.",
+  },
+};
 import {
   Shield,
   MessageSquare,

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, Code, Zap, Shield, BookOpen, FileText, Layers, Calendar, Activity, CircleHelp, ListChecks, ArrowRightCircle, Target, BarChart3, Clock, Inbox, Star, Cloud, Gem, Rocket, Server, Lock, Lightbulb, Gauge } from "lucide-react";
@@ -825,6 +826,28 @@ function formatTitleFromSlug(slug: string[]): string {
     .map((part) => part.replace(/-/g, " "))
     .join(" / ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const key = slug.join("/");
+  const content = contentMap[key];
+  const title = content?.title ?? formatTitleFromSlug(slug);
+  const description = content?.intro ?? "Ace Intelligence Systems page.";
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/${key}` },
+    openGraph: {
+      title: `${title} | Ace Intelligence Systems`,
+      description,
+    },
+  };
 }
 
 export default async function DynamicPage({

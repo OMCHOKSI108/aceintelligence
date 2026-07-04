@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Ace Intelligence",
+  title: "Smart Inbox Router | Quick Win Automation",
   description:
-    "Case studies and technical deep-dives from Ace Intelligence.",
+    "An n8n + LLM pipeline that monitors incoming emails, classifies intent, and routes data to the right system. Deployed in 48 hours.",
+  openGraph: {
+    title: "Smart Inbox Router | Ace Intelligence Quick Wins",
+    description:
+      "Automated email triage pipeline using n8n and LLM APIs — deployed in 48 hours, saving 10-20 hours per week.",
+  },
 };
 
 const articles = [
@@ -47,13 +53,13 @@ export default function SmartInboxPage() {
         </Link>
 
         <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase mb-3">
-          Case Studies
+          Quick Wins
         </p>
         <h1 className="headline-primary text-4xl sm:text-5xl text-slate-900">
-          Technical Deep-Dives
+          Smart Inbox Router
         </h1>
         <p className="text-slate-600 text-lg mt-3 max-w-2xl">
-          In-depth articles on AI systems, automation, and engineering research from our team.
+          Technical articles and deep-dives related to our Smart Inbox Router automation and email triage systems.
         </p>
       </div>
 
@@ -67,10 +73,12 @@ export default function SmartInboxPage() {
             className="group rounded-2xl border border-slate-200 bg-white/90 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden"
           >
             <div className="relative aspect-[16/9] bg-slate-100 overflow-hidden">
-              <img
+              <Image
                 src={article.image}
                 alt={article.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="p-6 flex flex-col flex-1">

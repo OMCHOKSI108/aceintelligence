@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
@@ -6,6 +7,12 @@ export const metadata: Metadata = {
   title: "Case Studies | Ace Intelligence",
   description:
     "Case studies and technical deep-dives from Ace Intelligence.",
+  alternates: { canonical: "/case-studies" },
+  openGraph: {
+    title: "Case Studies | Ace Intelligence",
+    description:
+      "Technical deep-dives and case studies from Ace Intelligence.",
+  },
 };
 
 const articles = [
@@ -67,10 +74,12 @@ export default function CaseStudiesPage() {
             className="group rounded-2xl border border-slate-200 bg-white/90 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col overflow-hidden"
           >
             <div className="relative aspect-[16/9] bg-slate-100 overflow-hidden">
-              <img
+              <Image
                 src={article.image}
                 alt={article.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="p-6 flex flex-col flex-1">

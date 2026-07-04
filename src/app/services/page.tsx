@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
   Cpu,
   Globe,
@@ -9,6 +10,18 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "AI Automation Integration, Website Development, CRM System Build, LLM Fine-Tuning, and End-to-End Product Building. Purpose-built solutions for your operations.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services | Ace Intelligence Systems",
+    description:
+      "Expert AI engineering for modern businesses — automation, agents, infrastructure, and custom product development.",
+  },
+};
 
 const services = [
   {

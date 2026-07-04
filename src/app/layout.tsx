@@ -5,12 +5,14 @@ import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 import BotpressChatbot from "@/components/BotpressChatbot";
 
+const siteUrl = "https://aceintelligence.systems";
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://aceintelligence.systems/#organization",
+  "@id": `${siteUrl}/#organization`,
   name: "Ace Intelligence Systems",
-  url: "https://aceintelligence.systems",
+  url: siteUrl,
   description:
     "Custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for startups and enterprises.",
   foundingDate: "2025",
@@ -46,7 +48,25 @@ const organizationSchema = {
     },
   ],
   funder: { "@type": "Person", name: "Ansh Gajera" },
-  sameAs: [],
+  sameAs: [
+    "https://github.com/OMCHOKSI108",
+    "https://github.com/anshgajera",
+    "https://github.com/firefistisdead",
+  ],
+  logo: `${siteUrl}/logo.png`,
+  image: `${siteUrl}/og-image.png`,
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: "Ace Intelligence Systems",
+  description:
+    "Custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for startups and enterprises.",
+  publisher: { "@id": `${siteUrl}/#organization` },
+  inLanguage: "en-US",
 };
 
 const inter = Inter({
@@ -72,9 +92,66 @@ const cormorantGaramond = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Ace Intelligence Systems | AI & Automation Agency",
+  title: {
+    default: "Ace Intelligence Systems | AI & Automation Agency",
+    template: "%s | Ace Intelligence Systems",
+  },
   description:
     "aceintelligence (Ace Intelligence Systems) delivers custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for modern startups.",
+  keywords: [
+    "AI automation agency",
+    "enterprise RAG",
+    "multi-agent systems",
+    "workflow automation",
+    "custom AI development",
+    "LLM fine-tuning",
+    "enterprise AI",
+    "Ace Intelligence",
+    "chatbot development",
+    "AI consulting",
+  ],
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Ace Intelligence Systems | AI & Automation Agency",
+    description:
+      "Custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for startups and enterprises.",
+    url: siteUrl,
+    siteName: "Ace Intelligence Systems",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ace Intelligence Systems - AI & Automation Agency",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ace Intelligence Systems | AI & Automation Agency",
+    description:
+      "Custom AI automation, enterprise RAG architectures, and scalable cloud infrastructure for modern startups.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "B5PHKm7RdJ9GC8HLsHRzAEpntaJV1e73Au6QqIx1Zqg",
+  },
 };
 
 export default function RootLayout({
@@ -138,7 +215,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           id="organization-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          strategy="beforeInteractive"
         />
         {process.env.NODE_ENV === "development" && (
           <Script
