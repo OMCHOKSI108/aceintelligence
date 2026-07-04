@@ -3,6 +3,7 @@ import { Inter, Geist_Mono, Playfair_Display, Cormorant_Garamond } from "next/fo
 import Script from "next/script";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
+import BotpressChatbot from "@/components/BotpressChatbot";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -257,6 +258,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <BotpressChatbot />
       </body>
     </html>
   );
