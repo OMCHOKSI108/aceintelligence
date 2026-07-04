@@ -114,6 +114,7 @@ export function HomePage() {
                   <div>
                   <p className="font-semibold text-slate-900 text-sm">Vizatrade</p>
                   <p className="text-xs text-slate-500">Custom Website &amp; Solution</p>
+                  <p className="text-xs text-slate-400">Gujarat, India</p>
                   </div>
                 </div>
                 <blockquote className="text-sm text-slate-600 leading-relaxed flex-1">
