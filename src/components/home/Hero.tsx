@@ -2,87 +2,224 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
+/* ─── Keyframes ─────────────────────────────────────────────────── */
+function injectStyles() {
+  if (typeof document === "undefined") return;
+  if (document.getElementById("hero-mesh-style")) return;
+  const s = document.createElement("style");
+  s.id = "hero-mesh-style";
+  s.textContent = `
+    @keyframes mesh-shift {
+      0%   { transform: translate(0,0) scale(1); }
+      50%  { transform: translate(6px,-4px) scale(1.01); }
+      100% { transform: translate(-4px,3px) scale(0.99); }
+    }
+    @keyframes glow-oscillate {
+      0%   { opacity: 0.5; }
+      50%  { opacity: 0.8; }
+      100% { opacity: 0.5; }
+    }
+    .mesh-anim { animation: mesh-shift 30s ease-in-out infinite alternate; }
+    .glow-anim { animation: glow-oscillate 12s ease-in-out infinite alternate; }
+  `;
+  document.head.appendChild(s);
+}
+
+/* ─── Hero ──────────────────────────────────────────────────────── */
 export function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [isTouch, setIsTouch] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    injectStyles();
     setIsTouch(window.matchMedia("(pointer: coarse)").matches);
   }, []);
 
   useEffect(() => {
     if (isTouch) return;
-    const el = heroRef.current;
+    const el = sectionRef.current;
     if (!el) return;
-
-    const handleMouse = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      setMousePos({ x, y });
+    const handler = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      setMousePos({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height });
     };
-
-    el.addEventListener("mousemove", handleMouse);
-    return () => el.removeEventListener("mousemove", handleMouse);
+    el.addEventListener("mousemove", handler);
+    return () => el.removeEventListener("mousemove", handler);
   }, [isTouch]);
+
+  const px = (mousePos.x - 0.5) * -12;
+  const py = (mousePos.y - 0.5) * -8;
 
   return (
     <section
-      ref={heroRef}
-      className="relative min-h-[90vh] flex items-center justify-center pt-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center pt-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white"
     >
-      {/* Layer: left gradient pillar */}
+      {/* ─── Full-screen SVG ─── */}
+      <svg
+        className="pointer-events-none absolute z-0"
+        aria-hidden="true"
+        viewBox="0 0 1200 800"
+        preserveAspectRatio="xMidYMid slice"
+        style={{
+          width: "180vw",
+          height: "120vh",
+          left: "-40vw",
+          top: "-10vh",
+          transform: `translate(${px}px,${py}px)`,
+          transition: "transform 0.7s ease-out",
+        }}
+      >
+        <defs>
+          {/* ─── Filters ─── */}
+          <filter id="mesh-blur-wide">
+            <feGaussianBlur stdDeviation="48" />
+          </filter>
+          <filter id="mesh-blur-mid">
+            <feGaussianBlur stdDeviation="28" />
+          </filter>
+          <filter id="mesh-noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="2" result="n" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="20" xChannelSelector="R" yChannelSelector="G" result="d" />
+            <feGaussianBlur in="d" stdDeviation="14" />
+          </filter>
+
+          {/* ─── Mesh gradient layers ───
+               Multiple overlapping gradient shapes with heavy blur
+               create a smooth mesh with no hard stops or visible
+               blob edges.                                 */}
+          {/* Large diagonal sweep — purple → pink → coral → orange → gold */}
+          <linearGradient id="g-sweep-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.6} />
+            <stop offset="20%" stopColor="#D100FF" stopOpacity={0.5} />
+            <stop offset="40%" stopColor="#FF4FCB" stopOpacity={0.45} />
+            <stop offset="55%" stopColor="#FF7A59" stopOpacity={0.4} />
+            <stop offset="75%" stopColor="#FF9D00" stopOpacity={0.35} />
+            <stop offset="100%" stopColor="#FFD54A" stopOpacity={0.3} />
+          </linearGradient>
+
+          {/* Cross sweep — lavender → magenta → gold → coral */}
+          <linearGradient id="g-sweep-2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#B8A8FF" stopOpacity={0.45} />
+            <stop offset="25%" stopColor="#D100FF" stopOpacity={0.35} />
+            <stop offset="50%" stopColor="#FF4FCB" stopOpacity={0.3} />
+            <stop offset="75%" stopColor="#FFD54A" stopOpacity={0.25} />
+            <stop offset="100%" stopColor="#FF7A59" stopOpacity={0.2} />
+          </linearGradient>
+
+          {/* Vertical blend — purple top → gold center → coral bottom */}
+          <linearGradient id="g-sweep-3" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.35} />
+            <stop offset="30%" stopColor="#D100FF" stopOpacity={0.25} />
+            <stop offset="55%" stopColor="#FFD54A" stopOpacity={0.2} />
+            <stop offset="80%" stopColor="#FF9D00" stopOpacity={0.15} />
+            <stop offset="100%" stopColor="#FF7A59" stopOpacity={0.12} />
+          </linearGradient>
+
+          {/* ─── Golden glow — top-center hotspot ─── */}
+          <radialGradient id="g-gold-center" cx="50%" cy="30%" r="40%">
+            <stop offset="0%" stopColor="#FFD54A" stopOpacity={0.55} />
+            <stop offset="25%" stopColor="#FFD54A" stopOpacity={0.35} />
+            <stop offset="50%" stopColor="#FF9D00" stopOpacity={0.18} />
+            <stop offset="75%" stopColor="#FF7A59" stopOpacity={0.08} />
+            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
+          </radialGradient>
+
+          {/* ─── Purple concentration — top-left corner ─── */}
+          <radialGradient id="g-purple-tl" cx="10%" cy="10%" r="45%">
+            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.55} />
+            <stop offset="35%" stopColor="#D100FF" stopOpacity={0.3} />
+            <stop offset="60%" stopColor="#B8A8FF" stopOpacity={0.12} />
+            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
+          </radialGradient>
+
+          {/* ─── Purple concentration — top-right corner ─── */}
+          <radialGradient id="g-purple-tr" cx="90%" cy="5%" r="40%">
+            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.45} />
+            <stop offset="35%" stopColor="#D100FF" stopOpacity={0.25} />
+            <stop offset="60%" stopColor="#B8A8FF" stopOpacity={0.1} />
+            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
+          </radialGradient>
+
+          {/* ─── Orange-coral wash — lower-right ─── */}
+          <radialGradient id="g-coral-br" cx="85%" cy="75%" r="40%">
+            <stop offset="0%" stopColor="#FF9D00" stopOpacity={0.35} />
+            <stop offset="35%" stopColor="#FF7A59" stopOpacity={0.25} />
+            <stop offset="60%" stopColor="#FF4FCB" stopOpacity={0.12} />
+            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
+          </radialGradient>
+
+          {/* ─── Lavender bridge — mid-left ─── */}
+          <radialGradient id="g-lavender" cx="25%" cy="45%" r="35%">
+            <stop offset="0%" stopColor="#B8A8FF" stopOpacity={0.3} />
+            <stop offset="40%" stopColor="#D100FF" stopOpacity={0.15} />
+            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
+          </radialGradient>
+
+          {/* ─── Diagonal clip mask (~14° angle) ───
+               On the left edge the diagonal sits at y=520 (65%).
+               On the right edge it sits at y=200 (25%).
+               Everything above the diagonal is visible mesh. */}
+          <clipPath id="diagonal-mask">
+            <polygon points="0,0 1200,0 1200,200 0,520" />
+          </clipPath>
+        </defs>
+
+        {/* ─── Mesh layer (clipped by diagonal) ─── */}
+        <g className="mesh-anim" clipPath="url(#diagonal-mask)">
+          {/* Sweep 1 — main diagonal color transition */}
+          <polygon points="-400,-200 1600,-200 1600,900 -400,900" fill="url(#g-sweep-1)" filter="url(#mesh-noise)" />
+
+          {/* Sweep 2 — cross-direction blend for mesh depth */}
+          <polygon points="-400,-200 1600,-200 1600,900 -400,900" fill="url(#g-sweep-2)" filter="url(#mesh-blur-mid)" opacity={0.6} style={{ mixBlendMode: "screen" }} />
+
+          {/* Sweep 3 — vertical transition (purple top → warm bottom) */}
+          <polygon points="-400,0 1600,-100 1600,700 -400,700" fill="url(#g-sweep-3)" filter="url(#mesh-blur-wide)" opacity={0.5} style={{ mixBlendMode: "screen" }} />
+
+          {/* Golden top-center glow */}
+          <circle cx="600" cy="240" r="500" fill="url(#g-gold-center)" filter="url(#mesh-blur-wide)" className="glow-anim" style={{ mixBlendMode: "screen" }} />
+
+          {/* Purple corner washes */}
+          <circle cx="120" cy="80" r="500" fill="url(#g-purple-tl)" filter="url(#mesh-blur-wide)" />
+          <circle cx="1080" cy="40" r="450" fill="url(#g-purple-tr)" filter="url(#mesh-blur-wide)" />
+
+          {/* Coral-orange lower-right wash */}
+          <circle cx="1020" cy="600" r="400" fill="url(#g-coral-br)" filter="url(#mesh-blur-wide)" style={{ mixBlendMode: "screen" }} />
+
+          {/* Lavender bridge mid-left */}
+          <circle cx="300" cy="360" r="350" fill="url(#g-lavender)" filter="url(#mesh-blur-mid)" style={{ mixBlendMode: "screen" }} />
+        </g>
+
+        {/* ── Subtle internal streaks ── */}
+        <g clipPath="url(#diagonal-mask)" opacity={0.06} style={{ mixBlendMode: "screen" }}>
+          {Array.from({ length: 20 }, (_, i) => {
+            const y = -100 + i * 45;
+            return (
+              <path
+                key={i}
+                d={`M-200,${y} Q500,${y - 30 + (i - 10) * 5} 1400,${y - 20}`}
+                fill="none"
+                stroke="white"
+                strokeWidth={1 + (i % 3)}
+                opacity={0.2 + (i % 5) * 0.04}
+              />
+            );
+          })}
+        </g>
+      </svg>
+
+      {/* ── Bottom fade overlay ── */}
       <div
-        className="pointer-events-none absolute left-0 top-16 h-[75vh] w-[28vw] rounded-full bg-gradient-to-r from-cyan-300/45 via-sky-400/35 to-blue-600/20 blur-[100px] z-0"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white z-[3]"
         aria-hidden="true"
       />
 
-      {/* Layer: right gradient pillar */}
-      <div
-        className="pointer-events-none absolute right-0 top-8 h-[75vh] w-[30vw] rounded-full bg-gradient-to-l from-blue-500/25 via-cyan-300/30 to-sky-400/20 blur-[110px] z-0"
-        aria-hidden="true"
-      />
-
-      {/* Layer: ambient center glow */}
-      <div
-        className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-b from-blue-300/15 via-cyan-200/12 to-transparent blur-[120px] z-0"
-        aria-hidden="true"
-      />
-
-      {/* Layer: mouse-following fluid glow (primary) */}
-      {!isTouch && (
-        <div
-          className="pointer-events-none absolute inset-0 z-[1] transition-[background] duration-[400ms] ease-out"
-          aria-hidden="true"
-          style={{
-            background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(6,182,212,0.42) 0%, rgba(14,165,233,0.30) 18%, rgba(37,99,235,0.18) 36%, rgba(255,255,255,0) 62%)`,
-          }}
-        />
-      )}
-
-      {/* Layer: mouse-following fluid glow (secondary, offset for depth) */}
-      {!isTouch && (
-        <div
-          className="pointer-events-none absolute inset-0 z-[1] transition-[background] duration-[600ms] ease-out"
-          aria-hidden="true"
-          style={{
-            background: `radial-gradient(circle at ${105 - mousePos.x}% ${105 - mousePos.y}%, rgba(14,165,233,0.18) 0%, rgba(37,99,235,0.12) 25%, rgba(255,255,255,0) 55%)`,
-          }}
-        />
-      )}
-
-      {/* Bottom fade overlay to blend hero into next section */}
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white/60 z-[2]"
-        aria-hidden="true"
-      />
-
-      {/* Centered frosted glass card */}
+      {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-[850px] mx-auto text-center">
-        <div className="rounded-3xl border border-slate-200/60 bg-white/70 backdrop-blur-2xl shadow-2xl shadow-blue-500/5 p-10 sm:p-14 md:p-16">
+        <div className="rounded-3xl border border-slate-200/70 bg-white/75 backdrop-blur-2xl shadow-2xl shadow-slate-200/80 p-10 sm:p-14 md:p-16">
           <p className="text-xs font-medium tracking-[0.28em] text-slate-400 uppercase mb-6">
             Ace Intelligence Systems
           </p>
@@ -90,7 +227,7 @@ export function Hero() {
           <h1 className="headline-primary text-[2.8rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[1.04] tracking-tight">
             AI &amp; Automation for Enterprises.
             <br />
-            <span className="bg-gradient-to-r from-[#17135f] via-[#2563eb] to-[#06b6d4] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#7B2FF7] via-[#FF1CF7] to-[#FF8A00] bg-clip-text text-transparent">
               We make it simple.
             </span>
           </h1>
@@ -102,7 +239,7 @@ export function Hero() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:via-blue-500 hover:to-cyan-400"
+              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 bg-gradient-to-r from-[#7B2FF7] via-[#FF1CF7] to-[#FF8A00]"
             >
               Talk to an Expert
               <ArrowRight size={16} />
