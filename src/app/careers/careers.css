@@ -1,0 +1,321 @@
+/* Careers section styles — ported from jobclient/src/styles.css */
+/* Global resets omitted (handled by Tailwind in the main site) */
+
+/* ── Header ───────────────────────────────── */
+
+.header {
+  border-bottom: 1px solid #ccc;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 17px;
+  color: #333;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 15px;
+  color: #555;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nav-link:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #000;
+}
+
+.btn-link {
+  text-decoration: none;
+}
+
+/* ── Main ─────────────────────────────────── */
+
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px;
+  width: 100%;
+}
+
+/* ── Table ────────────────────────────────── */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.table th {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+/* ── Forms ────────────────────────────────── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 500px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.form label .req {
+  color: #c00;
+  font-weight: normal;
+}
+
+.form label .optional {
+  color: #888;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.form input,
+.form textarea,
+.form select {
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 15px;
+  background: #fff;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+  outline: 1px solid #666;
+}
+
+.form input:disabled,
+.form textarea:disabled {
+  background: #f5f5f5;
+}
+
+.checkbox-label {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px !important;
+  font-weight: normal !important;
+  font-size: 15px;
+}
+
+.password-field {
+  display: flex;
+  border: 1px solid #ccc;
+}
+
+.password-field input {
+  flex: 1;
+  border: none;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.password-field input:focus {
+  outline: none;
+}
+
+.eye-btn {
+  padding: 8px 12px;
+  border: none;
+  border-left: 1px solid #ccc;
+  background: #f5f5f5;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.eye-btn:hover {
+  background: #e8e8e8;
+}
+
+.select-sm {
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* ── Buttons ──────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid #333;
+  background: #fff;
+  color: #333;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ── Utilities ────────────────────────────── */
+
+.error {
+  color: #c00;
+  font-size: 15px;
+}
+
+.success {
+  color: #060;
+  font-size: 15px;
+}
+
+.meta {
+  font-size: 15px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+.meta-row {
+  display: flex;
+  gap: 8px;
+}
+
+.meta-key {
+  font-weight: bold;
+  min-width: 130px;
+}
+
+.description {
+  border: 1px solid #ccc;
+  padding: 14px;
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.login-box {
+  max-width: 400px;
+  margin: 40px auto;
+  border: 1px solid #ccc;
+  padding: 24px;
+}
+
+.verdict {
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.expand-row {
+  border: 1px solid #ccc;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 15px;
+}
+
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+  margin-top: 8px;
+}
+
+.inline-form h4 {
+  width: 100%;
+}
+
+.inline-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.inline-form input,
+.inline-form select {
+  border: 1px solid #ccc;
+  padding: 5px 8px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* ── Action buttons in tables ─────────────── */
+
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #0066cc;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.link-btn.danger {
+  color: #c00;
+}

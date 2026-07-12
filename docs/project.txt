@@ -1,0 +1,705 @@
+================================================================================
+                        INTELLIGENCEJOBS - PROJECT SPECIFICATION
+                              Version 1.0.0
+================================================================================
+
+1. PROJECT OVERVIEW
+================================================================================
+
+IntelligenceJobs is a full-stack job recruitment platform that connects
+employers (admins) with job seekers (candidates). It features job posting,
+candidate management, resume processing with AI-powered text extraction,
+application tracking, interview scheduling, and employee onboarding.
+
+Repository: https://github.com/OMCHOKSI108/intelligencejobs.git
+Monorepo Structure: jobserver/ (backend) + jobclient/ (frontend)
+
+2. TECHNOLOGY STACK
+================================================================================
+
+2.1 Backend (jobserver/)
+------------------------
+  Runtime:          Node.js 20.x
+  Language:         TypeScript 5.7 (strict mode)
+  API:              GraphQL (Apollo Server 4) + REST (Express 4)
+  ORM:              Sequelize 6
+  Database:         PostgreSQL 16
+  Authentication:   JWT (jsonwebtoken) + bcryptjs
+  Email:            Resend API (candidate-facing) + Nodemailer/Gmail (admin)
+  PDF Parsing:      pdf-parse 2.x
+  DOCX Parsing:     mammoth 1.x
+  OCR:              tesseract.js 7.x
+  Testing:          Jest 30 + ts-jest + supertest
+  Linting:          ESLint 9 + typescript-eslint
+  Formatting:       Prettier 3.9
+  Logging:          Winston 3.19 + Morgan
+
+2.2 Frontend (jobclient/)
+--------------------------
+  Runtime:          Node.js 20.x
+  Language:         TypeScript 5.7 (strict mode)
+  UI Framework:     React 19
+  Router:           React Router DOM 7.1
+  Bundler:          Vite 6
+  Testing:          Vitest 4 + React Testing Library
+  E2E Testing:      Playwright 1.61
+  Linting:          ESLint 9 + typescript-eslint + react-hooks
+  Formatting:       Prettier 3.9
+
+2.3 DevOps / Infrastructure
+-----------------------------
+  Containerization: Docker (multi-stage builds)
+  Orchestration:    Docker Compose
+  Web Server:       Nginx Alpine (client production)
+  CI/CD:            GitHub Actions
+  Code Quality:     ESLint, Prettier, TypeScript strict checks
+  Security:         Trivy (filesystem + container), Gitleaks, npm audit
+
+3. ARCHITECTURE
+================================================================================
+
+3.1 System Architecture
+------------------------
+
+  [Client Browser]
+       |
+       | HTTPS
+       v
+  [Nginx :3000]  --(proxy)--> [Node.js :5000] --(SQL)--> [PostgreSQL :5432]
+       |                           |
+       +--- Static Assets          +--- Apollo Server (GraphQL /graphql)
+       +--- SPA Routing            +--- REST Endpoints (/api/*)
+                                   +--- Multer File Upload
+
+3.2 Backend Architecture
+--------------------------
+
+  /jobserver/src/
+  ├── index.ts                  # Express app, Apollo Server, REST routes, startup
+  ├── schema.ts                 # Root GraphQL typeDefs, imports module schemas
+  ├── resolvers.ts              # Root GraphQL resolvers, imports module resolvers
+  ├── context.ts                # GraphQL context builder (JWT extraction)
+  ├── db.ts                     # Sequelize client (PostgreSQL connection)
+  ├── security.ts               # Rate limiters, input sanitization, account lockout
+  ├── validation.ts             # GraphQL query depth limiter (max 10)
+  ├── logger.ts                 # Winston logger (file + console transports)
+  ├── directives/
+  │   └── hasRole.ts            # @hasRole directive (role hierarchy enforcement)
+  ├── models/                   # Sequelize ORM models (7 models)
+  ├── modules/                  # Feature modules (8 modules)
+  ├── email/                    # Email sending (Resend + Nodemailer)
+  ├── utils/                    # JWT + password utilities
+  └── db/
+      └── seed.ts               # Super Admin seed script
+
+3.3 Frontend Architecture
+---------------------------
+
+  /jobclient/src/
+  ├── main.tsx                  # React entry point
+  ├── App.tsx                   # Router + route definitions
+  ├── Layout.tsx                # Shared layout (header, nav, outlet)
+  ├── styles.css                # Global styles
+  ├── lib/
+  │   ├── auth.tsx              # AuthContext (JWT + user in localStorage)
+  │   ├── graphql.ts            # GraphQL client helper (fetch wrapper)
+  │   ├── protected.tsx         # Route guards (AdminRoute, SuperAdminRoute, CandidateRoute)
+  │   └── __tests__/            # Unit tests
+  └── pages/                    # 17 page components
+
+4. DATABASE SCHEMA
+================================================================================
+
+4.1 Tables
+----------
+
+  USERS (users)
+  ├── id              UUID PRIMARY KEY (auto-generated)
+  ├── loginId         VARCHAR UNIQUE NOT NULL (format: ADM-XXXX, EMP-XXXX)
+  ├── email           VARCHAR UNIQUE NOT NULL
+  ├── passwordHash    VARCHAR NOT NULL (bcrypt, 10 salt rounds)
+  ├── role            ENUM NOT NULL (SUPER_ADMIN | ADMIN | EMPLOYEE)
+  ├── name            VARCHAR NOT NULL
+  ├── phone           VARCHAR NULLABLE
+  ├── bio             TEXT NULLABLE
+  ├── profilePhoto    VARCHAR NULLABLE
+  ├── createdAt       TIMESTAMP
+  ├── updatedAt       TIMESTAMP
+  └── deletedAt       TIMESTAMP (paranoid / soft delete)
+
+  CANDIDATES (candidates)
+  ├── id              UUID PRIMARY KEY (auto-generated)
+  ├── email           VARCHAR UNIQUE NOT NULL
+  ├── passwordHash    VARCHAR NOT NULL (bcrypt, 10 salt rounds)
+  ├── name            VARCHAR NOT NULL
+  ├── phone           VARCHAR NULLABLE
+  ├── verified        BOOLEAN DEFAULT false
+  ├── verifyToken     VARCHAR NULLABLE
+  ├── createdAt       TIMESTAMP
+  └── updatedAt       TIMESTAMP
+
+  JOBS (jobs)
+  ├── id              UUID PRIMARY KEY (auto-generated)
+  ├── jobId           VARCHAR UNIQUE NOT NULL (format: JOB-XXXX)
+  ├── title           VARCHAR NOT NULL
+  ├── description     TEXT NOT NULL
+  ├── hiringOrganization VARCHAR NOT NULL
+  ├── location        VARCHAR NOT NULL
+  ├── remote          BOOLEAN DEFAULT false
+  ├── datePosted      TIMESTAMP DEFAULT NOW
+  ├── baseSalary      INTEGER NULLABLE
+  ├── employmentType  ENUM NOT NULL (FULL_TIME | PART_TIME | CONTRACT | INTERNSHIP | TEMPORARY)
+  ├── validThrough    TIMESTAMP NULLABLE
+  ├── jobBenefits     TEXT NULLABLE
+  ├── experienceRequired VARCHAR NULLABLE
+  ├── educationRequired  VARCHAR NULLABLE
+  ├── skills          TEXT NULLABLE
+  ├── status          ENUM DEFAULT 'draft' (draft | published | closed | expired)
+  ├── createdBy       UUID NOT NULL (FK -> users.id)
+  ├── createdAt       TIMESTAMP
+  └── updatedAt       TIMESTAMP
+
+  APPLICATIONS (applications)
+  ├── id              UUID PRIMARY KEY (auto-generated)
+  ├── name            VARCHAR NOT NULL
+  ├── email           VARCHAR NOT NULL
+  ├── phone           VARCHAR NOT NULL
+  ├── jobId           UUID NOT NULL
+  ├── stage           ENUM DEFAULT 'RECRUITER_PHASE'
+  │                    (RECRUITER_PHASE | ON_HOLD | SHORTLISTED | REJECTED | SELECTED)
+  ├── appliedAt       TIMESTAMP DEFAULT NOW
+  ├── createdAt       TIMESTAMP
+  └── updatedAt       TIMESTAMP
+
+  INTERVIEWS (interviews)
+  ├── id              UUID PRIMARY KEY (auto-generated)
+  ├── applicationId   UUID UNIQUE NOT NULL (FK -> applications.id)
+  ├── scheduledAt     TIMESTAMP NOT NULL
+  ├── mode            ENUM NOT NULL (ONLINE | IN_PERSON)
+  ├── location        VARCHAR NOT NULL (meeting link or physical address)
+  ├── interviewerName VARCHAR NOT NULL
+  ├── notes           TEXT NULLABLE
+  ├── createdAt       TIMESTAMP
+  └── updatedAt       TIMESTAMP
+
+  RESUME_FILES (resume_files)
+  ├── id              UUID PRIMARY KEY (auto-generated)
+  ├── applicationId   UUID NOT NULL
+  ├── fileName        VARCHAR NOT NULL
+  ├── mimeType        VARCHAR NOT NULL
+  ├── size            INTEGER NOT NULL (max 5MB)
+  ├── file            BLOB (long) NOT NULL (raw binary)
+  └── createdAt       TIMESTAMP
+
+  CANDIDATE_PROFILES (candidate_profiles)
+  ├── id              UUID PRIMARY KEY (auto-generated)
+  ├── resumeFileId    UUID NULLABLE (FK -> resume_files.id)
+  ├── candidateId     UUID NULLABLE (FK -> candidates.id)
+  ├── applicationId   UUID NULLABLE (FK -> applications.id)
+  ├── uploadedBy      UUID NOT NULL (FK -> users.id)
+  ├── fileName        VARCHAR NOT NULL
+  ├── mimeType        VARCHAR NOT NULL
+  ├── size            INTEGER NOT NULL
+  ├── rawExtractedText TEXT NULLABLE
+  ├── profileData     JSONB NULLABLE (structured resume data)
+  ├── status          ENUM DEFAULT 'PENDING' (PENDING | PROCESSING | COMPLETED | FAILED)
+  ├── processedAt     TIMESTAMP NULLABLE
+  ├── errorMessage    TEXT NULLABLE
+  ├── createdAt       TIMESTAMP
+  └── updatedAt       TIMESTAMP
+
+4.2 ProfileData JSONB Structure (candidate_profiles.profileData)
+-----------------------------------------------------------------
+
+  {
+    name: string
+    email: string
+    phone: string
+    summary: string
+    skills: string[]
+    experience: [{ title, company, duration, description }]
+    education: [{ degree, institution, year }]
+    certifications: string[]
+    projects: [{ name, description, url }]
+    linkedIn: string
+    github: string
+  }
+
+4.3 Enums
+-----------
+
+  Role:               SUPER_ADMIN | ADMIN | EMPLOYEE
+  JobStatus:          draft | published | closed | expired
+  EmploymentType:     FULL_TIME | PART_TIME | CONTRACT | INTERNSHIP | TEMPORARY
+  ApplicationStage:   RECRUITER_PHASE | ON_HOLD | SHORTLISTED | REJECTED | SELECTED
+  InterviewMode:      ONLINE | IN_PERSON
+  ProfileStatus:      PENDING | PROCESSING | COMPLETED | FAILED
+
+5. ROLE-BASED ACCESS CONTROL (RBAC)
+================================================================================
+
+  Role Hierarchy:
+    SUPER_ADMIN (level 3) > ADMIN (level 2) > EMPLOYEE (level 1) > CANDIDATE (no level)
+
+  GraphQL @hasRole Directive:
+    - Applied to field definitions in typeDefs
+    - Enforced via hasRoleDirectiveTransformer (schema mapping)
+    - Higher roles can access lower role's resources
+
+  Permission Matrix:
+  ┌─────────────────────────────────┬────────────┬─────────┬──────────┬───────────┐
+  │ Operation                       │ SUPER_ADMIN│ ADMIN   │ EMPLOYEE │ CANDIDATE │
+  ├─────────────────────────────────┼────────────┼─────────┼──────────┼───────────┤
+  │ Login (auth)                    │     Y      │   Y     │    Y     │    Y      │
+  │ Create Admin                    │     Y      │   -     │    -     │    -      │
+  │ Update/Delete Admin             │     Y      │   -     │    -     │    -      │
+  │ List Admins                     │     Y      │   -     │    -     │    -      │
+  │ Update Own Profile              │     -      │   Y     │    -     │    -      │
+  │ Change Password                 │     -      │   Y     │    -     │    -      │
+  │ Create/Update/Publish/Close Job │     -      │   Y     │    -     │    -      │
+  │ List Jobs                       │     Y      │   Y     │    Y     │    Y      │
+  │ Get Job By ID                   │     Y      │   Y     │    Y     │    Y      │
+  │ Submit Application              │     -      │   -     │    -     │    Y      │
+  │ List Applications By Job        │     -      │   Y     │    -     │    -      │
+  │ Update Application Stage        │     -      │   Y     │    -     │    -      │
+  │ Schedule Interview              │     -      │   Y     │    -     │    -      │
+  │ Create Employee Login           │     -      │   Y     │    -     │    -      │
+  │ Candidate Register/Verify/Login │     -      │   -     │    -     │    Y      │
+  │ Candidate Me (profile)          │     -      │   -     │    -     │    Y      │
+  │ List/Search Candidate Profiles  │     -      │   Y     │    -     │    -      │
+  │ Reprocess/Delete Profile        │     -      │   Y     │    -     │    -      │
+  │ Profile Stats                   │     -      │   Y     │    -     │    -      │
+  └─────────────────────────────────┴────────────┴─────────┴──────────┴───────────┘
+
+6. GRAPHQL API
+================================================================================
+
+6.1 Queries
+------------
+
+  health: Health!
+  listAdmins: [AdminProfile!]!                          @hasRole(SUPER_ADMIN)
+  getAdminById(id: ID!): AdminProfile                    @hasRole(SUPER_ADMIN)
+  listJobs(status: JobStatus): [Job!]!
+  getJobById(jobId: String!): Job!
+  getApplicationsByJob(jobId: String!): [Application!]!  @hasRole(ADMIN)
+  listApplicationsForJob(jobId: String!): [ApplicationTableRow!]! @hasRole(ADMIN)
+  me: Candidate                                          (candidate only)
+  candidateProfile(id: ID!): CandidateProfile
+  candidateProfiles(search, status, skills, limit, offset): [CandidateProfile!]! @hasRole(ADMIN)
+  profileStats: ProfileStats!                            @hasRole(ADMIN)
+
+6.2 Mutations
+--------------
+
+  Auth:
+    login(loginId: String!, password: String!): AuthPayload!
+
+  Admin:
+    createAdmin(input: CreateAdminInput!): AdminProfile!     @hasRole(SUPER_ADMIN)
+    updateAdmin(id: ID!, input: UpdateAdminInput!): AdminProfile! @hasRole(SUPER_ADMIN)
+    deleteAdmin(id: ID!): Boolean!                           @hasRole(SUPER_ADMIN)
+    updateOwnProfile(input: UpdateProfileInput!): AdminProfile! @hasRole(ADMIN)
+    changePassword(input: ChangePasswordInput!): Boolean!    @hasRole(ADMIN)
+
+  Job:
+    createJob(input: CreateJobInput!): Job!                  @hasRole(ADMIN)
+    updateJob(jobId: String!, input: UpdateJobInput!): Job!  @hasRole(ADMIN)
+    closeJob(jobId: String!): Job!                           @hasRole(ADMIN)
+    publishJob(jobId: String!): Job!                         @hasRole(ADMIN)
+
+  Application:
+    submitApplication(input: SubmitApplicationInput!): Application!  (candidate only)
+    updateApplicationStage(applicationId, stage): Application! @hasRole(ADMIN)
+
+  Interview:
+    scheduleInterview(input: ScheduleInterviewInput!): Interview! @hasRole(ADMIN)
+
+  Employee:
+    createEmployeeLogin(applicationId: String!): EmployeeUser! @hasRole(ADMIN)
+
+  Candidate:
+    candidateRegister(email, password, name, phone): Candidate!
+    candidateVerify(token: String!): Boolean!
+    candidateLogin(email, password): CandidateAuthPayload!
+
+  Resume Processor:
+    reprocessResume(profileId: ID!): CandidateProfile!      @hasRole(ADMIN)
+    deleteCandidateProfile(profileId: ID!): Boolean!        @hasRole(ADMIN)
+
+7. REST API
+================================================================================
+
+  GET  /                           Health check
+  POST /graphql                    GraphQL endpoint (with rate limiting)
+
+  POST /api/resume/upload          Resume upload (ADMIN/SUPER_ADMIN only)
+  POST /api/resume/candidate-upload Resume upload (CANDIDATE only)
+  GET  /api/resume/profile/:id/status  Profile processing status (polling)
+  GET  /graphql/resume/:id         Resume file download (authenticated)
+
+  All REST endpoints require: Bearer JWT in Authorization header
+  File upload: multipart/form-data, max 5MB, allowed: PDF, DOCX, JPG, PNG
+
+8. EMAIL SYSTEM
+================================================================================
+
+8.1 Email Providers
+--------------------
+  Candidate-facing emails: Resend API (from: noreply@aceintelligence.systems)
+  Admin/internal emails:   Nodemailer via Gmail (omchoksi.pro@gmail.com)
+
+8.2 Email Templates
+---------------------
+  applicationReceived(name, jobTitle, jobId)    - Sent after job application
+  emailVerification(name, verifyLink)           - Account verification
+  stageChanged(name, jobTitle, stage)           - Application stage update
+  interviewInvite(name, jobTitle, date, ...)    - Interview scheduling
+  selected(name, jobTitle)                      - Candidate selected
+  employeeCredentials(name, loginId, password)  - New employee onboarding
+  adminCredentials(name, loginId, password)     - New admin onboarding
+  newJobPosted(jobTitle, company, location)     - New job notification
+  adminRemoved(name, loginId)                   - Admin account removal
+
+9. SECURITY
+================================================================================
+
+9.1 Authentication
+--------------------
+  - JWT tokens with configurable expiry (default: 7 days)
+  - Password hashing: bcryptjs with 10 salt rounds
+  - Token payload: { userId, role }
+
+9.2 Rate Limiting
+-------------------
+  Login:          5 attempts per 15 minutes per IP
+  Registration:   3 accounts per hour per IP
+  Password change: 3 attempts per hour per user
+  General API:    100 requests per minute per IP
+
+9.3 Account Lockout
+---------------------
+  Max failed attempts: 5
+  Lockout duration: 30 minutes
+  Tracking: In-memory Map (resets on server restart)
+
+9.4 Input Sanitization
+------------------------
+  - XSS prevention: strips <>, javascript:, on* event handlers, style=
+  - Password validation: min 8 chars, uppercase, lowercase, number
+  - Email validation: regex pattern matching
+  - GraphQL query depth limit: max 10 levels
+  - Body parser limit: 1MB
+
+9.5 HTTP Security Headers (Helmet)
+------------------------------------
+  - Content Security Policy: disabled (development)
+  - Cross-Origin Embedder Policy: disabled
+  - Cross-Origin Resource Policy: cross-origin
+  - Referrer Policy: strict-origin-when-cross-origin
+  - HSTS: enabled in production (1 year, includeSubDomains)
+
+9.6 CORS
+-----------
+  Allowed origins: configurable via CLIENT_URL env var
+  Credentials: enabled
+  Methods: GET, POST
+  Headers: Content-Type, Authorization
+  Max age: 86400 seconds (24 hours)
+
+9.7 Error Handling
+--------------------
+  - safeError(): blocks internal error messages (DB, JWT, SQL keywords)
+  - Production introspection: disabled
+  - Audit logging for security events
+
+10. FILE PROCESSING
+================================================================================
+
+10.1 Resume Upload Pipeline
+-----------------------------
+  1. File received (multipart/form-data, max 5MB)
+  2. JWT verification + role check
+  3. Filename sanitized (path traversal prevention)
+  4. ResumeFile record created (raw binary stored in PostgreSQL BLOB)
+  5. CandidateProfile record created (status: PENDING)
+  6. Background processing triggered (fire-and-forget)
+
+10.2 Text Extraction
+----------------------
+  PDF:     pdf-parse (text extraction)
+  DOCX:    mammoth (raw text extraction)
+  Images:  tesseract.js OCR (English language)
+
+10.3 Resume Parsing
+---------------------
+  Raw text -> structured JSON:
+    - Name, email, phone, summary
+    - Skills array
+    - Experience (title, company, duration, description)
+    - Education (degree, institution, year)
+    - Certifications array
+    - Projects (name, description, url)
+    - LinkedIn, GitHub profiles
+
+10.4 Allowed File Types
+-------------------------
+  application/pdf
+  application/msword
+  application/vnd.openxmlformats-officedocument.wordprocessingml.document
+  image/jpeg
+  image/jpg
+  image/png
+
+11. LOGGING
+================================================================================
+
+  Logger: Winston 3.19
+  Log directory: ./logs/
+
+  Log files:
+    combined.log    - All logs (max 10MB, 5 rotations)
+    error.log       - Errors only (max 10MB, 5 rotations)
+    audit.log       - Audit events (max 10MB, 10 rotations)
+
+  Log levels:
+    HTTP requests:  Morgan -> Winston (combined.log)
+    AUDIT events:   info level (audit.log)
+    SECURITY events: warn level (audit.log)
+    ERROR events:   error level (error.log + error.log)
+
+  Console output:
+    Development: colored, timestamped, human-readable
+    Production: file-only (no console transport)
+
+12. CLIENT PAGES
+================================================================================
+
+  Public Routes:
+    /                       Home page
+    /jobs                   Public job listings
+    /jobs/:jobId            Job detail page
+    /login                  Admin/Employee login
+    /register               Admin registration
+    /verify                 Email verification
+    /candidate/login        Candidate login
+
+  Candidate Routes (requires CANDIDATE role):
+    /jobs/:jobId/apply      Job application form
+    /profile                Candidate profile
+    /profile/upload-resume  Resume upload page
+
+  Admin Routes (requires ADMIN or SUPER_ADMIN):
+    /admin/jobs             Job management (create/edit)
+    /admin/jobs/:jobId/applications  Application table
+    /admin/profile          Admin profile
+    /admin/resumes          Candidate profiles list
+    /admin/resumes/upload   Resume upload
+    /admin/resumes/:id      Profile detail view
+
+  Super Admin Routes (requires SUPER_ADMIN):
+    /admin                  Admin dashboard
+    /admin/create           Create admin form
+    /admin/admins/:id/edit  Edit admin form
+    /admin/jobs/:jobId/edit Edit job form
+
+13. DEPLOYMENT STRATEGY
+================================================================================
+
+13.1 Docker Build (Multi-Stage)
+--------------------------------
+
+  Server (Dockerfile.server):
+    Stage 1 (deps):     npm ci
+    Stage 2 (build):    tsc compilation
+    Stage 3 (production): node:20-alpine, copies dist/ + node_modules/
+    Exposed port: 5000
+    Command: node dist/index.js
+
+  Client (Dockerfile.client):
+    Stage 1 (deps):     npm ci
+    Stage 2 (build):    tsc + vite build
+    Stage 3 (production): nginx:alpine, serves static files
+    Nginx config: SPA routing + proxy /graphql, /api/ to backend
+    Exposed port: 3000
+
+13.2 Docker Compose
+---------------------
+
+  Services:
+    jobserver:  build from Dockerfile.server, env_file .env, health check on /
+    jobclient:  build from Dockerfile.client, depends_on jobserver (healthy)
+
+  Network: host networking mode
+  Restart policy: unless-stopped
+
+13.3 CI/CD Pipeline (GitHub Actions)
+--------------------------------------
+
+  CI Pipeline (ci.yml):
+    1. Code Quality Checks
+       - ESLint (server + client)
+       - Prettier (server + client)
+       - TypeScript strict checks (server + client)
+    2. Unit Tests
+       - Jest (server) with PostgreSQL service container
+       - Vitest (client) with coverage
+       - Coverage artifact upload
+    3. Build
+       - TypeScript compilation (server + client)
+    4. Docker Build
+       - Build both Docker images
+    5. Security Scanning
+       - Trivy filesystem scan
+       - Gitleaks secrets scan
+       - npm audit (server + client)
+
+  Security Scan (security.yml):
+    1. Dependency Audit
+       - npm audit JSON reports
+    2. Secrets Scanning
+       - Gitleaks with full history
+    3. Container Security
+       - Trivy scan on Docker images
+
+13.4 Production Deployment
+-----------------------------
+
+  Prerequisites:
+    - Docker + Docker Compose
+    - PostgreSQL database
+    - Resend API key
+    - Gmail app password (for admin emails)
+
+  Steps:
+    1. Clone repository
+    2. Configure .env file (see .env.example)
+    3. Run: docker compose up -d
+    4. Server starts on port 5000
+    5. Client starts on port 3000 (Nginx)
+    6. Database auto-synced via Sequelize (sequelize.sync())
+    7. Optional: Run seed script for initial Super Admin
+
+13.5 Environment Variables
+-----------------------------
+
+  PORT=5000                           Server port
+  NODE_ENV=development                Environment
+  DATABASE_URL=postgresql://...       PostgreSQL connection string
+  JWT_SECRET=change-me-in-production  JWT signing secret
+  JWT_EXPIRES_IN=7d                   Token expiry
+  RESEND_API_KEY=re_...              Resend API key
+  EMAIL_FROM=...                      Sender email address
+  GMAIL_USER=...                      Gmail for admin emails
+  GMAIL_PASS=...                      Gmail app password
+  CLIENT_URL=http://localhost:3000    Allowed CORS origin
+
+14. SEED DATA
+================================================================================
+
+  Initial Super Admin:
+    loginId:    SUP-0001
+    email:      omchoksi99@gmail.com
+    password:   OMchoksi@108
+    role:       SUPER_ADMIN
+
+  Trigger: SEED=true environment variable
+  Script: jobserver/src/db/seed.ts
+
+15. TESTING
+================================================================================
+
+15.1 Server Tests (Jest)
+--------------------------
+  Framework: Jest 30 + ts-jest
+  Environment: Node
+  Config: jobserver/jest.config.js
+  Coverage: src/**/*.ts (excluding index.ts, logger.ts)
+  Command: npm run test:coverage
+
+15.2 Client Tests (Vitest)
+----------------------------
+  Framework: Vitest 4 + @testing-library/react
+  Environment: jsdom
+  Config: jobclient/vitest.config.ts
+  Coverage: @vitest/coverage-v8
+  Command: npm run test:coverage
+
+15.3 E2E Tests (Playwright)
+------------------------------
+  Framework: Playwright 1.61
+  Browser: Chromium
+  Config: jobclient/playwright.config.ts
+  Test files: jobclient/e2e/*.spec.ts
+  Tests: login flow, public jobs, admin profiles, admin upload
+  Command: npx playwright test
+
+16. FILE UPLOAD SPECIFICATIONS
+================================================================================
+
+  Max file size: 5 MB
+  Allowed types:
+    - PDF (application/pdf)
+    - Word Document (application/msword)
+    - Word XML (application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+    - JPEG Image (image/jpeg, image/jpg)
+    - PNG Image (image/png)
+
+  Storage: PostgreSQL BLOB (resume_files table)
+  Processing: Async background job (fire-and-forget)
+  Status tracking: PENDING -> PROCESSING -> COMPLETED | FAILED
+
+17. API ENDPOINTS SUMMARY
+================================================================================
+
+  GraphQL:
+    POST /graphql                    Main GraphQL endpoint
+
+  REST:
+    GET  /                           Health check
+    POST /api/resume/upload          Upload resume (admin)
+    POST /api/resume/candidate-upload Upload resume (candidate)
+    GET  /api/resume/profile/:id/status  Processing status
+    GET  /graphql/resume/:id         Download resume file
+
+18. DEVELOPMENT SETUP
+================================================================================
+
+  Prerequisites:
+    - Node.js 20.x
+    - PostgreSQL 16
+    - npm 10.x
+
+  Quick Start:
+    1. Clone repo
+    2. cd jobserver && npm install
+    3. cd ../jobclient && npm install
+    4. Create .env in root (see .env.example)
+    5. Start PostgreSQL, create 'smartjobs' database
+    6. cd jobserver && SEED=true npm run seed  (optional: create super admin)
+    7. Terminal 1: cd jobserver && npm run dev
+    8. Terminal 2: cd jobclient && npm run dev
+
+  Dev Server:
+    Backend:  http://localhost:5000/graphql
+    Frontend: http://localhost:3000
+    Vite proxies /graphql to backend
+
+19. KEY DESIGN DECISIONS
+================================================================================
+
+  - GraphQL-first API: Most operations via GraphQL, REST only for file uploads
+  - Separate User/Candidate models: Internal staff vs external candidates
+  - Role hierarchy: SUPER_ADMIN > ADMIN > EMPLOYEE (higher roles inherit permissions)
+  - Soft deletes: User model uses paranoid mode (deletedAt)
+  - File storage in DB: Resume files stored as BLOB in PostgreSQL (not S3)
+  - Async resume processing: Fire-and-forget background processing
+  - Dual email systems: Resend for candidates, Gmail for internal comms
+  - In-memory rate limiting: Account lockout resets on server restart
+  - No pub/sub or real-time: Request/response only
+  - No caching layer: Direct PostgreSQL queries
+  - Nginx reverse proxy: Client serves static files, proxies API to backend
+
+================================================================================
+                          END OF PROJECT SPECIFICATION
+================================================================================

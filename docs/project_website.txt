@@ -1,0 +1,427 @@
+# Ace Intelligence Systems — Website Codebase Architecture & Context
+
+## Project Overview
+
+Ace Intelligence Systems is a marketing/portfolio website for an AI and automation agency startup. The company was founded in 2025 by three AIML students from CHARUSAT University (graduating 2027), headquartered in India. The site is deployed to Vercel at https://aceintelligence.systems.
+
+---
+
+## Tech Stack & Dependencies
+
+### Core Framework
+- Next.js 16.2.4 — React framework (App Router)
+- React 19.2.4 — UI library
+- TypeScript ^5 — Type safety
+- Node.js 24.x (required) — Runtime
+
+### Styling & Animation
+- Tailwind CSS v4 — Utility-first CSS (via @tailwindcss/postcss)
+- Framer Motion ^12.42.0 — Animations
+
+### 3D & Visualization
+- Three.js ^0.184.0 — 3D rendering
+- @react-three/fiber ^9.6.1 — React Three.js renderer (RAG Workflow 3D visualization)
+- @react-three/drei ^10.7.7 — Three.js helpers (OrbitControls, Text, Html, Line)
+
+### Icons & UI
+- lucide-react ^1.8.0 — Icon library
+- simple-icons ^16.24.1 — Brand/tech icons
+
+### Other
+- mermaid ^11.15.0 — Architecture diagram rendering
+- nodemailer ^9.0.3 — Email sending (contact form)
+
+### Dev Dependencies
+- @tailwindcss/postcss (v4) — PostCSS plugin
+- @types/node, @types/react, @types/react-dom, @types/nodemailer — TypeScript types
+- eslint (^9) + eslint-config-next (16.2.4) — Linting
+- typescript (^5)
+
+---
+
+## Configuration Details
+
+### next.config.ts
+- Remote image patterns: avatars.githubusercontent.com, miro.medium.com
+- CORS headers: Access-Control-Allow-Origin: * on all routes
+
+### tsconfig.json
+- Target: ES2017
+- Path alias: @/* maps to ./src/*
+- Strict mode enabled
+- Excludes node_modules and aceintelligence/ (bot project)
+
+### postcss.config.mjs
+- Uses @tailwindcss/postcss plugin (Tailwind CSS v4)
+
+### vercel.json
+- Standard Vercel Next.js build config
+
+### Environment Variables (.env.example)
+- NEXT_PUBLIC_BOTPRESS_INJECT_URL — Botpress webchat inject script
+- NEXT_PUBLIC_BOTPRESS_CONFIG_URL — Botpress webchat config
+- BOTPRESS_TOKEN, BOTPRESS_WORKSPACE_ID, BOTPRESS_BOT_ID — CLI auth
+- NEXT_PUBLIC_CAREERS_FORM_URL — External careers form URL
+
+### CI/CD (.github/workflows/vercel-deploy.yml)
+- Triggers on every push to any branch
+- Node 24 + npm ci
+- master branch pushes deploy to production
+- All other branches deploy preview environments
+- Requires VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID secrets
+
+### SEO & Analytics
+- Google Tag Manager: GTM-NVQKSPGF
+- Google Analytics 4: G-LGCLQMBXDC
+- Google Verification: B5PHKm7RdJ9GC8HLsHRzAEpntaJV1e73Au6QqIx1Zqg
+- Schema.org: Organization + WebSite structured data in root layout
+- Sitemap: Generated dynamically (27+ routes)
+- Robots: Allows all, disallows /api/ and /status
+
+### Fonts (loaded via next/font/google)
+- Inter — Primary body font
+- Geist Mono — Monospace font
+- Playfair Display — Headline serif font
+- Cormorant Garamond — Accent italic serif font
+
+### Theme & Styling (globals.css)
+- Custom CSS theme variables for colors
+- Grid pattern backgrounds
+- Site pillar decorative elements (fixed left/right borders)
+- Extensive animations: float, pulse-glow, subtle-bounce, project-float, gradient-shift, process-fade-in, timeline-pulse
+- Google Translate widget CSS overrides (to hide default UI)
+- prefers-reduced-motion support
+
+---
+
+## Project Structure
+
+```
+/home/omchoksi/workspace/Playground/aceintelligence/
+|
+|-- .claude/                          # Claude AI config
+|-- .env                              # Environment variables (actual)
+|-- .env.example                      # Environment template
+|-- .git/
+|-- .github/
+|   `-- workflows/
+|       `-- vercel-deploy.yml         # CI/CD: auto-deploy to Vercel
+|-- .gitignore
+|-- .next/                            # Next.js build output
+|
+|-- aceintelligence/                  # Botpress ADK bot project (excluded from TS/build)
+|   |-- .adk/
+|   |-- .agent0/
+|   |-- .agents/
+|   |-- .claude/
+|   |-- .opencode/
+|   |-- agent.config.ts
+|   |-- agent.json
+|   |-- agent.local.json
+|   |-- AGENTS.md
+|   |-- CLAUDE.md
+|   |-- evals/
+|   |-- node_modules/
+|   |-- package.json
+|   |-- README.md
+|   |-- skills-lock.json
+|   |-- src/
+|   `-- tsconfig.json
+|
+|-- CHATBOT_SETUP.md                  # Botpress chatbot integration guide
+|-- docs/
+|   `-- ace-chatbot-knowledge.md      # Knowledge base for the chatbot
+|-- eslint.config.mjs                 # ESLint config (Next.js core-web-vitals + TS)
+|-- next-env.d.ts
+|-- next.config.ts                    # Next.js configuration
+|-- node_modules/
+|-- package.json
+|-- package-lock.json
+|-- postcss.config.mjs                # PostCSS with Tailwind CSS v4 plugin
+|-- public/                           # Static assets
+|   |-- back/                         # ArcticWolf-inspired design reference images
+|   |-- icons/                        # Tech stack SVG icons
+|   |-- *.png, *.jpeg, *.mp4         # Project screenshots, logos, videos
+|   `-- image_links.txt               # Source URLs for downloaded reference images
+|-- README.md
+|-- scripts/
+|   `-- send-email.js                 # Standalone Nodemailer test script
+|-- src/                              # Main application source
+|   |-- app/                          # Next.js App Router pages
+|   |-- components/                   # React components
+|   `-- lib/                          # Shared utilities and data
+|-- tsconfig.json
+|-- tsconfig.tsbuildinfo
+`-- vercel.json                       # Vercel deployment config
+```
+
+---
+
+## Pages / Routes
+
+### Static Pages (dedicated route files)
+| Route              | File                                  | Type   | Description                                            |
+|--------------------|---------------------------------------|--------|--------------------------------------------------------|
+| /                  | src/app/page.tsx                      | Server | Landing page (renders HomePage component)              |
+| /about             | src/app/about/page.tsx                | Server | Company overview, mission, team, capabilities          |
+| /services          | src/app/services/page.tsx             | Server | 6 service cards + tech stack architecture display      |
+| /portfolio         | src/app/portfolio/page.tsx            | Server | 6 project cards in grid layout                         |
+| /careers           | src/app/careers/page.tsx              | Server | Career tracks, principles, hiring process, talent network |
+| /contact           | src/app/contact/page.tsx              | Client | Contact form (name, email, phone, company, budget, service, description) |
+| /case-studies      | src/app/case-studies/page.tsx         | Server | Technical deep-dive articles (links to Medium)         |
+| /quick-wins/smart-inbox | src/app/quick-wins/smart-inbox/page.tsx | Server | Smart Inbox Router articles                     |
+
+### API Routes
+| Route        | File                              | Method | Description                                            |
+|--------------|-----------------------------------|--------|--------------------------------------------------------|
+| /api/contact | src/app/api/contact/route.ts      | POST   | Sends contact form submission via Gmail SMTP (Nodemailer) to 3 recipients |
+
+### Catch-All Dynamic Pages ([...slug])
+The file src/app/[...slug]/page.tsx serves a large number of routes via a contentMap object:
+
+| Slug                            | Title                                                          |
+|---------------------------------|----------------------------------------------------------------|
+| /research                       | Research & Engineering (sandbox + architecture + hallucination defense) |
+| /about                          | About (duplicate of static page)                               |
+| /security                       | Security & AI Safety                                           |
+| /use-cases                      | Use Cases                                                      |
+| /docs                           | Platform documentation                                         |
+| /api                            | API Reference                                                  |
+| /pricing                        | Pricing (3 tiers)                                              |
+| /projects                       | Product overview                                               |
+| /status                         | System Status                                                  |
+| /privacy                        | Privacy Policy & Data Governance Charter                        |
+| /terms                          | Terms of Engagement                                            |
+| /support                        | FAQ (with accordion)                                           |
+| /services                       | Services detail                                                |
+| /contact                        | Contact info                                                   |
+| /quick-wins/smart-inbox         | Smart Inbox Router (STAR format case study)                    |
+| /quick-wins/invoice-parser      | Vendor Invoice Parser                                          |
+| /quick-wins/lead-router         | Lead Router & Responder                                        |
+| /projects/multi-modal-rag       | Multi Modal RAG Agent (with architecture, features, tech stack) |
+| /projects/multi-agent-research  | Multi Agent Research System (8 agents detail)                  |
+| /projects/chatpdf               | ChatPDF (document intelligence platform)                       |
+| /projects/pralay-ai             | PralayAI (cybersecurity LLM)                                  |
+| /projects/trade-like-whale      | Autonomous Algo Trading Bot                                   |
+
+### Other Routes (from sitemap, rendered by catch-all)
+/whitepapers, /templates, /status
+
+### Supporting Files
+| File                    | Purpose                                                      |
+|-------------------------|--------------------------------------------------------------|
+| src/app/layout.tsx      | Root layout (Header, Footer, BotpressChatbot, GTM/GA4, Schema.org) |
+| src/app/globals.css     | Global styles, Tailwind theme, animations                    |
+| src/app/loading.jsx     | Loading screen component                                     |
+| src/app/sitemap.ts      | Dynamic sitemap generation                                   |
+| src/app/robots.ts       | Robots.txt generation                                        |
+| src/app/icon.svg        | SVG favicon (abstract ice/crystal logo)                      |
+
+---
+
+## Components
+
+### Layout Components (src/components/layout/)
+| Component          | File                  | Type   | Description                                                  |
+|--------------------|-----------------------|--------|--------------------------------------------------------------|
+| Header             | Header.tsx            | Client | Fixed navbar with logo, nav links, dropdown, language switcher, "Start a Project" CTA, mobile hamburger menu |
+| Footer             | Footer.tsx            | Server | 5-column footer (brand, company, platform, legal, leadership) with social links (X, LinkedIn) |
+| NavDropdown        | NavDropdown.tsx       | Client | Hover-activated dropdown navigation                          |
+| LanguageSwitcher   | LanguageSwitcher.tsx  | Client | Google Translate integration (English, Spanish, French, Chinese) |
+| LoadingScreen      | LoadingScreen.tsx     | Server | Branded loading animation with progress bar                  |
+| FAQAccordion       | FAQAccordion.tsx      | Client | Category-grouped FAQ with expand/collapse                    |
+
+### Home Components (src/components/home/)
+| Component          | File                      | Type   | Description                                                  |
+|--------------------|---------------------------|--------|--------------------------------------------------------------|
+| HomePage           | HomePage.tsx              | Server | Composes Hero, Services, Projects, Founders, FAQ, clients, CTA |
+| Hero               | Hero.tsx                  | Client | Full-screen hero with animated SVG mesh gradient background, parallax mouse tracking, glassmorphism card |
+| ServicesSection    | ServicesSection.tsx       | Server | 6-step enterprise AI delivery timeline (Discovery through Knowledge Transfer) |
+| ProjectsSection    | ProjectsSection.tsx       | Client | 4 featured project cards with team avatars, features, tech stack, image lightbox |
+| FounderSection     | FounderSection.tsx        | Server | 3 founder cards with GitHub avatars, roles, descriptions, portfolio/GitHub links |
+| RagWorkflow3D      | RagWorkflow3D.tsx         | Client | Interactive 3D RAG workflow visualization using React Three Fiber (11 nodes, 10 edges, with OrbitControls) |
+| ResearchSandbox    | ResearchSandbox.tsx       | Client | Interactive agent execution simulator (terminal UI, simulated 9-agent pipeline) |
+| ArchitectureDiagram| ArchitectureDiagram.tsx   | Client | Mermaid-rendered multi-agent architecture + hallucination defense diagrams |
+| ImageLightbox      | ImageLightbox.tsx         | Client | Image gallery with fullscreen lightbox, navigation, keyboard support |
+| FeatureCard        | FeatureCard.tsx           | --     | Feature display card                                          |
+| QuickWinsSection   | QuickWinsSection.tsx      | --     | Quick win automation showcase                                 |
+| LinkCards          | LinkCards.tsx             | --     | Navigation link cards                                         |
+| Various unused sections | ProblemSection, SolutionSection, WhyDifferent, SocialProof, UseCases, SecuritySection, PricingSection, HowItWorks, FinalCTA | -- | Additional homepage sections (exported but not all used in current HomePage) |
+
+### Services Components (src/components/services/)
+| Component              | File                    | Description                                  |
+|------------------------|-------------------------|----------------------------------------------|
+| PremiumHero            | PremiumHero.tsx         | Dark hero section with fade-in animations    |
+| PremiumServices        | PremiumServices.tsx     | 4 service cards (AI Workflow Automation, RAG, AI Agents, Product Engineering) |
+| PremiumTimeline        | PremiumTimeline.tsx     | Delivery timeline                            |
+| PremiumWorkflowStrip   | PremiumWorkflowStrip.tsx| Workflow visualization                       |
+| PremiumTrust           | PremiumTrust.tsx        | Trust indicators                             |
+| PremiumCTA             | PremiumCTA.tsx          | Call to action                               |
+
+### Other Components
+| Component          | File                    | Description                                                  |
+|--------------------|-------------------------|--------------------------------------------------------------|
+| BotpressChatbot    | BotpressChatbot.tsx     | Client-side Botpress webchat widget loader (injects scripts dynamically) |
+
+---
+
+## Navigation Structure
+
+From src/lib/nav-data.ts:
+```
+Main Nav:
+  Services -> /services
+  Portfolio -> /portfolio
+  Company (dropdown):
+    About -> Overview (/about)
+    Get in touch -> Contact (/contact)
+  Contact -> /contact
+
+Products:
+  Multi Agent Research -> /projects/multi-agent-research
+  Multi Modal RAG Agent -> /projects/multi-modal-rag
+  ChatPDF -> /projects
+
+Models:
+  Workflow Automations -> /services
+  RAG Architectures -> /services
+  Cloud Infrastructure -> /services
+```
+
+---
+
+## Special Features
+
+### Botpress Chatbot Integration
+- Component: BotpressChatbot.tsx — dynamically loads Botpress webchat scripts
+- Setup Guide: CHATBOT_SETUP.md — full setup documentation
+- Knowledge Base: docs/ace-chatbot-knowledge.md — comprehensive company/product knowledge
+- Config: Requires NEXT_PUBLIC_BOTPRESS_INJECT_URL and NEXT_PUBLIC_BOTPRESS_CONFIG_URL env vars
+- Behavior: Captures leads (name, email, company, project description, timeline, budget)
+
+### Contact Form with Email Delivery
+- Frontend: Client-side form with validation (name, email, phone, company, budget, service, description)
+- API: /api/contact route sends HTML-formatted email via Gmail SMTP (Nodemailer) to 3 recipients
+- Script: scripts/send-email.js for standalone testing
+
+### 3D Interactive RAG Workflow
+- Built with React Three Fiber + @react-three/drei
+- 11 interactive nodes representing the RAG pipeline stages
+- Hover effects, bobbing animation, edge labels
+- OrbitControls for rotate/zoom
+- Fallback 2D grid visualization for error/loading states
+
+### Mermaid Architecture Diagrams
+- Multi-agent architecture flowchart
+- Hallucination defense pipeline visualization
+- Rendered server-side using the mermaid library
+
+### Google Translate Integration
+- Language switcher in header supporting English, Spanish, French, Chinese
+- Custom CSS to hide default Google Translate UI
+- Persists language choice in localStorage
+
+### Research Agent Sandbox
+- Interactive terminal-style UI simulating 8-agent research pipeline
+- Animated step-by-step execution with status indicators
+- Simulates real agent names and actions
+
+### SEO Optimization
+- Full OpenGraph + Twitter Card metadata
+- Schema.org structured data (Organization + WebSite)
+- Dynamic sitemap with priority levels
+- Robots.txt with disallow rules
+- Canonical URLs on all pages
+- Google Search Console verification
+
+### Google Analytics & Tag Manager
+- GTM: GTM-NVQKSPGF
+- GA4: G-LGCLQMBXDC
+- Both loaded via next/script with afterInteractive strategy
+
+### Hydration Sanitizer (Development Only)
+- Custom script in layout that strips browser extension attributes (e.g., bis_skin_checked) to prevent React hydration mismatches during development
+
+---
+
+## The aceintelligence/ Directory
+
+This is a Botpress ADK (Agent Development Kit) project — a separate bot project that lives inside the repository but is excluded from the TypeScript build (tsconfig.json excludes it, .gitignore lists it). It contains:
+- Agent configuration files (agent.config.ts, agent.json)
+- Source code in src/
+- Evaluation tests in evals/
+- Its own package.json and tsconfig.json
+
+This bot logic is deployed via Botpress Cloud (not through the Next.js app).
+
+---
+
+## The scripts/ Directory
+
+Contains send-email.js — a standalone Node.js script for testing the contact form email delivery. Uses Gmail SMTP with Nodemailer. Sends a formatted HTML email to the 3 team members. Requires GMAIL_SMTP_PASS environment variable.
+
+---
+
+## The docs/ Directory
+
+Contains ace-chatbot-knowledge.md — a comprehensive knowledge base document for the Botpress chatbot, covering:
+- Company overview and team details
+- 8 core services with descriptions
+- 9 portfolio projects
+- Business model (custom software, not SaaS)
+- Full technology stack
+- Security and data privacy practices
+- Lead capture flow
+- Pricing response guidance
+- Tone guidelines
+
+---
+
+## The public/ Directory
+
+- Logos: logo.png, white.png
+- Project Screenshots: multimodal_rag.png, multimodal_rag_2.png, multiagent_research_demo.png, multiagent_research_n8n_flow.png, pralay.png, FoodDeliverySystem_1.png, FoodDeliverySysten_2.png, Tradinview_strategy.png, trading.jpeg, vizatrade.png, chatbt.png, chatscreen.jpeg, landingpage.jpeg
+- Background/Design: background.png, carrires.png, profile.png, techstack.png
+- Video: aceinte.mp4 (used in careers page hero)
+- Icons (icons/): SVG icons for tech stack — nextdotjs.svg, react.svg, tailwindcss.svg, typescript.svg, nodejs.svg, express.svg, fastify.svg, mongodb.svg, postgresql.svg, prisma.svg, vercel.svg, googlecloud.svg, docker.svg, auth0.svg, shieldsdotio.svg
+- Reference Images (back/): ~80+ ArcticWolf-inspired design reference images (logos, icons, backgrounds, badges)
+- image_links.txt: Source URLs for the ArcticWolf reference images
+
+---
+
+## Team
+
+| Name         | Role                    | GitHub            | Email                  |
+|--------------|-------------------------|-------------------|------------------------|
+| Om Choksi    | CTO & Chief Architect   | OMCHOKSI108       | omchoksi.pro@gmail.com |
+| Ansh Gajera  | CEO                     | anshgajera        | 401anshgajera@gmail.com|
+| Yash Khare   | Founder                 | firefistisdead    | yashco.ltd@gmail.com   |
+
+---
+
+## Key Services Offered
+
+1. AI Automation Integration (email triage, document parsing, lead routing)
+2. Website Development (Next.js, React, Tailwind)
+3. CRM System Build
+4. LLM Fine-Tuning
+5. End-to-End Product Building
+6. Custom Data Science Dashboard
+7. Enterprise RAG Architectures
+8. Multi Agent Workflows
+
+---
+
+## Portfolio Projects
+
+1. Multi Agent Research System (v8.0) — 8-agent IEEE paper generation pipeline
+2. Multi Modal RAG Agent — Telegram chatbot with n8n, Milvus, GPT-4o mini
+3. PralayAI — Fine-tuned cybersecurity LLM (Qwen2.5 1.5B + QLoRA)
+4. TradeLikeWhale — Algo trading bot with LSTM + RL ($77K+ validated)
+5. ChatPDF — Document intelligence platform (Next.js + FastAPI + Qdrant)
+6. AI Food Delivery Agent — Telegram/WhatsApp conversational ordering
+
+### Quick Win Automations
+1. Smart Inbox Router — n8n + LLM email triage (deployed in 48 hours)
+2. Vendor Invoice Parser — Vision model PDF extraction (96.5% accuracy)
+3. Lead Router & Responder — Web form to CRM with AI draft replies
