@@ -43,7 +43,7 @@ export function ServicesSection() {
       title: "Knowledge Transfer",
       desc: "Complete documentation, architecture diagrams, runbooks, and team training. You own the solution, we ensure you can operate it.",
       icon: Users,
-      color: "rose",
+      color: "amber",
     },
   ];
 
@@ -52,7 +52,7 @@ export function ServicesSection() {
       {/* Enterprise Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-10 left-10 w-80 h-80 bg-purple-100/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-rose-100/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-amber-100/15 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 w-full h-2 bg-gradient-to-r from-transparent via-purple-200/20 to-transparent" />
       </div>
       
@@ -69,7 +69,7 @@ export function ServicesSection() {
       {/* Enterprise Process Timeline */}
       <div className="space-y-8 relative">
         {/* Timeline Connector */}
-        <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-purple-200 to-rose-200 hidden lg:block" style={{ zIndex: 1 }} />
+        <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-purple-200 to-amber-200 hidden lg:block" style={{ zIndex: 1 }} />
         
         {enterpriseProcess.map((item, i) => {
           const colorClasses = {
@@ -78,7 +78,6 @@ export function ServicesSection() {
             purple: "bg-purple-50 text-purple-600 border-purple-200",
             sky: "bg-sky-50 text-sky-600 border-sky-200",
             amber: "bg-amber-50 text-amber-600 border-amber-200",
-            rose: "bg-rose-50 text-rose-600 border-rose-200",
           };
           
           const currentColor = colorClasses[item.color as keyof typeof colorClasses] || "bg-blue-50 text-blue-600 border-blue-200";

@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description:
-    "Production-grade AI systems and automation platforms built by Ace Intelligence. Explore our projects: Algo Trading Bot, PralayAI, Multi Agent Research System, and more.",
-  alternates: { canonical: "/portfolio" },
-  openGraph: {
-    title: "Portfolio | Ace Intelligence Systems",
-    description:
-      "Production-grade AI systems and automation platforms built by our team.",
-  },
-};
 import {
   Shield,
   MessageSquare,
@@ -27,6 +15,18 @@ import {
   TrendingUp,
   BarChart3,
 } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Portfolio",
+  description:
+    "Production-grade AI systems and automation platforms built by Ace Intelligence. Explore our projects: Algo Trading Bot, PralayAI, Multi Agent Research System, and more.",
+  alternates: { canonical: "/portfolio" },
+  openGraph: {
+    title: "Portfolio | Ace Intelligence Systems",
+    description:
+      "Production-grade AI systems and automation platforms built by our team.",
+  },
+};
 
 interface Project {
   badge: string;
@@ -65,17 +65,17 @@ const projects: Project[] = [
   },
   {
     badge: "Fine-tuned LLM",
-    badgeColor: "bg-rose-100 text-rose-800 border-rose-200",
+    badgeColor: "bg-sky-100 text-sky-800 border-sky-200",
     title: "PralayAI",
-    tagline: "Defensive Cybersecurity AI Assistant — fine-tuned Qwen2.5 1.5B",
+    tagline: "Defensive Cybersecurity AI Assistant - fine-tuned Qwen2.5 1.5B",
     description:
-      "A full-stack defensive cybersecurity chatbot built with a fine-tuned open-source LLM (Qwen2.5 1.5B, QLoRA), FastAPI backend, PostgreSQL chat persistence, and a React Gemini-clone frontend — deployed on Hugging Face Spaces.",
+      "A full-stack defensive cybersecurity chatbot built with a fine-tuned open-source LLM (Qwen2.5 1.5B, QLoRA), FastAPI backend, PostgreSQL chat persistence, and a React Gemini-clone frontend - deployed on Hugging Face Spaces.",
     team: ["OMCHOKSI108"],
     href: "/projects/pralay-ai",
     image: "/pralay.png",
     features: [
       { icon: Bot, text: "Fine-tuned Qwen2.5 1.5B with QLoRA on cybersecurity data" },
-      { icon: Shield, text: "Defensive-only safety policy — rejects malicious prompts" },
+      { icon: Shield, text: "Defensive-only safety policy - rejects malicious prompts" },
       { icon: Database, text: "PostgreSQL for conversation & feedback persistence" },
       { icon: Code, text: "FastAPI backend + React Gemini-clone frontend" },
       { icon: Layers, text: "Dual inference: local CUDA & Hugging Face CPU Space" },
@@ -86,7 +86,7 @@ const projects: Project[] = [
   },
   {
     badge: "Production v8.0",
-    badgeColor: "bg-purple-100 text-purple-800 border-purple-200",
+    badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
     title: "Multi Agent Research System",
     tagline: "8 autonomous AI agents collaborating on academic research",
     description:
@@ -128,7 +128,7 @@ const projects: Project[] = [
   },
   {
     badge: "Legacy demo",
-    badgeColor: "bg-orange-100 text-orange-800 border-orange-200",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
     title: "AI Food Delivery Agent",
     tagline: "Two-way conversational ordering via Telegram & WhatsApp",
     description:
@@ -147,7 +147,7 @@ const projects: Project[] = [
   },
   {
     badge: "Private beta",
-    badgeColor: "bg-blue-100 text-blue-800 border-blue-200",
+    badgeColor: "bg-sky-100 text-sky-800 border-sky-200",
     title: "ChatPDF",
     tagline: "Document intelligence for knowledge-heavy workflows",
     description:

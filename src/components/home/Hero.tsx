@@ -30,12 +30,14 @@ function injectStyles() {
 /* ─── Hero ──────────────────────────────────────────────────────── */
 export function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
-  const [isTouch, setIsTouch] = useState(false);
+  const [isTouch] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(pointer: coarse)").matches;
+  });
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     injectStyles();
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
   }, []);
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center pt-24 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white"
+      className="relative min-h-[100svh] md:min-h-screen flex items-center justify-center pt-20 sm:pt-24 px-3 sm:px-6 lg:px-8 overflow-hidden bg-white"
     >
       {/* ─── Full-screen SVG ─── */}
       <svg
@@ -65,12 +67,12 @@ export function Hero() {
         viewBox="0 0 1200 800"
         preserveAspectRatio="xMidYMid slice"
         style={{
-          width: "180vw",
-          height: "120vh",
-          left: "-40vw",
-          top: "-10vh",
+          width: isTouch ? "150vw" : "180vw",
+          height: isTouch ? "92vh" : "120vh",
+          left: isTouch ? "-25vw" : "-40vw",
+          top: isTouch ? "-6vh" : "-10vh",
           transform: `translate(${px}px,${py}px)`,
-          transition: "transform 0.7s ease-out",
+          transition: isTouch ? "none" : "transform 0.7s ease-out",
         }}
       >
         <defs>
@@ -91,32 +93,32 @@ export function Hero() {
                Multiple overlapping gradient shapes with heavy blur
                create a smooth mesh with no hard stops or visible
                blob edges.                                 */}
-          {/* Large diagonal sweep — purple → pink → coral → orange → gold */}
+          {/* Large diagonal sweep — blue → cyan → amber → gold */}
           <linearGradient id="g-sweep-1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.6} />
-            <stop offset="20%" stopColor="#D100FF" stopOpacity={0.5} />
-            <stop offset="40%" stopColor="#FF4FCB" stopOpacity={0.45} />
-            <stop offset="55%" stopColor="#FF7A59" stopOpacity={0.4} />
-            <stop offset="75%" stopColor="#FF9D00" stopOpacity={0.35} />
+            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.6} />
+            <stop offset="20%" stopColor="#0EA5E9" stopOpacity={0.5} />
+            <stop offset="40%" stopColor="#22D3EE" stopOpacity={0.45} />
+            <stop offset="55%" stopColor="#F59E0B" stopOpacity={0.4} />
+            <stop offset="75%" stopColor="#FB923C" stopOpacity={0.35} />
             <stop offset="100%" stopColor="#FFD54A" stopOpacity={0.3} />
           </linearGradient>
 
-          {/* Cross sweep — lavender → magenta → gold → coral */}
+          {/* Cross sweep — indigo → cyan → gold → amber */}
           <linearGradient id="g-sweep-2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#B8A8FF" stopOpacity={0.45} />
-            <stop offset="25%" stopColor="#D100FF" stopOpacity={0.35} />
-            <stop offset="50%" stopColor="#FF4FCB" stopOpacity={0.3} />
+            <stop offset="0%" stopColor="#93C5FD" stopOpacity={0.45} />
+            <stop offset="25%" stopColor="#38BDF8" stopOpacity={0.35} />
+            <stop offset="50%" stopColor="#22D3EE" stopOpacity={0.3} />
             <stop offset="75%" stopColor="#FFD54A" stopOpacity={0.25} />
-            <stop offset="100%" stopColor="#FF7A59" stopOpacity={0.2} />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity={0.2} />
           </linearGradient>
 
-          {/* Vertical blend — purple top → gold center → coral bottom */}
+          {/* Vertical blend — blue top → gold center → amber bottom */}
           <linearGradient id="g-sweep-3" x1="50%" y1="0%" x2="50%" y2="100%">
-            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.35} />
-            <stop offset="30%" stopColor="#D100FF" stopOpacity={0.25} />
+            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.35} />
+            <stop offset="30%" stopColor="#0EA5E9" stopOpacity={0.25} />
             <stop offset="55%" stopColor="#FFD54A" stopOpacity={0.2} />
-            <stop offset="80%" stopColor="#FF9D00" stopOpacity={0.15} />
-            <stop offset="100%" stopColor="#FF7A59" stopOpacity={0.12} />
+            <stop offset="80%" stopColor="#F59E0B" stopOpacity={0.15} />
+            <stop offset="100%" stopColor="#FB923C" stopOpacity={0.12} />
           </linearGradient>
 
           {/* ─── Golden glow — top-center hotspot ─── */}
@@ -128,34 +130,34 @@ export function Hero() {
             <stop offset="100%" stopColor="transparent" stopOpacity={0} />
           </radialGradient>
 
-          {/* ─── Purple concentration — top-left corner ─── */}
+          {/* ─── Blue concentration — top-left corner ─── */}
           <radialGradient id="g-purple-tl" cx="10%" cy="10%" r="45%">
-            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.55} />
-            <stop offset="35%" stopColor="#D100FF" stopOpacity={0.3} />
-            <stop offset="60%" stopColor="#B8A8FF" stopOpacity={0.12} />
+            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.55} />
+            <stop offset="35%" stopColor="#0EA5E9" stopOpacity={0.3} />
+            <stop offset="60%" stopColor="#93C5FD" stopOpacity={0.12} />
             <stop offset="100%" stopColor="transparent" stopOpacity={0} />
           </radialGradient>
 
-          {/* ─── Purple concentration — top-right corner ─── */}
+          {/* ─── Blue concentration — top-right corner ─── */}
           <radialGradient id="g-purple-tr" cx="90%" cy="5%" r="40%">
-            <stop offset="0%" stopColor="#8B2CF5" stopOpacity={0.45} />
-            <stop offset="35%" stopColor="#D100FF" stopOpacity={0.25} />
-            <stop offset="60%" stopColor="#B8A8FF" stopOpacity={0.1} />
+            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.45} />
+            <stop offset="35%" stopColor="#0EA5E9" stopOpacity={0.25} />
+            <stop offset="60%" stopColor="#93C5FD" stopOpacity={0.1} />
             <stop offset="100%" stopColor="transparent" stopOpacity={0} />
           </radialGradient>
 
-          {/* ─── Orange-coral wash — lower-right ─── */}
+          {/* ─── Amber wash — lower-right ─── */}
           <radialGradient id="g-coral-br" cx="85%" cy="75%" r="40%">
-            <stop offset="0%" stopColor="#FF9D00" stopOpacity={0.35} />
-            <stop offset="35%" stopColor="#FF7A59" stopOpacity={0.25} />
-            <stop offset="60%" stopColor="#FF4FCB" stopOpacity={0.12} />
+            <stop offset="0%" stopColor="#F59E0B" stopOpacity={0.35} />
+            <stop offset="35%" stopColor="#FB923C" stopOpacity={0.25} />
+            <stop offset="60%" stopColor="#22D3EE" stopOpacity={0.12} />
             <stop offset="100%" stopColor="transparent" stopOpacity={0} />
           </radialGradient>
 
-          {/* ─── Lavender bridge — mid-left ─── */}
+          {/* ─── Sky bridge — mid-left ─── */}
           <radialGradient id="g-lavender" cx="25%" cy="45%" r="35%">
-            <stop offset="0%" stopColor="#B8A8FF" stopOpacity={0.3} />
-            <stop offset="40%" stopColor="#D100FF" stopOpacity={0.15} />
+            <stop offset="0%" stopColor="#93C5FD" stopOpacity={0.3} />
+            <stop offset="40%" stopColor="#38BDF8" stopOpacity={0.15} />
             <stop offset="100%" stopColor="transparent" stopOpacity={0} />
           </radialGradient>
 
@@ -219,27 +221,27 @@ export function Hero() {
 
       {/* ── Content ── */}
       <div className="relative z-10 w-full max-w-[850px] mx-auto text-center">
-        <div className="rounded-3xl border border-slate-200/70 bg-white/75 backdrop-blur-2xl shadow-2xl shadow-slate-200/80 p-10 sm:p-14 md:p-16">
+        <div className="rounded-3xl border border-slate-200/70 bg-white/75 backdrop-blur-2xl shadow-2xl shadow-slate-200/80 p-6 sm:p-10 md:p-16">
           <p className="text-xs font-medium tracking-[0.28em] text-slate-400 uppercase mb-6">
             Ace Intelligence Systems
           </p>
 
-          <h1 className="headline-primary text-[2.8rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[1.04] tracking-tight">
+          <h1 className="headline-primary text-[2.2rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[1.08] tracking-tight">
             AI &amp; Automation for Enterprises.
             <br />
-            <span className="bg-gradient-to-r from-[#7B2FF7] via-[#FF1CF7] to-[#FF8A00] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#1D4ED8] via-[#0EA5E9] to-[#F59E0B] bg-clip-text text-transparent">
               We make it simple.
             </span>
           </h1>
 
-          <p className="mt-6 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
             Bespoke AI architectures and scalable cloud infrastructure tailored to your business operations.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 bg-gradient-to-r from-[#7B2FF7] via-[#FF1CF7] to-[#FF8A00]"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 bg-gradient-to-r from-[#1D4ED8] via-[#0EA5E9] to-[#F59E0B]"
             >
               Talk to an Expert
               <ArrowRight size={16} />
