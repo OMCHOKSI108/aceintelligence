@@ -2,6 +2,7 @@ import {
   submitApplication,
   getApplicationsByJob,
   listApplicationsForJob,
+  listMyApplications,
   updateApplicationStage,
 } from "./service";
 import { Candidate } from "../../models/Candidate";
@@ -12,6 +13,12 @@ export const applicationResolvers = {
       getApplicationsByJob(args.jobId),
     listApplicationsForJob: (_parent: unknown, args: { jobId: string }) =>
       listApplicationsForJob(args.jobId),
+    myApplications: (_parent: unknown, _args: unknown, ctx: any) => {
+      if (!ctx.user?.userId || ctx.user.role !== "CANDIDATE") {
+        throw new Error("You must be logged in as a candidate");
+      }
+      return listMyApplications(ctx.user.userId);
+    },
   },
   Mutation: {
     submitApplication: async (
@@ -23,6 +30,7 @@ export const applicationResolvers = {
           resumeFileName: string;
           resumeMimeType: string;
           resumeBase64: string;
+          applicationAnswers?: string;
         };
       },
       ctx: any,
@@ -36,11 +44,13 @@ export const applicationResolvers = {
       return submitApplication({
         name: candidate.name,
         email: candidate.email,
+        candidateId: candidate.id,
         phone: args.input.phone,
         jobId: args.input.jobId,
         resumeFileName: args.input.resumeFileName,
         resumeMimeType: args.input.resumeMimeType,
         resumeBase64: args.input.resumeBase64,
+        applicationAnswers: args.input.applicationAnswers,
       });
     },
     updateApplicationStage: (_parent: unknown, args: { applicationId: string; stage: string }) =>

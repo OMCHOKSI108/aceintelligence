@@ -21,6 +21,7 @@ export async function candidateRegister(input: {
   password: string;
   name: string;
   phone?: string;
+  returnTo?: string;
 }) {
   const pwCheck = validatePassword(input.password);
   if (!pwCheck.valid) throw new Error(pwCheck.error!);
@@ -39,7 +40,6 @@ export async function candidateRegister(input: {
 
   const passwordHash = await hashPassword(input.password);
   const verifyToken = crypto.randomBytes(32).toString("hex");
-
   const candidate = await Candidate.create({
     email,
     passwordHash,
@@ -51,14 +51,16 @@ export async function candidateRegister(input: {
 
   auditLog("CANDIDATE_REGISTERED", { email });
 
-  const verifyLink = `${CLIENT_URL}/verify?token=${verifyToken}`;
+  const returnTo = input.returnTo || "/careers/profile";
+  const params = new URLSearchParams({ token: verifyToken, returnTo });
+  const verifyLink = `${CLIENT_URL}/careers/verify?${params.toString()}`;
   const { subject, html } = emailVerification(name, verifyLink);
   await sendEmail(email, subject, html);
 
   return candidate;
 }
 
-export async function candidateVerify(token: string) {
+export async function verifyCandidateByToken(token: string) {
   if (!/^[0-9a-f]{64}$/i.test(token)) {
     throw new Error("Invalid or expired verification link");
   }
@@ -74,6 +76,11 @@ export async function candidateVerify(token: string) {
   await candidate.save();
 
   auditLog("CANDIDATE_VERIFIED", { email: candidate.email });
+  return candidate;
+}
+
+export async function candidateVerify(token: string) {
+  await verifyCandidateByToken(token);
   return true;
 }
 

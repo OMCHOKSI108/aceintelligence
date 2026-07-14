@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { gql } from "@/lib/careers/graphql";
+import { useAuth } from "@/lib/careers/auth";
 
 
 interface Admin {
@@ -21,14 +23,25 @@ const DELETE_MUT = `mutation($id: ID!) {
 }`;
 
 export default function SuperAdminDashboard() {
+  const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
   const [admins, setAdmins] = useState<Admin[]>([]);
   const [loading, setLoading] = useState(true);
   const [msg, setMsg] = useState("");
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
+    if (authLoading) return;
+    if (user?.role === "ADMIN") {
+      router.replace("/careers/admin/jobs");
+      return;
+    }
+    if (user?.role !== "SUPER_ADMIN") {
+      setLoading(false);
+      return;
+    }
     load();
-  }, []);
+  }, [authLoading, router, user?.role]);
 
   function load() {
     gql<{ listAdmins: Admin[] }>(QUERY)
@@ -51,7 +64,8 @@ export default function SuperAdminDashboard() {
     }
   }
 
-  if (loading) return <p>Loading...</p>;
+  if (authLoading || loading) return <p>Loading...</p>;
+  if (user?.role !== "SUPER_ADMIN") return <p className="error">Super Admin access required.</p>;
 
   return (
     <div>

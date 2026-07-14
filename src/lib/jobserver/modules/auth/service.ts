@@ -1,4 +1,5 @@
 import { User, Role } from "../../models/User";
+import { Op } from "sequelize";
 import { verifyPassword } from "../../utils/password";
 import { signToken } from "../../utils/jwt";
 import {
@@ -28,7 +29,10 @@ export async function login(loginId: string, password: string) {
 
   if (isEmail) {
     user = await User.findOne({
-      where: { email: identifier, role: Role.SUPER_ADMIN },
+      where: {
+        email: identifier,
+        role: { [Op.in]: [Role.SUPER_ADMIN, Role.ADMIN] },
+      },
     });
     if (!user) {
       auditLog("LOGIN_FAIL", { identifier, reason: "email_not_found" });

@@ -6,7 +6,7 @@ import { useAuth } from "@/lib/careers/auth";
 export default function CareersNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, logout } = useAuth();
+  const { user, loading, logout } = useAuth();
 
   function navLink(to: string, label: string) {
     return (
@@ -15,6 +15,14 @@ export default function CareersNav() {
       </Link>
     );
   }
+
+  const isProtectedCareersRoute =
+    pathname.startsWith("/careers/admin") ||
+    pathname.startsWith("/careers/profile") ||
+    pathname.endsWith("/apply");
+
+  if (!isProtectedCareersRoute) return null;
+  if (loading || !user) return null;
 
   return (
     <header className="header">
@@ -51,7 +59,7 @@ export default function CareersNav() {
             </button>
           ) : (
             <>
-              {navLink("/careers/candidate/login", "Log In")}
+              {navLink("/careers/candidate-login", "Log In")}
               {navLink("/careers/register", "Register")}
             </>
           )}

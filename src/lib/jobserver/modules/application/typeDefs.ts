@@ -23,6 +23,16 @@ export const applicationTypeDefs = gql`
     stage: ApplicationStage!
   }
 
+  type CandidateApplication {
+    id: ID!
+    jobId: String!
+    jobTitle: String!
+    location: String!
+    employmentType: EmploymentType!
+    stage: ApplicationStage!
+    appliedAt: String!
+  }
+
   enum ApplicationStage {
     RECRUITER_PHASE
     ON_HOLD
@@ -37,11 +47,13 @@ export const applicationTypeDefs = gql`
     resumeFileName: String!
     resumeMimeType: String!
     resumeBase64: String!
+    applicationAnswers: String
   }
 
   extend type Query {
     getApplicationsByJob(jobId: String!): [Application!]! @hasRole(role: ADMIN)
     listApplicationsForJob(jobId: String!): [ApplicationTableRow!]! @hasRole(role: ADMIN)
+    myApplications: [CandidateApplication!]! @hasRole(role: CANDIDATE)
   }
 
   extend type Mutation {

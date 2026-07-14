@@ -1,9 +1,23 @@
 /* Careers section styles — ported from jobclient/src/styles.css */
 /* Global resets omitted (handled by Tailwind in the main site) */
 
+.site-pillar {
+  display: none;
+}
+
+.careers-app {
+  min-height: 100dvh;
+  background: #fff;
+  color: #111827;
+}
+
 /* ── Header ───────────────────────────────── */
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #fff;
   border-bottom: 1px solid #ccc;
 }
 
@@ -28,6 +42,7 @@
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   align-items: center;
 }
@@ -60,8 +75,13 @@
 .main {
   max-width: 960px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 24px 16px 48px;
   width: 100%;
+  min-height: calc(100dvh - 50px);
+}
+
+.careers-public .main {
+  padding-top: 88px;
 }
 
 /* ── Table ────────────────────────────────── */
@@ -198,9 +218,122 @@
   text-decoration: none;
 }
 
+.btn-primary {
+  background: #111827;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #000;
+  color: #fff;
+}
+
 .btn:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-panel {
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  padding: 16px;
+  margin: 16px 0 20px;
+}
+
+.form-panel h3 {
+  margin-bottom: 12px;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.apply-gate {
+  max-width: 560px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  padding: 24px;
+}
+
+.apply-gate h2 {
+  margin: 4px 0 10px;
+}
+
+.apply-gate p {
+  color: #374151;
+  line-height: 1.6;
+}
+
+.apply-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 12px;
+}
+
+.apply-methods {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+  max-width: 720px;
+}
+
+.method-card {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #111827;
+  cursor: pointer;
+  font-family: inherit;
+  min-height: 96px;
+  padding: 14px;
+  text-align: left;
+}
+
+.method-card strong,
+.method-card span {
+  display: block;
+}
+
+.method-card span {
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.method-card.active {
+  border-color: #111827;
+  box-shadow: inset 0 0 0 1px #111827;
+}
+
+.manual-fields {
+  border: 1px solid #d1d5db;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 4px 0;
+  padding: 14px;
+}
+
+.manual-fields legend {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 6px;
+}
+
+@media (max-width: 640px) {
+  .apply-methods {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ── Utilities ────────────────────────────── */

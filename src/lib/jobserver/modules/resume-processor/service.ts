@@ -1,4 +1,3 @@
-import { PDFParse } from "pdf-parse";
 import mammoth from "mammoth";
 import { CandidateProfile, ProfileStatus, type ProfileData } from "../../models/CandidateProfile";
 import { ResumeFile } from "../../models/ResumeFile";
@@ -9,6 +8,7 @@ import logger from "../../logger";
 // ── Text Extraction ────────────────────────────────────────
 
 async function extractFromPdf(buffer: Buffer): Promise<string> {
+  const { PDFParse } = await import("pdf-parse");
   const parser = new PDFParse({ data: buffer });
   const result = await parser.getText();
   await parser.destroy();

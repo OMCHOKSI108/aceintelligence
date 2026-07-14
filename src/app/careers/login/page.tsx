@@ -31,8 +31,10 @@ export default function LoginPage() {
       login(data.user);
 
       const role = data.user.role;
-      if (role === "SUPER_ADMIN" || role === "ADMIN") {
+      if (role === "SUPER_ADMIN") {
         router.push("/careers/admin");
+      } else if (role === "ADMIN") {
+        router.push("/careers/admin/jobs");
       } else {
         router.push("/careers/profile");
       }
