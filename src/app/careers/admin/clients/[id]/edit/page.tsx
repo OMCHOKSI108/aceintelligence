@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 import { gql } from "@/lib/careers/graphql";
 
@@ -24,7 +24,8 @@ const PASSWORD_MUT = `mutation($id: ID!, $input: UpdateClientPasswordInput!) {
   updateClientPassword(id: $id, input: $input)
 }`;
 
-export default function EditClientPage({ params }: { params: { id: string } }) {
+export default function EditClientPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const router = useRouter();
   const [client, setClient] = useState<any>(null);
   const [documents, setDocuments] = useState<any[]>([]);
@@ -45,7 +46,7 @@ export default function EditClientPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     gql<{ getClientById: { client: any; documents: any[] } }>(CLIENT_QUERY, {
-      id: params.id,
+      id: id,
     })
       .then((d) => {
         setClient(d.getClientById.client);
@@ -61,7 +62,7 @@ export default function EditClientPage({ params }: { params: { id: string } }) {
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, [params.id]);
+  }, [id]);
 
   function setField(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -78,7 +79,7 @@ export default function EditClientPage({ params }: { params: { id: string } }) {
 
     try {
       await gql(UPDATE_MUT, {
-        id: params.id,
+        id: id,
         input: {
           name: form.name,
           phone: form.phone || null,
@@ -103,7 +104,7 @@ export default function EditClientPage({ params }: { params: { id: string } }) {
 
     try {
       await gql(PASSWORD_MUT, {
-        id: params.id,
+        id: id,
         input: { newPassword },
       });
       setSuccess("Password updated successfully.");
@@ -118,7 +119,7 @@ export default function EditClientPage({ params }: { params: { id: string } }) {
     if (!confirm("Are you sure you want to delete this client?")) return;
 
     try {
-      await gql(DELETE_MUT, { id: params.id });
+      await gql(DELETE_MUT, { id: id });
       router.push("/careers/admin/clients");
     } catch (err: any) {
       setError(err.message);
@@ -247,7 +248,7 @@ export default function EditClientPage({ params }: { params: { id: string } }) {
           </table>
         )}
         <a
-          href={`/careers/admin/clients/${params.id}/documents`}
+          href={`/careers/admin/clients/${id}/documents`}
           className="link-btn"
           style={{ marginTop: 8, display: "inline-block" }}
         >

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, use } from "react";
 import { gql } from "@/lib/careers/graphql";
 
 const CLIENT_DOCS_QUERY = `query($id: ID!) {
@@ -13,7 +13,8 @@ const DELETE_DOC_MUT = `mutation($id: ID!) {
   deleteClientDocument(id: $id)
 }`;
 
-export default function ClientDocumentsPage({ params }: { params: { id: string } }) {
+export default function ClientDocumentsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [client, setClient] = useState<any>(null);
   const [documents, setDocuments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,11 +25,11 @@ export default function ClientDocumentsPage({ params }: { params: { id: string }
 
   useEffect(() => {
     loadDocs();
-  }, [params.id]);
+  }, [id]);
 
   function loadDocs() {
     gql<{ getClientById: { client: any; documents: any[] } }>(CLIENT_DOCS_QUERY, {
-      id: params.id,
+      id,
     })
       .then((d) => {
         setClient(d.getClientById.client);
@@ -50,7 +51,7 @@ export default function ClientDocumentsPage({ params }: { params: { id: string }
     try {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("clientId", params.id);
+      formData.append("clientId", id);
 
       const res = await fetch("/api/client-documents/upload", {
         method: "POST",
