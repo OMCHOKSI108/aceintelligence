@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
+import pg from "pg";
 
 const DATABASE_URL = process.env.DATABASE_URL;
 if (!DATABASE_URL) {
@@ -12,6 +13,7 @@ const globalForSequelize = globalThis as unknown as {
 function createSequelize(): Sequelize {
   return new Sequelize(DATABASE_URL!, {
     dialect: "postgres",
+    dialectModule: pg,
     logging: process.env.NODE_ENV === "development" ? console.log : false,
     pool: {
       max: 2,
