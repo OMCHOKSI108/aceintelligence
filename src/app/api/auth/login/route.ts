@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { login } from "@/lib/jobserver/modules/auth/service";
 
 const COOKIE_NAME = "auth-token";
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60;
@@ -11,6 +10,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "loginId and password are required" }, { status: 400 });
     }
 
+    const { login } = await import("@/lib/jobserver/modules/auth/service");
     const result = await login(loginId, password);
 
     const res = NextResponse.json({ user: result.user });

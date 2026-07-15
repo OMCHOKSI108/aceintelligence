@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyCandidateByToken } from "@/lib/jobserver/modules/candidate/service";
-import { signToken } from "@/lib/jobserver/utils/jwt";
 
 const COOKIE_NAME = "auth-token";
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60;
@@ -12,6 +10,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Verification token is required" }, { status: 400 });
     }
 
+    const [{ verifyCandidateByToken }, { signToken }] = await Promise.all([
+      import("@/lib/jobserver/modules/candidate/service"),
+      import("@/lib/jobserver/utils/jwt"),
+    ]);
     const candidate = await verifyCandidateByToken(token);
     const authToken = signToken({ userId: candidate.id, role: "CANDIDATE" });
     const user = {

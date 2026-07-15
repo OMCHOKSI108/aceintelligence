@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/lib/jobserver/utils/jwt";
-import { Candidate } from "@/lib/jobserver/models/Candidate";
-import { User } from "@/lib/jobserver/models/User";
 
 export async function GET(req: NextRequest) {
   const token = req.cookies.get("auth-token")?.value;
@@ -12,6 +10,7 @@ export async function GET(req: NextRequest) {
   try {
     const payload = verifyToken(token);
     if (payload.role === "CANDIDATE") {
+      const { Candidate } = await import("@/lib/jobserver/models/Candidate");
       const candidate = await Candidate.findByPk(payload.userId);
       if (!candidate) return NextResponse.json({ user: null }, { status: 401 });
       return NextResponse.json({
@@ -26,6 +25,7 @@ export async function GET(req: NextRequest) {
       });
     }
 
+    const { User } = await import("@/lib/jobserver/models/User");
     const user = await User.findByPk(payload.userId);
     if (!user) return NextResponse.json({ user: null }, { status: 401 });
 
