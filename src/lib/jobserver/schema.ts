@@ -7,6 +7,7 @@ import { interviewTypeDefs } from "./modules/interview/typeDefs";
 import { employeeTypeDefs } from "./modules/employee/typeDefs";
 import { candidateTypeDefs } from "./modules/candidate/typeDefs";
 import { resumeProcessorTypeDefs } from "./modules/resume-processor/typeDefs";
+import { clientTypeDefs } from "./modules/client/typeDefs";
 
 const rootTypeDefs = gql`
   directive @hasRole(role: Role!) on FIELD_DEFINITION
@@ -16,6 +17,7 @@ const rootTypeDefs = gql`
     ADMIN
     EMPLOYEE
     CANDIDATE
+    CLIENT
   }
 
   type User {
@@ -59,4 +61,5 @@ export const typeDefs = [
   employeeTypeDefs,
   candidateTypeDefs,
   resumeProcessorTypeDefs,
+  clientTypeDefs,
 ];

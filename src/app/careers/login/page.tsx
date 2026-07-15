@@ -40,6 +40,8 @@ export default function LoginPage() {
         router.push("/careers/admin");
       } else if (role === "ADMIN") {
         router.push("/careers/admin/jobs");
+      } else if (role === "CLIENT") {
+        router.push("/careers/portal");
       } else {
         router.push("/careers/profile");
       }
@@ -52,14 +54,14 @@ export default function LoginPage() {
 
   return (
     <div className="login-box">
-      <h2>Admin Log In</h2>
+      <h2>Log In</h2>
       <form onSubmit={handleSubmit} className="form">
         <label>
           Login ID or Email <span className="req">*</span>
           <input
             value={loginId}
             onChange={(e) => setLoginId(e.target.value)}
-            placeholder="SUP-0001 or admin@email.com"
+            placeholder="SUP-0001, CLI-0001, or email"
             required
           />
         </label>

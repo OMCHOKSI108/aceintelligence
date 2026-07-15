@@ -3,9 +3,10 @@ import { GraphQLSchema } from "graphql";
 import { verifyToken, JwtPayload } from "../utils/jwt";
 
 const ROLE_HIERARCHY: Record<string, number> = {
-  SUPER_ADMIN: 3,
-  ADMIN: 2,
-  EMPLOYEE: 1,
+  SUPER_ADMIN: 4,
+  ADMIN: 3,
+  EMPLOYEE: 2,
+  CLIENT: 1,
 };
 
 export function hasRoleDirectiveTransformer(schema: GraphQLSchema): GraphQLSchema {

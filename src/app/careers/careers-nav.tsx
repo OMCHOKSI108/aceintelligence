@@ -19,6 +19,7 @@ export default function CareersNav() {
   const isProtectedCareersRoute =
     pathname.startsWith("/careers/admin") ||
     pathname.startsWith("/careers/profile") ||
+    pathname.startsWith("/careers/portal") ||
     pathname.endsWith("/apply");
 
   if (!isProtectedCareersRoute) return null;
@@ -37,11 +38,15 @@ export default function CareersNav() {
           {user && user.role === "CANDIDATE"
             ? navLink("/careers/profile/upload-resume", "Upload Resume")
             : null}
+          {user && user.role === "CLIENT" ? navLink("/careers/portal", "My Portal") : null}
           {user && (user.role === "SUPER_ADMIN" || user.role === "ADMIN")
             ? navLink("/careers/admin/jobs", "Jobs Admin")
             : null}
           {user && (user.role === "SUPER_ADMIN" || user.role === "ADMIN")
             ? navLink("/careers/admin/resumes", "Resumes")
+            : null}
+          {user && (user.role === "SUPER_ADMIN" || user.role === "ADMIN")
+            ? navLink("/careers/admin/clients", "Clients")
             : null}
           {user && user.role === "SUPER_ADMIN" ? navLink("/careers/admin", "Admins") : null}
           {user && (user.role === "SUPER_ADMIN" || user.role === "ADMIN")
@@ -59,7 +64,7 @@ export default function CareersNav() {
             </button>
           ) : (
             <>
-              {navLink("/careers/candidate-login", "Log In")}
+              {navLink("/careers/login", "Log In")}
               {navLink("/careers/register", "Register")}
             </>
           )}

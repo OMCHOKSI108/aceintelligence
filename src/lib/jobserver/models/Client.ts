@@ -1,29 +1,31 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../db";
 
-export enum Role {
-  SUPER_ADMIN = "SUPER_ADMIN",
-  ADMIN = "ADMIN",
-  EMPLOYEE = "EMPLOYEE",
-  CLIENT = "CLIENT",
+export enum WorkStatus {
+  NOT_STARTED = "NOT_STARTED",
+  IN_PROGRESS = "IN_PROGRESS",
+  REVIEW = "REVIEW",
+  COMPLETED = "COMPLETED",
+  ON_HOLD = "ON_HOLD",
 }
 
-export class User extends Model {
+export class Client extends Model {
   declare id: string;
   declare loginId: string;
   declare email: string;
   declare passwordHash: string;
-  declare role: Role;
   declare name: string;
   declare phone: string | null;
-  declare bio: string | null;
-  declare profilePhoto: string | null;
+  declare companyName: string | null;
+  declare workStatus: WorkStatus;
+  declare googleChatLink: string | null;
+  declare notes: string | null;
   declare createdAt: Date;
   declare updatedAt: Date;
   declare deletedAt: Date | null;
 }
 
-User.init(
+Client.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -44,11 +46,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role: {
-      type: DataTypes.ENUM(...Object.values(Role)),
-      defaultValue: Role.EMPLOYEE,
-      allowNull: false,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -57,19 +54,28 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    bio: {
-      type: DataTypes.TEXT,
+    companyName: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
-    profilePhoto: {
+    workStatus: {
+      type: DataTypes.ENUM(...Object.values(WorkStatus)),
+      defaultValue: WorkStatus.NOT_STARTED,
+      allowNull: false,
+    },
+    googleChatLink: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    notes: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
   },
   {
     sequelize,
-    modelName: "User",
-    tableName: "users",
+    modelName: "Client",
+    tableName: "clients",
     timestamps: true,
     paranoid: true,
   },

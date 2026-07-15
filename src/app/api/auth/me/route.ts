@@ -9,6 +9,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const payload = verifyToken(token);
+
     if (payload.role === "CANDIDATE") {
       const { Candidate } = await import("@/lib/jobserver/models/Candidate");
       const candidate = await Candidate.findByPk(payload.userId);
@@ -21,6 +22,25 @@ export async function GET(req: NextRequest) {
           role: "CANDIDATE",
           name: candidate.name,
           phone: candidate.phone,
+        },
+      });
+    }
+
+    if (payload.role === "CLIENT") {
+      const { Client } = await import("@/lib/jobserver/models/Client");
+      const client = await Client.findByPk(payload.userId);
+      if (!client) return NextResponse.json({ user: null }, { status: 401 });
+      return NextResponse.json({
+        user: {
+          id: client.id,
+          loginId: client.loginId,
+          email: client.email,
+          role: "CLIENT",
+          name: client.name,
+          phone: client.phone,
+          companyName: client.companyName,
+          workStatus: client.workStatus,
+          googleChatLink: client.googleChatLink,
         },
       });
     }

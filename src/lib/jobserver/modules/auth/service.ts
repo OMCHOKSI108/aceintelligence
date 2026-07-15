@@ -1,4 +1,5 @@
 import { User, Role } from "../../models/User";
+import { Client } from "../../models/Client";
 import { Op } from "sequelize";
 import { verifyPassword } from "../../utils/password";
 import { signToken } from "../../utils/jwt";
@@ -25,7 +26,9 @@ export async function login(loginId: string, password: string) {
 
   const isEmail = identifier.includes("@");
 
-  let user: User | null;
+  let user: User | null = null;
+  let client: Client | null = null;
+  let role = "";
 
   if (isEmail) {
     user = await User.findOne({
@@ -35,20 +38,39 @@ export async function login(loginId: string, password: string) {
       },
     });
     if (!user) {
-      auditLog("LOGIN_FAIL", { identifier, reason: "email_not_found" });
-      throw new Error("Invalid credentials");
+      client = await Client.findOne({
+        where: { email: identifier },
+      });
+      if (client) {
+        role = Role.CLIENT;
+      } else {
+        auditLog("LOGIN_FAIL", { identifier, reason: "email_not_found" });
+        throw new Error("Invalid credentials");
+      }
+    } else {
+      role = user.role;
     }
   } else {
     user = await User.findOne({
       where: { loginId },
     });
-    if (!user) {
-      auditLog("LOGIN_FAIL", { identifier, reason: "user_not_found" });
-      throw new Error("Invalid credentials");
+    if (user) {
+      role = user.role;
+    } else {
+      client = await Client.findOne({
+        where: { loginId },
+      });
+      if (client) {
+        role = Role.CLIENT;
+      } else {
+        auditLog("LOGIN_FAIL", { identifier, reason: "user_not_found" });
+        throw new Error("Invalid credentials");
+      }
     }
   }
 
-  const valid = await verifyPassword(password, user.passwordHash);
+  const passwordHash = user ? user.passwordHash : client!.passwordHash;
+  const valid = await verifyPassword(password, passwordHash);
   if (!valid) {
     const result = recordFailedAttempt(identifier);
     auditLog("LOGIN_FAIL", { identifier, reason: "wrong_password", remaining: result.remaining });
@@ -59,18 +81,24 @@ export async function login(loginId: string, password: string) {
   }
 
   clearFailedAttempts(identifier);
-  auditLog("LOGIN_SUCCESS", { userId: user.id, role: user.role });
 
-  const token = signToken({ userId: user.id, role: user.role });
+  const userId = user ? user.id : client!.id;
+  const loginIdValue = user ? user.loginId : client!.loginId;
+  const email = user ? user.email : client!.email;
+  const name = user ? user.name : client!.name;
+
+  auditLog("LOGIN_SUCCESS", { userId, role });
+
+  const token = signToken({ userId, role });
 
   return {
     token,
     user: {
-      id: user.id,
-      loginId: user.loginId,
-      email: user.email,
-      role: user.role,
-      name: user.name,
+      id: userId,
+      loginId: loginIdValue,
+      email,
+      role,
+      name,
     },
   };
 }
