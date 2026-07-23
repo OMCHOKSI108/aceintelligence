@@ -418,6 +418,23 @@ font {
   color: inherit !important;
 }
 
+/* Disable decorative animations for smoother first paint and less GPU work */
+.hero-card,
+.cta-button-primary,
+.floating-decor,
+.project-card,
+.enterprise-project-card,
+.enterprise-cta,
+.animate-pulse-slow,
+.enterprise-process-step,
+.enterprise-process-card:hover,
+.enterprise-process-step::before,
+.project-card .absolute.top-0.right-0,
+.bg-gradient-shift,
+.bg-gradient-shift-slow {
+  animation: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
