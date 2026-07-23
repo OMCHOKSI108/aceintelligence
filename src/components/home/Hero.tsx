@@ -2,62 +2,11 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-
-/* ─── Keyframes ─────────────────────────────────────────────────── */
-function injectStyles() {
-  if (typeof document === "undefined") return;
-  if (document.getElementById("hero-mesh-style")) return;
-  const s = document.createElement("style");
-  s.id = "hero-mesh-style";
-  s.textContent = `
-    @keyframes mesh-shift {
-      0%   { transform: translate(0,0) scale(1); }
-      50%  { transform: translate(6px,-4px) scale(1.01); }
-      100% { transform: translate(-4px,3px) scale(0.99); }
-    }
-    @keyframes glow-oscillate {
-      0%   { opacity: 0.5; }
-      50%  { opacity: 0.8; }
-      100% { opacity: 0.5; }
-    }
-    .mesh-anim { animation: mesh-shift 30s ease-in-out infinite alternate; }
-    .glow-anim { animation: glow-oscillate 12s ease-in-out infinite alternate; }
-  `;
-  document.head.appendChild(s);
-}
 
 /* ─── Hero ──────────────────────────────────────────────────────── */
 export function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
-  const [isTouch] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(pointer: coarse)").matches;
-  });
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    injectStyles();
-  }, []);
-
-  useEffect(() => {
-    if (isTouch) return;
-    const el = sectionRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect();
-      setMousePos({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height });
-    };
-    el.addEventListener("mousemove", handler);
-    return () => el.removeEventListener("mousemove", handler);
-  }, [isTouch]);
-
-  const px = (mousePos.x - 0.5) * -12;
-  const py = (mousePos.y - 0.5) * -8;
-
   return (
     <section
-      ref={sectionRef}
       className="relative min-h-[100svh] md:min-h-screen flex items-center justify-center pt-20 sm:pt-24 px-3 sm:px-6 lg:px-8 overflow-hidden bg-white"
     >
       {/* ─── Full-screen SVG ─── */}
@@ -67,12 +16,10 @@ export function Hero() {
         viewBox="0 0 1200 800"
         preserveAspectRatio="xMidYMid slice"
         style={{
-          width: isTouch ? "150vw" : "180vw",
-          height: isTouch ? "92vh" : "120vh",
-          left: isTouch ? "-25vw" : "-40vw",
-          top: isTouch ? "-6vh" : "-10vh",
-          transform: `translate(${px}px,${py}px)`,
-          transition: isTouch ? "none" : "transform 0.7s ease-out",
+          width: "180vw",
+          height: "120vh",
+          left: "-40vw",
+          top: "-10vh",
         }}
       >
         <defs>
@@ -171,7 +118,7 @@ export function Hero() {
         </defs>
 
         {/* ─── Mesh layer (clipped by diagonal) ─── */}
-        <g className="mesh-anim" clipPath="url(#diagonal-mask)">
+        <g clipPath="url(#diagonal-mask)">
           {/* Sweep 1 — main diagonal color transition */}
           <polygon points="-400,-200 1600,-200 1600,900 -400,900" fill="url(#g-sweep-1)" filter="url(#mesh-noise)" />
 
@@ -182,7 +129,7 @@ export function Hero() {
           <polygon points="-400,0 1600,-100 1600,700 -400,700" fill="url(#g-sweep-3)" filter="url(#mesh-blur-wide)" opacity={0.5} style={{ mixBlendMode: "screen" }} />
 
           {/* Golden top-center glow */}
-          <circle cx="600" cy="240" r="500" fill="url(#g-gold-center)" filter="url(#mesh-blur-wide)" className="glow-anim" style={{ mixBlendMode: "screen" }} />
+          <circle cx="600" cy="240" r="500" fill="url(#g-gold-center)" filter="url(#mesh-blur-wide)" style={{ mixBlendMode: "screen" }} />
 
           {/* Purple corner washes */}
           <circle cx="120" cy="80" r="500" fill="url(#g-purple-tl)" filter="url(#mesh-blur-wide)" />
