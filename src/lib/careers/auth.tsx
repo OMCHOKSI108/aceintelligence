@@ -5,11 +5,14 @@ interface User {
   id: string;
   loginId: string;
   email: string;
-  role: "SUPER_ADMIN" | "ADMIN" | "EMPLOYEE" | "CANDIDATE";
+  role: "SUPER_ADMIN" | "ADMIN" | "EMPLOYEE" | "CANDIDATE" | "CLIENT";
   name: string;
   phone?: string;
   bio?: string;
   profilePhoto?: string;
+  companyName?: string;
+  workStatus?: string;
+  googleChatLink?: string;
 }
 
 interface AuthCtx {

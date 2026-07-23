@@ -5,6 +5,7 @@ export enum Role {
   SUPER_ADMIN = "SUPER_ADMIN",
   ADMIN = "ADMIN",
   EMPLOYEE = "EMPLOYEE",
+  CLIENT = "CLIENT",
 }
 
 export class User extends Model {

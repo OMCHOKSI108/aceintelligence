@@ -39,6 +39,37 @@ export async function createAdmin(input: {
   const phone = input.phone ? sanitize(input.phone) : null;
   const bio = input.bio ? sanitize(input.bio) : null;
 
+  const existingUser = await User.findOne({
+    where: { email },
+    paranoid: false,
+  });
+  if (existingUser) {
+    if (existingUser.role === Role.ADMIN && existingUser.deletedAt) {
+      const passwordHash = await hashPassword(input.password);
+      await existingUser.restore();
+      await existingUser.update({
+        name,
+        passwordHash,
+        phone,
+        bio,
+        profilePhoto: input.profilePhoto ?? null,
+      });
+
+      auditLog("ADMIN_RESTORED", { loginId: existingUser.loginId, email });
+
+      const { subject, html } = adminCredentials(name, existingUser.loginId, input.password);
+      await sendAdminEmail(email, subject, html);
+
+      return existingUser;
+    }
+
+    if (existingUser.role === Role.ADMIN) {
+      throw new Error("An active admin with this email already exists");
+    }
+
+    throw new Error("A user with this email already exists");
+  }
+
   const loginId = await generateLoginId();
   const passwordHash = await hashPassword(input.password);
 

@@ -4,7 +4,11 @@ export function middleware(req: NextRequest) {
   const token = req.cookies.get("auth-token")?.value;
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/careers/admin") || pathname.startsWith("/careers/profile")) {
+  if (
+    pathname.startsWith("/careers/admin") ||
+    pathname.startsWith("/careers/profile") ||
+    pathname.startsWith("/careers/portal")
+  ) {
     if (!token) {
       const loginUrl = new URL("/careers/login", req.url);
       return NextResponse.redirect(loginUrl);
@@ -15,5 +19,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/careers/admin/:path*", "/careers/profile/:path*"],
+  matcher: ["/careers/admin/:path*", "/careers/profile/:path*", "/careers/portal/:path*"],
 };

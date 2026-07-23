@@ -1,5 +1,11 @@
 import sequelize from "../db";
 import { User, Role } from "../models/User";
+import { Job } from "../models/Job";
+import { Application } from "../models/Application";
+import { Candidate } from "../models/Candidate";
+import { CandidateProfile } from "../models/CandidateProfile";
+import { ResumeFile } from "../models/ResumeFile";
+import { Interview } from "../models/Interview";
 import { hashPassword } from "../utils/password";
 
 export interface SeedResult {
@@ -10,6 +16,9 @@ export interface SeedResult {
 
 export async function seedSuperAdminIfEmpty(): Promise<SeedResult> {
   await sequelize.authenticate();
+
+  // Sync all models to create tables if they don't exist
+  await sequelize.sync();
 
   const existing = await User.findOne({ where: { role: Role.SUPER_ADMIN } });
   if (existing) {

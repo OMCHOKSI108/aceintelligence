@@ -1,12 +1,14 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/lib/careers/auth";
 
 export default function CandidateLoginPage() {
   const { login } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo") || "/careers/profile";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -24,11 +26,16 @@ export default function CandidateLoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
+      const contentType = res.headers.get("content-type") || "";
+      if (!contentType.includes("application/json")) {
+        throw new Error(`Server returned ${res.status} instead of JSON. Check deployment logs.`);
+      }
+
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Login failed");
 
       login(data.user);
-      router.push("/careers");
+      router.push(returnTo);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -58,7 +65,10 @@ export default function CandidateLoginPage() {
         </button>
         {error && <p className="error">{error}</p>}
         <p style={{ fontSize: 13, marginTop: 8 }}>
-          Don&apos;t have an account? <Link href="/careers/register">Create one</Link>
+          Don&apos;t have an account?{" "}
+          <Link href={`/careers/register?returnTo=${encodeURIComponent(returnTo)}`}>
+            Create one
+          </Link>
         </p>
       </form>
     </div>

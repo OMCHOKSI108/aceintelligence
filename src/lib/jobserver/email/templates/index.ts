@@ -316,3 +316,58 @@ export function adminRemoved(name: string, loginId: string): { subject: string; 
     `),
   };
 }
+
+export function clientWelcome(
+  name: string,
+  loginId: string,
+  password: string,
+): { subject: string; html: string } {
+  const loginUrl = "https://aceintelligence.systems/careers/login";
+  return {
+    subject: `Welcome to Ace Intelligence Systems — Your Client Portal is Ready`,
+    html: WRAPPER(`
+      <h2 style="margin:0 0 8px;font-size:20px;color:#333;">Ace Intelligence Systems</h2>
+      <hr style="border:none;border-top:2px solid #0078d4;margin:16px 0;"/>
+
+      <p style="font-size:15px;color:#333;">Hi ${name},</p>
+
+      <p style="font-size:15px;color:#333;line-height:1.7;">
+        Welcome aboard! Your client portal has been created. Here you can view project documents,
+        track work progress, and connect directly with our team.
+      </p>
+
+      <h3 style="font-size:16px;color:#333;margin:24px 0 8px;">Your Login Credentials</h3>
+
+      <table cellpadding="12" cellspacing="0" style="border:1px solid #e0e0e0;margin:16px 0;width:100%;">
+        <tr><td style="font-size:14px;color:#666;width:120px;">Login ID</td><td style="font-size:14px;font-weight:bold;">${loginId}</td></tr>
+        <tr style="background:#f9f9f9;"><td style="font-size:14px;color:#666;">Password</td><td style="font-size:14px;">${password}</td></tr>
+      </table>
+
+      <p style="font-size:15px;color:#c00;font-weight:bold;">
+        Please change your password after first login.
+      </p>
+
+      <h3 style="font-size:16px;color:#333;margin:24px 0 8px;">Getting Started</h3>
+
+      <ol style="font-size:15px;color:#333;line-height:2;">
+        <li>Log in to your client portal using the credentials above</li>
+        <li>View your project documents and onboarding materials</li>
+        <li>Check the work status bar to track project progress</li>
+        <li>Use the Google Chat link to connect directly with our team</li>
+      </ol>
+
+      <p style="text-align:center;margin:32px 0;">
+        <a href="${loginUrl}"
+           style="display:inline-block;padding:12px 32px;background:#0078d4;color:#fff;text-decoration:none;font-size:15px;font-weight:bold;">
+          Log In to Your Portal
+        </a>
+      </p>
+
+      <p style="font-size:15px;color:#333;line-height:1.7;">
+        If you have any questions, feel free to reach out through the Google Chat link in your portal.
+      </p>
+
+      <p style="font-size:15px;color:#333;">Best,<br/><strong>Ace Intelligence Systems Team</strong></p>
+    `),
+  };
+}

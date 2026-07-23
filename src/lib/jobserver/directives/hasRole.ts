@@ -3,9 +3,10 @@ import { GraphQLSchema } from "graphql";
 import { verifyToken, JwtPayload } from "../utils/jwt";
 
 const ROLE_HIERARCHY: Record<string, number> = {
-  SUPER_ADMIN: 3,
-  ADMIN: 2,
-  EMPLOYEE: 1,
+  SUPER_ADMIN: 4,
+  ADMIN: 3,
+  EMPLOYEE: 2,
+  CLIENT: 1,
 };
 
 export function hasRoleDirectiveTransformer(schema: GraphQLSchema): GraphQLSchema {
@@ -18,13 +19,18 @@ export function hasRoleDirectiveTransformer(schema: GraphQLSchema): GraphQLSchem
       const originalResolve = fieldConfig.resolve;
 
       fieldConfig.resolve = async (source, args, context, info) => {
-        const authHeader = context.req?.headers?.authorization;
-        if (!authHeader) {
-          throw new Error("Not authenticated");
+        let payload: JwtPayload | undefined = context.user;
+
+        if (!payload) {
+          const authHeader = context.req?.headers?.authorization;
+          if (authHeader?.startsWith("Bearer ")) {
+            payload = verifyToken(authHeader.slice(7));
+          }
         }
 
-        const token = authHeader.replace("Bearer ", "");
-        const payload: JwtPayload = verifyToken(token);
+        if (!payload) {
+          throw new Error("Not authenticated");
+        }
 
         const userLevel = ROLE_HIERARCHY[payload.role] ?? 0;
         const requiredLevel = ROLE_HIERARCHY[requiredRole] ?? 0;

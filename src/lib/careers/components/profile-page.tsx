@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useAuth } from "@/lib/careers/auth";
 import { gql } from "@/lib/careers/graphql";
 
@@ -11,8 +12,24 @@ const CHANGE_PW_MUT = `mutation($input: ChangePasswordInput!) {
   changePassword(input: $input)
 }`;
 
+const MY_APPLICATIONS_QUERY = `{
+  myApplications {
+    id jobId jobTitle location employmentType stage appliedAt
+  }
+}`;
+
+interface CandidateApplication {
+  id: string;
+  jobId: string;
+  jobTitle: string;
+  location: string;
+  employmentType: string;
+  stage: string;
+  appliedAt: string;
+}
+
 export default function ProfilePage() {
-  const { user, login } = useAuth();
+  const { user, loading: authLoading, login } = useAuth();
 
   const [form, setForm] = useState({
     name: user?.name ?? "",
@@ -28,6 +45,28 @@ export default function ProfilePage() {
   const [pwLoading, setPwLoading] = useState(false);
   const [pwMsg, setPwMsg] = useState("");
   const [pwError, setPwError] = useState("");
+  const [applications, setApplications] = useState<CandidateApplication[]>([]);
+  const [appsLoading, setAppsLoading] = useState(false);
+  const [appsError, setAppsError] = useState("");
+
+  useEffect(() => {
+    if (!user) return;
+    setForm({
+      name: user.name ?? "",
+      phone: user.phone ?? "",
+      bio: user.bio ?? "",
+    });
+    setPhoto(user.profilePhoto ?? null);
+  }, [user]);
+
+  useEffect(() => {
+    if (user?.role !== "CANDIDATE") return;
+    setAppsLoading(true);
+    gql<{ myApplications: CandidateApplication[] }>(MY_APPLICATIONS_QUERY)
+      .then((data) => setApplications(data.myApplications))
+      .catch((err) => setAppsError(err.message))
+      .finally(() => setAppsLoading(false));
+  }, [user?.role]);
 
   function setField(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -98,6 +137,88 @@ export default function ProfilePage() {
     } finally {
       setPwLoading(false);
     }
+  }
+
+  if (authLoading) return <p>Loading...</p>;
+
+  if (!user) {
+    return (
+      <div>
+        <h2>Profile</h2>
+        <p>
+          You need to <Link href="/careers/candidate-login">log in</Link> to view your profile.
+        </p>
+      </div>
+    );
+  }
+
+  if (user.role === "CANDIDATE") {
+    return (
+      <div>
+        <h2>Profile</h2>
+        <div className="meta">
+          <div className="meta-row">
+            <span className="meta-key">Name:</span>
+            <span>{user.name}</span>
+          </div>
+          <div className="meta-row">
+            <span className="meta-key">Email:</span>
+            <span>{user.email}</span>
+          </div>
+          {user.phone && (
+            <div className="meta-row">
+              <span className="meta-key">Phone:</span>
+              <span>{user.phone}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="page-header" style={{ marginTop: 24 }}>
+          <h3>My Applications</h3>
+          <Link href="/careers" className="btn">
+            Browse Jobs
+          </Link>
+        </div>
+
+        {appsLoading ? (
+          <p>Loading applications...</p>
+        ) : appsError ? (
+          <p className="error">{appsError}</p>
+        ) : (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Job</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Applied</th>
+              </tr>
+            </thead>
+            <tbody>
+              {applications.map((app) => (
+                <tr key={app.id}>
+                  <td>
+                    <Link href={`/careers/${app.jobId}`} className="link-btn">
+                      {app.jobTitle}
+                    </Link>
+                  </td>
+                  <td>{app.location}</td>
+                  <td>{app.employmentType.replace("_", " ")}</td>
+                  <td>{app.stage.replace("_", " ")}</td>
+                  <td>{new Date(Number(app.appliedAt)).toLocaleDateString()}</td>
+                </tr>
+              ))}
+              {applications.length === 0 && (
+                <tr>
+                  <td colSpan={5}>No applications yet.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        )}
+      </div>
+    );
   }
 
   return (

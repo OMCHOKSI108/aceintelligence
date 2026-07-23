@@ -5,3 +5,5 @@ export { Candidate } from "./Candidate";
 export { CandidateProfile, ProfileStatus, type ProfileData } from "./CandidateProfile";
 export { ResumeFile, MAX_FILE_SIZE } from "./ResumeFile";
 export { Interview, InterviewMode } from "./Interview";
+export { Client, WorkStatus } from "./Client";
+export { ClientDocument, DocumentType } from "./ClientDocument";

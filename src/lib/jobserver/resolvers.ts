@@ -6,6 +6,7 @@ import { interviewResolvers } from "./modules/interview/resolvers";
 import { employeeResolvers } from "./modules/employee/resolvers";
 import { candidateResolvers } from "./modules/candidate/resolvers";
 import { resumeProcessorResolvers } from "./modules/resume-processor/resolvers";
+import { clientResolvers } from "./modules/client/resolvers";
 
 export const resolvers = {
   Query: {
@@ -18,6 +19,7 @@ export const resolvers = {
     ...applicationResolvers.Query,
     ...candidateResolvers.Query,
     ...resumeProcessorResolvers.Query,
+    ...clientResolvers.Query,
   },
   Mutation: {
     ...authResolvers.Mutation,
@@ -28,5 +30,6 @@ export const resolvers = {
     ...employeeResolvers.Mutation,
     ...candidateResolvers.Mutation,
     ...resumeProcessorResolvers.Mutation,
+    ...clientResolvers.Mutation,
   },
 };

@@ -20,7 +20,7 @@ export default function ResumeUploadPage() {
       <div>
         <h2>Upload Resume</h2>
         <p style={{ margin: "12px 0" }}>
-          You need to <Link href="/careers/candidate/login">log in</Link> to upload a resume.
+          You need to <Link href="/careers/candidate-login">log in</Link> to upload a resume.
         </p>
       </div>
     );

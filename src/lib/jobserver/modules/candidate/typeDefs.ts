@@ -16,7 +16,7 @@ export const candidateTypeDefs = gql`
   }
 
   extend type Mutation {
-    candidateRegister(email: String!, password: String!, name: String!, phone: String): Candidate!
+    candidateRegister(email: String!, password: String!, name: String!, phone: String, returnTo: String): Candidate!
     candidateVerify(token: String!): Boolean!
     candidateLogin(email: String!, password: String!): CandidateAuthPayload!
   }

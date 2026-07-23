@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { MessageSquare, Mail } from "lucide-react";
 import { theme } from "@/lib/theme";
 
@@ -31,7 +35,42 @@ const founders = [
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+  const [checkingCareersAuth, setCheckingCareersAuth] = useState(false);
+  const [hasCareersSession, setHasCareersSession] = useState(false);
   const currentYear = new Date().getFullYear();
+  const isCareersApp = pathname?.startsWith("/careers");
+  const isProtectedCareersRoute =
+    pathname?.startsWith("/careers/admin") ||
+    pathname?.startsWith("/careers/profile") ||
+    pathname?.endsWith("/apply");
+
+  useEffect(() => {
+    if (!isCareersApp || !isProtectedCareersRoute) {
+      setCheckingCareersAuth(false);
+      setHasCareersSession(false);
+      return;
+    }
+
+    let cancelled = false;
+    setCheckingCareersAuth(true);
+    fetch("/api/auth/me", { cache: "no-store" })
+      .then((res) => {
+        if (!cancelled) setHasCareersSession(res.ok);
+      })
+      .catch(() => {
+        if (!cancelled) setHasCareersSession(false);
+      })
+      .finally(() => {
+        if (!cancelled) setCheckingCareersAuth(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isCareersApp, isProtectedCareersRoute, pathname]);
+
+  if (isProtectedCareersRoute && (checkingCareersAuth || hasCareersSession)) return null;
 
   return (
     <footer className="relative z-20 bg-slate-950 text-slate-400 mt-auto">

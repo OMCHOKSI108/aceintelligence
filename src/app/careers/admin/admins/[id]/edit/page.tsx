@@ -3,6 +3,7 @@ import { useEffect, useState, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { gql } from "@/lib/careers/graphql";
+import { useAuth } from "@/lib/careers/auth";
 
 const QUERY = `query($id: ID!) {
   getAdminById(id: $id) { id name email phone bio profilePhoto }
@@ -15,6 +16,7 @@ const UPDATE_MUT = `mutation($id: ID!, $input: UpdateAdminInput!) {
 export default function EditAdminPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
 
   const [form, setForm] = useState({
     name: "",
@@ -27,6 +29,15 @@ export default function EditAdminPage({ params }: { params: Promise<{ id: string
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
+    if (authLoading) return;
+    if (user?.role === "ADMIN") {
+      router.replace("/careers/admin/jobs");
+      return;
+    }
+    if (user?.role !== "SUPER_ADMIN") {
+      setLoading(false);
+      return;
+    }
     if (!id) return;
     gql<{ getAdminById: any }>(QUERY, { id })
       .then((d) => {
@@ -39,7 +50,7 @@ export default function EditAdminPage({ params }: { params: Promise<{ id: string
       })
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [authLoading, id, router, user?.role]);
 
   function setField(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -65,7 +76,8 @@ export default function EditAdminPage({ params }: { params: Promise<{ id: string
     }
   }
 
-  if (loading) return <p>Loading...</p>;
+  if (authLoading || loading) return <p>Loading...</p>;
+  if (user?.role !== "SUPER_ADMIN") return <p className="error">Super Admin access required.</p>;
 
   return (
     <div>

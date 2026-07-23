@@ -1,13 +1,16 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { gql } from "@/lib/careers/graphql";
 
-const MUTATION = `mutation($email: String!, $password: String!, $name: String!, $phone: String) {
-  candidateRegister(email: $email, password: $password, name: $name, phone: $phone) { id email name }
+const MUTATION = `mutation($email: String!, $password: String!, $name: String!, $phone: String, $returnTo: String) {
+  candidateRegister(email: $email, password: $password, name: $name, phone: $phone, returnTo: $returnTo) { id email name }
 }`;
 
 export default function RegisterPage() {
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo") || "/careers/profile";
   const [form, setForm] = useState({ name: "", email: "", password: "", phone: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [msg, setMsg] = useState("");
@@ -22,9 +25,10 @@ export default function RegisterPage() {
     try {
       const input: Record<string, string> = { ...form };
       if (!input.phone) delete input.phone;
+      input.returnTo = returnTo;
       await gql(MUTATION, input);
       setStatus("done");
-      setMsg("Account created! Check your email for a verification link.");
+      setMsg("Account created. We sent a verification link to your email. Click that link to verify and continue your application.");
     } catch (err: any) {
       setStatus("error");
       setMsg(err.message);
@@ -36,7 +40,10 @@ export default function RegisterPage() {
       <div className="login-box">
         <h2>Check Your Email</h2>
         <p style={{ margin: "12px 0" }}>{msg}</p>
-        <Link href="/careers/candidate/login">Go to Login</Link>
+        <p className="muted">
+          The verification link will log you in automatically and bring you back to the application.
+        </p>
+        <Link href={`/careers/candidate-login?returnTo=${encodeURIComponent(returnTo)}`}>Go to Login</Link>
       </div>
     );
   }
@@ -73,7 +80,10 @@ export default function RegisterPage() {
         </button>
         {status === "error" && <p className="error">{msg}</p>}
         <p style={{ fontSize: 13, marginTop: 8 }}>
-          Already have an account? <Link href="/careers/candidate/login">Log in</Link>
+          Already have an account?{" "}
+          <Link href={`/careers/candidate-login?returnTo=${encodeURIComponent(returnTo)}`}>
+            Log in
+          </Link>
         </p>
       </form>
     </div>

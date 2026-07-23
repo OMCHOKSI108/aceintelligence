@@ -11,7 +11,7 @@ export const candidateResolvers = {
   Mutation: {
     candidateRegister: (
       _parent: unknown,
-      args: { email: string; password: string; name: string; phone?: string },
+      args: { email: string; password: string; name: string; phone?: string; returnTo?: string },
     ) => candidateRegister(args),
 
     candidateVerify: (_parent: unknown, args: { token: string }) => candidateVerify(args.token),

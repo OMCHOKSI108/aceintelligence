@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { navData } from "@/lib/nav-data";
@@ -10,7 +11,16 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import type { NavItem } from "@/lib/nav-data";
 
 export function Header() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [checkingCareersAuth, setCheckingCareersAuth] = useState(false);
+  const [hasCareersSession, setHasCareersSession] = useState(false);
+
+  const isCareersApp = pathname?.startsWith("/careers");
+  const isProtectedCareersRoute =
+    pathname?.startsWith("/careers/admin") ||
+    pathname?.startsWith("/careers/profile") ||
+    pathname?.endsWith("/apply");
 
   useEffect(() => {
     if (mobileOpen) {
@@ -22,6 +32,33 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!isCareersApp || !isProtectedCareersRoute) {
+      setCheckingCareersAuth(false);
+      setHasCareersSession(false);
+      return;
+    }
+
+    let cancelled = false;
+    setCheckingCareersAuth(true);
+    fetch("/api/auth/me", { cache: "no-store" })
+      .then((res) => {
+        if (!cancelled) setHasCareersSession(res.ok);
+      })
+      .catch(() => {
+        if (!cancelled) setHasCareersSession(false);
+      })
+      .finally(() => {
+        if (!cancelled) setCheckingCareersAuth(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isCareersApp, isProtectedCareersRoute, pathname]);
+
+  if (isProtectedCareersRoute && (checkingCareersAuth || hasCareersSession)) return null;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">

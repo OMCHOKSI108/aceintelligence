@@ -1,7 +1,9 @@
 "use client";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { gql } from "@/lib/careers/graphql";
+import { useAuth } from "@/lib/careers/auth";
 
 const MUTATION = `mutation($input: CreateAdminInput!) {
   createAdmin(input: $input) { id loginId name email }
@@ -9,6 +11,7 @@ const MUTATION = `mutation($input: CreateAdminInput!) {
 
 export default function CreateAdminPage() {
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
 
   const [form, setForm] = useState({
     name: "",
@@ -19,6 +22,12 @@ export default function CreateAdminPage() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!authLoading && user?.role === "ADMIN") {
+      router.replace("/careers/admin/jobs");
+    }
+  }, [authLoading, router, user?.role]);
 
   function setField(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -42,6 +51,9 @@ export default function CreateAdminPage() {
       setLoading(false);
     }
   }
+
+  if (authLoading) return <p>Loading...</p>;
+  if (user?.role !== "SUPER_ADMIN") return <p className="error">Super Admin access required.</p>;
 
   return (
     <div>

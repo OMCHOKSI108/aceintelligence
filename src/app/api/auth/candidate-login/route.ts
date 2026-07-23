@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { candidateLogin } from "@/lib/jobserver/modules/candidate/service";
 
 const COOKIE_NAME = "auth-token";
 const COOKIE_MAX_AGE = 7 * 24 * 60 * 60;
@@ -11,6 +10,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "email and password are required" }, { status: 400 });
     }
 
+    const { candidateLogin } = await import("@/lib/jobserver/modules/candidate/service");
     const result = await candidateLogin(email, password);
 
     const user = {
