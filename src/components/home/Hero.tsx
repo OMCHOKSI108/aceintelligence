@@ -1,258 +1,238 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { HoverArrow } from "@/components/layout/HoverArrow";
 
-/* ─── Keyframes ─────────────────────────────────────────────────── */
-function injectStyles() {
-  if (typeof document === "undefined") return;
-  if (document.getElementById("hero-mesh-style")) return;
-  const s = document.createElement("style");
-  s.id = "hero-mesh-style";
-  s.textContent = `
-    @keyframes mesh-shift {
-      0%   { transform: translate(0,0) scale(1); }
-      50%  { transform: translate(6px,-4px) scale(1.01); }
-      100% { transform: translate(-4px,3px) scale(0.99); }
-    }
-    @keyframes glow-oscillate {
-      0%   { opacity: 0.5; }
-      50%  { opacity: 0.8; }
-      100% { opacity: 0.5; }
-    }
-    .mesh-anim { animation: mesh-shift 30s ease-in-out infinite alternate; }
-    .glow-anim { animation: glow-oscillate 12s ease-in-out infinite alternate; }
-  `;
-  document.head.appendChild(s);
+/*
+ * ── Content map ──────────────────────────────────────────────────
+ * Edit these values, not the markup. Anything you are unsure about
+ * is marked PLAUSIBLE-PLACEHOLDER below — swap with real data before
+ * shipping.
+ */
+
+/* Real: founders' GitHub handles (public, verifiable). */
+const founders = ["OMCHOKSI108", "anshgajera", "firefistisdead"];
+
+/* Real: Vizatrade (custom trading solution) ships on the site already (client quote in HomePage). */
+const CLIENT_LOGO = { src: "/vizatrade.png", alt: "Vizatrade", label: "Fintech client" };
+
+/* Real: product screenshots from /public (portfolio projects). */
+const showcaseSlides = [
+  { src: "/multimodal_rag.png", alt: "Multi Modal RAG Agent" },
+  { src: "/pralay.png", alt: "PralayAI — cybersecurity LLM" },
+  { src: "/chatscreen.jpeg", alt: "Conversational AI ordering" },
+  { src: "/multiagent_research_n8n_flow.png", alt: "Multi Agent Research — n8n flow" },
+];
+
+/* PLAUSIBLE-PLACEHOLDER: "5.0 client rating" — based on one public quote; verify. */
+const RATING = { value: 5, label: "5.0 client rating" };
+
+/* ── Showcase: auto-advancing crossfade of product screenshots ─── */
+const SHOWCASE_INTERVAL_MS = 3500;
+
+function Showcase() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (paused || reducedMotion) return;
+    const t = setInterval(
+      () => setActive((a) => (a + 1) % showcaseSlides.length),
+      SHOWCASE_INTERVAL_MS,
+    );
+    return () => clearInterval(t);
+  }, [paused, reducedMotion]);
+
+  return (
+    <div
+      className="relative mt-8 aspect-[16/10] overflow-hidden rounded-[16px] border border-[#E5E7EB] bg-slate-100 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-16px_rgba(15,23,42,0.12)]"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Product showcase"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      {showcaseSlides.map((slide, i) => (
+        <img
+          key={slide.src}
+          src={slide.src}
+          alt={slide.alt}
+          width={1517}
+          height={801}
+          loading={i === 0 ? "eager" : "lazy"}
+          sizes="(min-width: 1024px) 38vw, 92vw"
+          aria-hidden={i !== active}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out ${
+            i === active ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      ))}
+
+      {/* Caption + controls */}
+      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 bg-gradient-to-t from-black/40 to-transparent px-4 pb-3 pt-8">
+        <p className="truncate text-xs font-medium text-white">
+          {showcaseSlides[active].alt}
+        </p>
+        <div className="flex items-center gap-1.5" role="tablist" aria-label="Showcase slides">
+          {showcaseSlides.map((slide, i) => (
+            <button
+              key={slide.src}
+              type="button"
+              role="tab"
+              aria-selected={i === active}
+              aria-label={`Show ${slide.alt}`}
+              onClick={() => setActive(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal ${
+                i === active ? "w-5 bg-white" : "w-1.5 bg-white/50 hover:bg-white/80"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 /* ─── Hero ──────────────────────────────────────────────────────── */
 export function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
-  const [isTouch] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(pointer: coarse)").matches;
-  });
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    injectStyles();
-  }, []);
-
-  useEffect(() => {
-    if (isTouch) return;
-    const el = sectionRef.current;
-    if (!el) return;
-    const handler = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect();
-      setMousePos({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height });
-    };
-    el.addEventListener("mousemove", handler);
-    return () => el.removeEventListener("mousemove", handler);
-  }, [isTouch]);
-
-  const px = (mousePos.x - 0.5) * -12;
-  const py = (mousePos.y - 0.5) * -8;
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[100svh] md:min-h-screen flex items-center justify-center pt-20 sm:pt-24 px-3 sm:px-6 lg:px-8 overflow-hidden bg-white"
-    >
-      {/* ─── Full-screen SVG ─── */}
-      <svg
-        className="pointer-events-none absolute z-0"
-        aria-hidden="true"
-        viewBox="0 0 1200 800"
-        preserveAspectRatio="xMidYMid slice"
-        style={{
-          width: isTouch ? "150vw" : "180vw",
-          height: isTouch ? "92vh" : "120vh",
-          left: isTouch ? "-25vw" : "-40vw",
-          top: isTouch ? "-6vh" : "-10vh",
-          transform: `translate(${px}px,${py}px)`,
-          transition: isTouch ? "none" : "transform 0.7s ease-out",
-        }}
-      >
-        <defs>
-          {/* ─── Filters ─── */}
-          <filter id="mesh-blur-wide">
-            <feGaussianBlur stdDeviation="48" />
-          </filter>
-          <filter id="mesh-blur-mid">
-            <feGaussianBlur stdDeviation="28" />
-          </filter>
-          <filter id="mesh-noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="2" result="n" />
-            <feDisplacementMap in="SourceGraphic" in2="n" scale="20" xChannelSelector="R" yChannelSelector="G" result="d" />
-            <feGaussianBlur in="d" stdDeviation="14" />
-          </filter>
-
-          {/* ─── Mesh gradient layers ───
-               Multiple overlapping gradient shapes with heavy blur
-               create a smooth mesh with no hard stops or visible
-               blob edges.                                 */}
-          {/* Large diagonal sweep — blue → cyan → amber → gold */}
-          <linearGradient id="g-sweep-1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.6} />
-            <stop offset="20%" stopColor="#0EA5E9" stopOpacity={0.5} />
-            <stop offset="40%" stopColor="#22D3EE" stopOpacity={0.45} />
-            <stop offset="55%" stopColor="#F59E0B" stopOpacity={0.4} />
-            <stop offset="75%" stopColor="#FB923C" stopOpacity={0.35} />
-            <stop offset="100%" stopColor="#FFD54A" stopOpacity={0.3} />
-          </linearGradient>
-
-          {/* Cross sweep — indigo → cyan → gold → amber */}
-          <linearGradient id="g-sweep-2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#93C5FD" stopOpacity={0.45} />
-            <stop offset="25%" stopColor="#38BDF8" stopOpacity={0.35} />
-            <stop offset="50%" stopColor="#22D3EE" stopOpacity={0.3} />
-            <stop offset="75%" stopColor="#FFD54A" stopOpacity={0.25} />
-            <stop offset="100%" stopColor="#F59E0B" stopOpacity={0.2} />
-          </linearGradient>
-
-          {/* Vertical blend — blue top → gold center → amber bottom */}
-          <linearGradient id="g-sweep-3" x1="50%" y1="0%" x2="50%" y2="100%">
-            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.35} />
-            <stop offset="30%" stopColor="#0EA5E9" stopOpacity={0.25} />
-            <stop offset="55%" stopColor="#FFD54A" stopOpacity={0.2} />
-            <stop offset="80%" stopColor="#F59E0B" stopOpacity={0.15} />
-            <stop offset="100%" stopColor="#FB923C" stopOpacity={0.12} />
-          </linearGradient>
-
-          {/* ─── Golden glow — top-center hotspot ─── */}
-          <radialGradient id="g-gold-center" cx="50%" cy="30%" r="40%">
-            <stop offset="0%" stopColor="#FFD54A" stopOpacity={0.55} />
-            <stop offset="25%" stopColor="#FFD54A" stopOpacity={0.35} />
-            <stop offset="50%" stopColor="#FF9D00" stopOpacity={0.18} />
-            <stop offset="75%" stopColor="#FF7A59" stopOpacity={0.08} />
-            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
-          </radialGradient>
-
-          {/* ─── Blue concentration — top-left corner ─── */}
-          <radialGradient id="g-purple-tl" cx="10%" cy="10%" r="45%">
-            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.55} />
-            <stop offset="35%" stopColor="#0EA5E9" stopOpacity={0.3} />
-            <stop offset="60%" stopColor="#93C5FD" stopOpacity={0.12} />
-            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
-          </radialGradient>
-
-          {/* ─── Blue concentration — top-right corner ─── */}
-          <radialGradient id="g-purple-tr" cx="90%" cy="5%" r="40%">
-            <stop offset="0%" stopColor="#1D4ED8" stopOpacity={0.45} />
-            <stop offset="35%" stopColor="#0EA5E9" stopOpacity={0.25} />
-            <stop offset="60%" stopColor="#93C5FD" stopOpacity={0.1} />
-            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
-          </radialGradient>
-
-          {/* ─── Amber wash — lower-right ─── */}
-          <radialGradient id="g-coral-br" cx="85%" cy="75%" r="40%">
-            <stop offset="0%" stopColor="#F59E0B" stopOpacity={0.35} />
-            <stop offset="35%" stopColor="#FB923C" stopOpacity={0.25} />
-            <stop offset="60%" stopColor="#22D3EE" stopOpacity={0.12} />
-            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
-          </radialGradient>
-
-          {/* ─── Sky bridge — mid-left ─── */}
-          <radialGradient id="g-lavender" cx="25%" cy="45%" r="35%">
-            <stop offset="0%" stopColor="#93C5FD" stopOpacity={0.3} />
-            <stop offset="40%" stopColor="#38BDF8" stopOpacity={0.15} />
-            <stop offset="100%" stopColor="transparent" stopOpacity={0} />
-          </radialGradient>
-
-          {/* ─── Diagonal clip mask (~14° angle) ───
-               On the left edge the diagonal sits at y=520 (65%).
-               On the right edge it sits at y=200 (25%).
-               Everything above the diagonal is visible mesh. */}
-          <clipPath id="diagonal-mask">
-            <polygon points="0,0 1200,0 1200,200 0,520" />
-          </clipPath>
-        </defs>
-
-        {/* ─── Mesh layer (clipped by diagonal) ─── */}
-        <g className="mesh-anim" clipPath="url(#diagonal-mask)">
-          {/* Sweep 1 — main diagonal color transition */}
-          <polygon points="-400,-200 1600,-200 1600,900 -400,900" fill="url(#g-sweep-1)" filter="url(#mesh-noise)" />
-
-          {/* Sweep 2 — cross-direction blend for mesh depth */}
-          <polygon points="-400,-200 1600,-200 1600,900 -400,900" fill="url(#g-sweep-2)" filter="url(#mesh-blur-mid)" opacity={0.6} style={{ mixBlendMode: "screen" }} />
-
-          {/* Sweep 3 — vertical transition (purple top → warm bottom) */}
-          <polygon points="-400,0 1600,-100 1600,700 -400,700" fill="url(#g-sweep-3)" filter="url(#mesh-blur-wide)" opacity={0.5} style={{ mixBlendMode: "screen" }} />
-
-          {/* Golden top-center glow */}
-          <circle cx="600" cy="240" r="500" fill="url(#g-gold-center)" filter="url(#mesh-blur-wide)" className="glow-anim" style={{ mixBlendMode: "screen" }} />
-
-          {/* Purple corner washes */}
-          <circle cx="120" cy="80" r="500" fill="url(#g-purple-tl)" filter="url(#mesh-blur-wide)" />
-          <circle cx="1080" cy="40" r="450" fill="url(#g-purple-tr)" filter="url(#mesh-blur-wide)" />
-
-          {/* Coral-orange lower-right wash */}
-          <circle cx="1020" cy="600" r="400" fill="url(#g-coral-br)" filter="url(#mesh-blur-wide)" style={{ mixBlendMode: "screen" }} />
-
-          {/* Lavender bridge mid-left */}
-          <circle cx="300" cy="360" r="350" fill="url(#g-lavender)" filter="url(#mesh-blur-mid)" style={{ mixBlendMode: "screen" }} />
-        </g>
-
-        {/* ── Subtle internal streaks ── */}
-        <g clipPath="url(#diagonal-mask)" opacity={0.06} style={{ mixBlendMode: "screen" }}>
-          {Array.from({ length: 20 }, (_, i) => {
-            const y = -100 + i * 45;
-            return (
-              <path
-                key={i}
-                d={`M-200,${y} Q500,${y - 30 + (i - 10) * 5} 1400,${y - 20}`}
-                fill="none"
-                stroke="white"
-                strokeWidth={1 + (i % 3)}
-                opacity={0.2 + (i % 5) * 0.04}
-              />
-            );
-          })}
-        </g>
-      </svg>
-
-      {/* ── Bottom fade overlay ── */}
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FCFCFD] via-[#FDFDFE] to-[#F8FAFC]">
+      {/* Blueprint grid — committed: faint infrastructure texture across the whole hero */}
       <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white z-[3]"
         aria-hidden="true"
+        className="hero-blueprint pointer-events-none absolute inset-0"
+      />
+      {/* Solid accent ribbon — one color, no gradient */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-0.5 bg-signal"
+      />
+      {/* Ribbon accent — top-right, layered gradients in amber family, masked fade */}
+      <div aria-hidden="true" className="hero-ribbon" />
+      {/* Subtle top glow — restrained, not a full-bleed mesh */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[48rem] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#FEF3C7] to-transparent blur-3xl"
       />
 
-      {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-[850px] mx-auto text-center">
-        <div className="rounded-3xl border border-slate-200/70 bg-white/75 backdrop-blur-2xl shadow-2xl shadow-slate-200/80 p-6 sm:p-10 md:p-16">
-          <p className="text-xs font-medium tracking-[0.28em] text-slate-400 uppercase mb-6">
-            Ace Intelligence Systems
-          </p>
+      <div className="relative mx-auto max-w-7xl px-4 pt-32 sm:px-6 sm:pt-36 lg:px-8 lg:pt-40 pb-24 sm:pb-28 lg:pb-32">
+        <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-12">
+          {/* ── Left: content ── */}
+          <div className="hero-fade-up lg:col-span-6">
+            <h1 className="font-display text-[2.5rem] font-semibold leading-[1.08] tracking-[-0.03em] text-slate-900 text-balance sm:text-[3.4rem] lg:text-[3.6rem]">
+              We build the AI infrastructure
+              <br />
+              <span className="text-signal">enterprises run on.</span>
+            </h1>
 
-          <h1 className="headline-primary text-[2.2rem] sm:text-[4rem] lg:text-[4.6rem] text-slate-900 leading-[1.08] tracking-tight">
-            AI &amp; Automation for Enterprises.
-            <br />
-            <span className="bg-gradient-to-r from-[#1D4ED8] via-[#0EA5E9] to-[#F59E0B] bg-clip-text text-transparent">
-              We make it simple.
-            </span>
-          </h1>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              Enterprise RAG pipelines, multi-agent workflows, HRMS/ATS platforms, geospatial routing, and real-time messaging infra — engineered end to end, shipped in weeks not quarters.
+            </p>
 
-          <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Bespoke AI architectures and scalable cloud infrastructure tailored to your business operations.
-          </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 rounded-[10px] bg-signal px-6 py-3.5 text-sm font-semibold text-white shadow-[0_1px_2px_rgba(15,23,42,0.08),0_4px_12px_-4px_rgba(180,83,9,0.35)] transition-all duration-150 hover:bg-signal-hover hover:shadow-[0_2px_4px_rgba(15,23,42,0.1),0_6px_16px_-4px_rgba(180,83,9,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+              >
+                Start a project
+                <HoverArrow />
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center justify-center gap-2 rounded-[10px] border border-[#CBD5E1] bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-all duration-150 hover:border-[#94A3B8] hover:bg-slate-50 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+              >
+                See our work
+              </Link>
+            </div>
 
-          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 bg-gradient-to-r from-[#1D4ED8] via-[#0EA5E9] to-[#F59E0B]"
-            >
-              Talk to an Expert
-              <ArrowRight size={16} />
-            </Link>
+            {/* ── Trust indicator ── */}
+            <div className="mt-14 max-w-xl">
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex -space-x-2.5">
+                    {founders.map((user) => (
+                      <img
+                        key={user}
+                        src={`https://avatars.githubusercontent.com/${user}?size=64`}
+                        alt=""
+                        width={32}
+                        height={32}
+                        loading="lazy"
+                        className="h-8 w-8 rounded-full border-2 border-[#FCFCFD] shadow-[0_1px_2px_rgba(15,23,42,0.08)]"
+                      />
+                    ))}
+                  </div>
+                  <p className="text-sm text-slate-600">
+                    Built by <span className="font-semibold text-slate-900">3 AIML engineers</span>
+                  </p>
+                </div>
+                <div className="hidden h-8 w-px bg-[#E5E7EB] sm:block" aria-hidden="true" />
+                <div className="flex items-center gap-2">
+                  <img
+                    src={CLIENT_LOGO.src}
+                    alt={CLIENT_LOGO.alt}
+                    width={90}
+                    height={20}
+                    loading="lazy"
+                    className="h-5 w-auto opacity-60 grayscale"
+                  />
+                  <span className="text-sm text-slate-500">{CLIENT_LOGO.label}</span>
+                </div>
+              </div>
+              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+                <div className="flex items-center gap-1" aria-label={`Rated ${RATING.value} out of 5`}>
+                  {Array.from({ length: RATING.value }).map((_, i) => (
+                    <Star key={i} size={14} className="fill-amber-500 text-amber-500" />
+                  ))}
+                  <span className="ml-1 text-sm text-slate-600">{RATING.label}</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-slate-700 border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:-translate-y-0.5 transition-all duration-300"
-            >
-              Explore our Services
-            </Link>
+          {/* ── Right: contained visual ── */}
+          <div className="relative lg:col-span-6">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-8 rounded-[2.5rem] bg-gradient-to-br from-white/70 via-transparent to-[#FEF3C7]/40"
+            />
+            <div className="relative rounded-[20px] border border-[#E5E7EB] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_32px_-16px_rgba(15,23,42,0.14)]">
+              {/* Title bar */}
+              <div className="flex items-center gap-2 border-b border-[#EEF1F5] px-6 py-4">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#E5E7EB]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#E5E7EB]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#E5E7EB]" />
+                <span className="ml-3 font-mono text-xs font-medium text-slate-400">
+                  ai-infra · production
+                </span>
+                <span className="ml-auto inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                  <span className="relative flex h-2 w-2">
+                    <span className="hero-live-ping absolute inline-flex h-full w-full rounded-full bg-precision" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-precision" />
+                  </span>
+                  Live
+                </span>
+              </div>
+
+              {/* Product showcase — the single hero visual */}
+              <div className="px-6 pt-8 pb-8">
+                <Showcase />
+              </div>
+            </div>
           </div>
         </div>
       </div>

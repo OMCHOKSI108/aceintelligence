@@ -15,7 +15,7 @@ export const theme: ThemeConfig = {
     primaryColor: "#3b82f6",
   },
   fonts: {
-    heading: "var(--font-playfair-display)",
+    heading: "var(--font-display)",
     body: "var(--font-inter)",
   },
 };
@@ -24,6 +24,11 @@ export const colors = {
   background: "#ffffff",
   surface: "#f8fafc",
   border: "#e2e8f0",
+  /* Brand tokens — single copper accent (signal) + green live indicator (precision) */
+  ink: "#0f172a",
+  signal: "#b45309",
+  signalHover: "#92400e",
+  precision: "#22c55e",
   text: {
     primary: "#0f172a",
     secondary: "#475569",

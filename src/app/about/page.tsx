@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Cpu, BrainCircuit, Cloud, Zap, Shield, Layers, FileText, Building2, BarChart3, MessageSquare, Database } from "lucide-react";
+import { ArrowRight, Compass, DraftingCompass, Wrench, Rocket } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About",
@@ -15,27 +15,38 @@ export const metadata: Metadata = {
   },
 };
 
-const capabilities = [
+/* PLAUSIBLE-PLACEHOLDER: process steps describe our real engagement flow (Discovery → Architecture → Build → Deploy & Support). Verify wording with the team before publishing. */
+const processSteps = [
   {
-    icon: Zap,
-    title: "Intelligent Automation",
-    items: ["Smart email triage & routing", "Automated document parsing", "Zero-touch lead routing"],
+    step: "01",
+    icon: Compass,
+    title: "Discovery",
+    description: "We map the workflow, stakeholders, and systems that must stay in sync — then pin down success criteria and guardrails up front.",
   },
   {
-    icon: BrainCircuit,
-    title: "Generative AI & Agents",
-    items: ["Enterprise RAG architectures", "Multi-agent LLM workflows", "Tier-1 support bots"],
+    step: "02",
+    icon: DraftingCompass,
+    title: "Architecture",
+    description: "We design the data flow, model selection, and integration points, and agree on a deterministic, verifiable build plan.",
   },
   {
-    icon: Cloud,
-    title: "Cloud & Infrastructure",
-    items: ["Custom admin dashboards", "Predictive AI models", "Scalable backend APIs"],
+    step: "03",
+    icon: Wrench,
+    title: "Build",
+    description: "We ship in working increments with human checkpoints — production-grade code, tested against real data, not demos.",
+  },
+  {
+    step: "04",
+    icon: Rocket,
+    title: "Deploy & Support",
+    description: "We launch to production, monitor outcomes, and stay on for iterations, fixes, and feature evolution.",
   },
 ];
 
 const founders = [
   {
     name: "Om Choksi",
+    initials: "OC",
     role: "CTO & Chief Architect",
     expertise: "Multi-agent LLM workflows",
     username: "OMCHOKSI108",
@@ -44,6 +55,7 @@ const founders = [
   },
   {
     name: "Ansh Gajera",
+    initials: "AG",
     role: "CEO",
     expertise: "Business transformation",
     username: "anshgajera",
@@ -52,6 +64,7 @@ const founders = [
   },
   {
     name: "Yash Khare",
+    initials: "YK",
     role: "Founder",
     expertise: "RAG architecture",
     username: "firefistisdead",
@@ -125,49 +138,57 @@ export default function AboutPage() {
           <p className="text-xs font-medium tracking-[0.2em] text-slate-400 uppercase mb-4">
             Our Mission
           </p>
+          {/* PLAUSIBLE-PLACEHOLDER: expanded founding story — verify the problem narrative and the split of roles against the team before publishing. */}
           <h2 className="headline-primary text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-8">
-            We founded Ace Intelligence Systems to bridge the gap between complex AI research and practical, scalable enterprise operations.
+            We kept watching strong AI demos die in production. We founded Ace Intelligence Systems to fix that.
           </h2>
           <div className="w-16 h-0.5 bg-blue-500 mx-auto mb-8" />
           <p className="text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto">
-            Every engagement is purpose-built. We eliminate manual operational bottlenecks by designing 
-            deterministic, verifiable AI architectures that enterprises can trust. From rapid 48-hour 
-            automations to full-scale multi-agent systems, we ship production-grade intelligence.
+            As AIML engineers, we kept hitting the same wall on client and personal projects: a model that
+            looked brilliant in a notebook would fall apart under real traffic — unmonitored agent loops,
+            retrieval that drifted, dashboards nobody could trust. Each fix was a one-off, and nobody had
+            time to make it repeatable.
+          </p>
+          <p className="text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto mt-4">
+            So we teamed up — one of us obsessed with multi-agent orchestration and enterprise RAG, one with
+            turning technical work into business outcomes, and one with security-first deployment. Three
+            complementary skill sets we trusted enough to build on top of each other. Every engagement now
+            runs on that same stack: deterministic, verifiable AI architectures that enterprises can actually
+            operate, from rapid 48-hour automations to full-scale multi-agent systems.
           </p>
         </div>
       </section>
 
-      {/* Capability Grid */}
+      {/* How We Work */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
         <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
         <div className="relative z-10">
           <div className="text-center mb-14">
             <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase">
-              What We Build
+              From First Call to Deployed System
             </p>
             <h2 className="headline-primary text-3xl sm:text-4xl text-slate-900 mt-2">
-              Capabilities
+              How We Work
             </h2>
+            <p className="text-slate-600 text-lg mt-3 max-w-2xl mx-auto">
+              A predictable, transparent engagement — you always know what we&apos;re building and when.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {capabilities.map((cap) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {processSteps.map((step) => (
               <div
-                key={cap.title}
-                className="group rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-8 shadow-sm hover:shadow-md transition-all duration-300"
+                key={step.step}
+                className="group relative rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-8 shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mb-5 group-hover:bg-blue-50 transition-colors">
-                  <cap.icon size={24} className="text-slate-700 group-hover:text-blue-600 transition-colors" />
+                <span className="absolute top-6 right-6 font-display text-3xl font-semibold text-slate-200">
+                  {step.step}
+                </span>
+                <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mb-5 group-hover:bg-amber-50 transition-colors">
+                  <step.icon size={24} className="text-slate-700 group-hover:text-amber-600 transition-colors" />
                 </div>
-                <h3 className="headline-primary text-xl font-semibold text-slate-900 mb-4">{cap.title}</h3>
-                <ul className="space-y-3">
-                  {cap.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-slate-600">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="headline-primary text-lg font-semibold text-slate-900 mb-2">{step.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{step.description}</p>
               </div>
             ))}
           </div>
@@ -196,14 +217,9 @@ export default function AboutPage() {
                 key={founder.name}
                 className="group rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-8 shadow-sm hover:shadow-lg transition-all duration-300 text-center"
               >
-                <div className="w-24 h-24 rounded-full mx-auto mb-5 overflow-hidden border-2 border-slate-200 group-hover:border-blue-200 transition-colors">
-                  <Image
-                    src={`https://avatars.githubusercontent.com/${founder.username}?size=160`}
-                    alt={founder.name}
-                    width={96}
-                    height={96}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-24 h-24 rounded-full mx-auto mb-5 overflow-hidden bg-[#B45309] flex items-center justify-center border-2 border-[#B45309]/20 group-hover:border-amber-300 transition-colors">
+                  {/* PLAUSIBLE-PLACEHOLDER: initials placeholder — swap for real headshots when available. */}
+                  <span className="font-display text-3xl font-semibold text-white">{founder.initials}</span>
                 </div>
                 <h3 className="headline-primary text-xl font-semibold text-slate-900">{founder.name}</h3>
                 <p className="text-sm font-medium text-blue-600 mt-1">{founder.role}</p>
@@ -216,14 +232,29 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12 text-center">
+      {/* Closing CTA */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 relative">
+        <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
+        <div className="absolute left-1/3 top-[-6rem] h-72 w-72 -translate-x-1/2 rounded-full bg-amber-100/40 blur-3xl pointer-events-none" aria-hidden="true" />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <p className="text-xs font-medium tracking-[0.2em] text-slate-500 uppercase mb-4">
+            Let&apos;s Build
+          </p>
+          <h2 className="headline-primary text-3xl sm:text-4xl lg:text-5xl text-slate-900 leading-tight mb-4">
+            Ready to ship production-grade AI?
+          </h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            Tell us what you want to automate. We&apos;ll design a workflow your team can trust and have it in production in weeks, not quarters.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white rounded-lg transition-all duration-300"
-              style={{ backgroundColor: "var(--color-accent)" }}
+              className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white rounded-lg bg-[#B45309] hover:bg-[#92400E] transition-colors duration-300"
             >
-              Work with us
+              Start a project
               <ArrowRight size={16} />
             </Link>
           </div>

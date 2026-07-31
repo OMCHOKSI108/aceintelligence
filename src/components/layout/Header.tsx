@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { navData } from "@/lib/nav-data";
-import { colors, theme } from "@/lib/theme";
+import { theme } from "@/lib/theme";
 import { NavDropdown } from "./NavDropdown";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { HoverArrow } from "./HoverArrow";
 import type { NavItem } from "@/lib/nav-data";
 
 export function Header() {
@@ -15,6 +16,7 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [checkingCareersAuth, setCheckingCareersAuth] = useState(false);
   const [hasCareersSession, setHasCareersSession] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const isCareersApp = pathname?.startsWith("/careers");
   const isProtectedCareersRoute =
@@ -34,14 +36,28 @@ export function Header() {
   }, [mobileOpen]);
 
   useEffect(() => {
-    if (!isCareersApp || !isProtectedCareersRoute) {
-      setCheckingCareersAuth(false);
-      setHasCareersSession(false);
-      return;
-    }
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
+  useEffect(() => {
+    const isProtected = isCareersApp && isProtectedCareersRoute;
     let cancelled = false;
-    setCheckingCareersAuth(true);
+
+    queueMicrotask(() => {
+      if (cancelled) return;
+      if (!isProtected) {
+        setCheckingCareersAuth(false);
+        setHasCareersSession(false);
+      } else {
+        setCheckingCareersAuth(true);
+      }
+    });
+
+    if (!isProtected) return;
+
     fetch("/api/auth/me", { cache: "no-store" })
       .then((res) => {
         if (!cancelled) setHasCareersSession(res.ok);
@@ -61,7 +77,12 @@ export function Header() {
   if (isProtectedCareersRoute && (checkingCareersAuth || hasCareersSession)) return null;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <header
+      className={
+        "fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200/80 transition-shadow duration-300" +
+        (scrolled ? " shadow-sm shadow-slate-900/5" : "")
+      }
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
@@ -77,7 +98,7 @@ export function Header() {
                 <Link
                   key={item.label}
                   href={item.href || "#"}
-                  className="text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                  className="rounded-md text-sm font-medium text-slate-600 transition-colors duration-150 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/40"
                 >
                   {item.label}
                 </Link>
@@ -89,10 +110,10 @@ export function Header() {
             <LanguageSwitcher />
             <Link
               href="/contact"
-              className="px-4 py-2 text-sm font-medium text-white rounded-lg transition-colors"
-              style={{ backgroundColor: colors.accent.primary }}
+              className="group inline-flex items-center gap-2 rounded-lg bg-signal px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors duration-150 hover:bg-signal-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal/40"
             >
-              Start a Project
+              Start a project
+              <HoverArrow />
             </Link>
           </div>
 
@@ -136,11 +157,11 @@ export function Header() {
                 </div>
                 <Link
                   href="/contact"
-                  className="block w-full px-4 py-3 text-sm font-medium text-white text-center rounded-lg"
-                  style={{ backgroundColor: colors.accent.primary }}
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-signal px-4 py-3 text-center text-sm font-medium text-white transition-colors duration-150 hover:bg-signal-hover"
                   onClick={() => setMobileOpen(false)}
                 >
-                  Start a Project
+                  Start a project
+                  <HoverArrow />
                 </Link>
               </div>
             </div>
