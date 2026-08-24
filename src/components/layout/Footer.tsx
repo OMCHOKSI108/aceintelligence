@@ -114,6 +114,22 @@ export function Footer() {
                   yashco.ltd@gmail.com
                 </a>
               </div>
+              <div className="mt-6 inline-flex items-center gap-3 rounded-xl bg-white px-3.5 py-2.5">
+                <img
+                  src="/msme.png"
+                  alt="MSME logo"
+                  className="h-9 w-auto object-contain"
+                />
+                <div>
+                  <p className="text-[11px] font-semibold text-slate-900 leading-tight">
+                    Registered MSME &mdash; Government of India
+                  </p>
+                  <p className="text-[10px] text-slate-500 mt-0.5">
+                    Udyam Reg. No.:{" "}
+                    <span className="font-mono font-medium text-slate-700">UDYAM-GJ-22-0661896</span>
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Column 2: Company */}

@@ -12,6 +12,26 @@ export function HomePage() {
       <div className="absolute left-1/2 top-[-8rem] h-72 w-72 -translate-x-1/2 rounded-full bg-sky-200/35 blur-3xl pointer-events-none" aria-hidden="true" />
       <div className="absolute right-[-3rem] top-[18rem] h-64 w-64 rounded-full bg-slate-200/50 blur-3xl pointer-events-none" aria-hidden="true" />
       <div className="relative z-10">
+        {/* MSME Registration — top trust strip */}
+        <section className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative pt-16 sm:pt-20 pb-2">
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <img
+              src="/msme.png"
+              alt="MSME logo"
+              className="h-12 w-auto object-contain"
+            />
+            <div className="text-center sm:text-left">
+              <p className="text-sm font-semibold text-slate-900">
+                Registered MSME &mdash; Government of India
+              </p>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Udyam Registration No.:{" "}
+                <span className="font-mono font-medium text-slate-700">UDYAM-GJ-22-0661896</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
         <Hero />
         <ServicesSection />
         <ProjectsSection />
@@ -114,13 +134,41 @@ export function HomePage() {
                   </div>
                   <div>
                   <p className="font-semibold text-slate-900 text-sm">Vizatrade</p>
-                  <p className="text-xs text-slate-500">Custom Website &amp; Solution</p>
+                  <p className="text-xs text-slate-500">Visa Consulting</p>
                   <p className="text-xs text-slate-400">Gujarat, India</p>
                   </div>
                 </div>
                 <blockquote className="text-sm text-slate-600 leading-relaxed flex-1">
                   &ldquo;Ace Intelligence built our complete website and custom trading solution. Professional, on time, and the results speak for themselves.&rdquo;
                   <span className="block mt-3 text-xs font-medium text-slate-500">&mdash; Het Patel</span>
+                </blockquote>
+                <div className="flex gap-1 mt-5 pt-4 border-t border-slate-100">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg key={star} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-white/80 backdrop-blur-sm p-8 shadow-sm flex flex-col">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-14 h-14 rounded-xl bg-white border border-slate-200 flex items-center justify-center p-2.5">
+                    <img
+                      src="/e.png"
+                      alt="Elevateaxis logo"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div>
+                  <p className="font-semibold text-slate-900 text-sm">Elevateaxis</p>
+                  <p className="text-xs text-slate-500">Real Estate Brokerage</p>
+                  <p className="text-xs text-slate-400">Dubai, UAE</p>
+                  </div>
+                </div>
+                <blockquote className="text-sm text-slate-600 leading-relaxed flex-1">
+                  &ldquo;Ace Intelligence automated our lead routing and client follow-ups across our Dubai property portfolio. Faster responses, organised pipelines, and agents who close more deals.&rdquo;
+                  <span className="block mt-3 text-xs font-medium text-slate-500">&mdash; Founder, Elevateaxis</span>
                 </blockquote>
                 <div className="flex gap-1 mt-5 pt-4 border-t border-slate-100">
                   {[1, 2, 3, 4, 5].map((star) => (
